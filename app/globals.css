@@ -1,26 +1,268 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
+/* ------------------------------------------------------------------ */
+/*  Design tokens → Tailwind theme                                     */
+/* ------------------------------------------------------------------ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-script: var(--font-script);
+  --font-heading: var(--font-serif);
   --font-mono: var(--font-geist-mono);
+
+  /* Brand accent — used intentionally, never as default hover bg */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-muted: var(--brand-muted);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+
+  /* Editorial easing exposed to utilities */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ------------------------------------------------------------------ */
+/*  GALLERY palette — light (bone / ink / burnt amber)                 */
+/* ------------------------------------------------------------------ */
+:root {
+  --radius: 0.75rem;
+
+  --background: #ede7e1; /* warm ivory — inviting, elevated */
+  --foreground: #1f232b; /* charcoal — sophisticated, timeless */
+
+  --card: #f6f2ec;
+  --card-foreground: #1f232b;
+  --popover: #f6f2ec;
+  --popover-foreground: #1f232b;
+
+  --primary: #9d1b3d; /* crimson — energy, passion, confidence */
+  --primary-foreground: #f6f2ec;
+  --secondary: #e3dcd4;
+  --secondary-foreground: #1f232b;
+
+  --muted: #e6dfd7;
+  --muted-foreground: #5c574f;
+
+  --accent: #e9d6d6; /* blush — soft, modern hover wash */
+  --accent-foreground: #1f232b;
+
+  /* Crimson — the confident primary stroke */
+  --brand: #9d1b3d;
+  --brand-foreground: #f6f2ec;
+  --brand-muted: #e9d6d6; /* blush tint */
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #ddd5cc;
+  --input: #ddd5cc;
+  --ring: #9d1b3d; /* focus ring = crimson */
+
+  --chart-1: #9d1b3d; /* crimson */
+  --chart-2: #d88499; /* dusty rose */
+  --chart-3: #c7ccd9; /* cool gray */
+  --chart-4: #e9d6d6; /* blush */
+  --chart-5: #1f232b; /* charcoal */
+
+  --sidebar: #f6f2ec;
+  --sidebar-foreground: #1f232b;
+  --sidebar-primary: #9d1b3d;
+  --sidebar-primary-foreground: #f6f2ec;
+  --sidebar-accent: #e9d6d6;
+  --sidebar-accent-foreground: #1f232b;
+  --sidebar-border: #ddd5cc;
+  --sidebar-ring: #9d1b3d;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Dark — warm editorial night                                        */
+/* ------------------------------------------------------------------ */
+.dark {
+  --background: #161518; /* warm near-black */
+  --foreground: #ede7e1;
+
+  --card: #1e1d21;
+  --card-foreground: #ede7e1;
+  --popover: #1e1d21;
+  --popover-foreground: #ede7e1;
+
+  --primary: #d88499; /* dusty rose reads on dark */
+  --primary-foreground: #2a1218;
+  --secondary: #2a282d;
+  --secondary-foreground: #ede7e1;
+
+  --muted: #2a282d;
+  --muted-foreground: #b3aca4;
+
+  --accent: #322a2d; /* deep warm hover */
+  --accent-foreground: #ede7e1;
+
+  --brand: #d88499; /* dusty rose — the dark-mode accent */
+  --brand-foreground: #2a1218;
+  --brand-muted: #4a2730;
+
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 13%);
+  --ring: #d88499;
+
+  --chart-1: #d88499; /* dusty rose */
+  --chart-2: #9d1b3d; /* crimson */
+  --chart-3: #c7ccd9; /* cool gray */
+  --chart-4: #e9d6d6; /* blush */
+  --chart-5: #ede7e1; /* ivory */
+
+  --sidebar: #1e1d21;
+  --sidebar-foreground: #ede7e1;
+  --sidebar-primary: #d88499;
+  --sidebar-primary-foreground: #2a1218;
+  --sidebar-accent: #322a2d;
+  --sidebar-accent-foreground: #ede7e1;
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: #d88499;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base layer                                                         */
+/* ------------------------------------------------------------------ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans antialiased;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01";
+  }
+
+  /* Headings default to the editorial serif */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif;
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--brand);
+    color: var(--brand-foreground);
+  }
+
+  /* Respect reduced-motion globally */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------ */
+/*  Reusable display utilities                                         */
+/* ------------------------------------------------------------------ */
+@layer utilities {
+  /* Fluid editorial type scale */
+  .text-display {
+    font-size: clamp(2.75rem, 1.5rem + 6vw, 6.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
+  .text-display-sm {
+    font-size: clamp(2rem, 1.2rem + 3.5vw, 3.75rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+  .text-eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground;
+  }
+  /* Animated link underline (draws in on hover) */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-editorial);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+}
+
+/* Slow, breathing float for the hero photograph */
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.hero-float {
+  animation: heroFloat 9s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-float {
+    animation: none;
+  }
 }
