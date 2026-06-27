@@ -22,6 +22,12 @@
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-muted: var(--brand-muted);
 
+  /* Full palette as named utilities — the deep editorial jewel tones.
+     bg-plum / text-olive / bg-ink etc. so every color earns its place. */
+  --color-plum: var(--plum);
+  --color-olive: var(--olive);
+  --color-ink: var(--ink);
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -70,97 +76,107 @@
 :root {
   --radius: 0.75rem;
 
-  --background: #ede7e1; /* warm ivory — inviting, elevated */
-  --foreground: #1f232b; /* charcoal — sophisticated, timeless */
+  --background: #f0efed; /* warm off-white */
+  --foreground: #2a0d08; /* deep espresso — warm near-black */
 
-  --card: #f6f2ec;
-  --card-foreground: #1f232b;
-  --popover: #f6f2ec;
-  --popover-foreground: #1f232b;
+  --card: #f8f6f4;
+  --card-foreground: #2a0d08;
+  --popover: #f8f6f4;
+  --popover-foreground: #2a0d08;
 
-  --primary: #9d1b3d; /* crimson — energy, passion, confidence */
-  --primary-foreground: #f6f2ec;
-  --secondary: #e3dcd4;
-  --secondary-foreground: #1f232b;
+  --primary: #651714; /* cherry — confident brand red */
+  --primary-foreground: #f0efed;
+  --secondary: #e7e0d9;
+  --secondary-foreground: #2a0d08;
 
-  --muted: #e6dfd7;
-  --muted-foreground: #5c574f;
+  --muted: #e8e2db;
+  --muted-foreground: #5f5048; /* warm taupe-brown */
 
-  --accent: #e9d6d6; /* blush — soft, modern hover wash */
-  --accent-foreground: #1f232b;
+  --accent: #ecdedb; /* soft cherry-tinted hover wash */
+  --accent-foreground: #2a0d08;
 
-  /* Crimson — the confident primary stroke */
-  --brand: #9d1b3d;
-  --brand-foreground: #f6f2ec;
-  --brand-muted: #e9d6d6; /* blush tint */
+  /* Cherry — the confident primary stroke */
+  --brand: #651714;
+  --brand-foreground: #f0efed;
+  --brand-muted: #ecdedb;
+
+  /* Named palette tones (shared light + dark — deep enough to read on both) */
+  --plum: #3c0227; /* aubergine — immersive feature sections */
+  --olive: #333323; /* dark olive — grounded, editorial counterweight */
+  --ink: #000000; /* true black — used sparingly for maximum contrast */
 
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #ddd5cc;
-  --input: #ddd5cc;
-  --ring: #9d1b3d; /* focus ring = crimson */
+  --border: #ddd6cd;
+  --input: #ddd6cd;
+  --ring: #651714; /* focus ring = cherry */
 
-  --chart-1: #9d1b3d; /* crimson */
-  --chart-2: #d88499; /* dusty rose */
-  --chart-3: #c7ccd9; /* cool gray */
-  --chart-4: #e9d6d6; /* blush */
-  --chart-5: #1f232b; /* charcoal */
+  --chart-1: #651714; /* cherry */
+  --chart-2: #3c0227; /* plum */
+  --chart-3: #333323; /* olive */
+  --chart-4: #ecdedb; /* blush tint */
+  --chart-5: #2a0d08; /* espresso */
 
-  --sidebar: #f6f2ec;
-  --sidebar-foreground: #1f232b;
-  --sidebar-primary: #9d1b3d;
-  --sidebar-primary-foreground: #f6f2ec;
-  --sidebar-accent: #e9d6d6;
-  --sidebar-accent-foreground: #1f232b;
-  --sidebar-border: #ddd5cc;
-  --sidebar-ring: #9d1b3d;
+  --sidebar: #f8f6f4;
+  --sidebar-foreground: #2a0d08;
+  --sidebar-primary: #651714;
+  --sidebar-primary-foreground: #f0efed;
+  --sidebar-accent: #ecdedb;
+  --sidebar-accent-foreground: #2a0d08;
+  --sidebar-border: #ddd6cd;
+  --sidebar-ring: #651714;
 }
 
 /* ------------------------------------------------------------------ */
 /*  Dark — warm editorial night                                        */
 /* ------------------------------------------------------------------ */
 .dark {
-  --background: #161518; /* warm near-black */
-  --foreground: #ede7e1;
+  --background: #1a0805; /* deep espresso-black */
+  --foreground: #f0efed;
 
-  --card: #1e1d21;
-  --card-foreground: #ede7e1;
-  --popover: #1e1d21;
-  --popover-foreground: #ede7e1;
+  --card: #2a0d08;
+  --card-foreground: #f0efed;
+  --popover: #2a0d08;
+  --popover-foreground: #f0efed;
 
-  --primary: #d88499; /* dusty rose reads on dark */
-  --primary-foreground: #2a1218;
-  --secondary: #2a282d;
-  --secondary-foreground: #ede7e1;
+  --primary: #cf8079; /* lightened cherry-rose reads on dark */
+  --primary-foreground: #2a0d08;
+  --secondary: #2e1410;
+  --secondary-foreground: #f0efed;
 
-  --muted: #2a282d;
-  --muted-foreground: #b3aca4;
+  --muted: #2e1410;
+  --muted-foreground: #b6a59c;
 
-  --accent: #322a2d; /* deep warm hover */
-  --accent-foreground: #ede7e1;
+  --accent: #3a1814; /* deep warm hover */
+  --accent-foreground: #f0efed;
 
-  --brand: #d88499; /* dusty rose — the dark-mode accent */
-  --brand-foreground: #2a1218;
-  --brand-muted: #4a2730;
+  --brand: #cf8079; /* cherry-rose — the dark-mode accent */
+  --brand-foreground: #2a0d08;
+  --brand-muted: #4a201c;
+
+  /* Named palette tones — same deep jewel values read on the espresso night */
+  --plum: #3c0227;
+  --olive: #333323;
+  --ink: #000000;
 
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 13%);
-  --ring: #d88499;
+  --ring: #cf8079;
 
-  --chart-1: #d88499; /* dusty rose */
-  --chart-2: #9d1b3d; /* crimson */
-  --chart-3: #c7ccd9; /* cool gray */
-  --chart-4: #e9d6d6; /* blush */
-  --chart-5: #ede7e1; /* ivory */
+  --chart-1: #cf8079; /* cherry-rose */
+  --chart-2: #3c0227; /* plum */
+  --chart-3: #333323; /* olive */
+  --chart-4: #ecdedb; /* blush tint */
+  --chart-5: #f0efed; /* off-white */
 
-  --sidebar: #1e1d21;
-  --sidebar-foreground: #ede7e1;
-  --sidebar-primary: #d88499;
-  --sidebar-primary-foreground: #2a1218;
-  --sidebar-accent: #322a2d;
-  --sidebar-accent-foreground: #ede7e1;
+  --sidebar: #2a0d08;
+  --sidebar-foreground: #f0efed;
+  --sidebar-primary: #cf8079;
+  --sidebar-primary-foreground: #2a0d08;
+  --sidebar-accent: #3a1814;
+  --sidebar-accent-foreground: #f0efed;
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: #d88499;
+  --sidebar-ring: #cf8079;
 }
 
 /* ------------------------------------------------------------------ */

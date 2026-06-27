@@ -195,16 +195,16 @@ export default function CollaboratePage() {
       <Section spacing="sm" className="pb-24">
         <Container>
           <Reveal>
-            <div className="grid gap-8 rounded-2xl bg-secondary p-8 md:grid-cols-12 md:items-center md:gap-10 md:p-12">
+            <div className="grid gap-8 rounded-2xl bg-olive p-8 text-[#f0efed] md:grid-cols-12 md:items-center md:gap-10 md:p-12">
               <div className="md:col-span-5">
-                <p className="font-script text-2xl text-brand">
+                <p className="font-script text-2xl text-[#cf8079]">
                   At the heart of every collaboration
                 </p>
                 <p className="mt-3 font-serif text-3xl font-medium tracking-tight sm:text-4xl">
                   I believe partnership is a creative act.
                 </p>
               </div>
-              <p className="text-lg leading-relaxed text-muted-foreground md:col-span-7">
+              <p className="text-lg leading-relaxed text-[#f0efed]/75 md:col-span-7">
                 I bring the strategy, creative leadership, and experience. You
                 bring the mission, the knowledge, and the heart. Together we
                 build something that lasts.

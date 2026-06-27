@@ -20,7 +20,7 @@ export const workFeatured = {
   statValue: "+101%",
   statLabel: "first-time attendees / show",
   image: "/work/work-featured.jpg",
-  href: "https://www.youtube.com/watch?v=LW18K-g2zmo",
+  href: "/knoxville-opera",
   cta: "See the case study",
   tags: ["Brand & Campaigns"],
 };
@@ -55,6 +55,15 @@ export const workProjects: WorkProject[] = [
     youtube: "J9rGZCJzTtY",
     href: "https://www.youtube.com/watch?v=J9rGZCJzTtY",
     cta: "Watch the trailer",
+  },
+  {
+    title: "Knoxville Opera: Year in Review",
+    subtitle: "A season of impact, told in one cinematic recap.",
+    label: "Film & Video",
+    tags: ["Film & Video", "Brand & Campaigns"],
+    youtube: "VZYnfdr1uJA",
+    href: "https://www.youtube.com/watch?v=VZYnfdr1uJA",
+    cta: "Watch the recap",
   },
   {
     title: "Couture for a Cause",

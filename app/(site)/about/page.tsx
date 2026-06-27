@@ -70,18 +70,18 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* ───────────── Philosophy — oversized centered pull-quote ───────────── */}
-      <section className="py-28 md:py-44">
+      {/* ───────────── Philosophy — olive band, centered pull-quote ───────────── */}
+      <section className="my-16 bg-olive py-28 text-[#f0efed] md:my-24 md:py-44">
         <Container>
           <Reveal>
-            <p className="text-eyebrow text-center text-muted-foreground">
+            <p className="text-eyebrow text-center text-[#f0efed]/50">
               A small philosophy
             </p>
           </Reveal>
           <Reveal delay={0.08}>
             <p className="mx-auto mt-10 max-w-5xl text-center font-serif text-[clamp(2rem,6vw,5rem)] font-medium leading-[1.04] tracking-tight">
               I don&rsquo;t believe creativity is decoration.{" "}
-              <span className="italic text-brand">I believe it&rsquo;s strategy.</span>
+              <span className="italic text-[#cf8079]">I believe it&rsquo;s strategy.</span>
             </p>
           </Reveal>
         </Container>
@@ -206,12 +206,12 @@ export default function AboutPage() {
       </section>
 
       {/* ───────────── GreenRoom — dark full-bleed feature (the climax) ──────── */}
-      <section className="my-16 bg-foreground text-background md:my-24">
+      <section className="my-16 bg-[#3c0227] text-[#f0efed] md:my-24">
         <Container>
           <div className="grid items-center gap-12 py-20 md:grid-cols-12 md:gap-16 md:py-32">
             <div className="md:col-span-6">
               <Reveal>
-                <p className="text-eyebrow text-background/50">
+                <p className="text-eyebrow text-[#f0efed]/50">
                   What I&rsquo;m building now
                 </p>
               </Reveal>
@@ -221,19 +221,19 @@ export default function AboutPage() {
                 </h2>
               </Reveal>
               <Reveal delay={0.1}>
-                <p className="mt-6 max-w-md text-xl text-background/80">
+                <p className="mt-6 max-w-md text-xl text-[#f0efed]/80">
                   A CRM built specifically for performing arts organizations
                   &mdash; by someone who has lived the realities of nonprofit
                   arts administration.
                 </p>
               </Reveal>
               <Reveal delay={0.14}>
-                <p className="mt-5 max-w-md leading-relaxed text-background/60">
+                <p className="mt-5 max-w-md leading-relaxed text-[#f0efed]/60">
                   Alongside it, I&rsquo;m building Narratives, an AI platform that
                   helps mission-driven organizations communicate with clarity,
                   creativity, and confidence. The best technology doesn&rsquo;t
                   replace relationships.{" "}
-                  <span className="text-background">
+                  <span className="text-[#f0efed]">
                     It creates more space for them.
                   </span>
                 </p>

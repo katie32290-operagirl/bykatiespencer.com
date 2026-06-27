@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Play } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
@@ -153,13 +154,11 @@ export function WorkGrid() {
           </div>
         </div>
 
-        {/* Featured case study */}
+        {/* Featured case study — links to the internal impact page */}
         {showFeatured && (
           <div className="mt-12 grid items-center gap-8 md:grid-cols-12 md:gap-12">
-            <a
+            <Link
               href={workFeatured.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group relative col-span-12 block overflow-hidden rounded-2xl border border-border md:col-span-6"
             >
               <div className="relative aspect-[4/3]">
@@ -170,8 +169,14 @@ export function WorkGrid() {
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
                 />
+                {/* plum wash on hover — invites the click into the case study */}
+                <div className="absolute inset-0 bg-plum/0 transition-colors duration-500 group-hover:bg-plum/20" />
+                <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground opacity-0 backdrop-blur transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                  Case study
+                  <ArrowUpRight className="size-3.5 text-brand" />
+                </span>
               </div>
-            </a>
+            </Link>
             <div className="col-span-12 md:col-span-4">
               <p className="text-eyebrow text-brand">{workFeatured.label}</p>
               <h3 className="mt-3 font-serif text-3xl font-medium tracking-tight">
@@ -180,15 +185,13 @@ export function WorkGrid() {
               <p className="mt-3 text-muted-foreground">{workFeatured.lede}</p>
               <p className="mt-5 text-sm font-medium">The story:</p>
               <p className="mt-1 text-muted-foreground">{workFeatured.story}</p>
-              <a
+              <Link
                 href={workFeatured.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="link-underline group mt-6 inline-flex items-center gap-1.5 font-medium text-brand"
               >
                 {workFeatured.cta}
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </Link>
             </div>
             <div className="col-span-12 md:col-span-2">
               <p className="font-script text-6xl leading-none text-brand">

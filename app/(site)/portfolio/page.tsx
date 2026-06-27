@@ -73,13 +73,13 @@ export default function WorkPage() {
         </Reveal>
       </Container>
 
-      {/* Trusted by */}
-      <Section spacing="sm" className="border-t border-border/60">
+      {/* Trusted by — grounded olive band */}
+      <Section spacing="sm" className="bg-olive text-[#f0efed]">
         <Container>
           <div className="grid gap-8 md:grid-cols-12 md:items-center">
             <div className="md:col-span-3">
-              <p className="text-eyebrow">Trusted by</p>
-              <p className="mt-3 max-w-xs text-sm text-muted-foreground">
+              <p className="text-eyebrow text-[#f0efed]/50">Trusted by</p>
+              <p className="mt-3 max-w-xs text-sm text-[#f0efed]/70">
                 Organizations doing meaningful work in the world.
               </p>
             </div>
@@ -87,7 +87,7 @@ export default function WorkPage() {
               {trusted.map((name) => (
                 <li
                   key={name}
-                  className="text-sm font-medium uppercase tracking-[0.14em] text-muted-foreground"
+                  className="text-sm font-medium uppercase tracking-[0.14em] text-[#f0efed]/85 transition-colors hover:text-[#cf8079]"
                 >
                   {name}
                 </li>
