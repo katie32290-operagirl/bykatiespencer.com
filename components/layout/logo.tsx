@@ -1,36 +1,38 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
- * Wordmark with a small hexagon mark — a quiet nod to the "mirror / hexagon"
- * motif in Katie's own bio and the GreenRoom mark.
+ * Brand wordmark — Katie's "bykatiespencer" logo artwork (background keyed to
+ * transparent). Two versions swap with the theme: espresso letters on light,
+ * cream letters on dark.
  */
 export function Logo({ className }: { className?: string }) {
   return (
     <Link
       href="/"
-      aria-label="Katie Spencer, home"
+      aria-label="bykatiespencer, home"
       className={cn(
-        "group inline-flex items-center gap-2.5 font-serif text-lg font-medium tracking-tight",
+        "inline-flex items-center transition-opacity hover:opacity-80",
         className,
       )}
     >
-      <svg
-        viewBox="0 0 24 24"
-        className="size-[18px] text-brand transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-90"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path
-          d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span>
-        Katie&nbsp;Spencer
-      </span>
+      <Image
+        src="/logo-light.png"
+        alt="bykatiespencer"
+        width={631}
+        height={103}
+        priority
+        className="block h-5 w-auto md:h-[22px] dark:hidden"
+      />
+      <Image
+        src="/logo-dark.png"
+        alt="bykatiespencer"
+        width={631}
+        height={103}
+        priority
+        className="hidden h-5 w-auto md:h-[22px] dark:block"
+      />
     </Link>
   );
 }
