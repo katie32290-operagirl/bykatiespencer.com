@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, PenLine, Mic, Sparkles } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
 import { BrushUnderline } from "@/components/brush-underline";
@@ -24,24 +24,42 @@ function Hex({ filled }: { filled?: boolean }) {
   );
 }
 
-const items = [
+type BuildItem = {
+  name: string;
+  icon: React.ReactNode;
+  body: string;
+  note: string | null;
+  href?: string;
+  external?: boolean;
+};
+
+const items: BuildItem[] = [
   {
     name: "GreenRoom",
     icon: <Hex filled />,
-    body: "A CRM built specifically for performing arts organizations that brings fundraising, marketing, ticketing, and operations together in one platform.",
+    href: "https://greenroomcrm.com",
+    external: true,
+    body: "Building better tools for arts organizations — bringing fundraising, marketing, ticketing, and operations into one platform.",
     note: "Launching 2026",
   },
   {
-    name: "Narratives",
-    icon: <Hex />,
-    body: "An AI storytelling platform helping mission-driven organizations communicate with greater clarity, consistency, and impact.",
+    name: "Writing",
+    icon: <PenLine className="size-5 text-[#cf8079]" strokeWidth={1.6} />,
+    href: "/writing",
+    body: "Essays on creativity, belief, leadership, faith, and becoming.",
     note: null,
   },
   {
     name: "Speaking",
-    icon: <ArrowUpRight className="size-5 text-[#cf8079]" strokeWidth={1.6} />,
-    body: "Workshops, keynotes, and leadership conversations focused on creativity, nonprofit strategy, fundraising, and building organizations people believe in.",
+    icon: <Mic className="size-5 text-[#cf8079]" strokeWidth={1.6} />,
+    body: "Keynotes and conversations that help audiences see familiar ideas differently.",
     note: "Available for 2026",
+  },
+  {
+    name: "Stories in Development",
+    icon: <Sparkles className="size-5 text-[#cf8079]" strokeWidth={1.6} />,
+    body: "New projects taking shape across podcasting, books, production, and live experiences.",
+    note: null,
   },
 ];
 
@@ -62,12 +80,12 @@ export function CurrentlyBuilding() {
       <Container className="relative">
         <div className="py-20 md:max-w-[52%] md:py-28 lg:py-32">
           <Reveal>
-            <p className="text-eyebrow text-[#f0efed]/50">Currently building</p>
+            <p className="text-eyebrow text-[#f0efed]/50">Across mediums</p>
             <BrushUnderline aria-hidden className="mt-3 h-2.5 w-16 text-[#cf8079]/70" />
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="text-display mt-7 font-medium leading-[0.95]">
-              What I&rsquo;m building next<span className="text-[#cf8079]">.</span>
+              What I&rsquo;m building<span className="text-[#cf8079]">.</span>
             </h2>
           </Reveal>
 
@@ -83,7 +101,29 @@ export function CurrentlyBuilding() {
                   <span className="mt-1 shrink-0">{it.icon}</span>
                   <div>
                     <h3 className="font-serif text-2xl font-medium tracking-tight">
-                      {it.name}
+                      {it.href ? (
+                        it.external ? (
+                          <a
+                            href={it.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 transition-colors hover:text-[#cf8079]"
+                          >
+                            {it.name}
+                            <ArrowUpRight className="size-4 opacity-70" />
+                          </a>
+                        ) : (
+                          <Link
+                            href={it.href}
+                            className="inline-flex items-center gap-1.5 transition-colors hover:text-[#cf8079]"
+                          >
+                            {it.name}
+                            <ArrowRight className="size-4 opacity-70" />
+                          </Link>
+                        )
+                      ) : (
+                        it.name
+                      )}
                     </h3>
                     <p className="mt-2 max-w-md leading-relaxed text-[#f0efed]/70">
                       {it.body}
@@ -102,7 +142,7 @@ export function CurrentlyBuilding() {
               href="/contact"
               className="text-eyebrow group mt-12 inline-flex items-center gap-3 text-[#cf8079] transition-colors hover:text-[#f0efed]"
             >
-              Let&rsquo;s build something meaningful
+              Start a conversation
               <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1.5" />
             </Link>
           </Reveal>

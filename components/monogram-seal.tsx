@@ -23,7 +23,7 @@ export function MonogramSeal({ className }: { className?: string }) {
         opacity="0.7"
       >
         <textPath href="#seal-arc" startOffset="0">
-          KATIE SPENCER · CREATIVE STRATEGIST · STORYTELLER ·
+          KATIE SPENCER · STORYTELLER · BUILDER · FOUNDER ·
         </textPath>
       </text>
       <text

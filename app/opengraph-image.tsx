@@ -29,7 +29,7 @@ export default function OpengraphImage() {
             color: "#9d1b3d",
           }}
         >
-          Creative Strategist · Storyteller
+          Storyteller · Builder · Founder
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -43,7 +43,7 @@ export default function OpengraphImage() {
               maxWidth: 1000,
             }}
           >
-            Helping organizations tell their stories with clarity and purpose.
+            Stories build what strategy alone can&rsquo;t.
           </div>
           <div
             style={{
@@ -54,8 +54,8 @@ export default function OpengraphImage() {
               maxWidth: 920,
             }}
           >
-            Strategy, storytelling, fundraising, marketing, and creative
-            direction for arts organizations & nonprofits.
+            Founder, builder, speaker, and writer helping ideas become
+            things people believe in.
           </div>
         </div>
 

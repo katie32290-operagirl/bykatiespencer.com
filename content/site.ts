@@ -5,11 +5,11 @@ export const site: SiteConfig = {
   shortName: "KS",
   domain: "bykatiespencer.com",
   url: "https://bykatiespencer.com",
-  title: "Katie Spencer · Strategy, Storytelling & Human Connection",
+  title: "Katie Spencer · Storyteller, Builder & Founder",
   tagline:
-    "I help arts organizations, nonprofits, and creative leaders uncover what makes them meaningful, then turn it into strategy, storytelling, and experiences that inspire people to care.",
+    "I help ideas become stories people can see, feel, and believe in — sometimes a company, sometimes a campaign, an event, a keynote, a product, or a book. The medium changes. The mission doesn't.",
   description:
-    "Katie Spencer helps arts organizations, nonprofits, and creative leaders discover who they are and tell it in a way people want to belong to, through strategy, storytelling, and creative direction.",
+    "Katie Spencer is a storyteller, builder, and founder helping ideas become things people believe in — across companies, writing, speaking, and the stories still taking shape. Stories build what strategy alone can't.",
   // Her own Instagram bio — a human thread, not a résumé.
   arc: ["Opera singer", "Arts admin", "Mother", "Founder"],
   email: "hello@bykatiespencer.com",
@@ -17,6 +17,7 @@ export const site: SiteConfig = {
   nav: [
     { label: "About", href: "/about" },
     { label: "Work", href: "/portfolio" },
+    { label: "Writing", href: "/writing" },
     { label: "Collaborate", href: "/work-with-me" },
     { label: "Connect", href: "/contact" },
   ],

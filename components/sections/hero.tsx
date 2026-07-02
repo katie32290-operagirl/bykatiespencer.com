@@ -29,10 +29,8 @@ export function Hero() {
       <Container className="relative">
         <div className="py-16 md:max-w-[58%] md:py-28 lg:py-32">
           <motion.h1 {...rise(0)} className="text-display font-medium">
-            Great organizations are built on{" "}
-            <span className="font-serif italic text-brand">
-              stories people believe in.
-            </span>
+            Stories build what strategy alone{" "}
+            <span className="font-serif italic text-brand">can&rsquo;t.</span>
           </motion.h1>
 
           <motion.div {...rise(0.1)} aria-hidden>
@@ -43,17 +41,23 @@ export function Hero() {
             {...rise(0.18)}
             className="text-eyebrow mt-9"
           >
-            <span className="text-brand">Founder.</span> Creative strategist.
-            Speaker. Entrepreneur.
+            <span className="text-brand">Storyteller.</span> Builder. Founder.
+            Speaker. Writer. Producer.
           </motion.p>
 
-          <motion.p
+          <motion.div
             {...rise(0.24)}
-            className="mt-5 max-w-md text-lg text-muted-foreground"
+            className="mt-6 max-w-xl space-y-4 text-lg text-muted-foreground"
           >
-            I build organizations, ventures, and experiences that help people
-            connect through story.
-          </motion.p>
+            <p>
+              Whether through companies, conversations, stages, or words,
+              I&rsquo;m drawn to the moments where an idea becomes something
+              people can see, feel, and join.
+            </p>
+            <p className="font-serif text-xl italic text-foreground">
+              The medium changes. The mission doesn&rsquo;t.
+            </p>
+          </motion.div>
 
           <motion.div
             {...rise(0.32)}
