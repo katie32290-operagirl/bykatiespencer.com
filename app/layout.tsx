@@ -22,14 +22,16 @@ export const metadata: Metadata = {
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   keywords: [
-    "brand architect",
-    "arts marketing",
-    "season narrative",
-    "nonprofit strategy",
-    "creative director",
-    "performing arts",
-    "Knoxville Opera",
     "Katie Spencer",
+    "storyteller",
+    "creative strategist",
+    "brand storytelling",
+    "founder",
+    "keynote speaker",
+    "GreenRoom",
+    "arts organizations",
+    "nonprofit strategy",
+    "Knoxville",
   ],
 };
 

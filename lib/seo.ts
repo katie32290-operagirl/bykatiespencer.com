@@ -44,7 +44,7 @@ export function personJsonLd() {
     "@type": "Person",
     name: site.name,
     url: site.url,
-    jobTitle: "Creative Strategist & Storyteller",
+    jobTitle: "Storyteller, Builder & Founder",
     description: site.description,
     email: site.email,
     address: {
@@ -55,7 +55,7 @@ export function personJsonLd() {
     sameAs: site.socials
       .filter((s) => s.href.startsWith("http"))
       .map((s) => s.href),
-    worksFor: { "@type": "Organization", name: "Knoxville Opera" },
+    worksFor: { "@type": "Organization", name: "GreenRoom" },
   };
 }
 

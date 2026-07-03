@@ -2,8 +2,20 @@ import type { Metadata } from "next";
 import { Fragment, type ReactNode } from "react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
-import { createMetadata } from "@/lib/seo";
+import { createMetadata, jsonLdScript } from "@/lib/seo";
+import { site } from "@/content/site";
 import { writing } from "@/content/writing";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: writing.title,
+  description: writing.lead,
+  url: `${site.url}/writing`,
+  mainEntityOfPage: `${site.url}/writing`,
+  author: { "@type": "Person", name: site.name, url: site.url },
+  publisher: { "@type": "Person", name: site.name },
+};
 
 export const metadata: Metadata = createMetadata({
   title: "Writing",
@@ -54,6 +66,10 @@ export default function WritingPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(articleJsonLd)}
+      />
       {/* ───────────── The essay ───────────── */}
       <article className="pb-4 md:pb-10">
         <Container size="prose">

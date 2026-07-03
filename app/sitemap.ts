@@ -11,6 +11,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    // Case-study page not in the primary nav
+    {
+      url: `${site.url}/knoxville-opera`,
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
+    },
   ];
 
   return staticRoutes.map((r) => ({ lastModified: now, ...r }));

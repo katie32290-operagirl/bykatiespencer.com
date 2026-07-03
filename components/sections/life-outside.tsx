@@ -139,7 +139,7 @@ export function LifeOutside() {
                 {t.src.startsWith("/") ? (
                   <Image
                     src={t.src}
-                    alt=""
+                    alt="Katie Spencer — a moment from life outside the work"
                     fill
                     sizes="(max-width: 768px) 50vw, 30vw"
                     className="object-cover transition-transform duration-[1.1s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
@@ -148,7 +148,7 @@ export function LifeOutside() {
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={t.src}
-                    alt=""
+                    alt="Katie Spencer — a moment from life outside the work"
                     loading="lazy"
                     className="size-full object-cover transition-transform duration-[1.1s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
                   />
