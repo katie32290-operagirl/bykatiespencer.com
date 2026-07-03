@@ -19,48 +19,48 @@ const trusted = clients.filter((c) => c !== "GreenRoom");
 export default function WorkPage() {
   return (
     <>
-      {/* Hero — text left, full-height photo flush right */}
-      <section className="relative overflow-hidden md:min-h-[84vh]">
-        <div className="absolute inset-y-0 right-0 hidden w-1/2 md:block">
-          <HeroPhoto src="/work/katie-hero.jpg" position="object-[45%_35%]" />
-        </div>
+      {/* Hero — text left, rounded photo right */}
+      <section className="py-10 md:py-16">
+        <Container>
+          <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
+            <div>
+              <Reveal>
+                <p className="text-eyebrow">Work</p>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h1 className="mt-6 font-serif text-[clamp(2.75rem,6vw,4.75rem)] leading-[1.02] tracking-tight text-foreground">
+                  Work is where ideas become{" "}
+                  <span className="italic text-brand">real.</span>
+                </h1>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="font-serif italic mt-7 max-w-md text-2xl leading-snug text-brand">
+                  Every project begins with the same question: &ldquo;Why should
+                  anyone care?&rdquo;
+                </p>
+              </Reveal>
+              <Reveal delay={0.12}>
+                <div className="mt-6 flex items-center gap-3" aria-hidden>
+                  <span className="h-px w-16 bg-foreground/50" />
+                  <span className="size-2 rounded-full bg-brand" />
+                </div>
+              </Reveal>
+              <Reveal delay={0.16}>
+                <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
+                  From strategy to story to production, I help organizations
+                  create work that moves people to believe, connect, and take
+                  action.
+                </p>
+              </Reveal>
+            </div>
 
-        <Container className="relative flex md:min-h-[84vh] md:items-center">
-          <div className="py-16 md:max-w-[48%] md:py-24">
-            <Reveal>
-              <p className="text-eyebrow">Work</p>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h1 className="text-display mt-6 leading-[1.02]">
-                Work is where ideas become{" "}
-                <span className="font-serif italic text-brand">real.</span>
-              </h1>
-            </Reveal>
             <Reveal delay={0.1}>
-              <p className="font-serif italic mt-7 max-w-md text-2xl leading-snug text-brand">
-                Every project begins with the same question: &ldquo;Why should
-                anyone care?&rdquo;
-              </p>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <div className="mt-6 flex items-center gap-3" aria-hidden>
-                <span className="h-px w-16 bg-foreground/50" />
-                <span className="size-2 rounded-full bg-brand" />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border">
+                <HeroPhoto src="/work/katie-hero.jpg" position="object-[45%_35%]" />
               </div>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
-                From strategy to story to production, I help organizations create
-                work that moves people to believe, connect, and take action.
-              </p>
             </Reveal>
           </div>
         </Container>
-
-        {/* Mobile photo */}
-        <div className="relative aspect-[4/5] w-full md:hidden">
-          <HeroPhoto src="/work/katie-hero.jpg" position="object-[45%_35%]" />
-        </div>
       </section>
 
       <WorkGrid />
