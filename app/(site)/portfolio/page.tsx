@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Reveal } from "@/components/motion/reveal";
-import { BrushUnderline } from "@/components/brush-underline";
 import { HeroPhoto } from "@/components/hero-photo";
 import { WorkGrid } from "@/components/sections/work-grid";
 import { clients } from "@/content/clients";
@@ -20,35 +19,37 @@ const trusted = clients.filter((c) => c !== "GreenRoom");
 export default function WorkPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
+      {/* Hero — text left, full-height photo flush right */}
+      <section className="relative overflow-hidden md:min-h-[84vh]">
         <div className="absolute inset-y-0 right-0 hidden w-1/2 md:block">
-          <HeroPhoto src="/work/katie-hero.jpg" position="object-[40%_38%]" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-background to-transparent" />
+          <HeroPhoto src="/work/katie-hero.jpg" position="object-[45%_35%]" />
         </div>
 
-        <Container className="relative">
-          <div className="py-16 md:max-w-[48%] md:py-28 lg:py-32">
+        <Container className="relative flex md:min-h-[84vh] md:items-center">
+          <div className="py-16 md:max-w-[48%] md:py-24">
             <Reveal>
               <p className="text-eyebrow">Work</p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display mt-6 font-medium">
+              <h1 className="text-display mt-6 leading-[1.02]">
                 Work is where ideas become{" "}
                 <span className="font-serif italic text-brand">real.</span>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="font-script mt-6 max-w-md text-2xl leading-snug text-muted-foreground">
+              <p className="font-serif italic mt-7 max-w-md text-2xl leading-snug text-brand">
                 Every project begins with the same question: &ldquo;Why should
                 anyone care?&rdquo;
               </p>
             </Reveal>
-            <Reveal delay={0.12} aria-hidden>
-              <BrushUnderline className="mt-3 h-3 w-44 text-brand/70" />
+            <Reveal delay={0.12}>
+              <div className="mt-6 flex items-center gap-3" aria-hidden>
+                <span className="h-px w-16 bg-foreground/50" />
+                <span className="size-2 rounded-full bg-brand" />
+              </div>
             </Reveal>
             <Reveal delay={0.16}>
-              <p className="mt-7 max-w-md text-lg text-muted-foreground">
+              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
                 From strategy to story to production, I help organizations create
                 work that moves people to believe, connect, and take action.
               </p>
@@ -57,8 +58,8 @@ export default function WorkPage() {
         </Container>
 
         {/* Mobile photo */}
-        <div className="relative aspect-[4/3] w-full md:hidden">
-          <HeroPhoto src="/work/katie-hero.jpg" position="object-[40%_38%]" />
+        <div className="relative aspect-[4/5] w-full md:hidden">
+          <HeroPhoto src="/work/katie-hero.jpg" position="object-[45%_35%]" />
         </div>
       </section>
 
@@ -67,19 +68,19 @@ export default function WorkPage() {
       {/* Closing line */}
       <Container>
         <Reveal>
-          <p className="font-script pb-8 text-center text-2xl text-brand">
+          <p className="font-serif italic pb-8 text-center text-2xl text-brand">
             Every project is a collaboration. Every result is shared.
           </p>
         </Reveal>
       </Container>
 
       {/* Trusted by — grounded olive band */}
-      <Section spacing="sm" className="bg-olive text-[#f0efed]">
+      <Section spacing="sm" className="bg-olive text-[#FAF4EC]">
         <Container>
           <div className="grid gap-8 md:grid-cols-12 md:items-center">
             <div className="md:col-span-3">
-              <p className="text-eyebrow text-[#f0efed]/50">Trusted by</p>
-              <p className="mt-3 max-w-xs text-sm text-[#f0efed]/70">
+              <p className="text-eyebrow text-[#FAF4EC]/50">Trusted by</p>
+              <p className="mt-3 max-w-xs text-sm text-[#FAF4EC]/70">
                 Organizations doing meaningful work in the world.
               </p>
             </div>
@@ -87,7 +88,7 @@ export default function WorkPage() {
               {trusted.map((name) => (
                 <li
                   key={name}
-                  className="text-sm font-medium uppercase tracking-[0.14em] text-[#f0efed]/85 transition-colors hover:text-[#cf8079]"
+                  className="text-sm font-medium uppercase tracking-[0.14em] text-[#FAF4EC]/85 transition-colors hover:text-[#F39ABF]"
                 >
                   {name}
                 </li>

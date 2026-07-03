@@ -1,38 +1,22 @@
 import Link from "next/link";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
- * Brand wordmark — Katie's "bykatiespencer" logo artwork (background keyed to
- * transparent). Two versions swap with the theme: espresso letters on light,
- * cream letters on dark.
+ * Wordmark — "Katie Spencer." set in Instrument Serif with the plum full stop,
+ * the brand's primary signature. Themes with the palette (teal on cream,
+ * cream on teal; the dot follows the accent).
  */
 export function Logo({ className }: { className?: string }) {
   return (
     <Link
       href="/"
-      aria-label="bykatiespencer, home"
+      aria-label="Katie Spencer, home"
       className={cn(
-        "inline-flex items-center transition-opacity hover:opacity-80",
+        "inline-flex items-center font-serif text-2xl tracking-tight text-foreground transition-opacity hover:opacity-80",
         className,
       )}
     >
-      <Image
-        src="/logo-light.png"
-        alt="bykatiespencer"
-        width={631}
-        height={103}
-        priority
-        className="block h-5 w-auto md:h-[22px] dark:hidden"
-      />
-      <Image
-        src="/logo-dark.png"
-        alt="bykatiespencer"
-        width={631}
-        height={103}
-        priority
-        className="hidden h-5 w-auto md:h-[22px] dark:block"
-      />
+      Katie Spencer<span className="text-brand">.</span>
     </Link>
   );
 }

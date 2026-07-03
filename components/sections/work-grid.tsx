@@ -131,7 +131,7 @@ export function WorkGrid() {
             <h2 className="text-display-sm font-medium">
               Stories I&rsquo;ve helped bring to life.
             </h2>
-            <p className="font-script mt-1 text-2xl text-brand">
+            <p className="font-serif italic mt-1 text-2xl text-brand">
               Strategy. Story. Production. Impact.
             </p>
           </div>
@@ -194,10 +194,10 @@ export function WorkGrid() {
               </Link>
             </div>
             <div className="col-span-12 md:col-span-2">
-              <p className="font-script text-6xl leading-none text-brand">
+              <p className="font-serif italic text-6xl leading-none text-brand">
                 {workFeatured.statValue}
               </p>
-              <p className="font-script mt-1 text-2xl text-muted-foreground">
+              <p className="font-serif italic mt-1 text-2xl text-muted-foreground">
                 {workFeatured.statLabel}
               </p>
             </div>

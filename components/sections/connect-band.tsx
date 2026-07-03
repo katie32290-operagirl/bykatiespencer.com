@@ -9,7 +9,7 @@ export function ConnectBand() {
       <Container className="py-16 md:py-20">
         <Reveal>
           <div className="grid gap-8 md:grid-cols-12 md:items-center md:gap-10">
-            <p className="font-script text-4xl leading-[1.05] sm:text-5xl md:col-span-4">
+            <p className="font-serif italic text-4xl leading-[1.05] sm:text-5xl md:col-span-4">
               Let&rsquo;s build something meaningful.
             </p>
             <p className="text-lg leading-relaxed text-brand-foreground/85 md:col-span-5">

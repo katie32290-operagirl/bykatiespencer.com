@@ -64,7 +64,7 @@ export function Hero() {
             className="mt-14 flex items-center gap-3 text-muted-foreground"
           >
             <ArrowDown className="size-5 animate-bounce text-brand" />
-            <span className="font-script text-2xl">Scroll to explore</span>
+            <span className="font-serif italic text-2xl">Scroll to explore</span>
           </motion.div>
         </div>
       </Container>

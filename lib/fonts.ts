@@ -1,30 +1,34 @@
-import { Fraunces, Plus_Jakarta_Sans, Caveat } from "next/font/google";
-
-/** Handwritten accent — for small script flourishes ("Scroll to explore"). */
-export const fontScript = Caveat({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-script",
-  weight: ["400", "500", "600"],
-});
+import { Instrument_Serif, Instrument_Sans, Newsreader } from "next/font/google";
 
 /**
- * Display / editorial serif. Fraunces has optical sizing that blooms at
- * hero scale while staying composed in body — the "editorial luxury" voice.
+ * Display serif — headlines, covers, the name. Instrument Serif: modern,
+ * high-contrast, forward. The first of the brand's three voices.
  */
-export const fontSerif = Fraunces({
+export const fontSerif = Instrument_Serif({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-serif",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: "400",
   style: ["normal", "italic"],
 });
 
 /**
- * Workhorse sans. Plus Jakarta Sans is the closest high-quality Google Fonts
- * relative to General Sans — warm, geometric, highly legible at small sizes.
+ * Reading voice — essays, body copy, the italic asides. Newsreader is the
+ * literary serif the brand reads in.
  */
-export const fontSans = Plus_Jakarta_Sans({
+export const fontReading = Newsreader({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-reading",
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+});
+
+/**
+ * Labels, wayfinding, product & UI — the forward "GreenRoom register."
+ * Instrument Sans handles nav, buttons, eyebrows, and small caps.
+ */
+export const fontSans = Instrument_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",

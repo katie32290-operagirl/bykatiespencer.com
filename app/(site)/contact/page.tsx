@@ -1,145 +1,113 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { Section } from "@/components/layout/section";
 import { Reveal } from "@/components/motion/reveal";
-import { BrushUnderline } from "@/components/brush-underline";
 import { ContactForm } from "@/components/contact-form";
+import { site } from "@/content/site";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "Connect",
   description:
-    "Whether you're launching a season, reimagining your organization, or simply trying to tell a better story, I'd love to hear what you're building.",
+    "If you're building something people need to believe in, I'd love to hear about it.",
   path: "/contact",
 });
 
-const ways = [
-  {
-    step: "01",
-    title: "Projects",
-    body: "For launches, campaigns, fundraising experiences, and creative direction.",
-    bestWhen: "You know what needs to be built.",
-  },
-  {
-    step: "02",
-    title: "Advising",
-    body: "A strategic thought partner for leadership conversations, positioning, messaging, and big decisions.",
-    bestWhen: "You need clarity before execution.",
-  },
-  {
-    step: "03",
-    title: "Speaking",
-    body: "Workshops, retreats, conference sessions, and keynote presentations on storytelling, creativity, fundraising, and leadership.",
-    bestWhen: "You want to inspire or equip a team.",
-  },
-];
+const elsewhere = site.socials.filter((s) =>
+  ["instagram", "linkedin"].includes(s.icon),
+);
 
 export default function ConnectPage() {
   return (
     <>
-      {/* Hero: intro · portrait · form */}
-      <Section spacing="sm" id="connect-form" className="pt-16 md:pt-24">
-        <Container size="wide">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-3">
-              <Reveal>
-                <p className="text-eyebrow">Connect</p>
-              </Reveal>
-              <Reveal delay={0.05}>
-                <h1 className="text-display-sm mt-6 font-medium">
-                  Let&rsquo;s build something people{" "}
-                  <span className="font-serif italic text-brand">remember.</span>
-                </h1>
-              </Reveal>
-              <Reveal delay={0.1} aria-hidden>
-                <BrushUnderline className="mt-5 h-3 w-32 text-brand/70" />
-              </Reveal>
-              <Reveal delay={0.12}>
-                <p className="mt-7 text-lg text-muted-foreground">
-                  Whether you&rsquo;re launching a season, reimagining your
-                  organization, or simply trying to tell a better story, I&rsquo;d
-                  love to hear what you&rsquo;re building.
-                </p>
-              </Reveal>
-            </div>
-
-            <Reveal delay={0.1} className="lg:col-span-4">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border">
-                <Image
-                  src="/katie-brick.jpg"
-                  alt="Katie Spencer"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover object-[center_15%]"
-                />
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.15} className="lg:col-span-5">
-              <div className="rounded-2xl border border-border bg-card p-7 sm:p-9">
-                <ContactForm />
-                <p className="mt-5 text-sm italic text-muted-foreground">
-                  I usually reply within 1&ndash;2 business days.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Ways to connect */}
-      <Section className="border-t border-border/60">
-        <Container>
-          <div className="grid gap-12 md:grid-cols-3 md:gap-10">
-            {ways.map((w) => (
-              <Reveal key={w.step}>
-                <div>
-                  <span className="font-mono text-sm text-brand">{w.step}</span>
-                  <BrushUnderline
-                    aria-hidden
-                    className="mt-3 h-2.5 w-12 text-brand/60"
-                  />
-                  <h2 className="mt-5 font-serif text-3xl font-medium tracking-tight">
-                    {w.title}
-                  </h2>
-                  <p className="mt-4 text-muted-foreground">{w.body}</p>
-                  <div className="mt-8 border-t border-border/60 pt-5">
-                    <p className="text-sm italic text-brand">Best when:</p>
-                    <p className="mt-1 text-muted-foreground">{w.bestWhen}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Closing */}
-      <Section spacing="lg">
-        <Container className="max-w-3xl text-center">
+      {/* ───────────── Hero ───────────── */}
+      <section className="pt-16 pb-12 text-center md:pt-24">
+        <Container className="max-w-3xl">
           <Reveal>
-            <p className="text-display-sm font-medium">
-              The best work rarely starts with a proposal.{" "}
-              <span className="font-serif italic text-brand">
-                It starts with a conversation.
-              </span>
+            <p className="font-sans text-xs uppercase tracking-[0.3em] text-brand">
+              Connect
             </p>
           </Reveal>
-          <Reveal delay={0.08}>
-            <Link
-              href="#connect-form"
-              className="mt-10 inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-medium text-brand-foreground transition-transform duration-300 hover:scale-[1.02]"
-            >
-              Let&rsquo;s talk
-              <ArrowRight className="size-4" />
-            </Link>
+          <Reveal delay={0.06}>
+            <h1 className="mt-6 font-serif text-[clamp(2.5rem,6.5vw,4.75rem)] leading-[1.04] tracking-tight text-foreground">
+              Let&rsquo;s start a conversation<span className="text-brand">.</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
+              If you&rsquo;re building something people need to believe in,
+              I&rsquo;d love to hear about it.
+            </p>
           </Reveal>
         </Container>
-      </Section>
+      </section>
+
+      {/* ───────────── Form + info card ───────────── */}
+      <section className="pb-20 md:pb-28">
+        <Container>
+          <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+            {/* Form */}
+            <Reveal>
+              <div className="rounded-2xl border border-border bg-card p-8 md:p-12">
+                <ContactForm />
+              </div>
+            </Reveal>
+
+            {/* Info card */}
+            <Reveal delay={0.08}>
+              <div className="flex h-full flex-col rounded-2xl bg-olive p-8 text-cream md:p-12">
+                <div>
+                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-mist">
+                    Prefer email?
+                  </p>
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="mt-4 block font-serif text-3xl leading-tight text-cream transition-opacity hover:opacity-80"
+                  >
+                    hello@
+                    <wbr />
+                    bykatiespencer.com
+                  </a>
+                  <div className="mt-6 flex items-center gap-3" aria-hidden>
+                    <span className="h-px w-14 bg-cream/40" />
+                    <span className="size-1.5 rounded-full bg-pink" />
+                  </div>
+                </div>
+
+                <div className="mt-10">
+                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-mist">
+                    Based in
+                  </p>
+                  <p className="mt-4 font-serif text-2xl text-cream">
+                    Knoxville, Tennessee
+                  </p>
+                  <p className="mt-1 font-serif italic text-cream/75">
+                    Working with mission-driven teams everywhere.
+                  </p>
+                </div>
+
+                <div className="mt-auto pt-14">
+                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-mist">
+                    Elsewhere
+                  </p>
+                  <div className="mt-3 flex gap-6 font-sans text-sm text-cream">
+                    {elsewhere.map((s) => (
+                      <a
+                        key={s.label}
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="transition-opacity hover:opacity-70"
+                      >
+                        {s.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
     </>
   );
 }

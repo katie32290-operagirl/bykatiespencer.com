@@ -13,7 +13,7 @@
 
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
-  --font-script: var(--font-script);
+  --font-reading: var(--font-reading);
   --font-heading: var(--font-serif);
   --font-mono: var(--font-geist-mono);
 
@@ -22,9 +22,14 @@
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-muted: var(--brand-muted);
 
-  /* Full palette as named utilities — the deep editorial jewel tones.
-     bg-plum / text-olive / bg-ink etc. so every color earns its place. */
+  /* Full brand palette as named utilities — bg-teal / text-plum / bg-cream
+     etc. so every color earns its place. (olive/ink are legacy band aliases.) */
+  --color-teal: var(--teal);
   --color-plum: var(--plum);
+  --color-pink: var(--pink);
+  --color-camel: var(--camel);
+  --color-mist: var(--mist);
+  --color-cream: var(--cream);
   --color-olive: var(--olive);
   --color-ink: var(--ink);
 
@@ -76,107 +81,118 @@
 :root {
   --radius: 0.75rem;
 
-  --background: #f0efed; /* warm off-white */
-  --foreground: #2a0d08; /* deep espresso — warm near-black */
+  --background: #faf4ec; /* cream — paper */
+  --foreground: #0e4e68; /* deep teal — anchor & text */
 
-  --card: #f8f6f4;
-  --card-foreground: #2a0d08;
-  --popover: #f8f6f4;
-  --popover-foreground: #2a0d08;
+  --card: #fffdf8; /* near-white cream */
+  --card-foreground: #0e4e68;
+  --popover: #fffdf8;
+  --popover-foreground: #0e4e68;
 
-  --primary: #651714; /* cherry — confident brand red */
-  --primary-foreground: #f0efed;
-  --secondary: #e7e0d9;
-  --secondary-foreground: #2a0d08;
+  --primary: #c23a78; /* plum — the lead accent */
+  --primary-foreground: #faf4ec;
+  --secondary: #efe6d8; /* warm cream-camel */
+  --secondary-foreground: #0e4e68;
 
-  --muted: #e8e2db;
-  --muted-foreground: #5f5048; /* warm taupe-brown */
+  --muted: #eee4d5;
+  --muted-foreground: #4f6e7a; /* muted teal */
 
-  --accent: #ecdedb; /* soft cherry-tinted hover wash */
-  --accent-foreground: #2a0d08;
+  --accent: #f6e3ec; /* pale plum hover wash */
+  --accent-foreground: #0e4e68;
 
-  /* Cherry — the confident primary stroke */
-  --brand: #651714;
-  --brand-foreground: #f0efed;
-  --brand-muted: #ecdedb;
+  /* Plum — the one bright accent (the dot) */
+  --brand: #c23a78;
+  --brand-foreground: #faf4ec;
+  --brand-muted: #f6e3ec;
 
-  /* Named palette tones (shared light + dark — deep enough to read on both) */
-  --plum: #3c0227; /* aubergine — immersive feature sections */
-  --olive: #333323; /* dark olive — grounded, editorial counterweight */
-  --ink: #000000; /* true black — used sparingly for maximum contrast */
+  /* Brand palette */
+  --teal: #0e4e68; /* deep teal — anchor & text */
+  --plum: #c23a78; /* the dot / lead accent */
+  --pink: #f39abf; /* soft pop */
+  --camel: #d2a878; /* warm accent */
+  --mist: #8fb2c2; /* quiet tint */
+  --cream: #faf4ec; /* paper */
+  /* Feature-band aliases — deep grounds that contrast the cream page */
+  --olive: #0e4e68; /* immersive band → teal */
+  --ink: #0a3a4e; /* deepest cinematic ground */
 
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #ddd6cd;
-  --input: #ddd6cd;
-  --ring: #651714; /* focus ring = cherry */
+  --border: #e7ddcd; /* soft warm line on cream */
+  --input: #e7ddcd;
+  --ring: #c23a78; /* focus ring = plum */
 
-  --chart-1: #651714; /* cherry */
-  --chart-2: #3c0227; /* plum */
-  --chart-3: #333323; /* olive */
-  --chart-4: #ecdedb; /* blush tint */
-  --chart-5: #2a0d08; /* espresso */
+  --chart-1: #0e4e68; /* teal */
+  --chart-2: #c23a78; /* plum */
+  --chart-3: #d2a878; /* camel */
+  --chart-4: #f39abf; /* pink */
+  --chart-5: #8fb2c2; /* mist */
 
-  --sidebar: #f8f6f4;
-  --sidebar-foreground: #2a0d08;
-  --sidebar-primary: #651714;
-  --sidebar-primary-foreground: #f0efed;
-  --sidebar-accent: #ecdedb;
-  --sidebar-accent-foreground: #2a0d08;
-  --sidebar-border: #ddd6cd;
-  --sidebar-ring: #651714;
+  --sidebar: #fffdf8;
+  --sidebar-foreground: #0e4e68;
+  --sidebar-primary: #c23a78;
+  --sidebar-primary-foreground: #faf4ec;
+  --sidebar-accent: #f6e3ec;
+  --sidebar-accent-foreground: #0e4e68;
+  --sidebar-border: #e7ddcd;
+  --sidebar-ring: #c23a78;
 }
 
 /* ------------------------------------------------------------------ */
 /*  Dark — warm editorial night                                        */
 /* ------------------------------------------------------------------ */
 .dark {
-  --background: #1a0805; /* deep espresso-black */
-  --foreground: #f0efed;
+  --background: #0e4e68; /* deep teal — paper, reversed */
+  --foreground: #faf4ec; /* cream */
 
-  --card: #2a0d08;
-  --card-foreground: #f0efed;
-  --popover: #2a0d08;
-  --popover-foreground: #f0efed;
+  --card: #12586f;
+  --card-foreground: #faf4ec;
+  --popover: #12586f;
+  --popover-foreground: #faf4ec;
 
-  --primary: #cf8079; /* lightened cherry-rose reads on dark */
-  --primary-foreground: #2a0d08;
-  --secondary: #2e1410;
-  --secondary-foreground: #f0efed;
+  --primary: #f39abf; /* pink pops on teal */
+  --primary-foreground: #0e4e68;
+  --secondary: #145a73;
+  --secondary-foreground: #faf4ec;
 
-  --muted: #2e1410;
-  --muted-foreground: #b6a59c;
+  --muted: #155066;
+  --muted-foreground: #a9c4ce; /* mist-cream */
 
-  --accent: #3a1814; /* deep warm hover */
-  --accent-foreground: #f0efed;
+  --accent: #1a6180; /* teal hover wash */
+  --accent-foreground: #faf4ec;
 
-  --brand: #cf8079; /* cherry-rose — the dark-mode accent */
-  --brand-foreground: #2a0d08;
-  --brand-muted: #4a201c;
+  --brand: #f39abf; /* pink — the on-teal accent */
+  --brand-foreground: #0e4e68;
+  --brand-muted: #2e5e70;
 
-  /* Named palette tones — same deep jewel values read on the espresso night */
-  --plum: #3c0227;
-  --olive: #333323;
-  --ink: #000000;
+  /* Brand palette (dot stays plum; bands deepen to read on teal) */
+  --teal: #0e4e68;
+  --plum: #f39abf; /* accent reads as pink on teal */
+  --pink: #f39abf;
+  --camel: #d2a878;
+  --mist: #8fb2c2;
+  --cream: #faf4ec;
+  --olive: #0a3d52; /* deeper teal band */
+  --ink: #06222e; /* deepest cinematic ground */
 
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 13%);
-  --ring: #cf8079;
+  --border: oklch(1 1 1 / 14%);
+  --input: oklch(1 1 1 / 16%);
+  --ring: #f39abf;
 
-  --chart-1: #cf8079; /* cherry-rose */
-  --chart-2: #3c0227; /* plum */
-  --chart-3: #333323; /* olive */
-  --chart-4: #ecdedb; /* blush tint */
-  --chart-5: #f0efed; /* off-white */
+  --chart-1: #8fb2c2; /* mist */
+  --chart-2: #f39abf; /* pink */
+  --chart-3: #d2a878; /* camel */
+  --chart-4: #c23a78; /* plum */
+  --chart-5: #faf4ec; /* cream */
 
-  --sidebar: #2a0d08;
-  --sidebar-foreground: #f0efed;
-  --sidebar-primary: #cf8079;
-  --sidebar-primary-foreground: #2a0d08;
-  --sidebar-accent: #3a1814;
-  --sidebar-accent-foreground: #f0efed;
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: #cf8079;
+  --sidebar: #12586f;
+  --sidebar-foreground: #faf4ec;
+  --sidebar-primary: #f39abf;
+  --sidebar-primary-foreground: #0e4e68;
+  --sidebar-accent: #1a6180;
+  --sidebar-accent-foreground: #faf4ec;
+  --sidebar-border: oklch(1 1 1 / 14%);
+  --sidebar-ring: #f39abf;
 }
 
 /* ------------------------------------------------------------------ */
@@ -188,7 +204,7 @@
   }
 
   html {
-    @apply font-sans antialiased;
+    @apply font-reading antialiased;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -249,7 +265,7 @@
     letter-spacing: -0.02em;
   }
   .text-eyebrow {
-    @apply text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground;
+    @apply font-sans text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground;
   }
   /* Animated link underline (draws in on hover) */
   .link-underline {

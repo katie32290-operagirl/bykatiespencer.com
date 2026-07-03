@@ -20,7 +20,7 @@ export function IdeasExploring() {
               </h2>
             </Reveal>
             <Reveal delay={0.05}>
-              <p className="font-script mt-1 text-2xl text-brand">
+              <p className="font-serif italic mt-1 text-2xl text-brand">
                 Read my thoughts
               </p>
             </Reveal>

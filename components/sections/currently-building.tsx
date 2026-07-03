@@ -10,7 +10,7 @@ function Hex({ filled }: { filled?: boolean }) {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="size-5 text-[#cf8079]"
+      className="size-5 text-[#F39ABF]"
       fill={filled ? "currentColor" : "none"}
       aria-hidden
     >
@@ -44,20 +44,20 @@ const items: BuildItem[] = [
   },
   {
     name: "Writing",
-    icon: <PenLine className="size-5 text-[#cf8079]" strokeWidth={1.6} />,
+    icon: <PenLine className="size-5 text-[#F39ABF]" strokeWidth={1.6} />,
     href: "/writing",
     body: "Essays on creativity, belief, leadership, faith, and becoming.",
     note: null,
   },
   {
     name: "Speaking",
-    icon: <Mic className="size-5 text-[#cf8079]" strokeWidth={1.6} />,
+    icon: <Mic className="size-5 text-[#F39ABF]" strokeWidth={1.6} />,
     body: "Keynotes and conversations that help audiences see familiar ideas differently.",
     note: "Available for 2026",
   },
   {
     name: "Stories in Development",
-    icon: <Sparkles className="size-5 text-[#cf8079]" strokeWidth={1.6} />,
+    icon: <Sparkles className="size-5 text-[#F39ABF]" strokeWidth={1.6} />,
     body: "New projects taking shape across podcasting, books, production, and live experiences.",
     note: null,
   },
@@ -65,7 +65,7 @@ const items: BuildItem[] = [
 
 export function CurrentlyBuilding() {
   return (
-    <section className="relative overflow-hidden bg-olive text-[#f0efed]">
+    <section className="relative overflow-hidden bg-olive text-[#FAF4EC]">
       {/* Desktop: full-bleed portrait on the right */}
       <div className="absolute inset-y-0 right-0 hidden w-[42%] md:block">
         <Image
@@ -80,12 +80,12 @@ export function CurrentlyBuilding() {
       <Container className="relative">
         <div className="py-20 md:max-w-[52%] md:py-28 lg:py-32">
           <Reveal>
-            <p className="text-eyebrow text-[#f0efed]/50">Across mediums</p>
-            <BrushUnderline aria-hidden className="mt-3 h-2.5 w-16 text-[#cf8079]/70" />
+            <p className="text-eyebrow text-[#FAF4EC]/50">Across mediums</p>
+            <BrushUnderline aria-hidden className="mt-3 h-2.5 w-16 text-[#F39ABF]/70" />
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="text-display mt-7 font-medium leading-[0.95]">
-              What I&rsquo;m building<span className="text-[#cf8079]">.</span>
+              What I&rsquo;m building<span className="text-[#F39ABF]">.</span>
             </h2>
           </Reveal>
 
@@ -95,7 +95,7 @@ export function CurrentlyBuilding() {
                 <div
                   className={cn(
                     "flex gap-5 py-7",
-                    i > 0 && "border-t border-[#f0efed]/15",
+                    i > 0 && "border-t border-[#FAF4EC]/15",
                   )}
                 >
                   <span className="mt-1 shrink-0">{it.icon}</span>
@@ -107,7 +107,7 @@ export function CurrentlyBuilding() {
                             href={it.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 transition-colors hover:text-[#cf8079]"
+                            className="inline-flex items-center gap-1.5 transition-colors hover:text-[#F39ABF]"
                           >
                             {it.name}
                             <ArrowUpRight className="size-4 opacity-70" />
@@ -115,7 +115,7 @@ export function CurrentlyBuilding() {
                         ) : (
                           <Link
                             href={it.href}
-                            className="inline-flex items-center gap-1.5 transition-colors hover:text-[#cf8079]"
+                            className="inline-flex items-center gap-1.5 transition-colors hover:text-[#F39ABF]"
                           >
                             {it.name}
                             <ArrowRight className="size-4 opacity-70" />
@@ -125,11 +125,11 @@ export function CurrentlyBuilding() {
                         it.name
                       )}
                     </h3>
-                    <p className="mt-2 max-w-md leading-relaxed text-[#f0efed]/70">
+                    <p className="mt-2 max-w-md leading-relaxed text-[#FAF4EC]/70">
                       {it.body}
                     </p>
                     {it.note && (
-                      <p className="text-eyebrow mt-3 text-[#cf8079]">{it.note}</p>
+                      <p className="text-eyebrow mt-3 text-[#F39ABF]">{it.note}</p>
                     )}
                   </div>
                 </div>
@@ -140,7 +140,7 @@ export function CurrentlyBuilding() {
           <Reveal delay={0.28}>
             <Link
               href="/contact"
-              className="text-eyebrow group mt-12 inline-flex items-center gap-3 text-[#cf8079] transition-colors hover:text-[#f0efed]"
+              className="text-eyebrow group mt-12 inline-flex items-center gap-3 text-[#F39ABF] transition-colors hover:text-[#FAF4EC]"
             >
               Start a conversation
               <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1.5" />

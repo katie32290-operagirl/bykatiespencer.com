@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Fragment, type ReactNode } from "react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
-import { CTA } from "@/components/sections/cta";
 import { createMetadata } from "@/lib/seo";
 import { writing } from "@/content/writing";
 
@@ -55,27 +54,34 @@ export default function WritingPage() {
 
   return (
     <>
-      <article className="pt-20 pb-8 md:pt-32">
+      {/* ───────────── The essay ───────────── */}
+      <article className="pb-4 md:pb-10">
         <Container size="prose">
-          {/* ───────────── Header ───────────── */}
-          <header>
+          <header className="pt-16 text-center md:pt-28">
             <Reveal>
-              <p className="text-eyebrow">{writing.eyebrow}</p>
+              <p className="font-sans text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                Essay 01 <span className="text-brand">&middot;</span> On Craft
+              </p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="mt-6 font-serif text-[clamp(2.25rem,6vw,4rem)] font-medium leading-[1.03] tracking-tight text-balance">
+              <h1 className="mt-5 font-serif text-[clamp(2.25rem,5.5vw,3.75rem)] leading-[1.05] tracking-tight text-foreground">
                 {writing.title}
               </h1>
             </Reveal>
-            <Reveal delay={0.12}>
-              <p className="mt-8 font-serif text-xl italic leading-relaxed text-muted-foreground md:text-2xl">
+            <Reveal delay={0.1}>
+              <p className="mx-auto mt-6 max-w-xl font-serif text-xl italic leading-relaxed text-muted-foreground">
                 {renderInline(writing.lead)}
               </p>
             </Reveal>
           </header>
 
-          {/* ───────────── Essay body ───────────── */}
-          <Reveal delay={0.05} className="mt-14 md:mt-16">
+          <div
+            aria-hidden
+            className="mx-auto mt-10 h-px max-w-xl bg-border md:mt-12"
+          />
+
+          {/* Essay body */}
+          <Reveal delay={0.05} className="mt-10 md:mt-12">
             <div className="space-y-6 text-lg leading-[1.75] text-foreground/90">
               {blocks.map((block, i) =>
                 block === "---" ? (
@@ -86,10 +92,36 @@ export default function WritingPage() {
               )}
             </div>
           </Reveal>
+
+          {/* Sign-off */}
+          <div className="mt-14 flex flex-col items-center gap-3">
+            <div className="flex items-center gap-3" aria-hidden>
+              <span className="h-px w-16 bg-border" />
+              <span className="size-1.5 rounded-full bg-brand" />
+              <span className="h-px w-16 bg-border" />
+            </div>
+            <p className="font-serif text-lg italic text-muted-foreground">
+              Katie Spencer
+            </p>
+          </div>
         </Container>
       </article>
 
-      <CTA />
+      {/* ───────────── More essays teaser ───────────── */}
+      <section className="border-t border-border/60 py-16 text-center md:py-20">
+        <Container className="max-w-2xl">
+          <Reveal>
+            <p className="font-sans text-xs uppercase tracking-[0.24em] text-brand">
+              More essays, soon
+            </p>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <p className="mt-4 font-serif text-[clamp(1.5rem,3.5vw,2.25rem)] italic leading-snug text-foreground">
+              On belief, leadership, faith, and becoming.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
     </>
   );
 }
