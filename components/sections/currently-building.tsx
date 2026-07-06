@@ -58,7 +58,7 @@ const items: BuildItem[] = [
   {
     name: "Stories in Development",
     icon: <Sparkles className="size-5 text-[#F39ABF]" strokeWidth={1.6} />,
-    body: "New projects taking shape across podcasting, books, production, and live experiences.",
+    body: "New projects taking shape across books, production, and live experiences.",
     note: null,
   },
 ];
