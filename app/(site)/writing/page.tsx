@@ -127,13 +127,8 @@ export default function WritingPage() {
       <section className="border-t border-border/60 py-16 text-center md:py-20">
         <Container className="max-w-2xl">
           <Reveal>
-            <p className="font-sans text-xs uppercase tracking-[0.24em] text-brand">
-              More essays, soon
-            </p>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <p className="mt-4 font-serif text-[clamp(1.5rem,3.5vw,2.25rem)] italic leading-snug text-foreground">
-              On belief, leadership, faith, and becoming.
+            <p className="font-serif text-[clamp(1.5rem,3.5vw,2.25rem)] italic leading-snug text-foreground">
+              More essays soon<span className="text-brand">.</span>
             </p>
           </Reveal>
         </Container>
