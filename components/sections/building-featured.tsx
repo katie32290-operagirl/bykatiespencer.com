@@ -14,7 +14,7 @@ const ways = [
   },
   {
     title: "Stories in Development",
-    body: "New projects taking shape across books, production, and live experiences.",
+    body: "New ideas taking shape behind the scenes — more to share when the time is right.",
     pink: true,
   },
 ];
