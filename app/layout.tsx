@@ -80,6 +80,7 @@ export default function RootLayout({
             gtag('config', 'G-FLNYKF503X');
           `}
         </Script>
+        <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />
       </body>
     </html>
   );
