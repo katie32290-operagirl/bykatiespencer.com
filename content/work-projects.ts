@@ -35,6 +35,8 @@ export interface WorkProject {
   dark?: boolean;
   href: string;
   cta: string;
+  /** Optional production/design credit shown as a small annotation. */
+  credit?: { prefix: string; name: string; href: string };
 }
 
 export const workProjects: WorkProject[] = [
@@ -91,6 +93,11 @@ export const workProjects: WorkProject[] = [
     image: "/work/ko-program-book.jpg",
     href: "/work/ko-program-book.pdf",
     cta: "View the book",
+    credit: {
+      prefix: "Design by",
+      name: "Robin Easter Design",
+      href: "https://www.robineaster.com/",
+    },
   },
   {
     title: "Annual Fund Appeal",

@@ -57,12 +57,18 @@ function YtThumb({ id, alt }: { id: string; alt: string }) {
 }
 
 function WorkCard({ project }: { project: WorkProject }) {
-  // Video production credit: Glitch for City Lyric Opera, Vessul Creative for the rest.
-  const credit = project.youtube
+  // Credit annotation — an explicit `credit` wins; otherwise fall back to the
+  // video production team (Glitch for City Lyric Opera, Vessul for the rest).
+  const videoCredit = project.youtube
     ? project.title === "City Lyric Opera"
-      ? { name: "Glitch", href: "https://glitchworks.org/" }
-      : { name: "Vessul Creative", href: "https://www.vessul.co/" }
+      ? { prefix: "Video by", name: "Glitch", href: "https://glitchworks.org/" }
+      : {
+          prefix: "Video by",
+          name: "Vessul Creative",
+          href: "https://www.vessul.co/",
+        }
     : null;
+  const credit = project.credit ?? videoCredit;
 
   return (
     <article>
@@ -109,7 +115,7 @@ function WorkCard({ project }: { project: WorkProject }) {
       <p className="mt-1 text-sm text-muted-foreground">{project.subtitle}</p>
       {credit && (
         <p className="mt-1.5 font-sans text-xs text-muted-foreground/70">
-          Video by{" "}
+          {credit.prefix}{" "}
           <a
             href={credit.href}
             target="_blank"
