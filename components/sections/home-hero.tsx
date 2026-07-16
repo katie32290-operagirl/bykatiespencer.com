@@ -16,7 +16,7 @@ export function HomeHero() {
 
         <Reveal delay={0.06}>
           <h1 className="mx-auto mt-8 max-w-4xl font-serif text-[clamp(2.75rem,8vw,5.75rem)] leading-[1.04] tracking-tight text-foreground">
-            Stories build what strategy alone cannot
+            Stories build what strategy alone can&rsquo;t
             <span className="text-brand">.</span>
           </h1>
         </Reveal>
