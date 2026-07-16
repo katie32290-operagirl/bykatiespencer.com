@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Katie Spencer — Stories build what strategy alone can't.";
+  "Katie Spencer — Stories build what strategy alone cannot.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -44,7 +44,7 @@ export default function OpengraphImage() {
               maxWidth: 1000,
             }}
           >
-            Stories build what strategy alone can&rsquo;t
+            Stories build what strategy alone cannot
             <span style={{ color: "#C23A78" }}>.</span>
           </div>
           <div

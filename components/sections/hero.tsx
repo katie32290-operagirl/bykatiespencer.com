@@ -30,7 +30,7 @@ export function Hero() {
         <div className="py-16 md:max-w-[58%] md:py-28 lg:py-32">
           <motion.h1 {...rise(0)} className="text-display font-medium">
             Stories build what strategy alone{" "}
-            <span className="font-serif italic text-brand">can&rsquo;t.</span>
+            <span className="font-serif italic text-brand">cannot.</span>
           </motion.h1>
 
           <motion.div {...rise(0.1)} aria-hidden>

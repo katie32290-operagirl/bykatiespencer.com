@@ -9,7 +9,7 @@ export const site: SiteConfig = {
   tagline:
     "I help ideas become stories people can see, feel, and believe in — sometimes a company, sometimes a campaign, an event, a keynote, a product, or a book. The medium changes. The mission doesn't.",
   description:
-    "Katie Spencer is a storyteller, builder, and founder helping ideas become things people believe in — across companies, writing, speaking, and the stories still taking shape. Stories build what strategy alone can't.",
+    "Katie Spencer is a storyteller, builder, and founder helping ideas become things people believe in — across companies, writing, speaking, and the stories still taking shape. Stories build what strategy alone cannot.",
   // Her own Instagram bio — a human thread, not a résumé.
   arc: ["Opera singer", "Arts admin", "Mother", "Founder"],
   email: "hello@bykatiespencer.com",
