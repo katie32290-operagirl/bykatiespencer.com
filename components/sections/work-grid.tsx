@@ -57,6 +57,13 @@ function YtThumb({ id, alt }: { id: string; alt: string }) {
 }
 
 function WorkCard({ project }: { project: WorkProject }) {
+  // Video production credit: Glitch for City Lyric Opera, Vessul Creative for the rest.
+  const credit = project.youtube
+    ? project.title === "City Lyric Opera"
+      ? { name: "Glitch", href: "https://glitchworks.org/" }
+      : { name: "Vessul Creative", href: "https://www.vessul.co/" }
+    : null;
+
   return (
     <article>
       <a
@@ -100,6 +107,19 @@ function WorkCard({ project }: { project: WorkProject }) {
         {project.title}
       </h3>
       <p className="mt-1 text-sm text-muted-foreground">{project.subtitle}</p>
+      {credit && (
+        <p className="mt-1.5 font-sans text-xs text-muted-foreground/70">
+          Video by{" "}
+          <a
+            href={credit.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-dotted underline-offset-2 transition-colors hover:text-foreground"
+          >
+            {credit.name}
+          </a>
+        </p>
+      )}
       <a
         href={project.href}
         target="_blank"
