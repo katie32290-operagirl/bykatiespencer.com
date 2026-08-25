@@ -321,9 +321,8 @@ export const narratives = {
         body: "You provide the season context, the goals, the audience information, and the constraints. I do the strategic build.",
       },
       {
-        // Placeholder: replace with a real turnaround range once one is set.
         title: "Timing",
-        body: "Set per engagement and agreed before we start, built backward from your season calendar so the plan lands while there is still time to run it.",
+        body: "Usually one week to a month. The pace depends less on the build than on how quickly your team can get me the season context, the goals, and the constraints.",
       },
     ] satisfies Detail[],
     /**
