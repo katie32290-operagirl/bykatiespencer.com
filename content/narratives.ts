@@ -325,15 +325,6 @@ export const narratives = {
         body: "Usually one week to a month. The pace depends less on the build than on how quickly your team can get me the season context, the goals, and the constraints.",
       },
     ] satisfies Detail[],
-    /**
-     * Given prominence below the grid rather than as a fifth tile: it is the
-     * question every buyer is actually holding, and a five-up grid would have
-     * left it ragged.
-     */
-    investment: {
-      label: "Investment",
-      body: "Engagements typically range from $1,000 to $4,500+, depending on season size, scope, and what your team needs.",
-    },
   },
 
   /* 11 · Close ---------------------------------------------------------- */

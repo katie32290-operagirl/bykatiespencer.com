@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = createMetadata({
   title: "Narratives — Story strategy for the performing arts",
   description:
-    "Narratives takes your season, finds the story audiences can enter through, and hands your team five custom working documents they can execute.",
+    "Narratives takes your season, finds the story audiences can enter through, and builds the campaign strategy your small team can actually execute.",
   path: "/narratives",
 });
 
@@ -633,16 +633,6 @@ export default function NarrativesPage() {
             ))}
           </Stagger>
 
-          <Reveal>
-            <div className="mt-14 grid gap-x-8 gap-y-3 border-t-2 border-brand pt-8 md:mt-16 md:grid-cols-12">
-              <p className="font-sans text-xs font-medium uppercase tracking-[0.18em] text-brand md:col-span-3 md:pt-2">
-                {n.engagement.investment.label}
-              </p>
-              <p className="font-serif text-2xl leading-snug tracking-tight md:col-span-9 md:text-[1.75rem]">
-                {n.engagement.investment.body}
-              </p>
-            </div>
-          </Reveal>
         </Container>
       </Section>
 
