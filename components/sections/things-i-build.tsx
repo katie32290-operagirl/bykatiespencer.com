@@ -14,13 +14,21 @@ function BuildCard({ build }: { build: Build }) {
     <div className="group relative aspect-[3/4] overflow-hidden rounded-xl border border-border">
       {build.dark ? (
         <div className="flex size-full flex-col justify-between bg-foreground p-5 text-background">
-          <svg viewBox="0 0 24 24" className="size-6 text-brand" fill="none" aria-hidden>
-            <path
-              d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinejoin="round"
-            />
+          {/* Five rules — the five movements of the Narrative Method. (Was a
+              hexagon, which read as the GreenRoom mark.) */}
+          <svg viewBox="0 0 24 12" className="w-14 text-brand" fill="none" aria-hidden>
+            {[0, 1, 2, 3, 4].map((i) => (
+              <line
+                key={i}
+                x1={1 + i * 5.5}
+                y1={11}
+                x2={1 + i * 5.5}
+                y2={11 - (i + 1) * 2}
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            ))}
           </svg>
           <div>
             <h3 className="font-serif text-xl font-medium">{build.title}</h3>
@@ -71,14 +79,17 @@ function BuildCard({ build }: { build: Build }) {
     </div>
   );
 
-  if (build.href) {
-    return (
-      <a href={build.href} target="_blank" rel="noopener noreferrer">
-        {inner}
-      </a>
-    );
+  if (!build.href) return inner;
+
+  // Internal routes get client-side navigation; outbound links open in a tab.
+  if (build.href.startsWith("/")) {
+    return <Link href={build.href}>{inner}</Link>;
   }
-  return inner;
+  return (
+    <a href={build.href} target="_blank" rel="noopener noreferrer">
+      {inner}
+    </a>
+  );
 }
 
 export function ThingsIBuild() {

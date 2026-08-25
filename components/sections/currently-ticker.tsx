@@ -7,6 +7,7 @@ export function CurrentlyTicker() {
         <span>
           Building GreenRoom <span className="text-pink">&bull;</span> 2026
         </span>
+        <span>Building Narratives</span>
         <span>Writing</span>
         <span>Speaking</span>
         <span>Collaborating</span>

@@ -22,10 +22,13 @@ export const builds: Build[] = [
     href: "https://greenroomcrm.com",
   },
   {
+    // No brand tile: the only Narratives lockup on file still reads "by
+    // GreenRoom", and Narratives is no longer a GreenRoom product. Typographic
+    // dark card until there's real Narratives art.
     title: "Narratives",
-    subtitle: "An AI-powered storytelling platform for mission-driven organizations.",
-    image: "/work/build-narratives-brand.png",
-    brand: true,
+    subtitle: "Story strategy for the performing arts.",
+    dark: true,
+    href: "/narratives",
   },
   {
     title: "Knoxville Opera",

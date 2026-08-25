@@ -258,10 +258,19 @@ export default function AboutPage() {
                       Building software taught me that belief has to scale.
                       GreenRoom turns hard-won lessons about arts organizations
                       into tools they use every day — the infrastructure a story
-                      needs to keep being told. Alongside it, I&rsquo;m building
-                      Narratives — an AI platform helping mission-driven
-                      organizations communicate with clarity.{" "}
-                      <span className="italic text-pink">Launching 2026.</span>
+                      needs to keep being told. Alongside it I&rsquo;m building{" "}
+                      <Link
+                        href="/narratives"
+                        className="link-underline text-pink"
+                      >
+                        Narratives
+                      </Link>
+                      , my own venture, bringing story strategy to the marketing
+                      teams inside performing arts organizations.{" "}
+                      <span className="italic text-pink">
+                        Two companies, one field, opposite ends of the same
+                        problem.
+                      </span>
                     </p>
                   </div>
                 </div>
