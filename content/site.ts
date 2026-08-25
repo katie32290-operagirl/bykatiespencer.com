@@ -17,6 +17,7 @@ export const site: SiteConfig = {
   nav: [
     { label: "About", href: "/about" },
     { label: "Work", href: "/portfolio" },
+    { label: "Narratives", href: "/narratives" },
     { label: "Writing", href: "/writing" },
     { label: "Collaborate", href: "/work-with-me" },
     { label: "Connect", href: "/contact" },

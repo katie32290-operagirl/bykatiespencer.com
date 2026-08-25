@@ -9,11 +9,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...site.nav.map((n) => ({
       url: `${site.url}${n.href}`,
       changeFrequency: "monthly" as const,
-      priority: 0.8,
+      // Narratives is now in the nav, so it comes through here rather than as
+      // a separate entry. It's the page most worth surfacing in search.
+      priority: n.href === "/narratives" ? 0.9 : 0.8,
     })),
-    // Narratives isn't in site.nav (the primary nav stays personal, not
-    // product), but it's a real indexed page, so it's listed explicitly.
-    { url: `${site.url}/narratives`, changeFrequency: "monthly", priority: 0.9 },
     // Note: /knoxville-opera is intentionally noindex'd (internal case study),
     // so it's deliberately kept OUT of the sitemap to avoid contradictory signals.
   ];
