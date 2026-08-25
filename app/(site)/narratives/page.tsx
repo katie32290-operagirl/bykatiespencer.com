@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Play } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
+import { YtThumb } from "@/components/yt-thumb";
 import { narratives as n } from "@/content/narratives";
 import { createMetadata, jsonLdScript } from "@/lib/seo";
 import { site } from "@/content/site";
@@ -45,6 +46,32 @@ function serviceJsonLd() {
         "Regional opera, symphony, ballet, theatre, and festival organizations",
     },
   };
+}
+
+/**
+ * Eyebrow label, written out rather than using the site's `.text-eyebrow`
+ * utility. That utility hard-sets `text-muted-foreground`, which silently
+ * beats any color override on it — Tailwind resolves competing utilities by
+ * stylesheet order, not class order. Harmless on cream, but on the plum CTA
+ * band it left the label almost unreadable.
+ */
+function Eyebrow({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <p
+      className={cn(
+        "font-sans text-xs font-medium uppercase tracking-[0.18em]",
+        className,
+      )}
+    >
+      {children}
+    </p>
+  );
 }
 
 export default function NarrativesPage() {
@@ -90,7 +117,7 @@ export default function NarrativesPage() {
                 <p className="text-lg leading-relaxed text-muted-foreground">
                   {n.intro}
                 </p>
-                <p className="text-eyebrow mt-8">{n.byline}</p>
+                <Eyebrow className="mt-8 text-muted-foreground">{n.byline}</Eyebrow>
               </Reveal>
             </div>
           </div>
@@ -105,7 +132,7 @@ export default function NarrativesPage() {
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-4">
               <Reveal>
-                <p className="text-eyebrow text-brand">{n.problem.eyebrow}</p>
+                <Eyebrow className="text-brand">{n.problem.eyebrow}</Eyebrow>
               </Reveal>
             </div>
 
@@ -178,7 +205,7 @@ export default function NarrativesPage() {
           <div className="grid gap-10 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
               <Reveal>
-                <p className="text-eyebrow text-brand">{n.method.eyebrow}</p>
+                <Eyebrow className="text-brand">{n.method.eyebrow}</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
                 <h2 className="text-display-sm mt-6 font-medium">
@@ -239,7 +266,7 @@ export default function NarrativesPage() {
       <Section spacing="lg" className="bg-secondary/50">
         <Container>
           <Reveal>
-            <p className="text-eyebrow text-brand">{n.pillars.eyebrow}</p>
+            <Eyebrow className="text-brand">{n.pillars.eyebrow}</Eyebrow>
             <h2 className="text-display-sm mt-6 max-w-2xl font-medium">
               {n.pillars.title}
             </h2>
@@ -249,9 +276,7 @@ export default function NarrativesPage() {
             {n.parts.map((p) => (
               <StaggerItem key={p.label}>
                 <article className="grid gap-x-8 gap-y-4 border-t border-foreground/15 py-10 md:grid-cols-12 md:py-14">
-                  <p className="text-eyebrow md:col-span-3 md:pt-2">
-                    {p.label}
-                  </p>
+                  <Eyebrow className="md:col-span-3 md:pt-2 text-muted-foreground">{p.label}</Eyebrow>
                   <div className="md:col-span-9">
                     <h3 className="font-serif text-3xl font-medium leading-tight tracking-tight md:text-4xl">
                       {p.title}
@@ -268,7 +293,7 @@ export default function NarrativesPage() {
           {/* What it isn't — the honest counterpoint */}
           <Reveal>
             <div className="mt-16 border-t border-foreground/15 pt-12 md:mt-20">
-              <p className="text-eyebrow text-brand">{n.isNot.eyebrow}</p>
+              <Eyebrow className="text-brand">{n.isNot.eyebrow}</Eyebrow>
               <div className="mt-8 grid gap-10 sm:grid-cols-3">
                 {n.isNot.items.map((item) => (
                   <div key={item.title}>
@@ -295,9 +320,7 @@ export default function NarrativesPage() {
           <div className="grid gap-10 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
               <Reveal>
-                <p className="text-eyebrow text-brand">
-                  {n.deliverable.eyebrow}
-                </p>
+                <Eyebrow className="text-brand">{n.deliverable.eyebrow}</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
                 <h2 className="text-display-sm mt-6 font-medium">
@@ -353,7 +376,7 @@ export default function NarrativesPage() {
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-6">
               <Reveal>
-                <p className="text-eyebrow text-brand">{n.proof.eyebrow}</p>
+                <Eyebrow className="text-brand">{n.proof.eyebrow}</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
                 <h2 className="text-display-sm mt-6 font-medium">
@@ -369,17 +392,6 @@ export default function NarrativesPage() {
                     <p key={para}>{para}</p>
                   ))}
                 </div>
-              </Reveal>
-              <Reveal delay={0.14}>
-                <a
-                  href={n.proof.link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-underline group mt-8 inline-flex items-center gap-2 text-sm font-medium text-foreground"
-                >
-                  {n.proof.link.label}
-                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
               </Reveal>
             </div>
 
@@ -411,6 +423,59 @@ export default function NarrativesPage() {
       </Section>
 
       {/* ---------------------------------------------------------------- */}
+      {/* Sample work — the claim above, watchable                          */}
+      {/* ---------------------------------------------------------------- */}
+      <Section spacing="sm" className="pb-24">
+        <Container>
+          <Reveal>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <Eyebrow className="text-brand">{n.samples.eyebrow}</Eyebrow>
+                <h2 className="mt-4 max-w-xl font-serif text-3xl font-medium leading-tight tracking-tight md:text-4xl">
+                  {n.samples.title}
+                </h2>
+              </div>
+              <Link
+                href={n.samples.more.href}
+                className="link-underline group inline-flex w-fit items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground"
+              >
+                {n.samples.more.label}
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </Reveal>
+
+          <Stagger className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-3">
+            {n.samples.items.map((s) => (
+              <StaggerItem key={s.youtube}>
+                <a
+                  href={`https://www.youtube.com/watch?v=${s.youtube}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block"
+                >
+                  <div className="relative aspect-video overflow-hidden rounded-xl border border-border">
+                    <YtThumb
+                      id={s.youtube}
+                      alt={s.title}
+                      className="size-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                    />
+                    <span className="absolute left-1/2 top-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand text-brand-foreground shadow-lg transition-transform duration-300 group-hover:scale-110">
+                      <Play className="size-5 translate-x-0.5 fill-current" />
+                    </span>
+                  </div>
+                  <Eyebrow className="mt-4 text-brand">{s.label}</Eyebrow>
+                  <h3 className="mt-1.5 font-serif text-xl font-medium leading-snug tracking-tight">
+                    {s.title}
+                  </h3>
+                </a>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </Container>
+      </Section>
+
+      {/* ---------------------------------------------------------------- */}
       {/* Who it's for                                                      */}
       {/* ---------------------------------------------------------------- */}
       <Section spacing="lg" className="border-t border-border/60">
@@ -418,7 +483,7 @@ export default function NarrativesPage() {
           <div className="grid gap-10 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
               <Reveal>
-                <p className="text-eyebrow text-brand">{n.audience.eyebrow}</p>
+                <Eyebrow className="text-brand">{n.audience.eyebrow}</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
                 <h2 className="text-display-sm mt-6 font-medium">
@@ -465,9 +530,7 @@ export default function NarrativesPage() {
         <Container className="py-20 md:py-28">
           <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
             <Reveal>
-              <p className="text-eyebrow text-brand-foreground">
-                {n.cta.eyebrow}
-              </p>
+              <Eyebrow className="text-brand-foreground">{n.cta.eyebrow}</Eyebrow>
               <h2 className="mt-5 max-w-2xl font-serif text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[1.05] tracking-tight">
                 {n.cta.title}
               </h2>

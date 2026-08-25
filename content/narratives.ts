@@ -35,6 +35,13 @@ export interface Audience {
   body: string;
 }
 
+/** A published piece of campaign work, linked out to YouTube. */
+export interface Sample {
+  youtube: string;
+  label: string;
+  title: string;
+}
+
 export const narratives = {
   eyebrow: "Narratives",
   byline: "A campaign method by Katie Spencer",
@@ -230,10 +237,34 @@ export const narratives = {
       "Every format in the library has been shot, posted, and watched by a real audience.",
     close:
       "Anyone can generate arts marketing copy. Almost nobody selling into this field has actually run the season, cast the media day, argued about the poster, and watched what made a first-timer buy a ticket.",
-    link: {
-      label: "Watch Behind the Music of Gianni Schicchi",
-      href: "https://www.youtube.com/watch?v=ZqJPkheBt-4",
-    },
+  },
+
+  /**
+   * Sample work — the real Gianni Schicchi pieces, one per format the proof
+   * paragraph names. Titles and labels match content/campaigns.ts exactly so
+   * the same asset never gets two different names across the site.
+   */
+  samples: {
+    eyebrow: "See it in practice",
+    title: "The Gianni Schicchi campaign, as it actually ran.",
+    items: [
+      {
+        youtube: "0Ap9-34BuAI",
+        label: "Reel · Synopsis",
+        title: "Gianni Schicchi Synopsis: Girls Lunch",
+      },
+      {
+        youtube: "Y4kyen1P47k",
+        label: "Reel · Character series",
+        title: "Confession: Simone",
+      },
+      {
+        youtube: "ZqJPkheBt-4",
+        label: "Film · Audience education",
+        title: "Behind the Music of Gianni Schicchi",
+      },
+    ] satisfies Sample[],
+    more: { label: "See all the work", href: "/portfolio" },
   },
 
   /** Who it's for */
