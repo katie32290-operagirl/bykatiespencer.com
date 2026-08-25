@@ -27,8 +27,6 @@ export interface PlanDocument {
   title: string;
   subtitle: string;
   body: string;
-  /** Page-one preview of the real branded template, in /public/narratives. */
-  image: string;
 }
 
 /** One step of the client-facing process. */
@@ -74,8 +72,6 @@ export const narratives = {
     eyebrow: "What you get",
     title: "Five working documents. One clear season.",
     lead: "Written for your repertoire, your city, and your audience. Not blank templates, and not a deck that sits in a shared drive.",
-    previewNote:
-      "The five formats. Yours arrive written, built around the season you are actually programming.",
     close:
       "Yours to keep, and specific enough to hand to a designer, a videographer, or a board.",
   },
@@ -83,35 +79,30 @@ export const narratives = {
   documents: [
     {
       index: "01",
-      image: "/narratives/template-01-audience-friction-audit.jpg",
       title: "Audience & friction audit",
       subtitle: "The diagnostic",
       body: "Where your audience is getting stuck, across language, social, cultural, emotional, identity, and practical friction. Then the rewrites and the onboarding that clear it.",
     },
     {
       index: "02",
-      image: "/narratives/template-02-narrative-strategy.jpg",
       title: "Narrative strategy",
       subtitle: "The emotional center",
       body: "The campaign premise in fifty words or fewer, then the spark, the world, the bridge, the arc, and the invitation, answered for your season.",
     },
     {
       index: "03",
-      image: "/narratives/template-03-visual-world-brief.jpg",
       title: "Visual world brief",
       subtitle: "The atmosphere",
       body: "Atmosphere, palette, form, space, wardrobe and sound. What the season should feel like from the lobby to the last note.",
     },
     {
       index: "04",
-      image: "/narratives/template-04-momentum-map.jpg",
       title: "Momentum map",
       subtitle: "The rhythm",
       body: "The emotional pacing, phase by phase, from mood reveal and first hook through opening night and the invitation to come back.",
     },
     {
       index: "05",
-      image: "/narratives/template-05-budget-strategy.jpg",
       title: "Budget strategy",
       subtitle: "The fuel",
       body: "Foundation, amplifiers, stretch, and defer, with a recommended allocation. What to spend on, what to skip, and the reasoning behind both.",

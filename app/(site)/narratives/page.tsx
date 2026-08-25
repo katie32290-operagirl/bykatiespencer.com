@@ -21,8 +21,9 @@ import { cn } from "@/lib/utils";
  * the reasoning behind it.
  *
  * Deliberately typographic. No brand tile (the only Narratives lockup on file
- * still reads "by GreenRoom"), no icon grids. The two places images appear are
- * the ones where showing beats describing: the templates and the campaign.
+ * still reads "by GreenRoom"), no icon grids, and no previews of the
+ * deliverables themselves. Images appear only where showing beats describing:
+ * the published campaign work, and Katie on set.
  *
  * All copy lives in content/narratives.ts.
  */
@@ -163,30 +164,6 @@ export default function NarrativesPage() {
               </Reveal>
             </div>
           </div>
-
-          {/* The set, shown as a set. Previews only: these are the product,
-              so they never link to a downloadable file. */}
-          <Stagger className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 md:mt-16 md:grid-cols-5 md:gap-5">
-            {n.documents.map((d) => (
-              <StaggerItem key={`preview-${d.index}`}>
-                <div className="relative aspect-[17/22] overflow-hidden rounded-lg border border-border bg-card shadow-sm">
-                  <Image
-                    src={d.image}
-                    alt={`${d.title}, page one`}
-                    fill
-                    sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, 19vw"
-                    className="object-cover object-top"
-                  />
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-
-          <Reveal>
-            <p className="mt-6 font-serif text-lg italic text-muted-foreground">
-              {n.deliverable.previewNote}
-            </p>
-          </Reveal>
 
           <Stagger className="mt-14 md:mt-16">
             {n.documents.map((d) => (
