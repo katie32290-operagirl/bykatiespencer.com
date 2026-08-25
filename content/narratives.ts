@@ -143,21 +143,26 @@ export const narratives = {
     },
   ] satisfies Pillar[],
 
-  /** The honest counterpoint */
+  /**
+   * The honest counterpoint. These answer the fear that making the work
+   * easier to walk into means making it smaller — not "how is this different
+   * from a CRM", which is an internal positioning question no marketing
+   * director has ever asked.
+   */
   isNot: {
     eyebrow: "What it isn't",
     items: [
       {
-        title: "Not software for the transaction.",
-        body: "Not a CRM, not ticketing, not email. It never touches the sale.",
+        title: "Not dumbing anything down.",
+        body: "It removes thresholds, not depth. The art is never the thing that gets simplified.",
       },
       {
-        title: "Not a library you log into.",
-        body: "Mine stays mine, and this isn't a pile of content. It's one plan, written for you.",
+        title: "Not a content mill.",
+        body: "Volume isn't the point. The right emotional entry point is.",
       },
       {
-        title: "Not opera for beginners.",
-        body: "Nothing in it dilutes the work. It removes thresholds, not depth.",
+        title: "Not apologizing for opera.",
+        body: "Irreverent about the framing, never about the work.",
       },
     ],
   },
