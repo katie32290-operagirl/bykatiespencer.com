@@ -125,7 +125,7 @@ export const narratives = {
   method: {
     eyebrow: "The method",
     title: "Five movements, one experience.",
-    lead: "The three steps are what the work looks like. This is how the thinking works underneath it. Nothing gets written until all five are answered.",
+    lead: "The three steps are the process. These five movements shape the thinking underneath it. Nothing gets written until every one is answered.",
   },
 
   movements: [
