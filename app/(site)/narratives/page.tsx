@@ -16,9 +16,9 @@ import { cn } from "@/lib/utils";
  * Narratives — Katie's second venture, and the only page on the site that
  * sells an engagement rather than telling her story.
  *
- * Order is the argument: hero, then what you actually get, then why it exists.
- * A director should know what they are buying before being asked to agree with
- * the reasoning behind it.
+ * Order is the argument: why this exists, how the work runs, the framework,
+ * and only then the named deliverables. Leading with the list made the
+ * engagement read as a fixed package of files, which it isn't.
  *
  * Deliberately typographic. No brand tile (the only Narratives lockup on file
  * still reads "by GreenRoom"), no icon grids, and no previews of the
@@ -139,65 +139,7 @@ export default function NarrativesPage() {
       </section>
 
       {/* ================================================================ */}
-      {/* 2 · What you get — the offer, before the argument for it         */}
-      {/* ================================================================ */}
-      <Section spacing="default" className="border-t border-border/60">
-        <Container>
-          <div className="grid gap-8 md:grid-cols-12 md:gap-16">
-            <div className="md:col-span-6">
-              <Reveal>
-                <Eyebrow className="text-brand">
-                  {n.deliverable.eyebrow}
-                </Eyebrow>
-              </Reveal>
-              <Reveal delay={0.05}>
-                <h2 className="text-display-sm mt-6 font-medium">
-                  {n.deliverable.title}
-                </h2>
-              </Reveal>
-            </div>
-            <div className="md:col-span-5 md:col-start-8 md:self-end">
-              <Reveal delay={0.1}>
-                <p className="text-lg leading-relaxed text-muted-foreground">
-                  {n.deliverable.lead}
-                </p>
-              </Reveal>
-            </div>
-          </div>
-
-          <Stagger className="mt-14 md:mt-16">
-            {n.documents.map((d) => (
-              <StaggerItem key={d.index}>
-                <article className="grid gap-x-8 gap-y-3 border-t border-border/60 py-8 md:grid-cols-12 md:py-10">
-                  <span className="font-mono text-sm text-brand md:col-span-1 md:pt-2">
-                    {d.index}
-                  </span>
-                  <div className="md:col-span-5">
-                    <h3 className="font-serif text-2xl font-medium leading-tight tracking-tight md:text-[1.75rem]">
-                      {d.title}
-                    </h3>
-                    <p className="mt-1 font-serif text-lg italic text-brand">
-                      {d.subtitle}
-                    </p>
-                  </div>
-                  <p className="leading-relaxed text-muted-foreground md:col-span-6 md:self-center">
-                    {d.body}
-                  </p>
-                </article>
-              </StaggerItem>
-            ))}
-          </Stagger>
-
-          <Reveal>
-            <p className="mt-12 max-w-xl border-t border-border/60 pt-8 text-lg leading-relaxed text-foreground">
-              {n.deliverable.close}
-            </p>
-          </Reveal>
-        </Container>
-      </Section>
-
-      {/* ================================================================ */}
-      {/* 3 · Why Narratives exists                                        */}
+      {/* 2 · Why Narratives exists                                        */}
       {/* ================================================================ */}
       <Section spacing="lg" className="border-t border-border/60">
         <Container>
@@ -274,7 +216,7 @@ export default function NarrativesPage() {
       </section>
 
       {/* ================================================================ */}
-      {/* 4 · How it works — the client-facing sequence                    */}
+      {/* 3 · How it works — the client-facing sequence                    */}
       {/* ================================================================ */}
       <Section spacing="lg">
         <Container>
@@ -319,7 +261,7 @@ export default function NarrativesPage() {
       </Section>
 
       {/* ================================================================ */}
-      {/* 5 · The method — how the thinking works                          */}
+      {/* 4 · The method — how the thinking works                          */}
       {/* ================================================================ */}
       <Section spacing="lg" className="bg-secondary/50">
         <Container>
@@ -369,6 +311,66 @@ export default function NarrativesPage() {
       </Section>
 
       {/* ================================================================ */}
+      {/* 5 · The core deliverables — named, then explicitly not a package */}
+      {/* ================================================================ */}
+      <Section spacing="lg">
+        <Container>
+          <div className="grid gap-8 md:grid-cols-12 md:gap-16">
+            <div className="md:col-span-6">
+              <Reveal>
+                <Eyebrow className="text-brand">
+                  {n.deliverable.eyebrow}
+                </Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-display-sm mt-6 font-medium">
+                  {n.deliverable.title}
+                </h2>
+              </Reveal>
+            </div>
+            <div className="md:col-span-5 md:col-start-8 md:self-end">
+              <Reveal delay={0.1}>
+                <p className="text-lg leading-relaxed text-muted-foreground">
+                  {n.deliverable.lead}
+                </p>
+              </Reveal>
+            </div>
+          </div>
+
+          <Stagger className="mt-14 md:mt-16">
+            {n.documents.map((d) => (
+              <StaggerItem key={d.index}>
+                <article className="grid gap-x-8 gap-y-3 border-t border-border/60 py-8 md:grid-cols-12 md:py-10">
+                  <span className="font-mono text-sm text-brand md:col-span-1 md:pt-2">
+                    {d.index}
+                  </span>
+                  <div className="md:col-span-5">
+                    <h3 className="font-serif text-2xl font-medium leading-tight tracking-tight md:text-[1.75rem]">
+                      {d.title}
+                    </h3>
+                    <p className="mt-1 font-serif text-lg italic text-brand">
+                      {d.subtitle}
+                    </p>
+                  </div>
+                  <p className="leading-relaxed text-muted-foreground md:col-span-6 md:self-center">
+                    {d.body}
+                  </p>
+                </article>
+              </StaggerItem>
+            ))}
+          </Stagger>
+
+          {/* The engagement is not a fixed set of files. Say so plainly,
+              directly under the list that could imply otherwise. */}
+          <Reveal>
+            <p className="mt-12 max-w-3xl border-t border-border/60 pt-8 text-lg leading-relaxed text-muted-foreground">
+              {n.deliverable.flexibility}
+            </p>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* ================================================================ */}
       {/* 6 · Proof — the transformation, then the detail                  */}
       {/* ================================================================ */}
       <Section spacing="lg">
@@ -379,7 +381,7 @@ export default function NarrativesPage() {
                 <Eyebrow className="text-brand">{n.proof.eyebrow}</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-display-sm mt-6 font-serif italic font-medium">
+                <h2 className="text-display-sm mt-6 font-medium">
                   {n.proof.title}
                 </h2>
               </Reveal>

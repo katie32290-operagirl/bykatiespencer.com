@@ -5,13 +5,14 @@
  * the inside of the organization (donors, giving, the transaction), Narratives
  * is the outside (the story of the art as it reaches the public).
  *
- * Page order is deliberate. A marketing or executive director should know what
- * they are buying before they are asked to agree with the argument for it, so
- * "what you get" sits directly under the hero and the reasoning follows.
+ * Page order: the argument comes before the deliverables. Leading with the
+ * list makes the engagement read as a fixed package, which it isn't. The
+ * deliverables are named plainly once the reader knows why they exist.
  *
  * House rules for everything in this file: no em dashes, short declarative
- * sentences, no consulting or SaaS vocabulary. All copy lives here so the page
- * can move to its own domain later as a file copy.
+ * sentences, no consulting or SaaS vocabulary. Never describe the deliverables
+ * as templates, and never imply the client receives exactly five files and
+ * nothing else. All copy lives here so the page can move to its own domain.
  */
 
 export interface Movement {
@@ -21,7 +22,7 @@ export interface Movement {
   body: string;
 }
 
-/** One document in the season plan. */
+/** One named deliverable in the core set. */
 export interface PlanDocument {
   index: string;
   title: string;
@@ -64,52 +65,10 @@ export const narratives = {
   },
   promise: "Turn a season into something audiences want to step inside.",
   intro:
-    "Narratives gives small marketing teams the story strategy and campaign plan they don't have the hours to build from scratch. One season, written for your organization.",
+    "Narratives gives small arts teams the story strategy and campaign plan they don't have the hours to build from scratch. One season, written for your organization.",
   primaryCta: { label: "Build my season plan", href: "/contact" },
 
-  /* 2 · What you get ---------------------------------------------------- */
-  deliverable: {
-    eyebrow: "What you get",
-    title: "Five working documents. One clear season.",
-    lead: "Written for your repertoire, your city, and your audience. Not blank templates, and not a deck that sits in a shared drive.",
-    close:
-      "Yours to keep, and specific enough to hand to a designer, a videographer, or a board.",
-  },
-
-  documents: [
-    {
-      index: "01",
-      title: "Audience & friction audit",
-      subtitle: "The diagnostic",
-      body: "Where your audience is getting stuck, across language, social, cultural, emotional, identity, and practical friction. Then the rewrites and the onboarding that clear it.",
-    },
-    {
-      index: "02",
-      title: "Narrative strategy",
-      subtitle: "The emotional center",
-      body: "The campaign premise in fifty words or fewer, then the spark, the world, the bridge, the arc, and the invitation, answered for your season.",
-    },
-    {
-      index: "03",
-      title: "Visual world brief",
-      subtitle: "The atmosphere",
-      body: "Atmosphere, palette, form, space, wardrobe and sound. What the season should feel like from the lobby to the last note.",
-    },
-    {
-      index: "04",
-      title: "Momentum map",
-      subtitle: "The rhythm",
-      body: "The emotional pacing, phase by phase, from mood reveal and first hook through opening night and the invitation to come back.",
-    },
-    {
-      index: "05",
-      title: "Budget strategy",
-      subtitle: "The fuel",
-      body: "Foundation, amplifiers, stretch, and defer, with a recommended allocation. What to spend on, what to skip, and the reasoning behind both.",
-    },
-  ] satisfies PlanDocument[],
-
-  /* 3 · Why Narratives exists ------------------------------------------- */
+  /* 2 · Why Narratives exists ------------------------------------------- */
   problem: {
     eyebrow: "Why Narratives exists",
     statement: {
@@ -121,10 +80,10 @@ export const narratives = {
     fearsLead: "What that hesitation actually sounds like:",
     fears: [
       "Not understanding the work.",
-      "Feeling unintelligent.",
       "Not knowing the etiquette, or the context.",
       "Feeling culturally out of place.",
-      "The plain risk of being embarrassed.",
+      "Worrying they won't get it.",
+      "Not knowing what to expect.",
     ],
     close:
       "Almost nobody in the field says this out loud, because saying it feels like an insult to the art. So we keep making prettier posters.",
@@ -132,11 +91,13 @@ export const narratives = {
 
   belief: {
     quote: "Lower the social friction without lowering the art.",
+    // Careful: "removes thresholds, not depth" belongs to "What it isn't".
+    // Saying it here too spends the line twice.
     support:
       "People engage more deeply once they feel confident enough to participate. And audiences do not connect to information first. They connect to feeling first.",
   },
 
-  /* 4 · How it works ---------------------------------------------------- */
+  /* 3 · How it works ---------------------------------------------------- */
   process: {
     eyebrow: "How it works",
     title: "Three steps, one season.",
@@ -144,27 +105,27 @@ export const narratives = {
     steps: [
       {
         index: "01",
-        title: "Diagnose the season",
-        body: "Your repertoire and your audience context go through the five movements below, one production at a time and then as a whole year.",
+        title: "Understand the season",
+        body: "What you're producing, who you want to reach, what your audience already understands, and where the friction actually is.",
       },
       {
         index: "02",
-        title: "Build from what has already worked",
-        body: "Campaign formats, concepts, structures, and audience learnings from years of real seasons, plus the Narratives library, so nothing starts from a blank page.",
+        title: "Find the story",
+        body: "The Narratives framework locates the emotional entry point, the world, the audience bridge, the momentum, and the invitation.",
       },
       {
         index: "03",
-        title: "Write the plan",
-        body: "The strategy becomes five custom working documents your team can pick up and execute.",
+        title: "Build what the team needs",
+        body: "The strategy becomes the plans, creative direction, messaging, and tools that will actually help you execute the season.",
       },
     ] satisfies Step[],
   },
 
-  /* 5 · The method ------------------------------------------------------ */
+  /* 4 · The method ------------------------------------------------------ */
   method: {
     eyebrow: "The method",
     title: "Five movements, one experience.",
-    lead: "The three steps above are what the work looks like. This is how the thinking works underneath it. Nothing gets written until all five are answered.",
+    lead: "The three steps are what the work looks like. This is how the thinking works underneath it. Nothing gets written until all five are answered.",
   },
 
   movements: [
@@ -172,7 +133,7 @@ export const narratives = {
       index: "01",
       name: "Spark",
       question: "Why should anyone care?",
-      body: "The human truth at the center of the work, and the reason it matters to a person who has never heard of it.",
+      body: "The human truth at the center of the work, and the reason it matters to someone who has never heard of it.",
     },
     {
       index: "02",
@@ -200,12 +161,53 @@ export const narratives = {
     },
   ] satisfies Movement[],
 
+  /* 5 · The core deliverables ------------------------------------------- */
+  deliverable: {
+    eyebrow: "The core deliverables",
+    title: "A framework, not a formula.",
+    lead: "Every Narratives engagement is built around a core set of strategic deliverables, then shaped to the needs of your season, team, and audience.",
+    flexibility:
+      "Depending on the organization, the final package may also include campaign messaging, production-specific concepts, content direction, audience guides, launch plans, or other tools needed to make the strategy usable.",
+  },
+
+  documents: [
+    {
+      index: "01",
+      title: "Audience & friction audit",
+      subtitle: "The diagnostic",
+      body: "Where people are getting stuck, what barriers are shaping behavior, and where the clearest opportunities are.",
+    },
+    {
+      index: "02",
+      title: "Narrative strategy",
+      subtitle: "The emotional center",
+      body: "The emotional center of the season, and the story that connects the work to the audience.",
+    },
+    {
+      index: "03",
+      title: "Visual world brief",
+      subtitle: "The atmosphere",
+      body: "The atmosphere, aesthetic direction, tone, and creative world the campaign should live in.",
+    },
+    {
+      index: "04",
+      title: "Momentum map",
+      subtitle: "The rhythm",
+      body: "How the season builds over time, including campaign rhythm, audience onboarding, urgency, and return invitations.",
+    },
+    {
+      index: "05",
+      title: "Budget strategy",
+      subtitle: "The fuel",
+      body: "Where marketing resources should work hardest, and what deserves priority, amplification, or restraint.",
+    },
+  ] satisfies PlanDocument[],
+
   /* 6 · Proof ----------------------------------------------------------- */
   proof: {
-    eyebrow: "In practice",
-    title: "Gianni Schicchi",
-    lead: "A one-act comedy about a family scheming over a will. A hard sell to anyone who has never bought an opera ticket.",
-    /** The transformation at a glance, before the detail. */
+    eyebrow: "An example",
+    title: "Knoxville Opera",
+    lead: "One season strategy, start to finish. Not a preview of what yours will look like, but a sense of how far the thinking goes.",
     chain: [
       "A family inheritance comedy",
       "A synopsis told as a lunch between friends",
@@ -214,11 +216,10 @@ export const narratives = {
       "A dated campaign calendar",
     ],
     body: [
-      "So the campaign didn't sell the opera. The synopsis became a lunch between friends. The characters gave reality-TV confessionals, one at a time, in costume. And the people who made it sat down for a Behind the Music conversation, for anyone who wanted to go deeper.",
-      "Plus the unglamorous half that makes it happen: the shot list, the cast and crew list, the hour-by-hour media day schedule, and a dated posting plan across social, email, and YouTube.",
+      "Gianni Schicchi is a one-act comedy about a family scheming over a will. A hard sell to anyone who has never bought an opera ticket. So the campaign didn't sell the opera. The synopsis became a lunch between friends. The characters gave reality-TV confessionals, one at a time, in costume. And the people who made it sat down for a Behind the Music conversation, for anyone who wanted to go deeper.",
+      "Underneath sat the whole package: the audit, the narrative strategy, the visual world, the momentum map, the budget, and campaign copy written for the production itself. Then the unglamorous half that makes it real. The shot list, the cast and crew list, the hour-by-hour media day schedule, and a dated posting plan across social, email, and YouTube.",
     ],
-    quote:
-      "Every format has been shot, posted, and watched by a real audience.",
+    quote: "The strategy doesn't stop at language. It gets made.",
   },
 
   samples: {
@@ -253,7 +254,7 @@ export const narratives = {
     },
     quote:
       "Anyone can generate arts marketing copy. Almost nobody selling into this field has actually run the season, cast the media day, argued about the poster, and watched what made a first-timer buy a ticket.",
-    body: "Years inside performing arts administration, running the marketing and the fundraising, casting the shoots, and watching what moved real ticket buyers. The method came out of that work, not from outside the field looking in.",
+    body: "Years inside performing arts administration, running the marketing, casting the shoots, and watching what moved real ticket buyers. The method came out of that work, not from outside the field looking in.",
   },
 
   /* 8 · What it isn't --------------------------------------------------- */
@@ -262,7 +263,7 @@ export const narratives = {
     items: [
       {
         title: "Not dumbing anything down.",
-        body: "It removes thresholds, not depth. The art is never the thing that gets simplified.",
+        body: "It removes thresholds, not depth.",
       },
       {
         title: "Not a content mill.",
@@ -290,7 +291,11 @@ export const narratives = {
         body: "Repositioning an organization for a new audience, a new civic relationship, or a new era.",
       },
       {
-        role: "Producers and artistic leaders",
+        role: "Producers",
+        body: "Connecting what happens on the stage to what happens in the room, and in the city.",
+      },
+      {
+        role: "Artistic leaders",
         body: "Shaping how the audience and the artist actually meet.",
       },
     ] satisfies Audience[],
@@ -305,20 +310,20 @@ export const narratives = {
     items: [
       {
         title: "Built around your season",
-        body: "Designed for a full season, a festival, or a single major campaign.",
+        body: "Designed around the specific repertoire, audience, team, and challenges in front of you.",
       },
       {
-        title: "Five custom deliverables",
-        body: "Your team keeps the finished strategy and the working documents.",
+        title: "Core strategy, tailored output",
+        body: "Every engagement uses the Narratives framework, but the final tools and scope are shaped around what your organization actually needs.",
       },
       {
         title: "Collaborative, not meeting heavy",
-        body: "You provide the season, the audience context, the goals, and the constraints. I do the strategic build.",
+        body: "You provide the season context, the goals, the audience information, and the constraints. I do the strategic build.",
       },
       {
-        // Placeholder: replace with a real turnaround once one is set.
+        // Placeholder: replace with a real turnaround range once one is set.
         title: "Timing",
-        body: "Agreed before we start and built backward from your season calendar, so the plan lands while there is still time to run it.",
+        body: "Set per engagement and agreed before we start, built backward from your season calendar so the plan lands while there is still time to run it.",
       },
     ] satisfies Detail[],
   },
