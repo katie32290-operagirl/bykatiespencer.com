@@ -632,6 +632,17 @@ export default function NarrativesPage() {
               </StaggerItem>
             ))}
           </Stagger>
+
+          <Reveal>
+            <div className="mt-14 grid gap-x-8 gap-y-3 border-t-2 border-brand pt-8 md:mt-16 md:grid-cols-12">
+              <p className="font-sans text-xs font-medium uppercase tracking-[0.18em] text-brand md:col-span-3 md:pt-2">
+                {n.engagement.investment.label}
+              </p>
+              <p className="font-serif text-2xl leading-snug tracking-tight md:col-span-9 md:text-[1.75rem]">
+                {n.engagement.investment.body}
+              </p>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 
