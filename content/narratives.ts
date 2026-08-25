@@ -322,7 +322,7 @@ export const narratives = {
       },
       {
         title: "Timing",
-        body: "Usually one week to a month. The pace depends less on the build than on how quickly your team can get me the season context, the goals, and the constraints.",
+        body: "Every engagement begins with a defined scope and delivery date, so both sides know exactly what is due and when. Timeline is set based on the size and complexity of the work.",
       },
     ] satisfies Detail[],
   },
