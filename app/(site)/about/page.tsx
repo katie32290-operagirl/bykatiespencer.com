@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = createMetadata({
   title: "About",
   description:
-    "I've performed on opera stages, co-founded a company, led an institution, and now I'm building software. The medium keeps changing. The mission doesn't, building something people believe in.",
+    "I've performed on opera stages, co-founded a company, helped lead an institution, and now I'm building software. The medium keeps changing. The work doesn't. I build things people believe in.",
   path: "/about",
 });
 
@@ -166,9 +166,9 @@ export default function AboutPage() {
               Different rooms, one throughline<span className="text-brand">.</span>
             </h1>
             <p className="mt-6 max-w-[560px] text-lg leading-[1.7] text-on-black-soft">
-              I&rsquo;ve performed on opera stages, co-founded a company, led an
-              institution, and now I&rsquo;m building software. The medium keeps
-              changing. The mission doesn&rsquo;t, building something
+              I&rsquo;ve performed on opera stages, co-founded a company, helped
+              lead an institution, and now I&rsquo;m building software. The
+              medium keeps changing. The work doesn&rsquo;t. I build things
               people believe in.
             </p>
           </div>
@@ -298,8 +298,8 @@ export default function AboutPage() {
             <Link href="/narratives" className="link-underline text-gold-pale">
               Narratives
             </Link>
-            , my own venture, bringing story strategy to the marketing teams
-            inside performing arts organizations.{" "}
+            , which brings story strategy to the marketing teams inside
+            performing arts organizations.{" "}
             <span className="italic text-gold-pale">
               Two companies, one field, opposite ends of the same problem.
             </span>

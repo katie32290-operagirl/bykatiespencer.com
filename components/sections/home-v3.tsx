@@ -7,6 +7,28 @@ import { cn } from "@/lib/utils";
 
 const DOTS = "....................";
 
+/** A few proof pieces for the homepage — the fuller bill lives on /portfolio. */
+const SELECTED_WORK = [
+  {
+    label: "Brand & campaign",
+    title: "Knoxville Opera",
+    image: "/work/work-featured.jpg",
+    href: "/knoxville-opera",
+  },
+  {
+    label: "Film",
+    title: "Carmen, explained",
+    image: "/work/build-knoxville-carmen.jpg",
+    href: "/portfolio",
+  },
+  {
+    label: "Print",
+    title: "Season program book",
+    image: "/work/ko-program-book.jpg",
+    href: "/portfolio",
+  },
+];
+
 function MonoLeader({
   label,
   value,
@@ -276,6 +298,78 @@ export function HomeV3() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
+      {/*  Selected work — the proof, before the pitch                     */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="px-6 py-20 sm:px-14 md:py-24">
+        <Reveal className="mx-auto max-w-[1180px]">
+          <div className="flex flex-wrap items-baseline justify-between gap-5 border-t-2 border-foreground pt-7">
+            <p className="font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
+              Selected work
+            </p>
+            <Link
+              href="/portfolio"
+              className="font-accent text-xs uppercase tracking-[0.12em] text-brand hover:text-red-deep"
+            >
+              All work &rarr;
+            </Link>
+          </div>
+          <p className="mt-6 max-w-[620px] font-serif text-[clamp(24px,3vw,36px)] leading-[1.1]">
+            A decade of seasons, campaigns, and films behind the method.
+          </p>
+          <div className="mt-10 grid gap-8 sm:grid-cols-3 sm:gap-6">
+            {SELECTED_WORK.map((w) => (
+              <Link
+                key={w.title}
+                href={w.href}
+                className="group block text-foreground"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] border border-border">
+                  <Image
+                    src={w.image}
+                    alt={w.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
+                  />
+                </div>
+                <p className="mt-4 font-accent text-[11px] uppercase tracking-[0.12em] text-brand">
+                  {w.label}
+                </p>
+                <h3 className="mt-1.5 font-serif text-xl leading-snug">
+                  {w.title}
+                </h3>
+              </Link>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/*  The company — the history / why qualified                       */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="px-6 py-20 sm:px-14 md:py-24">
+        <Reveal className="mx-auto flex max-w-[1180px] flex-wrap items-baseline gap-x-[70px] gap-y-6 border-t-2 border-foreground pt-7">
+          <p className="min-w-[180px] font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
+            The company
+          </p>
+          <div className="max-w-[640px] flex-[1_1_420px]">
+            <p className="text-lg leading-[1.7] text-foreground">
+              Katie Spencer is an opera singer turned founder in Knoxville,
+              Tennessee. She has performed the repertoire, co-founded a company,
+              helped lead an institution, and is now building software and
+              stories for the field she loves.
+            </p>
+            <Link
+              href="/about"
+              className="mt-4 inline-block font-accent text-xs uppercase tracking-[0.12em] text-brand hover:text-red-deep"
+            >
+              The full story, off book &rarr;
+            </Link>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
       {/*  Notes from the house                                            */}
       {/* ---------------------------------------------------------------- */}
       <section id="notes" className="px-6 py-20 sm:px-14 md:py-24">
@@ -293,7 +387,7 @@ export function HomeV3() {
           </div>
           <div className="mt-8 flex flex-wrap gap-14">
             <Link
-              href="/writing/what-opera-taught-me-about-building"
+              href="/writing/sometimes-the-show-is-the-problem"
               className="group flex-[1_1_520px] text-foreground"
             >
               <div className="relative h-[420px] w-full overflow-hidden rounded-[6px]">
@@ -306,22 +400,22 @@ export function HomeV3() {
                 />
               </div>
               <p className="mt-4 font-accent text-[11px] uppercase tracking-[0.12em] text-brand">
-                On craft &middot; July 2026
+                Audiences &middot; August 2026
               </p>
               <h3 className="mt-2.5 font-serif text-[clamp(30px,3.2vw,40px)] leading-[1.12]">
-                What Opera Taught Me About Building
+                Sometimes the Show Is the Problem
               </h3>
               <p className="mt-2.5 max-w-[560px] text-base leading-[1.6] text-muted-foreground">
-                I spent fifteen years preparing to walk onto stages I
-                couldn&rsquo;t fully see until the lights came up.
+                Nobody says this out loud at opera conferences: sometimes people
+                don&rsquo;t come back because the show was a dud.
               </p>
             </Link>
             <div className="flex max-w-[460px] flex-[1_1_320px] flex-col">
               <NoteLink
-                href="/writing/sometimes-the-show-is-the-problem"
-                meta="Audiences · August 2026"
-                title="Sometimes the show is the problem."
-                body="Marketing makes the promise. Eventually the experience has to keep it. Sometimes people don’t come back because the show was a dud."
+                href="/writing/what-opera-taught-me-about-building"
+                meta="On craft · July 2026"
+                title="What Opera Taught Me About Building"
+                body="I spent fifteen years preparing to walk onto stages I couldn’t fully see until the lights came up."
               />
               <div className="border-t border-foreground" />
             </div>
@@ -333,31 +427,6 @@ export function HomeV3() {
       {/*  Off stage — synced to the live Instagram feed                    */}
       {/* ---------------------------------------------------------------- */}
       <OffStage />
-
-      {/* ---------------------------------------------------------------- */}
-      {/*  The company                                                      */}
-      {/* ---------------------------------------------------------------- */}
-      <section className="px-6 pb-20 sm:px-14 md:pb-24">
-        <Reveal className="mx-auto flex max-w-[1180px] flex-wrap items-baseline gap-x-[70px] gap-y-6 border-t-2 border-foreground pt-7">
-          <p className="min-w-[180px] font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
-            The company
-          </p>
-          <div className="max-w-[640px] flex-[1_1_420px]">
-            <p className="text-lg leading-[1.7] text-foreground">
-              Katie Spencer is an opera singer turned founder in Knoxville,
-              Tennessee. She has performed the repertoire, co-founded a company,
-              led an institution, and is now building software and stories for
-              the field she loves.
-            </p>
-            <Link
-              href="/about"
-              className="mt-4 inline-block font-accent text-xs uppercase tracking-[0.12em] text-brand hover:text-red-deep"
-            >
-              The full story, off book &rarr;
-            </Link>
-          </div>
-        </Reveal>
-      </section>
     </>
   );
 }

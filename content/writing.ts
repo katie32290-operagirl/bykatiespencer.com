@@ -31,7 +31,7 @@ export const notes: Note[] = [
     slug: "sometimes-the-show-is-the-problem",
     category: "Audiences",
     date: "August 2026",
-    eyebrow: "Writing",
+    eyebrow: "Notes",
     title: "Sometimes the Show Is the Problem",
     subtitle: "Marketing makes the promise. The experience has to keep it.",
     lead: "Nobody says this out loud at opera conferences: sometimes people don’t come back because the show was a dud.",
@@ -231,7 +231,7 @@ If we want audiences to take a chance on us, we have to make that first leap eas
     slug: "what-opera-taught-me-about-building",
     category: "On craft",
     date: "July 2026",
-    eyebrow: "Writing",
+    eyebrow: "Notes",
     title: "What Opera Taught Me About Building",
     lead: "I spent fifteen years preparing to walk onto stages I couldn't fully see until the lights came up.",
     body: `It turns out opera is a strange place to learn how to build a company. You rehearse in fluorescent-lit studios with folding chairs standing in for castles and tape on the floor marking walls that don't exist yet. You spend weeks creating something enormous in conditions that look nothing like the final product. Then one day, the orchestra tunes, the house fills, the lights come up, and you find out whether all that invisible work holds together.

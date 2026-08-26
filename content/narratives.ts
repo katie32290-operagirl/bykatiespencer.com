@@ -253,7 +253,7 @@ export const narratives = {
       accent: "written down.",
     },
     quote:
-      "Anyone can generate arts marketing copy. Almost nobody selling into this field has actually run the season, cast the media day, argued about the poster, and watched what made a first-timer buy a ticket.",
+      "Anyone can generate arts marketing copy. Almost nobody selling into this field has actually worked inside the season, cast the media day, argued about the poster, and watched what made a first-timer buy a ticket.",
     body: "Years inside performing arts administration, running the marketing, casting the shoots, and watching what moved real ticket buyers. The method came out of that work, not from outside the field looking in.",
   },
 
@@ -280,7 +280,7 @@ export const narratives = {
   audience: {
     eyebrow: "Who it's for",
     title: "The strategy layer between the art and the audience.",
-    lead: "Small and mid-size regional opera, symphony, ballet, theatre, and festival organizations. Real seasons, real repertoire, no in-house creative department.",
+    lead: "Small and mid-size regional opera, symphony, ballet, theatre, and festival organizations. Real seasons, real repertoire, and not enough internal capacity to build the full story from scratch.",
     roles: [
       {
         role: "Marketing directors",
