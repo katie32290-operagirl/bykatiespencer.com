@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
-import { cn } from "@/lib/utils";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
@@ -15,28 +14,24 @@ export const metadata: Metadata = createMetadata({
 
 const process = [
   {
-    n: "01",
+    n: "Act I",
     title: "Listen",
     body: "We start by getting to know your mission, goals, audience, and what success looks like.",
-    accent: "text-brand",
   },
   {
-    n: "02",
+    n: "Act II",
     title: "Uncover",
     body: "We identify the story at the core and the opportunities that will make the biggest impact.",
-    accent: "text-camel",
   },
   {
-    n: "03",
+    n: "Act III",
     title: "Shape",
     body: "We create the strategy, messaging, and creative direction, then build the right assets to bring it to life.",
-    accent: "text-brand",
   },
   {
-    n: "04",
+    n: "Act IV",
     title: "Bring it forward",
     body: "We launch with intention, refine based on what we learn, and build momentum that lasts.",
-    accent: "text-camel",
   },
 ];
 
@@ -61,164 +56,138 @@ const ways = [
 export default function CollaboratePage() {
   return (
     <>
-      {/* ───────────── Hero ───────────── */}
-      <section className="pt-16 pb-10 text-center md:pt-24 md:pb-14">
-        <Container className="max-w-3xl">
-          <Reveal>
-            <p className="font-sans text-xs uppercase tracking-[0.3em] text-brand">
-              Collaborate
-            </p>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h1 className="mt-6 font-serif text-[clamp(2.5rem,6.5vw,4.75rem)] leading-[1.04] tracking-tight text-foreground">
-              Great work happens together<span className="text-brand">.</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <div className="my-8 flex items-center justify-center gap-3" aria-hidden>
-              <span className="h-px w-14 bg-foreground/60" />
-              <span className="size-2 rounded-full bg-brand" />
-              <span className="h-px w-14 bg-foreground/60" />
+      {/* ───────────── Hero + feature ───────────── */}
+      <section className="px-6 py-20 sm:px-14 md:py-24">
+        <Reveal className="mx-auto max-w-[1180px]">
+          <p className="font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
+            Collaborate
+          </p>
+          <h1 className="mt-5 max-w-[900px] font-serif text-[clamp(48px,6.5vw,84px)] leading-[1] tracking-tight">
+            Great work happens together<span className="text-brand">.</span>
+          </h1>
+          <p className="mt-6 max-w-[560px] text-lg leading-[1.7] text-muted-foreground">
+            Whether you need a partner for a single project or ongoing strategic
+            support, I&rsquo;ll meet you where you are and help you move your
+            mission forward.
+          </p>
+          <p className="mt-6 font-serif text-xl italic text-foreground">
+            Thoughtful process. Trusted partners. Meaningful results.
+          </p>
+
+          <figure className="mt-12">
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[6px] md:aspect-[2/1]">
+              <Image
+                src="/collaborate-hero.jpg"
+                alt="Katie Spencer directing a film shoot with her team on location"
+                fill
+                sizes="100vw"
+                priority
+                className="object-cover object-[center_45%]"
+              />
             </div>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <p className="mx-auto max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Whether you need a partner for a single project or ongoing
-              strategic support, I&rsquo;ll meet you where you are and help you
-              move your mission forward.
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-6 font-serif text-xl italic text-foreground">
-              Thoughtful process. Trusted partners. Meaningful results.
-            </p>
-          </Reveal>
-        </Container>
+            <figcaption className="mt-2.5 font-accent text-[11px] uppercase tracking-[0.12em] text-ink-faint">
+              Carmen Media Day &middot; Photo by Eli Johnson
+            </figcaption>
+          </figure>
+        </Reveal>
       </section>
 
-      {/* ───────────── Feature image ───────────── */}
-      <section className="pb-16 md:pb-24">
-        <Container>
-          <Reveal>
-            <figure>
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl sm:aspect-[16/9] md:aspect-[2/1]">
-                <Image
-                  src="/collaborate-hero.jpg"
-                  alt="Katie Spencer directing a film shoot with her team on location"
-                  fill
-                  sizes="100vw"
-                  priority
-                  className="object-cover object-[center_45%]"
-                />
+      {/* ───────────── Process — the program ───────────── */}
+      <section className="px-6 pb-20 sm:px-14 md:pb-24">
+        <Reveal className="mx-auto max-w-[1180px] border-t-2 border-foreground pt-7">
+          <div className="flex flex-wrap items-baseline justify-between gap-5">
+            <p className="font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
+              How we work together
+            </p>
+            <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-ink-faint">
+              Strategic at the core. Creative in execution.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-x-20 gap-y-0 sm:grid-cols-2">
+            {process.map((step) => (
+              <div
+                key={step.n}
+                className="border-t border-foreground py-6 pb-8"
+              >
+                <p className="font-accent text-xs uppercase tracking-[0.12em] text-brand">
+                  {step.n}
+                </p>
+                <h3 className="mt-1.5 font-serif text-[clamp(28px,3vw,38px)] leading-tight">
+                  {step.title}
+                </h3>
+                <p className="mt-3 max-w-[440px] leading-[1.6] text-muted-foreground">
+                  {step.body}
+                </p>
               </div>
-              <figcaption className="mt-3 text-center font-sans text-xs uppercase tracking-[0.16em] text-muted-foreground/70">
-                Carmen Media Day &middot; Photo by Eli Johnson
-              </figcaption>
-            </figure>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* ───────────── Process ───────────── */}
-      <section className="pb-16 md:pb-24">
-        <Container>
-          <Reveal>
-            <div className="text-center">
-              <h2 className="font-serif text-[clamp(1.9rem,4.5vw,3rem)] leading-[1.08] tracking-tight text-foreground">
-                How we work together
-              </h2>
-              <p className="text-eyebrow mt-3 text-muted-foreground">
-                Strategic at the core. Creative in execution.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-            {process.map((step, i) => (
-              <Reveal key={step.n} delay={i * 0.06}>
-                <div className="border-t border-border pt-5">
-                  <p className={cn("font-serif text-3xl italic", step.accent)}>
-                    {step.n}
-                  </p>
-                  <h3 className="mt-3 font-serif text-2xl tracking-tight text-foreground">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 leading-relaxed text-muted-foreground">
-                    {step.body}
-                  </p>
-                </div>
-              </Reveal>
             ))}
           </div>
-        </Container>
+        </Reveal>
       </section>
 
-      {/* ───────────── Ways to collaborate ───────────── */}
-      <section className="pb-16 md:pb-24">
-        <Container>
-          <Reveal>
-            <div className="text-center">
-              <h2 className="font-serif text-[clamp(1.9rem,4.5vw,3rem)] leading-[1.08] tracking-tight text-foreground">
-                Ways to collaborate
-              </h2>
-              <p className="text-eyebrow mt-3 text-muted-foreground">
-                Different needs. Different formats.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+      {/* ───────────── Ways to collaborate — near-black ───────────── */}
+      <section className="bg-ink px-6 py-20 text-on-black sm:px-14 md:py-24">
+        <Reveal className="mx-auto max-w-[1180px]">
+          <div className="flex flex-wrap items-baseline justify-between gap-5">
+            <p className="font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
+              Ways to collaborate
+            </p>
+            <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-on-black-mute">
+              Different needs. Different formats.
+            </p>
+          </div>
+          <div className="mt-8">
             {ways.map((w, i) => (
-              <Reveal key={w.title} delay={i * 0.06}>
-                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-8">
-                  <h3 className="font-serif text-2xl tracking-tight text-foreground">
-                    {w.title}
-                  </h3>
-                  <p className="mt-3 leading-relaxed text-muted-foreground">
-                    {w.body}
-                  </p>
-                  <div className="mt-6 border-t border-border pt-5">
-                    <p className="text-eyebrow text-brand">Best when</p>
-                    <p className="mt-1.5 leading-relaxed text-foreground">
+              <div
+                key={w.title}
+                className={`grid gap-x-10 gap-y-3 border-t border-line-dark py-8 md:grid-cols-[220px_1fr] ${
+                  i === ways.length - 1 ? "border-b" : ""
+                }`}
+              >
+                <h3 className="font-serif text-[26px] leading-tight">
+                  {w.title}
+                </h3>
+                <div className="max-w-[620px]">
+                  <p className="leading-[1.6] text-on-black-soft">{w.body}</p>
+                  <div className="mt-4 flex items-baseline gap-2.5 font-accent text-[11px] uppercase tracking-[0.12em] text-on-black-mute">
+                    <span className="text-brand">Best when</span>
+                    <span
+                      aria-hidden
+                      className="flex-1 overflow-hidden whitespace-nowrap tracking-[3px] text-line-dark"
+                    >
+                      ....................
+                    </span>
+                    <span className="normal-case tracking-normal text-on-black">
                       {w.when}
-                    </p>
+                    </span>
                   </div>
                 </div>
-              </Reveal>
+              </div>
             ))}
           </div>
-        </Container>
+        </Reveal>
       </section>
 
-      {/* ───────────── Closing band ───────────── */}
-      <section className="bg-olive text-cream">
-        <Container className="py-20 text-center md:py-28">
-          <Reveal>
-            <p className="font-sans text-xs uppercase tracking-[0.24em] text-mist">
-              At the heart of every collaboration
-            </p>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <p className="mx-auto mt-6 max-w-3xl font-serif text-[clamp(2rem,5vw,3.25rem)] italic leading-[1.14]">
-              I believe partnership is a creative act.
-            </p>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <p className="mx-auto mt-8 max-w-xl leading-relaxed text-cream/75">
-              I bring the strategy, creative leadership, and experience. You
-              bring the mission, the knowledge, and the heart. Together we build
-              something that lasts.
-            </p>
-          </Reveal>
-          <Reveal delay={0.18}>
-            <Link
-              href="/contact"
-              className="mt-10 inline-flex rounded-full bg-cream px-8 py-3.5 font-sans text-sm text-teal transition-transform hover:scale-[1.03]"
-            >
-              Start a conversation
-            </Link>
-          </Reveal>
-        </Container>
+      {/* ───────────── Closing ───────────── */}
+      <section className="px-6 py-20 sm:px-14 md:py-28">
+        <Reveal className="mx-auto max-w-[1180px]">
+          <p className="font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
+            At the heart of every collaboration
+          </p>
+          <p className="mt-6 max-w-[900px] font-serif text-[clamp(2rem,5vw,3.5rem)] italic leading-[1.14]">
+            I believe partnership is a creative act.
+          </p>
+          <p className="mt-8 max-w-[560px] text-lg leading-[1.7] text-muted-foreground">
+            I bring the strategy, creative leadership, and experience. You bring
+            the mission, the knowledge, and the heart. Together we build
+            something that lasts.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-10 inline-block rounded-[2px] bg-ink px-8 py-4 font-sans text-[13px] font-semibold uppercase leading-none tracking-[0.14em] text-paper transition-opacity hover:opacity-90"
+          >
+            Start a conversation &rarr;
+          </Link>
+        </Reveal>
       </section>
     </>
   );

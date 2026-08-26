@@ -1,17 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Geist_Mono } from "next/font/google";
-import { fontSans, fontSerif, fontReading } from "@/lib/fonts";
+import { fontSans, fontDisplay, fontAccent } from "@/lib/fonts";
 import { site } from "@/content/site";
 import { createMetadata, jsonLdScript, websiteJsonLd } from "@/lib/seo";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -37,10 +31,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FAF4EC" },
-    { media: "(prefers-color-scheme: dark)", color: "#0E4E68" },
-  ],
+  themeColor: "#F3EADA",
 };
 
 export default function RootLayout({
@@ -50,7 +41,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fontSans.variable} ${fontSerif.variable} ${fontReading.variable} ${geistMono.variable} h-full`}
+      className={`${fontSans.variable} ${fontDisplay.variable} ${fontAccent.variable} h-full`}
     >
       <body className="flex min-h-full flex-col">
         <script
@@ -60,7 +51,7 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

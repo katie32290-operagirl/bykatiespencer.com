@@ -4,16 +4,16 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
-const OPTIONS = ["Projects", "Advising", "Speaking", "Something else"];
+const OPTIONS = ["Narratives", "Advising", "Speaking", "Something else"];
 
 const INBOX = "hello@bykatiespencer.com";
 /** Web3Forms access key (publishable). Get one free at https://web3forms.com. */
 const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
 const labelCls =
-  "font-sans text-xs uppercase tracking-[0.16em] text-muted-foreground";
+  "font-accent text-[11px] uppercase tracking-[0.12em] text-ink-faint";
 const inputCls =
-  "mt-2 w-full border-0 border-b border-border bg-transparent pb-2 text-lg text-foreground outline-none transition-colors focus:border-brand";
+  "mt-2 w-full rounded-[2px] border border-border bg-paper-bright px-3.5 py-3 font-sans text-base text-foreground outline-none transition-colors focus:border-brand";
 
 /**
  * Connect form. Client-side handler with optimistic feedback — swap the body of
@@ -95,8 +95,8 @@ export function ContactForm() {
         className="hidden"
       />
 
-      <h2 className="font-serif text-3xl tracking-tight text-foreground">
-        Tell me a little about it.
+      <h2 className="font-serif text-[clamp(28px,3vw,38px)] leading-[1.08] text-foreground">
+        Tell me what you&rsquo;re working on.
       </h2>
 
       <div className="grid gap-6 sm:grid-cols-2">
@@ -141,7 +141,7 @@ export function ContactForm() {
 
       <div>
         <p className={labelCls}>How can we work together?</p>
-        <div className="mt-3 flex flex-wrap gap-3">
+        <div className="mt-3 flex flex-wrap gap-2.5">
           {OPTIONS.map((o) => (
             <button
               key={o}
@@ -149,10 +149,10 @@ export function ContactForm() {
               onClick={() => toggle(o)}
               aria-pressed={selected.includes(o)}
               className={cn(
-                "rounded-full border px-5 py-2 font-sans text-sm transition-colors",
+                "rounded-[2px] border px-4 py-2 font-accent text-[11px] uppercase tracking-[0.12em] transition-colors",
                 selected.includes(o)
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border text-foreground hover:border-foreground/50",
+                  ? "border-ink bg-ink text-paper"
+                  : "border-border text-foreground hover:border-foreground/60",
               )}
             >
               {o}
@@ -163,21 +163,21 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="message" className={labelCls}>
-          What are you building?
+          What&rsquo;s on your mind?
         </label>
         <textarea
           id="message"
           name="message"
           required
           rows={5}
-          className="mt-3 w-full rounded-xl border border-border bg-transparent p-4 text-foreground outline-none transition-colors focus:border-brand"
+          className="mt-2 w-full rounded-[2px] border border-border bg-paper-bright p-3.5 font-sans text-base text-foreground outline-none transition-colors focus:border-brand"
         />
       </div>
 
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex w-fit rounded-full bg-foreground px-8 py-3.5 font-sans text-sm text-background transition-transform hover:scale-[1.03] disabled:opacity-60"
+        className="inline-flex w-fit rounded-[2px] bg-ink px-8 py-4 font-sans text-[13px] font-semibold uppercase leading-none tracking-[0.14em] text-paper transition-opacity hover:opacity-90 disabled:opacity-60"
       >
         {submitting ? "Sending…" : "Send it over"}
       </button>

@@ -19,7 +19,7 @@ import { createMetadata } from "@/lib/seo";
  */
 export const metadata: Metadata = {
   ...createMetadata({
-    title: "Knoxville Opera — Impact",
+    title: "Knoxville Opera: Impact",
     description:
       "How a bold rebrand and sharper storytelling doubled first-time attendance and made La Bohème the best-selling production in company history.",
     path: "/knoxville-opera",
@@ -39,15 +39,15 @@ const heroStats = [
     value: "+27%",
     label: "revenue per show",
     detail: "$107k vs. $85k",
-    bg: "bg-plum",
-    fg: "text-[#FAF4EC]",
+    bg: "bg-gold",
+    fg: "text-ink",
   },
   {
     value: "+35%",
     label: "annual donations",
     detail: "+65% FY26 vs. FY23",
-    bg: "bg-olive",
-    fg: "text-[#FAF4EC]",
+    bg: "bg-cool",
+    fg: "text-on-black",
   },
   {
     value: "+178%",
@@ -88,7 +88,7 @@ export default function KnoxvilleOperaCaseStudy() {
       {/* ---------------------------------------------------------------- */}
       {/* Hero — espresso/ink over the Carmen media-day photograph          */}
       {/* ---------------------------------------------------------------- */}
-      <section className="relative overflow-hidden bg-ink text-[#FAF4EC]">
+      <section className="relative overflow-hidden bg-ink text-on-black">
         <div className="absolute inset-0">
           <Image
             src="/work/work-featured.jpg"
@@ -107,25 +107,25 @@ export default function KnoxvilleOperaCaseStudy() {
             <Reveal>
               <Link
                 href="/portfolio"
-                className="group inline-flex items-center gap-2 text-eyebrow text-[#FAF4EC]/60 transition-colors hover:text-[#F39ABF]"
+                className="group inline-flex items-center gap-2 text-eyebrow text-on-black-mute transition-colors hover:text-gold-pale"
               >
                 <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-1" />
                 Work
               </Link>
             </Reveal>
             <Reveal delay={0.05}>
-              <p className="mt-8 text-eyebrow text-[#F39ABF]">
+              <p className="mt-8 text-eyebrow text-gold-pale">
                 Case study · Brand &amp; Campaign
               </p>
             </Reveal>
             <Reveal delay={0.1}>
               <h1 className="text-display mt-5 font-medium">
                 Knoxville{" "}
-                <span className="font-serif italic text-[#F39ABF]">Opera.</span>
+                <span className="font-serif italic text-gold-pale">Opera.</span>
               </h1>
             </Reveal>
             <Reveal delay={0.16}>
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#FAF4EC]/80">
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-on-black-soft">
                 Reimagining a 47-year-old opera company for a new generation —
                 and proving that the right story moves real numbers.
               </p>
@@ -216,13 +216,13 @@ export default function KnoxvilleOperaCaseStudy() {
       {/* ---------------------------------------------------------------- */}
       {/* Pull quote — true black, maximum contrast                         */}
       {/* ---------------------------------------------------------------- */}
-      <section className="bg-ink text-[#FAF4EC]">
+      <section className="bg-ink text-on-black">
         <Container className="py-24 md:py-36">
           <Reveal>
             <p className="mx-auto max-w-4xl text-center font-serif text-3xl font-medium leading-[1.25] tracking-tight md:text-[2.75rem]">
               &ldquo;A bold rebrand and sharper storytelling doubled first-time
               attendance and grew revenue per show 27% — and{" "}
-              <span className="italic text-[#F39ABF]">La Bohème</span>{" "}
+              <span className="italic text-gold-pale">La Bohème</span>{" "}
               became the best-selling production in company
               history.&rdquo;
             </p>
@@ -241,7 +241,7 @@ export default function KnoxvilleOperaCaseStudy() {
           <Stagger className="mt-10 grid gap-10 sm:grid-cols-3">
             {moreResults.map((r) => (
               <StaggerItem key={r.label}>
-                <div className="border-t-2 border-olive pt-5">
+                <div className="border-t-2 border-foreground pt-5">
                   <p className="font-serif text-5xl font-medium tracking-tight text-brand md:text-6xl">
                     {r.value}
                   </p>
@@ -258,11 +258,11 @@ export default function KnoxvilleOperaCaseStudy() {
       {/* ---------------------------------------------------------------- */}
       {/* CTA — plum invitation                                             */}
       {/* ---------------------------------------------------------------- */}
-      <section className="bg-plum text-[#FAF4EC]">
+      <section className="bg-ink text-on-black">
         <Container className="py-20 md:py-28">
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <Reveal>
-              <p className="text-eyebrow text-[#FAF4EC]/50">The takeaway</p>
+              <p className="text-eyebrow text-on-black-mute">The takeaway</p>
               <h2 className="mt-5 max-w-2xl font-serif text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[1.05] tracking-tight">
                 Great organizations are built on stories people believe in.
               </h2>
@@ -271,14 +271,14 @@ export default function KnoxvilleOperaCaseStudy() {
               <div className="flex flex-col gap-4">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 rounded-full bg-[#FAF4EC] px-6 py-3 font-medium text-plum transition-transform hover:scale-[1.02]"
+                  className="group inline-flex items-center gap-2 rounded-full bg-paper px-6 py-3 font-medium text-ink transition-transform hover:scale-[1.02]"
                 >
                   Let&rsquo;s build yours
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/portfolio"
-                  className="group inline-flex items-center gap-2 text-sm text-[#FAF4EC]/70 transition-colors hover:text-[#FAF4EC]"
+                  className="group inline-flex items-center gap-2 text-sm text-on-black-soft transition-colors hover:text-on-black"
                 >
                   Back to all work
                   <ArrowUpRight className="size-4" />

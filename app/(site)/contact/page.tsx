@@ -1,112 +1,134 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
 import { ContactForm } from "@/components/contact-form";
 import { site } from "@/content/site";
 import { createMetadata } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = createMetadata({
   title: "Connect",
   description:
-    "If you're building something people need to believe in, I'd love to hear about it.",
+    "Tell me what you're working on. A note reaches Katie Spencer directly.",
   path: "/contact",
 });
+
+const DOTS = "....................";
 
 const elsewhere = site.socials.filter((s) =>
   ["instagram", "linkedin"].includes(s.icon),
 );
 
+/** Dotted-leader row: label ···· value. Paper ground. */
+function Leader({
+  label,
+  value,
+  valueClass,
+  className,
+}: {
+  label: string;
+  value: string;
+  valueClass?: string;
+  className?: string;
+}) {
+  return (
+    <div className={cn("flex items-baseline gap-2.5", className)}>
+      <span>{label}</span>
+      <span
+        aria-hidden
+        className="flex-1 overflow-hidden whitespace-nowrap tracking-[3px] text-ink-faint"
+      >
+        {DOTS}
+      </span>
+      <span className={valueClass}>{value}</span>
+    </div>
+  );
+}
+
 export default function ConnectPage() {
   return (
     <>
-      {/* ───────────── Hero ───────────── */}
-      <section className="pt-16 pb-12 text-center md:pt-24">
-        <Container className="max-w-3xl">
-          <Reveal>
-            <p className="font-sans text-xs uppercase tracking-[0.3em] text-brand">
-              Connect
-            </p>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h1 className="mt-6 font-serif text-[clamp(2.5rem,6.5vw,4.75rem)] leading-[1.04] tracking-tight text-foreground">
-              Let&rsquo;s start a conversation<span className="text-brand">.</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
-              If you&rsquo;re building something people need to believe in,
-              I&rsquo;d love to hear about it.
-            </p>
-          </Reveal>
-        </Container>
+      {/* ---------------------------------------------------------------- */}
+      {/*  The stage door — title block on paper                           */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="px-6 pb-8 pt-28 sm:px-14 md:pt-36">
+        <Reveal className="mx-auto max-w-[1180px]">
+          <p className="font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
+            Connect
+          </p>
+          <h1 className="mt-4 font-serif text-[clamp(44px,6.6vw,84px)] leading-[1.02]">
+            Let&rsquo;s start a conversation<span className="text-brand">.</span>
+          </h1>
+        </Reveal>
       </section>
 
-      {/* ───────────── Form + info card ───────────── */}
-      <section className="pb-20 md:pb-28">
-        <Container>
-          <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
-            {/* Form */}
-            <Reveal>
-              <div className="rounded-2xl border border-border bg-card p-8 md:p-12">
-                <ContactForm />
-              </div>
-            </Reveal>
-
-            {/* Info card */}
-            <Reveal delay={0.08}>
-              <div className="flex h-full flex-col rounded-2xl bg-olive p-8 text-cream md:p-12">
-                <div>
-                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-mist">
-                    Prefer email?
-                  </p>
-                  <a
-                    href={`mailto:${site.email}`}
-                    className="mt-4 block font-serif text-3xl leading-tight text-cream transition-opacity hover:opacity-80"
-                  >
-                    hello@
-                    <wbr />
-                    bykatiespencer.com
-                  </a>
-                  <div className="mt-6 flex items-center gap-3" aria-hidden>
-                    <span className="h-px w-14 bg-cream/40" />
-                    <span className="size-1.5 rounded-full bg-pink" />
-                  </div>
-                </div>
-
-                <div className="mt-10">
-                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-mist">
-                    Based in
-                  </p>
-                  <p className="mt-4 font-serif text-2xl text-cream">
-                    Knoxville, Tennessee
-                  </p>
-                  <p className="mt-1 font-serif italic text-cream/75">
-                    Working with mission-driven teams everywhere.
-                  </p>
-                </div>
-
-                <div className="mt-auto pt-14">
-                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-mist">
-                    Elsewhere
-                  </p>
-                  <div className="mt-3 flex gap-6 font-sans text-sm text-cream">
-                    {elsewhere.map((s) => (
-                      <a
-                        key={s.label}
-                        href={s.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="transition-opacity hover:opacity-70"
-                      >
-                        {s.label}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Reveal>
+      {/* ---------------------------------------------------------------- */}
+      {/*  The form + the particulars                                      */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="px-6 pb-24 sm:px-14 md:pb-28">
+        <Reveal className="mx-auto flex max-w-[1180px] flex-wrap items-start gap-x-[70px] gap-y-14 border-t-2 border-foreground pt-10">
+          {/* Form */}
+          <div className="flex-[1_1_520px]">
+            <ContactForm />
           </div>
-        </Container>
+
+          {/* Particulars */}
+          <aside className="flex-[1_1_300px] md:border-l md:border-dashed md:border-ink-faint md:pl-12">
+            <p className="font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
+              Prefer email?
+            </p>
+            <a
+              href={`mailto:${site.email}`}
+              className="mt-4 block font-serif text-[clamp(22px,2.4vw,30px)] leading-tight text-foreground transition-opacity hover:opacity-70"
+            >
+              hello@
+              <wbr />
+              bykatiespencer.com
+            </a>
+
+            <div className="mt-9 grid gap-2.5 font-accent text-[11px] uppercase tracking-[0.12em] text-ink-faint">
+              <Leader
+                label="Based in"
+                value="Knoxville, TN"
+                valueClass="text-foreground"
+              />
+              <Leader
+                label="Reply within"
+                value="A couple days"
+                valueClass="text-foreground"
+              />
+            </div>
+            <p className="mt-3 font-serif text-[17px] italic text-muted-foreground">
+              Working with mission-driven teams everywhere.
+            </p>
+
+            <div className="mt-10">
+              <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-ink-faint">
+                Elsewhere
+              </p>
+              <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-accent text-xs uppercase tracking-[0.12em]">
+                <a
+                  href="https://greenroomcrm.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand transition-colors hover:text-red-deep"
+                >
+                  GreenRoom
+                </a>
+                {elsewhere.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand transition-colors hover:text-red-deep"
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </aside>
+        </Reveal>
       </section>
     </>
   );

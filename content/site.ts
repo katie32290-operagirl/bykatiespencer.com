@@ -16,10 +16,9 @@ export const site: SiteConfig = {
   location: "Knoxville, TN",
   nav: [
     { label: "About", href: "/about" },
-    { label: "Work", href: "/portfolio" },
     { label: "Narratives", href: "/narratives" },
-    { label: "Writing", href: "/writing" },
-    { label: "Collaborate", href: "/work-with-me" },
+    { label: "Work", href: "/portfolio" },
+    { label: "Notes", href: "/writing" },
     { label: "Connect", href: "/contact" },
   ],
   socials: [

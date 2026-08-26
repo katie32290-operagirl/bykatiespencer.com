@@ -15,7 +15,7 @@ const ways = [
   },
   {
     title: "Stories in Development",
-    body: "New ideas taking shape behind the scenes — more to share when the time is right.",
+    body: "New ideas taking shape behind the scenes, more to share when the time is right.",
     pink: true,
   },
 ];
@@ -126,7 +126,7 @@ export function BuildingFeatured() {
                 <h3
                   className={
                     w.pink
-                      ? "font-serif text-2xl text-teal"
+                      ? "font-serif text-2xl text-paper"
                       : "font-serif text-2xl text-foreground"
                   }
                 >
@@ -135,7 +135,7 @@ export function BuildingFeatured() {
                 <p
                   className={
                     w.pink
-                      ? "mt-1.5 text-[15px] leading-relaxed text-[#7a3358]"
+                      ? "mt-1.5 text-[15px] leading-relaxed text-paper/85"
                       : "mt-1.5 text-[15px] leading-relaxed text-muted-foreground"
                   }
                 >

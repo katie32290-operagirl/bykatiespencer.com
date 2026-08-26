@@ -105,21 +105,19 @@ export function LifeOutside() {
   const tiles: Post[] = posts ?? CURATED.map((src) => ({ src, href: IG_URL }));
 
   return (
-    <section className="bg-[#0E4E68] text-[#FAF4EC]">
+    <section className="bg-ink text-paper">
       <Container className="py-20 md:py-28">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
-            <p className="text-eyebrow text-[#FAF4EC]/50">
-              Life outside the build
-            </p>
-            <h2 className="mt-5 font-serif text-[clamp(2.25rem,5vw,4rem)] font-medium leading-[1.0] tracking-tight">
+            <p className="text-eyebrow">Life outside the build</p>
+            <h2 className="mt-5 font-serif text-[clamp(2.25rem,5vw,4rem)] leading-[1.0] tracking-tight">
               A few moments
               <br />
               that matter.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="max-w-xs leading-relaxed text-[#FAF4EC]/70 md:text-right">
+            <p className="max-w-xs leading-relaxed text-paper-dim md:text-right">
               The work matters.
               <br />
               So does everything that shapes it.
@@ -163,7 +161,7 @@ export function LifeOutside() {
             href={IG_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-eyebrow group mt-12 inline-flex items-center gap-3 text-[#FAF4EC] transition-colors hover:text-brand"
+            className="text-eyebrow group mt-12 inline-flex items-center gap-3 text-paper transition-colors hover:text-brand"
           >
             <InstagramIcon className="size-5" />
             Follow on Instagram

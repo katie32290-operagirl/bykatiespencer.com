@@ -1,10 +1,11 @@
-import { Instrument_Serif, Instrument_Sans, Newsreader } from "next/font/google";
+import { Radley, Instrument_Sans, Special_Elite } from "next/font/google";
 
 /**
- * Display serif — headlines, covers, the name. Instrument Serif: modern,
- * high-contrast, forward. The first of the brand's three voices.
+ * Display serif — the name, headlines, italic pull-lines. Radley is
+ * woodletter-derived: warm, sturdy, poster-like at size, with a true italic
+ * for pull-lines. The first of the brand's three voices.
  */
-export const fontSerif = Instrument_Serif({
+export const fontDisplay = Radley({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-serif",
@@ -13,24 +14,23 @@ export const fontSerif = Instrument_Serif({
 });
 
 /**
- * Reading voice — essays, body copy, the italic asides. Newsreader is the
- * literary serif the brand reads in.
- */
-export const fontReading = Newsreader({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-reading",
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
-});
-
-/**
- * Labels, wayfinding, product & UI — the forward "GreenRoom register."
- * Instrument Sans handles nav, buttons, eyebrows, and small caps.
+ * The working register — body, UI, wayfinding, everything else. Instrument
+ * Sans is the clean, legible voice the site actually reads in.
  */
 export const fontSans = Instrument_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
   weight: ["400", "500", "600", "700"],
+});
+
+/**
+ * The accent, used rarely — credits, call sheets, tickets, dates, act labels.
+ * Special Elite is the typewriter register: the marked-up, backstage voice.
+ */
+export const fontAccent = Special_Elite({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-accent",
+  weight: "400",
 });

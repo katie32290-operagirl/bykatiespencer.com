@@ -5,33 +5,51 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ------------------------------------------------------------------ */
-/*  Design tokens → Tailwind theme                                     */
+/*  byKatie Spencer · Design System V2 — "House Lights"                */
+/*  Two grounds (warm paper + near black), three faces (Radley /       */
+/*  Instrument Sans / Special Elite), red · gold · one cool accent.    */
 /* ------------------------------------------------------------------ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
-  --font-reading: var(--font-reading);
+  /* Three registers */
+  --font-serif: var(--font-serif); /* Radley — the name & headlines */
+  --font-sans: var(--font-sans); /* Instrument Sans — everything else */
+  --font-accent: var(--font-accent); /* Special Elite — tickets, credits */
+  --font-mono: var(--font-accent);
   --font-heading: var(--font-serif);
-  --font-mono: var(--font-geist-mono);
 
-  /* Brand accent — used intentionally, never as default hover bg */
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-muted: var(--brand-muted);
 
-  /* Full brand palette as named utilities — bg-teal / text-plum / bg-cream
-     etc. so every color earns its place. (olive/ink are legacy band aliases.) */
-  --color-teal: var(--teal);
-  --color-plum: var(--plum);
-  --color-pink: var(--pink);
-  --color-camel: var(--camel);
-  --color-mist: var(--mist);
-  --color-cream: var(--cream);
-  --color-olive: var(--olive);
-  --color-ink: var(--ink);
+  /* House Lights palette, named */
+  --color-paper: var(--paper);
+  --color-paper-bright: var(--paper-bright);
+  --color-ink: var(--ink); /* the near-black ground */
+  --color-ink-soft: var(--ink-soft); /* raised surface on dark */
+  --color-red: var(--red);
+  --color-red-deep: var(--red-deep);
+  --color-gold: var(--gold);
+  --color-gold-pale: var(--gold-pale);
+  --color-cool: var(--cool);
+  --color-ink-faint: var(--ink-faint); /* muted labels / captions on paper */
+  --color-on-black: var(--on-black);
+  --color-on-black-soft: var(--on-black-soft);
+  --color-on-black-mute: var(--on-black-mute);
+  --color-line-dark: var(--line-dark);
+  --color-paper-dim: var(--on-black-soft);
+
+  /* Transitional aliases — old V1 names resolve to the new palette so pages
+     not yet rebuilt degrade gracefully. Remove once every page is on V2. */
+  --color-teal: var(--ink);
+  --color-plum: var(--red);
+  --color-pink: var(--red);
+  --color-camel: var(--gold);
+  --color-mist: var(--cool);
+  --color-cream: var(--paper);
+  --color-olive: var(--ink);
 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -65,134 +83,116 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --radius-sm: calc(var(--radius) * 0.5);
-  --radius-md: calc(var(--radius) * 0.75);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.5);
-  --radius-2xl: calc(var(--radius) * 2);
+  /* Near-square corners — this is a program, not an app */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+  --radius-2xl: 6px;
 
-  /* Editorial easing exposed to utilities */
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ------------------------------------------------------------------ */
-/*  GALLERY palette — light (bone / ink / burnt amber)                 */
+/*  PAPER — the default warm ground                                    */
 /* ------------------------------------------------------------------ */
 :root {
-  --radius: 0.75rem;
+  --radius: 4px;
 
-  --background: #faf4ec; /* cream — paper */
-  --foreground: #0e4e68; /* deep teal — anchor & text */
+  --background: #f3eada; /* paper */
+  --foreground: #221b13; /* ink — body & headlines on paper */
 
-  --card: #fffdf8; /* near-white cream */
-  --card-foreground: #0e4e68;
-  --popover: #fffdf8;
-  --popover-foreground: #0e4e68;
+  --card: #faf3e6; /* paper-bright */
+  --card-foreground: #221b13;
+  --popover: #faf3e6;
+  --popover-foreground: #221b13;
 
-  --primary: #c23a78; /* plum — the lead accent */
-  --primary-foreground: #faf4ec;
-  --secondary: #efe6d8; /* warm cream-camel */
-  --secondary-foreground: #0e4e68;
+  --primary: #17120d; /* solid buttons read as printed ink */
+  --primary-foreground: #f3eada;
+  --secondary: #ece0c9; /* deeper paper */
+  --secondary-foreground: #221b13;
 
-  --muted: #eee4d5;
-  --muted-foreground: #4f6e7a; /* muted teal */
+  --muted: #ece0c9;
+  --muted-foreground: #6b6052; /* ink-mid — secondary text */
 
-  --accent: #f6e3ec; /* pale plum hover wash */
-  --accent-foreground: #0e4e68;
+  --accent: #f0e2d3;
+  --accent-foreground: #221b13;
 
-  /* Plum — the one bright accent (the dot) */
-  --brand: #c23a78;
-  --brand-foreground: #faf4ec;
-  --brand-muted: #f6e3ec;
+  /* Red — the mark of emphasis */
+  --brand: #b0342a;
+  --brand-foreground: #f3eada;
+  --brand-muted: #f0ddd3;
 
-  /* Brand palette */
-  --teal: #0e4e68; /* deep teal — anchor & text */
-  --plum: #c23a78; /* the dot / lead accent */
-  --pink: #f39abf; /* soft pop */
-  --camel: #d2a878; /* warm accent */
-  --mist: #8fb2c2; /* quiet tint */
-  --cream: #faf4ec; /* paper */
-  /* Feature-band aliases — deep grounds that contrast the cream page */
-  --olive: #0e4e68; /* immersive band → teal */
-  --ink: #0a3a4e; /* deepest cinematic ground */
+  /* House Lights, named */
+  --paper: #f3eada;
+  --paper-bright: #faf3e6;
+  --ink: #17120d; /* near-black ground */
+  --ink-soft: #221b13; /* raised surface on dark */
+  --red: #b0342a;
+  --red-deep: #8e2921;
+  --gold: #c08a3e;
+  --gold-pale: #ddbe85;
+  --cool: #48677a;
+  --ink-faint: #9e9280; /* muted labels, captions */
+  --on-black: #f3eada;
+  --on-black-soft: #c7baa3;
+  --on-black-mute: #8e8371;
+  --line-dark: #362d21; /* hairline on black */
 
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: #e7ddcd; /* soft warm line on cream */
-  --input: #e7ddcd;
-  --ring: #c23a78; /* focus ring = plum */
+  --destructive: #b0342a;
+  --border: #d9ccb4; /* hairline on paper */
+  --input: #d9ccb4;
+  --ring: #b0342a;
 
-  --chart-1: #0e4e68; /* teal */
-  --chart-2: #c23a78; /* plum */
-  --chart-3: #d2a878; /* camel */
-  --chart-4: #f39abf; /* pink */
-  --chart-5: #8fb2c2; /* mist */
+  --chart-1: #b0342a;
+  --chart-2: #c08a3e;
+  --chart-3: #48677a;
+  --chart-4: #17120d;
+  --chart-5: #6b6052;
 
-  --sidebar: #fffdf8;
-  --sidebar-foreground: #0e4e68;
-  --sidebar-primary: #c23a78;
-  --sidebar-primary-foreground: #faf4ec;
-  --sidebar-accent: #f6e3ec;
-  --sidebar-accent-foreground: #0e4e68;
-  --sidebar-border: #e7ddcd;
-  --sidebar-ring: #c23a78;
+  --sidebar: #faf3e6;
+  --sidebar-foreground: #221b13;
+  --sidebar-primary: #b0342a;
+  --sidebar-primary-foreground: #f3eada;
+  --sidebar-accent: #f0e2d3;
+  --sidebar-accent-foreground: #221b13;
+  --sidebar-border: #d9ccb4;
+  --sidebar-ring: #b0342a;
 }
 
 /* ------------------------------------------------------------------ */
-/*  Dark — warm editorial night                                        */
+/*  NEAR-BLACK — the alternate ground (kept on-brand if ever active)   */
 /* ------------------------------------------------------------------ */
 .dark {
-  --background: #0e4e68; /* deep teal — paper, reversed */
-  --foreground: #faf4ec; /* cream */
-
-  --card: #12586f;
-  --card-foreground: #faf4ec;
-  --popover: #12586f;
-  --popover-foreground: #faf4ec;
-
-  --primary: #f39abf; /* pink pops on teal */
-  --primary-foreground: #0e4e68;
-  --secondary: #145a73;
-  --secondary-foreground: #faf4ec;
-
-  --muted: #155066;
-  --muted-foreground: #a9c4ce; /* mist-cream */
-
-  --accent: #1a6180; /* teal hover wash */
-  --accent-foreground: #faf4ec;
-
-  --brand: #f39abf; /* pink — the on-teal accent */
-  --brand-foreground: #0e4e68;
-  --brand-muted: #2e5e70;
-
-  /* Brand palette (dot stays plum; bands deepen to read on teal) */
-  --teal: #0e4e68;
-  --plum: #f39abf; /* accent reads as pink on teal */
-  --pink: #f39abf;
-  --camel: #d2a878;
-  --mist: #8fb2c2;
-  --cream: #faf4ec;
-  --olive: #0a3d52; /* deeper teal band */
-  --ink: #06222e; /* deepest cinematic ground */
-
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 1 1 / 14%);
-  --input: oklch(1 1 1 / 16%);
-  --ring: #f39abf;
-
-  --chart-1: #8fb2c2; /* mist */
-  --chart-2: #f39abf; /* pink */
-  --chart-3: #d2a878; /* camel */
-  --chart-4: #c23a78; /* plum */
-  --chart-5: #faf4ec; /* cream */
-
-  --sidebar: #12586f;
-  --sidebar-foreground: #faf4ec;
-  --sidebar-primary: #f39abf;
-  --sidebar-primary-foreground: #0e4e68;
-  --sidebar-accent: #1a6180;
-  --sidebar-accent-foreground: #faf4ec;
-  --sidebar-border: oklch(1 1 1 / 14%);
-  --sidebar-ring: #f39abf;
+  --background: #17120d;
+  --foreground: #f3eada;
+  --card: #221b13;
+  --card-foreground: #f3eada;
+  --popover: #221b13;
+  --popover-foreground: #f3eada;
+  --primary: #f3eada;
+  --primary-foreground: #17120d;
+  --secondary: #221b13;
+  --secondary-foreground: #f3eada;
+  --muted: #221b13;
+  --muted-foreground: #c7baa3;
+  --accent: #2b2117;
+  --accent-foreground: #f3eada;
+  --brand: #cf4a3d;
+  --brand-foreground: #f3eada;
+  --brand-muted: #2b2117;
+  --destructive: #cf4a3d;
+  --border: #362d21;
+  --input: #362d21;
+  --ring: #cf4a3d;
+  --sidebar: #221b13;
+  --sidebar-foreground: #f3eada;
+  --sidebar-primary: #cf4a3d;
+  --sidebar-primary-foreground: #f3eada;
+  --sidebar-accent: #2b2117;
+  --sidebar-accent-foreground: #f3eada;
+  --sidebar-border: #362d21;
+  --sidebar-ring: #cf4a3d;
 }
 
 /* ------------------------------------------------------------------ */
@@ -204,7 +204,7 @@
   }
 
   html {
-    @apply font-reading antialiased;
+    @apply font-sans antialiased;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -212,10 +212,8 @@
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "ss01";
   }
 
-  /* Headings default to the editorial serif */
   h1,
   h2,
   h3,
@@ -230,11 +228,10 @@
   }
 
   ::selection {
-    background: var(--brand);
-    color: var(--brand-foreground);
+    background: var(--gold-pale);
+    color: var(--ink);
   }
 
-  /* Respect reduced-motion globally */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -250,24 +247,44 @@
 }
 
 /* ------------------------------------------------------------------ */
-/*  Reusable display utilities                                         */
+/*  Display type + playbill devices                                    */
 /* ------------------------------------------------------------------ */
 @layer utilities {
-  /* Fluid editorial type scale */
   .text-display {
-    font-size: clamp(2.75rem, 1.5rem + 6vw, 6.5rem);
-    line-height: 0.98;
-    letter-spacing: -0.025em;
+    font-size: clamp(2.75rem, 1.4rem + 6vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.005em;
   }
   .text-display-sm {
-    font-size: clamp(2rem, 1.2rem + 3.5vw, 3.75rem);
-    line-height: 1.04;
-    letter-spacing: -0.02em;
+    font-size: clamp(2rem, 1.2rem + 3.4vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.005em;
   }
+
+  /* Eyebrow / act label — typewriter, tracked caps, red by default. */
   .text-eyebrow {
-    @apply font-sans text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground;
+    @apply font-accent text-xs uppercase tracking-[0.14em] text-brand;
   }
-  /* Animated link underline (draws in on hover) */
+  /* The typewriter register for tickets, credits, folios, dates. */
+  .text-ticket {
+    @apply font-accent uppercase tracking-[0.12em];
+  }
+
+  /* Dotted leader row: label ···· value. */
+  .leader {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    width: 100%;
+  }
+  .leader__fill {
+    flex: 1 1 auto;
+    align-self: center;
+    overflow: hidden;
+    white-space: nowrap;
+    letter-spacing: 3px;
+  }
+
   .link-underline {
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 0% 1px;
@@ -277,24 +294,5 @@
   }
   .link-underline:hover {
     background-size: 100% 1px;
-  }
-}
-
-/* Slow, breathing float for the hero photograph */
-@keyframes heroFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-}
-.hero-float {
-  animation: heroFloat 9s ease-in-out infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-float {
-    animation: none;
   }
 }
