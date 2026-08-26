@@ -474,13 +474,13 @@ export function NarrativesV2() {
           </div>
           <div className="flex flex-[1_1_340px] border-l border-dashed border-ink-faint pl-10">
             <div>
-              <div className="relative min-h-[420px] w-full overflow-hidden rounded-[6px]">
+              <div className="relative min-h-[520px] w-full overflow-hidden rounded-[6px]">
                 <Image
-                  src="/work/katie-directing.jpg"
-                  alt="Katie Spencer on set with a script during a media day shoot"
+                  src="/v3/portrait-olive.jpg"
+                  alt="Katie Spencer on a media-day shoot"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
-                  className="object-cover object-[60%_center]"
+                  className="object-cover object-[57%_22%]"
                 />
               </div>
               <p className="mt-2.5 font-accent text-[11px] uppercase tracking-[0.12em] text-ink-faint">
