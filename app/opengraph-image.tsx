@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Katie Spencer — Stories build what strategy alone can't.";
+  "Katie Spencer. Stories build what strategy alone can't.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

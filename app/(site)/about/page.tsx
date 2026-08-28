@@ -114,7 +114,7 @@ export default function AboutPage() {
               <p className="text-[17px] leading-[1.75] text-on-black">
                 I&rsquo;ve performed on opera stages, co-founded a company,
                 helped lead an institution, and now I&rsquo;m building software.
-                The medium keeps changing. The work doesn&rsquo;t. I build things
+                The work looks different every time. Underneath, I build things
                 people believe in.
               </p>
             </div>
@@ -264,13 +264,13 @@ export default function AboutPage() {
               </div>
               <p className="text-[16px] leading-[1.7] text-muted-foreground">
                 They know who they are, why they exist, and how to invite people
-                into a mission worth believing in. Over the past decade, that
-                conviction has carried me from the rehearsal hall to the
-                boardroom, from marketing campaigns to fundraising strategy, from
-                nonprofit leadership to entrepreneurship.
+                into a mission worth joining. Over the past decade, that idea has
+                carried me from the rehearsal hall to the boardroom, from
+                marketing campaigns to fundraising strategy, from nonprofit
+                leadership to entrepreneurship.
               </p>
               <p className="text-[16px] leading-[1.7]">
-                Today, that belief is at the center of everything I do.
+                It still sits at the center of everything I do.
               </p>
             </div>
           </div>
@@ -320,7 +320,7 @@ export default function AboutPage() {
               <p className="max-w-[520px] text-[15px] leading-[1.7]">
                 Years performing opera taught me the lesson behind everything I
                 build: a story doesn&rsquo;t just inform people, it moves them.
-                Performance is where I first felt how belief takes hold, in a
+                Performance is where I first felt how a story takes hold, in a
                 room, in a body, in a single held note.
               </p>
             </div>
@@ -533,8 +533,7 @@ export default function AboutPage() {
                 Now I&rsquo;m exploring how technology and story shape each
                 other, across writing, speaking, and projects still taking form.
                 Every chapter taught me the same thing: the medium keeps
-                changing, but the work stays building something people believe
-                in.
+                changing, but the work doesn&rsquo;t.
               </p>
             </div>
           </Reveal>

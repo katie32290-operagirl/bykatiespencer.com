@@ -226,8 +226,7 @@ export function HomeV4() {
                     A season isn&rsquo;t a story.
                   </div>
                   <p className="mt-2 text-center text-[13px] leading-[1.5] text-on-black-soft">
-                    Helping performing arts organizations find the story
-                    underneath the season
+                    Story strategy for the performing arts
                   </p>
                 </Link>
               </div>

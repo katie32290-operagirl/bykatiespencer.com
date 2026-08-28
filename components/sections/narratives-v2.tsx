@@ -294,15 +294,11 @@ export function NarrativesV2() {
                 Dates, casts, ticket links, artistic bios, an evening of. It is
                 marketing aimed at people who already know they want to come.
               </p>
-              <p className="mb-4 max-w-[560px] text-[16px] leading-[1.7]">
-                Some people aren&rsquo;t staying away because they dislike the
-                art. They&rsquo;re staying away because they aren&rsquo;t sure
-                they know how to belong there.
-              </p>
               <p className="mb-10 max-w-[560px] text-[16px] leading-[1.7] text-on-black-soft">
-                Almost nobody in the field says this out loud, because saying it
-                feels like an insult to the art. So we keep making prettier
-                posters.
+                Some people stay away not because they dislike the art, but
+                because they aren&rsquo;t sure they&rsquo;d know how to belong
+                there. Almost nobody in the field says that out loud, so we keep
+                making prettier posters.
               </p>
               <div className="max-w-[520px] border-l-[3px] border-gold pl-6">
                 <p className={`mb-3 ${MONO} text-[11px] text-gold-bright`}>
@@ -312,9 +308,8 @@ export function NarrativesV2() {
                   Lower the social friction without lowering the art.
                 </p>
                 <p className="text-[15px] leading-[1.7] text-on-black-soft">
-                  People engage more deeply once they feel confident enough to
-                  participate. And audiences do not connect to information first.
-                  They connect to feeling first.
+                  People engage once they feel confident enough to. And nobody
+                  connects to information first. They connect to feeling.
                 </p>
               </div>
             </div>
@@ -374,6 +369,42 @@ export function NarrativesV2() {
               </div>
             </div>
           </div>
+        </Reveal>
+      </section>
+
+      {/* ------------------------------------------------------------ */}
+      {/*  Proof strip — Knoxville Opera outcomes, encountered early    */}
+      {/* ------------------------------------------------------------ */}
+      <section
+        className={`border-b border-ink bg-paper-bright ${PAD} py-[clamp(30px,4.5vw,50px)]`}
+        style={{ backgroundImage: "var(--paper-grain)" }}
+      >
+        <Reveal className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-x-[clamp(28px,4vw,56px)] gap-y-6">
+          <p className={`max-w-[210px] ${MONO} text-[11px] text-red`}>
+            &#10022; Already tested &middot; Knoxville Opera
+          </p>
+          <div className="flex flex-wrap gap-x-[clamp(26px,4vw,52px)] gap-y-5">
+            {[
+              ["+101%", "first-time attendance / show"],
+              ["+27%", "revenue per show"],
+              ["#1", "La Bohème, best-seller in company history"],
+            ].map(([stat, label]) => (
+              <div key={stat} className="max-w-[180px]">
+                <div className="font-serif text-[clamp(28px,3.2vw,40px)] leading-none text-red">
+                  {stat}
+                </div>
+                <div className={`mt-1.5 ${MONO} text-[10px] text-ink-mid`}>
+                  {label}
+                </div>
+              </div>
+            ))}
+          </div>
+          <Link
+            href="/knoxville-opera"
+            className={`border-b border-dotted border-red pb-0.5 ${MONO} text-[11px] text-red transition-colors hover:text-red-deep`}
+          >
+            See the case study &rarr;
+          </Link>
         </Reveal>
       </section>
 
@@ -761,10 +792,9 @@ export function NarrativesV2() {
             ))}
           </div>
           <p className="mt-8 max-w-[680px] text-[14px] leading-[1.7] text-ink-mid">
-            Depending on the organization, the final package may also include
-            campaign messaging, production-specific concepts, content direction,
-            audience guides, launch plans, or other tools needed to make the
-            strategy usable.
+            Depending on the organization, the package may also include campaign
+            messaging, production concepts, content direction, audience guides,
+            or launch plans: whatever it takes to make the strategy usable.
           </p>
         </Reveal>
       </section>
@@ -792,20 +822,20 @@ export function NarrativesV2() {
               </p>
               <p className="mb-4 max-w-[560px] text-[16px] leading-[1.7]">
                 Gianni Schicchi is a one-act comedy about a family scheming over
-                a will. A hard sell to anyone who has never bought an opera
+                a will. A hard sell to anyone who&rsquo;s never bought an opera
                 ticket. So the campaign didn&rsquo;t sell the opera. The synopsis
                 became a lunch between friends. The characters gave reality-TV
-                confessionals, one at a time, in costume. And the people who made
-                it sat down for a Behind the Music conversation, for anyone who
-                wanted to go deeper.
+                confessionals, in costume. The people who made it sat down for a
+                Behind the Music conversation, for anyone who wanted to go
+                deeper.
               </p>
               <p className="max-w-[560px] text-[16px] leading-[1.7] text-on-black-soft">
                 Underneath sat the whole package: the audit, the narrative
                 strategy, the visual world, the momentum map, the budget, and
-                campaign copy written for the production itself. Then the
-                unglamorous half that makes it real. The shot list, the cast and
-                crew list, the hour-by-hour media day schedule, and a dated
-                posting plan across social, email, and YouTube.
+                copy written for the production itself. Then the unglamorous half
+                that makes it real: the shot list, the cast and crew list, the
+                hour-by-hour media day schedule, and a dated posting plan across
+                social, email, and YouTube.
               </p>
               <p className="mt-[26px] font-serif text-[clamp(20px,2.3vw,26px)] italic text-gold-pale">
                 The strategy doesn&rsquo;t stop at language. It gets made.
@@ -900,16 +930,15 @@ export function NarrativesV2() {
                 <em className="italic">It&rsquo;s a working practice written down.</em>
               </h2>
               <p className="mb-4 max-w-[560px] text-[16px] leading-[1.7]">
-                Years inside performing arts administration, running the
-                marketing, casting the shoots, and watching what moved real
-                ticket buyers. The method came out of that work, not from outside
-                the field looking in.
+                Years inside performing arts administration: running the
+                marketing, casting the shoots, arguing about the poster, and
+                watching what actually moved first-time ticket buyers. The method
+                came out of that work, not from outside the field looking in.
               </p>
               <p className="max-w-[560px] text-[16px] leading-[1.7] text-ink-mid">
-                Anyone can generate arts marketing copy. Almost nobody selling
-                into this field has actually worked inside the season, cast the
-                media day, argued about the poster, and watched what made a
-                first-timer buy a ticket.
+                Anyone can generate arts marketing copy now. Almost nobody
+                selling into this field has sat inside the season and watched
+                what makes a newcomer decide to come.
               </p>
             </div>
           </div>
@@ -1024,7 +1053,7 @@ export function NarrativesV2() {
                 },
                 {
                   k: "Timing",
-                  b: "Every engagement begins with a defined scope and delivery date, so both sides know exactly what is due and when. Timeline is set based on the size and complexity of the work.",
+                  b: "Every engagement starts with a defined scope and delivery date, so both sides know what's due and when. The timeline scales with the size of the work.",
                 },
               ].map((e) => (
                 <div key={e.k}>

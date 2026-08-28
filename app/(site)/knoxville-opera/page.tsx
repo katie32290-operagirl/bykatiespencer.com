@@ -64,7 +64,7 @@ const moves = [
   {
     n: "01",
     title: "A rebrand with a spine",
-    body: "A confident new visual identity and voice — built so a 47-year-old institution could feel current without losing its gravity.",
+    body: "A confident new visual identity and voice, built so a 47-year-old institution could feel current without losing its gravity.",
     tilt: "-1.1deg",
     tape: "12%",
   },
@@ -78,7 +78,7 @@ const moves = [
   {
     n: "03",
     title: "Audiences first",
-    body: "Marketing engineered to convert curiosity into first-time attendance — and first-timers into the people who come back.",
+    body: "Marketing engineered to convert curiosity into first-time attendance, and first-timers into the people who come back.",
     tilt: "-0.7deg",
     tape: "40%",
   },
@@ -87,7 +87,7 @@ const moves = [
 const moreResults = [
   { value: "40%", label: "overall audience growth" },
   { value: "+65%", label: "giving, FY26 vs. FY23" },
-  { value: "#1", label: "La Bohème — best-selling production in company history" },
+  { value: "#1", label: "La Bohème, best-selling production in company history" },
 ];
 
 export default function KnoxvilleOperaCaseStudy() {
@@ -161,7 +161,7 @@ export default function KnoxvilleOperaCaseStudy() {
 
           <Reveal delay={0.16}>
             <p className="mt-8 max-w-[560px] text-[clamp(17px,1.6vw,20px)] leading-[1.65] text-on-black-soft">
-              Reimagining a 47-year-old opera company for a new generation — and
+              Reimagining a 47-year-old opera company for a new generation, and
               proving that the right story moves real numbers.
             </p>
           </Reveal>
@@ -250,7 +250,7 @@ export default function KnoxvilleOperaCaseStudy() {
             </Reveal>
             <Reveal delay={0.05}>
               <p className="max-w-[660px] font-serif text-[clamp(28px,3.4vw,44px)] font-medium leading-[1.12]">
-                A beloved institution with deep roots — and an audience that
+                A beloved institution with deep roots, and an audience that
                 wasn&rsquo;t growing. The work was excellent. The problem was
                 that not enough new people knew{" "}
                 <span className="italic text-red">why it mattered.</span>
@@ -260,7 +260,7 @@ export default function KnoxvilleOperaCaseStudy() {
               <p className="mt-8 max-w-[560px] text-[17px] leading-[1.7] text-muted-foreground">
                 Opera carries a reputation for being formal, expensive, and for
                 someone else. To reach a new generation, Knoxville Opera needed
-                more than better ads — it needed a brand and a story confident
+                more than better ads. It needed a brand and a story confident
                 enough to make the art feel like an invitation.
               </p>
             </Reveal>
@@ -347,7 +347,7 @@ export default function KnoxvilleOperaCaseStudy() {
             </p>
             <p className="max-w-[720px] font-serif text-[clamp(28px,3.6vw,50px)] font-medium leading-[1.16]">
               &ldquo;A bold rebrand and sharper storytelling doubled first-time
-              attendance and grew revenue per show 27% — and{" "}
+              attendance and grew revenue per show 27%, and{" "}
               <span className="italic text-gold-pale">La Bohème</span> became the
               best-selling production in company history.&rdquo;
             </p>

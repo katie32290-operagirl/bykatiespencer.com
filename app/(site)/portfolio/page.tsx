@@ -7,7 +7,7 @@ import { createMetadata } from "@/lib/seo";
 export const metadata: Metadata = createMetadata({
   title: "Work",
   description:
-    "From strategy to story to production: films, campaigns, experiences, and design that move people to believe, connect, and take action.",
+    "From strategy to story to production: films, campaigns, experiences, and design that get people to care, show up, and come back.",
   path: "/portfolio",
 });
 
@@ -56,8 +56,8 @@ export default function WorkPage() {
               data-anim="true"
               className="mt-7 max-w-[440px] text-[16px] leading-[1.7] text-on-black-mute [animation:ks-type-in_0.8s_ease_0.52s_backwards]"
             >
-              From strategy to story to production, I help organizations create
-              work that moves people to believe, connect, and take action.
+              From strategy to story to production, I help organizations make
+              work that gets people to care, show up, and come back.
             </p>
           </div>
 

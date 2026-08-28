@@ -159,7 +159,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <p className={labelCls}>How can we work together?</p>
+        <p className={labelCls}>What brings you here?</p>
         <div className="mt-3 flex flex-wrap gap-2.5">
           {OPTIONS.map((o) => (
             <button
