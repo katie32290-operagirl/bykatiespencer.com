@@ -61,7 +61,7 @@ export function Navbar() {
         velvet
           ? { backgroundImage: "var(--paper-grain-light)" }
           : gold
-            ? { background: "#E3A81C", backgroundImage: "var(--paper-grain)" }
+            ? { backgroundColor: "#E3A81C", backgroundImage: "var(--paper-grain)" }
             : undefined
       }
     >
@@ -163,7 +163,7 @@ export function Navbar() {
             aria-hidden
             className="absolute left-1/2 top-[-10px] -translate-x-1/2 px-3 text-[15px] leading-none text-gold"
             style={{
-              background: velvetGround,
+              backgroundColor: velvetGround,
               backgroundImage: "var(--paper-grain-light)",
             }}
           >

@@ -96,7 +96,7 @@ function ReelCard({
       {tape && <span className="ks-tape absolute left-[34%] top-[-10px]" />}
       <div
         className={`flex aspect-[4/5] items-center justify-center px-3.5 text-center font-serif text-[19px] italic ${onDark ? "text-on-black" : "text-ink"}`}
-        style={{ background: bg, backgroundImage: onDark ? "var(--paper-grain-light)" : "var(--paper-grain)" }}
+        style={{ backgroundColor: bg, backgroundImage: onDark ? "var(--paper-grain-light)" : "var(--paper-grain)" }}
       >
         {label}
       </div>
@@ -129,7 +129,7 @@ function EventCard({
       target="_blank"
       rel="noopener noreferrer"
       className={`block w-[clamp(210px,22vw,260px)] border-[3px] border-double border-gold px-5 py-6 text-center text-on-black no-underline transition-transform duration-300 hover:translate-y-[-4px] ${mt}`}
-      style={{ background: bg, backgroundImage: "var(--paper-grain-light)", transform: `rotate(${tilt})`, boxShadow: "var(--shadow-paper)" }}
+      style={{ backgroundColor: bg, backgroundImage: "var(--paper-grain-light)", transform: `rotate(${tilt})`, boxShadow: "var(--shadow-paper)" }}
     >
       <div className="mb-2.5 text-[13px] text-gold-bright">&#10022;</div>
       <div className="mb-2 font-serif text-[23px] leading-[1.12]">{title}</div>

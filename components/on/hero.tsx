@@ -72,7 +72,7 @@ export function HeroV4() {
             width: "clamp(180px,22vw,320px)",
             height: "clamp(320px,44vw,620px)",
             borderRadius: "999px 999px 0 0",
-            background: "var(--paper)",
+            backgroundColor: "var(--paper)",
             boxShadow:
               "inset 0 0 0 12px #9DB8A6, inset 0 0 0 24px var(--paper), inset 0 0 0 36px #9DB8A6, inset 0 0 0 48px var(--paper), inset 0 0 0 60px #9DB8A6",
           }}
@@ -87,7 +87,7 @@ export function HeroV4() {
             width: "clamp(150px,18vw,280px)",
             height: "clamp(260px,34vw,460px)",
             borderRadius: "999px 999px 0 0",
-            background: "var(--burgundy)",
+            backgroundColor: "var(--burgundy)",
             backgroundImage: "var(--paper-grain-light)",
             boxShadow: "0 2px 6px rgba(22,17,13,.22)",
           }}
@@ -175,7 +175,7 @@ export function HeroV4() {
             left: "31%",
             top: "5%",
             width: "clamp(64px,8vw,120px)",
-            background: "var(--gold-bright)",
+            backgroundColor: "var(--gold-bright)",
             backgroundImage: "var(--paper-grain)",
             opacity: 0.95,
           }}
@@ -205,7 +205,7 @@ export function HeroV4() {
             top: "0%",
             width: "clamp(120px,16vw,240px)",
             height: "clamp(50px,6vw,90px)",
-            background: "var(--rose)",
+            backgroundColor: "var(--rose)",
             backgroundImage: "var(--paper-grain)",
             clipPath:
               "polygon(2% 22%, 18% 4%, 42% 12%, 66% 0%, 88% 10%, 100% 30%, 94% 62%, 98% 88%, 74% 100%, 48% 88%, 22% 98%, 0% 78%, 6% 48%)",
@@ -271,7 +271,7 @@ export function HeroV4() {
             right: "-50px",
             bottom: "-24px",
             height: "clamp(120px,15vw,210px)",
-            background: "var(--green-deep)",
+            backgroundColor: "var(--green-deep)",
             backgroundImage: "var(--paper-grain-light)",
             clipPath:
               "polygon(0% 38%, 8% 22%, 20% 34%, 34% 14%, 48% 28%, 62% 8%, 76% 24%, 90% 6%, 100% 16%, 100% 100%, 0% 100%)",
@@ -304,7 +304,7 @@ export function HeroV4() {
             right: "clamp(90px,14vw,240px)",
             bottom: "clamp(40px,5vw,80px)",
             width: "clamp(190px,21vw,300px)",
-            background: "#F8F1E2",
+            backgroundColor: "#F8F1E2",
             padding: "8px 8px 12px",
             transform: "rotate(2deg)",
             boxShadow: "0 10px 28px rgba(22,17,13,.38)",

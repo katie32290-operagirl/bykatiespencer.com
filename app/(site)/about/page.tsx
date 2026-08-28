@@ -147,7 +147,7 @@ export default function AboutPage() {
               style={{
                 width: "clamp(150px,18vw,260px)",
                 height: "clamp(120px,15vw,220px)",
-                background: "var(--blue)",
+                backgroundColor: "var(--blue)",
                 backgroundImage: "var(--paper-grain)",
                 clipPath:
                   "polygon(3% 12%, 28% 2%, 56% 8%, 84% 1%, 100% 16%, 96% 48%, 100% 82%, 72% 96%, 42% 90%, 14% 99%, 0% 70%, 5% 40%)",
@@ -342,7 +342,7 @@ export default function AboutPage() {
                 aria-hidden
                 className="absolute inset-x-[-5%] bottom-[8%] top-[-5%] z-0"
                 style={{
-                  background: "var(--rose)",
+                  backgroundColor: "var(--rose)",
                   backgroundImage: "var(--paper-grain)",
                   clipPath:
                     "polygon(2% 8%, 24% 0%, 52% 6%, 78% 1%, 98% 7%, 100% 34%, 94% 62%, 99% 92%, 72% 98%, 44% 92%, 18% 99%, 0% 93%, 5% 60%, 0% 32%)",

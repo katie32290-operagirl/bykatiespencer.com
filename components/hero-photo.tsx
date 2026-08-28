@@ -86,7 +86,7 @@ export function HeroPhoto({
       {!reduce && (
         <motion.div
           className="pointer-events-none absolute inset-0 mix-blend-soft-light"
-          style={{ background: light }}
+          style={{ backgroundColor: light }}
         />
       )}
     </div>

@@ -95,7 +95,7 @@ function MoveChip({ label, bg, text }: { label: string; bg: string; text: string
       className={`mb-2.5 inline-block ${MONO} text-[10px]`}
       style={{
         color: text,
-        background: bg,
+        backgroundColor: bg,
         padding: "5px 12px",
         clipPath:
           "polygon(2% 18%, 20% 0%, 55% 8%, 84% 0%, 100% 24%, 96% 70%, 100% 92%, 62% 100%, 26% 90%, 0% 98%, 4% 55%)",
@@ -115,7 +115,7 @@ export function NarrativesV2() {
       {/* ------------------------------------------------------------ */}
       <section
         className={`relative overflow-hidden text-ink ${PAD} pb-[clamp(80px,11vw,140px)] pt-[clamp(28px,4vw,56px)]`}
-        style={{ background: "#E3A81C", backgroundImage: "var(--paper-grain)" }}
+        style={{ backgroundColor: "#E3A81C", backgroundImage: "var(--paper-grain)" }}
       >
         {/* oversized burgundy proscenium arch, entering from offstage lower-left */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -173,7 +173,7 @@ export function NarrativesV2() {
               style={{
                 width: "clamp(170px,23vw,350px)",
                 height: "clamp(320px,42vw,600px)",
-                background: "#1C7568",
+                backgroundColor: "#1C7568",
                 backgroundImage: "var(--paper-grain-light)",
                 clipPath:
                   "polygon(4% 4%, 34% 0%, 66% 4%, 100% 0%, 97% 24%, 100% 48%, 96% 72%, 100% 90%, 70% 98%, 40% 93%, 14% 100%, 0% 82%, 3% 56%, 0% 30%)",
@@ -187,7 +187,7 @@ export function NarrativesV2() {
               style={{
                 width: "clamp(90px,11vw,150px)",
                 height: "clamp(120px,15vw,220px)",
-                background: "var(--rose-pale)",
+                backgroundColor: "var(--rose-pale)",
                 backgroundImage: "var(--paper-grain)",
                 clipPath:
                   "polygon(6% 8%, 44% 0%, 92% 6%, 100% 40%, 96% 74%, 100% 98%, 60% 92%, 16% 99%, 0% 64%, 4% 32%)",
@@ -323,7 +323,7 @@ export function NarrativesV2() {
               <div
                 className="relative text-ink"
                 style={{
-                  background: "#F4EAD3",
+                  backgroundColor: "#F4EAD3",
                   backgroundImage: "var(--paper-grain)",
                   padding: "26px 24px 30px",
                   transform: "rotate(var(--tilt-2))",
@@ -435,7 +435,7 @@ export function NarrativesV2() {
       <section
         className={`relative border-t-2 border-ink ${PAD} py-[clamp(56px,8vw,100px)]`}
         style={{
-          background: "var(--paper-deep)",
+          backgroundColor: "var(--paper-deep)",
           backgroundImage: "var(--paper-grain)",
         }}
       >
@@ -545,7 +545,7 @@ export function NarrativesV2() {
                   width: "54px",
                   height: "66px",
                   borderRadius: "999px 999px 0 0",
-                  background: "var(--burgundy)",
+                  backgroundColor: "var(--burgundy)",
                   boxShadow:
                     "inset 0 0 0 4px var(--burgundy), inset 0 0 0 5px var(--gold-pale), var(--shadow-soft)",
                 }}
@@ -941,7 +941,7 @@ export function NarrativesV2() {
                 key={w.k}
                 className={`px-[22px] pb-[26px] pt-[22px] text-ink ${w.tilt} ${w.mt}`}
                 style={{
-                  background: "#F4EAD3",
+                  backgroundColor: "#F4EAD3",
                   backgroundImage: "var(--paper-grain)",
                   boxShadow: "0 2px 8px rgba(22,17,13,.2)",
                 }}

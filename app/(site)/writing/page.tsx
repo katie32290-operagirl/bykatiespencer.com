@@ -49,7 +49,7 @@ export default function WritingIndex() {
             aria-hidden
             className="absolute right-[-8%] top-[8%] z-0 h-[82%] w-[92%]"
             style={{
-              background: "#1C7568",
+              backgroundColor: "#1C7568",
               backgroundImage: "var(--paper-grain-light)",
               clipPath:
                 "polygon(4% 6%, 34% 0%, 66% 4%, 100% 0%, 96% 34%, 100% 66%, 95% 100%, 64% 96%, 32% 100%, 2% 96%, 0% 62%, 3% 30%)",
@@ -152,7 +152,7 @@ export default function WritingIndex() {
                 aria-hidden
                 className="absolute -left-[7%] -top-[5%] z-0 hidden h-[64%] w-[62%] sm:block"
                 style={{
-                  background: "#1C7568",
+                  backgroundColor: "#1C7568",
                   backgroundImage: "var(--paper-grain-light)",
                   clipPath:
                     "polygon(4% 8%, 34% 0%, 66% 6%, 100% 2%, 96% 40%, 100% 74%, 64% 96%, 32% 100%, 2% 94%, 0% 58%, 5% 30%)",
@@ -172,7 +172,7 @@ export default function WritingIndex() {
                 href={`/writing/${featured.slug}`}
                 className="group relative z-[1] block w-full p-[clamp(24px,4vw,40px)] pb-[clamp(32px,4vw,48px)] text-[#2A241A] transition-transform duration-300 hover:-translate-y-1"
                 style={{
-                background: "#E9E0C9",
+                backgroundColor: "#E9E0C9",
                 backgroundImage: "var(--paper-grain)",
                 clipPath:
                   "polygon(0% 0%, 100% 0%, 98% 20%, 100% 40%, 97% 60%, 99% 80%, 96% 99%, 74% 95%, 50% 100%, 26% 96%, 2% 99%, 0% 76%, 2% 52%, 0% 28%)",

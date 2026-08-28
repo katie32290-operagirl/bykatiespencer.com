@@ -84,7 +84,7 @@ export default function CollaboratePage() {
           style={{
             width: "clamp(120px,15vw,220px)",
             height: "clamp(44px,6vw,82px)",
-            background: "var(--rose)",
+            backgroundColor: "var(--rose)",
             backgroundImage: "var(--paper-grain)",
             clipPath:
               "polygon(2% 22%, 18% 4%, 42% 12%, 66% 0%, 88% 10%, 100% 30%, 94% 62%, 98% 88%, 74% 100%, 48% 88%, 22% 98%, 0% 78%, 6% 48%)",

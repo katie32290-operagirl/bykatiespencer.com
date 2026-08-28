@@ -103,7 +103,7 @@ export function HomeV4() {
                 aria-hidden
                 className="absolute left-[-34px] top-[-26px] z-0 h-[82px] w-[120px] [transform:rotate(-5deg)]"
                 style={{
-                  background: "var(--gold)",
+                  backgroundColor: "var(--gold)",
                   backgroundImage: "var(--paper-grain)",
                   opacity: 0.28,
                   clipPath:
@@ -320,7 +320,7 @@ export function HomeV4() {
                   aria-hidden
                   className="absolute left-[-8%] top-[-10%] z-[-1] h-[56%] w-[68%] rotate-[5deg]"
                   style={{
-                    background: "var(--rose)",
+                    backgroundColor: "var(--rose)",
                     backgroundImage: "var(--paper-grain)",
                     clipPath:
                       "polygon(3% 10%, 24% 0%, 52% 8%, 78% 1%, 98% 9%, 100% 38%, 94% 68%, 99% 94%, 72% 100%, 44% 92%, 18% 99%, 0% 90%, 5% 56%, 0% 28%)",
@@ -361,7 +361,7 @@ export function HomeV4() {
                   aria-hidden
                   className="absolute right-[-9%] top-[4%] z-[-1] h-[104%] w-[92%] rotate-[4deg]"
                   style={{
-                    background: "var(--burgundy)",
+                    backgroundColor: "var(--burgundy)",
                     backgroundImage: "var(--paper-grain-light)",
                     clipPath:
                       "polygon(4% 8%, 28% 0%, 58% 6%, 86% 1%, 100% 10%, 96% 40%, 100% 72%, 93% 98%, 62% 92%, 32% 100%, 4% 93%, 8% 52%, 0% 26%)",
@@ -642,7 +642,7 @@ export function HomeV4() {
               href="/writing/sometimes-the-show-is-the-problem"
               className="group z-[2] mb-7 block w-[clamp(250px,27vw,340px)] p-6 pb-10 text-[#2A241A] transition-transform duration-300 hover:-translate-y-1"
               style={{
-                background: "#E9E0C9",
+                backgroundColor: "#E9E0C9",
                 backgroundImage: "var(--paper-grain)",
                 clipPath:
                   "polygon(0% 0%, 100% 0%, 98% 24%, 100% 46%, 96% 68%, 99% 88%, 95% 99%, 72% 94%, 46% 100%, 22% 95%, 0% 99%, 3% 72%, 0% 48%, 2% 24%)",
@@ -688,7 +688,7 @@ export function HomeV4() {
               href="/writing"
               className="group relative z-[1] mb-7 mt-2.5 block w-[clamp(240px,25vw,310px)] p-8 pb-9 text-ink transition-transform duration-300 hover:-translate-y-1 hover:[transform:rotate(0deg)]"
               style={{
-                background: "#F4EAD3",
+                backgroundColor: "#F4EAD3",
                 backgroundImage: "var(--paper-grain)",
                 transform: "rotate(-1deg)",
                 boxShadow: "0 2px 8px rgba(22,17,13,.2)",
