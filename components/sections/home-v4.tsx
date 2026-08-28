@@ -147,15 +147,15 @@ export function HomeV4() {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/on/in-rehearsal.jpg"
-                  alt="Katie in rehearsal"
+                  src="/work/katie-onset.jpg"
+                  alt="Katie Spencer on a media-day set"
                   className="block w-full"
-                  style={{ aspectRatio: "4 / 3", objectFit: "cover" }}
+                  style={{ aspectRatio: "4 / 3", objectFit: "cover", objectPosition: "50% 22%" }}
                 />
               </div>
               <span className="ks-tape absolute -top-3 left-[14%] z-[2]" />
               <p className="pt-3.5 font-accent text-[11px] uppercase tracking-[0.1em] text-on-black-soft [transform:rotate(-1deg)]">
-                rehearsal, knoxville
+                media day, knoxville
               </p>
             </Reveal>
           </div>

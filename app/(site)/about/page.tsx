@@ -411,14 +411,15 @@ export default function AboutPage() {
             </div>
             <div className="min-w-[280px] max-w-[440px] flex-1">
               <Image
-                src="/about-institution.jpg"
-                alt="Knoxville Opera"
+                src="/on/gala.jpg"
+                alt="Katie Spencer speaking at a Knoxville Opera gala"
                 width={880}
                 height={660}
                 sizes="(max-width: 768px) 82vw, 40vw"
                 className="block h-auto w-full object-cover"
                 style={{
                   aspectRatio: "4 / 3",
+                  objectPosition: "50% 35%",
                   clipPath:
                     "polygon(4% 3%, 34% 0%, 66% 4%, 97% 1%, 100% 28%, 95% 55%, 99% 82%, 94% 99%, 62% 95%, 30% 100%, 2% 96%, 6% 66%, 0% 36%)",
                   transform: "rotate(1.5deg)",

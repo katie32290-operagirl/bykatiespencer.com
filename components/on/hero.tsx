@@ -129,7 +129,7 @@ export function HeroV4() {
           className="absolute z-0 aspect-square cursor-pointer rounded-full [animation:ks-fan-open_1.1s_cubic-bezier(0.2,0.7,0.2,1)_0.35s_backwards]"
           style={{
             right: "clamp(-70px,-4vw,-24px)",
-            top: "-3%",
+            top: "clamp(10px,1.5vw,28px)",
             width: "clamp(220px,30vw,440px)",
             backgroundImage:
               "repeating-conic-gradient(transparent 0deg 21deg, var(--gold-bright) 21deg 22.2deg), repeating-conic-gradient(var(--green) 0deg 45deg, #1D5A50 45deg 90deg)",

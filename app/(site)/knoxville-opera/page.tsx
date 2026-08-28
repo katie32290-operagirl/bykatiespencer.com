@@ -274,10 +274,10 @@ export default function KnoxvilleOperaCaseStudy() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/on/on-stage.jpg"
-                alt="Knoxville Opera on stage"
+                src="/work/build-knoxville.jpg"
+                alt="A Knoxville Opera production on stage"
                 className="block w-full"
-                style={{ aspectRatio: "4 / 5", objectFit: "cover" }}
+                style={{ aspectRatio: "4 / 5", objectFit: "cover", objectPosition: "42% 42%" }}
               />
               <p className="pt-3 font-accent text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
                 on stage &middot; the work was never the problem

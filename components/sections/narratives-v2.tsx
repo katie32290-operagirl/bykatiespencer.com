@@ -848,8 +848,8 @@ export function NarrativesV2() {
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <Image
-                    src="/work/work-featured.jpg"
-                    alt="Knoxville Opera, the season on stage"
+                    src="/work/katie-onstage.jpg"
+                    alt="A season media day inside the Tennessee Theatre"
                     fill
                     sizes="(max-width: 768px) 90vw, 42vw"
                     className="object-cover"

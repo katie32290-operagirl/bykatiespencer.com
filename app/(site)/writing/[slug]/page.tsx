@@ -206,12 +206,12 @@ export default async function NotePage({
                 }}
               >
                 <Image
-                  src="/on/cafe-shoot.jpg"
+                  src="/katie-portrait.jpg"
                   alt="Katie Spencer"
                   width={112}
                   height={140}
                   className="block h-[140px] w-[112px] object-cover"
-                  style={{ objectPosition: "50% 30%" }}
+                  style={{ objectPosition: "50% 18%" }}
                 />
               </div>
               <div className="min-w-[220px] flex-1">
