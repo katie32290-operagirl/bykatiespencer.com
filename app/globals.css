@@ -5,17 +5,19 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ------------------------------------------------------------------ */
-/*  byKatie Spencer · Design System V2 — "House Lights"                */
-/*  Two grounds (warm paper + near black), three faces (Radley /       */
-/*  Instrument Sans / Special Elite), red · gold · one cool accent.    */
+/*  byKatie Spencer · Design System — "Opening Night"                  */
+/*  Vintage theatre ephemera + handmade collage. Four grounds (paper / */
+/*  green / burgundy / black), aged gold + rose + blue accents, paper  */
+/*  grain texture, small honest tilts. Cormorant / Karla / Special     */
+/*  Elite. The typography is the structure; the collage is the         */
+/*  personality.                                                       */
 /* ------------------------------------------------------------------ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Three registers */
-  --font-serif: var(--font-serif); /* Radley — the name & headlines */
-  --font-sans: var(--font-sans); /* Instrument Sans — everything else */
+  --font-serif: var(--font-serif); /* DM Serif Display — the name & headlines */
+  --font-sans: var(--font-sans); /* Karla — body, UI */
   --font-accent: var(--font-accent); /* Special Elite — tickets, credits */
   --font-mono: var(--font-accent);
   --font-heading: var(--font-serif);
@@ -24,32 +26,41 @@
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-muted: var(--brand-muted);
 
-  /* House Lights palette, named */
+  /* Opening Night palette, named */
   --color-paper: var(--paper);
   --color-paper-bright: var(--paper-bright);
-  --color-ink: var(--ink); /* the near-black ground */
-  --color-ink-soft: var(--ink-soft); /* raised surface on dark */
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink); /* near-black ground */
+  --color-ink-soft: var(--ink-soft);
+  --color-green: var(--green);
+  --color-green-deep: var(--green-deep);
+  --color-burgundy: var(--burgundy);
+  --color-burgundy-deep: var(--burgundy-deep);
   --color-red: var(--red);
   --color-red-deep: var(--red-deep);
   --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
   --color-gold-pale: var(--gold-pale);
-  --color-cool: var(--cool);
-  --color-ink-faint: var(--ink-faint); /* muted labels / captions on paper */
+  --color-rose: var(--rose);
+  --color-rose-pale: var(--rose-pale);
+  --color-blue: var(--blue);
+  --color-cool: var(--blue);
+  --color-ink-faint: var(--ink-faint);
   --color-on-black: var(--on-black);
   --color-on-black-soft: var(--on-black-soft);
   --color-on-black-mute: var(--on-black-mute);
+  --color-line: var(--line);
   --color-line-dark: var(--line-dark);
   --color-paper-dim: var(--on-black-soft);
 
-  /* Transitional aliases — old V1 names resolve to the new palette so pages
-     not yet rebuilt degrade gracefully. Remove once every page is on V2. */
-  --color-teal: var(--ink);
+  /* Transitional aliases — older palette names resolve to Opening Night. */
+  --color-teal: var(--green);
   --color-plum: var(--red);
-  --color-pink: var(--red);
+  --color-pink: var(--rose);
   --color-camel: var(--gold);
-  --color-mist: var(--cool);
+  --color-mist: var(--blue);
   --color-cream: var(--paper);
-  --color-olive: var(--ink);
+  --color-olive: var(--green);
 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -83,116 +94,142 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Near-square corners — this is a program, not an app */
+  /* Near-square corners — physically assembled paper, not an app. */
   --radius-sm: 2px;
-  --radius-md: 4px;
+  --radius-md: 3px;
   --radius-lg: 4px;
-  --radius-xl: 6px;
+  --radius-xl: 4px;
   --radius-2xl: 6px;
 
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAPER — the default warm ground                                    */
+/*  PAPER — the default aged-paper ground                              */
 /* ------------------------------------------------------------------ */
 :root {
-  --radius: 4px;
+  --radius: 3px;
 
-  --background: #f3eada; /* paper */
-  --foreground: #221b13; /* ink — body & headlines on paper */
+  --background: #efe3cb; /* aged paper */
+  --foreground: #241c13; /* ink */
 
-  --card: #faf3e6; /* paper-bright */
-  --card-foreground: #221b13;
-  --popover: #faf3e6;
-  --popover-foreground: #221b13;
+  --card: #f8f0dd; /* paper-bright */
+  --card-foreground: #241c13;
+  --popover: #f8f0dd;
+  --popover-foreground: #241c13;
 
-  --primary: #17120d; /* solid buttons read as printed ink */
-  --primary-foreground: #f3eada;
-  --secondary: #ece0c9; /* deeper paper */
-  --secondary-foreground: #221b13;
+  --primary: #16110d; /* solid buttons read as printed ink */
+  --primary-foreground: #efe3cb;
+  --secondary: #e2d0ac; /* handled paper */
+  --secondary-foreground: #241c13;
 
-  --muted: #ece0c9;
-  --muted-foreground: #6b6052; /* ink-mid — secondary text */
+  --muted: #e2d0ac;
+  --muted-foreground: #6e6150; /* ink-mid */
 
-  --accent: #f0e2d3;
-  --accent-foreground: #221b13;
+  --accent: #eaddc0;
+  --accent-foreground: #241c13;
 
-  /* Red — the mark of emphasis */
-  --brand: #b0342a;
-  --brand-foreground: #f3eada;
-  --brand-muted: #f0ddd3;
+  /* Red — small deliberate hits. */
+  --brand: #a6342b;
+  --brand-foreground: #efe3cb;
+  --brand-muted: #efd7cd;
 
-  /* House Lights, named */
-  --paper: #f3eada;
-  --paper-bright: #faf3e6;
-  --ink: #17120d; /* near-black ground */
-  --ink-soft: #221b13; /* raised surface on dark */
-  --red: #b0342a;
-  --red-deep: #8e2921;
-  --gold: #c08a3e;
-  --gold-pale: #ddbe85;
-  --cool: #48677a;
-  --ink-faint: #9e9280; /* muted labels, captions */
-  --on-black: #f3eada;
-  --on-black-soft: #c7baa3;
-  --on-black-mute: #8e8371;
-  --line-dark: #362d21; /* hairline on black */
+  /* Opening Night, named */
+  --paper: #efe3cb;
+  --paper-bright: #f8f0dd;
+  --paper-deep: #e2d0ac;
+  --ink: #16110d; /* near-black ground */
+  --ink-soft: #201913;
+  --green: #143f38;
+  --green-deep: #0d2e29;
+  --burgundy: #5c1f26;
+  --burgundy-deep: #451319;
+  --red: #a6342b;
+  --red-deep: #86251e;
+  --gold: #ae8434;
+  --gold-bright: #c9a24b;
+  --gold-pale: #dcc08a;
+  --rose: #c9909a;
+  --rose-pale: #deb6bc;
+  --blue: #6f8f9d;
+  --ink-faint: #9c8e77;
+  --on-black: #f0e5cc;
+  --on-black-soft: #c9b995;
+  --on-black-mute: #8e7f66;
+  --line: #d3c29e;
+  --line-dark: rgba(240, 229, 204, 0.18);
 
-  --destructive: #b0342a;
-  --border: #d9ccb4; /* hairline on paper */
-  --input: #d9ccb4;
-  --ring: #b0342a;
+  --destructive: #a6342b;
+  --border: #d3c29e; /* hairline on paper */
+  --input: #d3c29e;
+  --ring: #a6342b;
 
-  --chart-1: #b0342a;
-  --chart-2: #c08a3e;
-  --chart-3: #48677a;
-  --chart-4: #17120d;
-  --chart-5: #6b6052;
+  --chart-1: #a6342b;
+  --chart-2: #ae8434;
+  --chart-3: #143f38;
+  --chart-4: #6f8f9d;
+  --chart-5: #c9909a;
 
-  --sidebar: #faf3e6;
-  --sidebar-foreground: #221b13;
-  --sidebar-primary: #b0342a;
-  --sidebar-primary-foreground: #f3eada;
-  --sidebar-accent: #f0e2d3;
-  --sidebar-accent-foreground: #221b13;
-  --sidebar-border: #d9ccb4;
-  --sidebar-ring: #b0342a;
+  --sidebar: #f8f0dd;
+  --sidebar-foreground: #241c13;
+  --sidebar-primary: #a6342b;
+  --sidebar-primary-foreground: #efe3cb;
+  --sidebar-accent: #eaddc0;
+  --sidebar-accent-foreground: #241c13;
+  --sidebar-border: #d3c29e;
+  --sidebar-ring: #a6342b;
+
+  /* Elevation — layered paper */
+  --shadow-paper: 0 1px 2px rgba(22, 17, 13, 0.18), 0 10px 26px rgba(22, 17, 13, 0.16);
+  --shadow-card: 0 10px 30px rgba(22, 17, 13, 0.14);
+  --shadow-soft: 0 2px 10px rgba(22, 17, 13, 0.08);
+
+  /* Small honest tilts — collage pieces sit slightly off-square */
+  --tilt-1: -1.6deg;
+  --tilt-2: 1.1deg;
+  --tilt-3: -0.7deg;
+  --tilt-4: 2.2deg;
+
+  /* Paper grain — an extra background-image layer at ~5% */
+  --paper-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  --paper-grain-light: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  /* Seamless harlequin diamond tile — burgundy + rose diamonds on paper. */
+  --harlequin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='56' viewBox='0 0 80 56'%3E%3Crect width='80' height='56' fill='%23EFE3CB'/%3E%3Cpath d='M20 0L40 28L20 56L0 28Z' fill='%235C1F26'/%3E%3Cpath d='M60 0L80 28L60 56L40 28Z' fill='%23C9909A'/%3E%3C/svg%3E");
 }
 
 /* ------------------------------------------------------------------ */
-/*  NEAR-BLACK — the alternate ground (kept on-brand if ever active)   */
+/*  NEAR-BLACK — the house-dark alternate ground                       */
 /* ------------------------------------------------------------------ */
 .dark {
-  --background: #17120d;
-  --foreground: #f3eada;
-  --card: #221b13;
-  --card-foreground: #f3eada;
-  --popover: #221b13;
-  --popover-foreground: #f3eada;
-  --primary: #f3eada;
-  --primary-foreground: #17120d;
-  --secondary: #221b13;
-  --secondary-foreground: #f3eada;
-  --muted: #221b13;
-  --muted-foreground: #c7baa3;
-  --accent: #2b2117;
-  --accent-foreground: #f3eada;
-  --brand: #cf4a3d;
-  --brand-foreground: #f3eada;
-  --brand-muted: #2b2117;
-  --destructive: #cf4a3d;
-  --border: #362d21;
-  --input: #362d21;
-  --ring: #cf4a3d;
-  --sidebar: #221b13;
-  --sidebar-foreground: #f3eada;
-  --sidebar-primary: #cf4a3d;
-  --sidebar-primary-foreground: #f3eada;
-  --sidebar-accent: #2b2117;
-  --sidebar-accent-foreground: #f3eada;
-  --sidebar-border: #362d21;
-  --sidebar-ring: #cf4a3d;
+  --background: #16110d;
+  --foreground: #f0e5cc;
+  --card: #201913;
+  --card-foreground: #f0e5cc;
+  --popover: #201913;
+  --popover-foreground: #f0e5cc;
+  --primary: #f0e5cc;
+  --primary-foreground: #16110d;
+  --secondary: #201913;
+  --secondary-foreground: #f0e5cc;
+  --muted: #201913;
+  --muted-foreground: #c9b995;
+  --accent: #2a2117;
+  --accent-foreground: #f0e5cc;
+  --brand: #c9a24b;
+  --brand-foreground: #16110d;
+  --brand-muted: #2a2117;
+  --destructive: #c9542a;
+  --border: rgba(240, 229, 204, 0.18);
+  --input: rgba(240, 229, 204, 0.18);
+  --ring: #c9a24b;
+  --sidebar: #201913;
+  --sidebar-foreground: #f0e5cc;
+  --sidebar-primary: #c9a24b;
+  --sidebar-primary-foreground: #16110d;
+  --sidebar-accent: #2a2117;
+  --sidebar-accent-foreground: #f0e5cc;
+  --sidebar-border: rgba(240, 229, 204, 0.18);
+  --sidebar-ring: #c9a24b;
 }
 
 /* ------------------------------------------------------------------ */
@@ -206,14 +243,21 @@
   html {
     @apply font-sans antialiased;
     scroll-behavior: smooth;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   body {
     @apply bg-background text-foreground;
+    background-image: var(--paper-grain);
+    overflow-x: hidden;
+    /* DM Serif Display ships one weight (400); never faux-bold it. Karla and
+       Special Elite load their real weights, so this only affects the serif. */
+    font-synthesis-weight: none;
   }
 
+  /* Headlines default to DM Serif Display — single weight, hierarchy by size. */
   h1,
   h2,
   h3,
@@ -221,6 +265,7 @@
     @apply font-serif;
     font-optical-sizing: auto;
     text-wrap: balance;
+    font-weight: 400;
   }
 
   p {
@@ -247,25 +292,23 @@
 }
 
 /* ------------------------------------------------------------------ */
-/*  Display type + playbill devices                                    */
+/*  Display type + Opening Night devices                               */
 /* ------------------------------------------------------------------ */
 @layer utilities {
   .text-display {
-    font-size: clamp(2.75rem, 1.4rem + 6vw, 6rem);
+    font-size: clamp(2.75rem, 1.4rem + 6vw, 7rem);
     line-height: 1;
     letter-spacing: -0.005em;
   }
   .text-display-sm {
     font-size: clamp(2rem, 1.2rem + 3.4vw, 3.5rem);
     line-height: 1.05;
-    letter-spacing: -0.005em;
   }
 
-  /* Eyebrow / act label — typewriter, tracked caps, red by default. */
+  /* Eyebrow / act marker — typewriter, tracked caps, red by default. */
   .text-eyebrow {
     @apply font-accent text-xs uppercase tracking-[0.14em] text-brand;
   }
-  /* The typewriter register for tickets, credits, folios, dates. */
   .text-ticket {
     @apply font-accent uppercase tracking-[0.12em];
   }
@@ -285,6 +328,16 @@
     letter-spacing: 3px;
   }
 
+  /* A strip of real kraft tape holding a piece down. */
+  .ks-tape {
+    display: inline-block;
+    width: 92px;
+    height: 28px;
+    background: url("/on/tape.webp") center / cover no-repeat;
+    filter: drop-shadow(0 1px 2px rgba(22, 17, 13, 0.18));
+    transform: rotate(-2deg);
+  }
+
   .link-underline {
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 0% 1px;
@@ -294,5 +347,62 @@
   }
   .link-underline:hover {
     background-size: 100% 1px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Motion — objects on a theatre desk                                 */
+/* ------------------------------------------------------------------ */
+@keyframes ks-curtain-left {
+  to {
+    transform: translateX(-102%);
+  }
+}
+@keyframes ks-curtain-right {
+  to {
+    transform: translateX(102%);
+  }
+}
+@keyframes ks-star-twinkle {
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(0.75);
+  }
+}
+@keyframes ks-fan-open {
+  from {
+    opacity: 0;
+    transform: scale(0.25);
+  }
+}
+@keyframes ks-type-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
+@keyframes ks-photo-settle {
+  from {
+    opacity: 0;
+    transform: rotate(2.5deg) translateY(-40px);
+  }
+}
+@keyframes ks-drift-in {
+  from {
+    opacity: 0;
+    transform: rotate(0deg) translate(60px, -24px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-curtain] {
+    display: none !important;
+  }
+  [data-anim] {
+    animation: none !important;
   }
 }

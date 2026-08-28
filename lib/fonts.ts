@@ -1,11 +1,12 @@
-import { Radley, Instrument_Sans, Special_Elite } from "next/font/google";
+import { DM_Serif_Display, Karla, Special_Elite } from "next/font/google";
 
 /**
- * Display serif — the name, headlines, italic pull-lines. Radley is
- * woodletter-derived: warm, sturdy, poster-like at size, with a true italic
- * for pull-lines. The first of the brand's three voices.
+ * Display serif — the name, headlines, italic pull-lines. DM Serif Display: a
+ * warm, high-contrast didone matching the wordmark drama. One weight (400), so
+ * hierarchy comes from size and italics, never bolding (see font-synthesis in
+ * globals.css).
  */
-export const fontDisplay = Radley({
+export const fontDisplay = DM_Serif_Display({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-serif",
@@ -14,19 +15,20 @@ export const fontDisplay = Radley({
 });
 
 /**
- * The working register — body, UI, wayfinding, everything else. Instrument
- * Sans is the clean, legible voice the site actually reads in.
+ * The working register — body, UI, wayfinding, the GreenRoom register.
+ * Karla: warm, highly readable grotesque.
  */
-export const fontSans = Instrument_Sans({
+export const fontSans = Karla({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
   weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 /**
- * The accent, used rarely — credits, call sheets, tickets, dates, act labels.
- * Special Elite is the typewriter register: the marked-up, backstage voice.
+ * Production metadata only — ACT markers, tickets, credits, call sheets, dates.
+ * Special Elite: typewriter, uppercase, tracked.
  */
 export const fontAccent = Special_Elite({
   subsets: ["latin"],

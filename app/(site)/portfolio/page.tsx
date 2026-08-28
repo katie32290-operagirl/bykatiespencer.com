@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Reveal } from "@/components/motion/reveal";
-import { HeroPhoto } from "@/components/hero-photo";
-import { WorkGrid } from "@/components/sections/work-grid";
-import { clients } from "@/content/clients";
+import { WorkSections } from "@/components/sections/work-sections";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
@@ -12,92 +11,142 @@ export const metadata: Metadata = createMetadata({
   path: "/portfolio",
 });
 
-const trusted = clients.filter((c) => c !== "GreenRoom");
-
 export default function WorkPage() {
   return (
     <>
       {/* ---------------------------------------------------------------- */}
-      {/*  Title page — the program opens                                  */}
+      {/*  Title page — the house-dark marquee                             */}
       {/* ---------------------------------------------------------------- */}
-      <section className="px-6 pt-24 pb-16 sm:px-14 md:pt-28">
-        <Reveal className="mx-auto flex max-w-[1180px] flex-wrap items-end gap-x-16 gap-y-12">
-          <div className="max-w-[640px] flex-[1_1_460px]">
-            <p className="font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
+      <section
+        className="relative overflow-hidden bg-ink px-[clamp(20px,4.5vw,56px)] pb-[clamp(72px,10vw,130px)] pt-[clamp(16px,2.5vw,40px)] text-on-black"
+        style={{ backgroundImage: "var(--paper-grain-light)" }}
+      >
+        <div className="relative z-[2] mx-auto grid max-w-[1180px] items-center gap-x-[clamp(28px,4vw,64px)] gap-y-14 md:grid-cols-12">
+          {/* headline column */}
+          <div className="md:col-span-6">
+            <h1
+              data-anim="true"
+              className="font-serif text-[clamp(84px,13vw,196px)] font-normal leading-[0.86] [animation:ks-type-in_0.8s_ease_0.1s_backwards]"
+            >
               Work
-            </p>
-            <h1 className="mt-5 font-serif text-[clamp(46px,7vw,92px)] leading-[1.0]">
-              Work is where ideas become real<span className="text-brand">.</span>
             </h1>
-            <p className="mt-7 max-w-[500px] font-serif text-[clamp(20px,2.4vw,28px)] italic leading-snug text-brand">
-              Every project begins with the same question: &ldquo;Why should
-              anyone care?&rdquo;
+            <p
+              data-anim="true"
+              className="mt-2 font-serif text-[clamp(30px,4.4vw,56px)] italic leading-[1.05] text-gold-pale [animation:ks-type-in_0.8s_ease_0.24s_backwards]"
+            >
+              is where ideas become{" "}
+              <span className="text-gold-bright">real.</span>
             </p>
-            <p className="mt-6 max-w-[500px] text-lg leading-[1.7] text-muted-foreground">
+            <p
+              data-anim="true"
+              className="mt-9 max-w-[480px] font-serif text-[clamp(19px,2.2vw,26px)] italic leading-[1.35] text-gold-pale [animation:ks-type-in_0.8s_ease_0.38s_backwards]"
+            >
+              Every project begins with the same question: &ldquo;Why should
+              anyone{" "}
+              <span className="relative inline-block">
+                care?&rdquo;
+                <span
+                  aria-hidden
+                  className="absolute -inset-x-2 -inset-y-1 rounded-[50%] border-[1.5px] border-red"
+                  style={{ transform: "rotate(-4deg)" }}
+                />
+              </span>
+            </p>
+            <p
+              data-anim="true"
+              className="mt-7 max-w-[440px] text-[16px] leading-[1.7] text-on-black-mute [animation:ks-type-in_0.8s_ease_0.52s_backwards]"
+            >
               From strategy to story to production, I help organizations create
               work that moves people to believe, connect, and take action.
             </p>
           </div>
 
-          <div className="flex-[1_1_340px]">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[6px] border border-border">
-              <HeroPhoto src="/work/katie-hero.jpg" position="object-[45%_35%]" />
-            </div>
-            <p className="mt-2.5 font-accent text-[11px] uppercase tracking-[0.12em] text-ink-faint">
-              On set, Knoxville
-            </p>
-          </div>
-        </Reveal>
-      </section>
+          {/* the collage */}
+          <Reveal className="relative md:col-span-6">
+            <div className="relative mx-auto max-w-[460px]">
+              {/* green proscenium arch behind the photo */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/on/arch-green.webp"
+                alt=""
+                aria-hidden
+                className="pointer-events-none absolute -top-[10%] left-[8%] z-0 hidden w-[86%] sm:block"
+                style={{ filter: "drop-shadow(0 12px 30px rgba(0,0,0,.45))" }}
+              />
+              {/* blue torn paper, peeking left */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/on/paper-blue.webp"
+                alt=""
+                aria-hidden
+                className="pointer-events-none absolute top-[14%] left-[-16%] z-0 hidden w-[44%] -rotate-[6deg] sm:block"
+              />
 
-      {/* ---------------------------------------------------------------- */}
-      {/*  The program — featured production + the full bill               */}
-      {/* ---------------------------------------------------------------- */}
-      <WorkGrid />
-
-      {/* ---------------------------------------------------------------- */}
-      {/*  Curtain line                                                    */}
-      {/* ---------------------------------------------------------------- */}
-      <section className="px-6 pb-20 sm:px-14 md:pb-24">
-        <Reveal className="mx-auto max-w-[1180px] border-t-2 border-foreground pt-7">
-          <p className="max-w-[560px] font-serif text-[clamp(23px,3vw,34px)] italic leading-[1.3] text-muted-foreground">
-            Every project is a collaboration. Every result is shared.
-          </p>
-        </Reveal>
-      </section>
-
-      {/* ---------------------------------------------------------------- */}
-      {/*  In good company — near-black ground                             */}
-      {/* ---------------------------------------------------------------- */}
-      <section className="bg-ink px-6 py-20 text-on-black sm:px-14 md:py-24">
-        <Reveal className="mx-auto flex max-w-[1180px] flex-wrap items-start gap-x-[70px] gap-y-10">
-          <div className="min-w-[220px] flex-[1_1_240px]">
-            <p className="font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
-              Trusted by
-            </p>
-            <p className="mt-4 max-w-xs font-sans text-sm leading-[1.6] text-on-black-soft">
-              Organizations doing meaningful work in the world.
-            </p>
-          </div>
-          <ul className="flex-[1_1_540px] font-accent text-[13px] uppercase tracking-[0.12em]">
-            {trusted.map((name, i) => (
-              <li
-                key={name}
-                className={`flex items-baseline gap-3 border-t border-line-dark py-[15px] ${
-                  i === trusted.length - 1 ? "border-b" : ""
-                }`}
+              {/* the production still, in a white frame */}
+              <div
+                className="relative z-[2] bg-[#F8F1E2] p-2.5 pb-9"
+                style={{
+                  transform: "rotate(1.6deg)",
+                  boxShadow: "0 24px 50px rgba(0,0,0,.5)",
+                }}
               >
-                <span className="text-on-black-mute">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-on-black transition-colors hover:text-brand">
-                  {name}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink">
+                  <Image
+                    src="/work/katie-hero.jpg"
+                    alt="Katie Spencer on set, Knoxville"
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 90vw, 48vw"
+                    className="object-cover object-[50%_38%]"
+                  />
+                </div>
+                <p className="absolute bottom-3 left-3 font-accent text-[10px] uppercase tracking-[0.16em] text-ink-mid">
+                  on set, knoxville
+                </p>
+              </div>
+
+              {/* kraft tape, top-left of the frame */}
+              <span className="ks-tape absolute left-[10%] top-[-12px] z-[3]" />
+              {/* bunting, top-right of the frame */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/on/bunting.webp"
+                alt=""
+                aria-hidden
+                className="pointer-events-none absolute right-[10%] top-[-16px] z-[3] w-[clamp(120px,15vw,190px)] rotate-[2deg]"
+                style={{ filter: "drop-shadow(0 2px 5px rgba(0,0,0,.4))" }}
+              />
+              {/* grand theatre ticket, hanging off the lower-left */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/on/ticket-grand.webp"
+                alt=""
+                aria-hidden
+                className="pointer-events-none absolute bottom-[-9%] left-[-6%] z-[4] w-[clamp(120px,15vw,185px)] -rotate-[8deg]"
+                style={{ filter: "drop-shadow(0 6px 14px rgba(0,0,0,.5))" }}
+              />
+            </div>
+          </Reveal>
+        </div>
+
+        {/* scalloped deckle edge — the house-dark tears away to the green below */}
+        <span
+          aria-hidden
+          className="absolute inset-x-0 bottom-[-1px] z-[3] h-[22px]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 18px 100%, var(--green) 16.5px, transparent 17px), radial-gradient(circle at 18px 100%, var(--gold) 18px, transparent 18.5px)",
+            backgroundSize: "36px 22px",
+            backgroundRepeat: "repeat-x",
+            backgroundPosition: "bottom",
+          }}
+        />
       </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/*  Headliner + the program + trusted by                            */}
+      {/* ---------------------------------------------------------------- */}
+      <WorkSections />
     </>
   );
 }

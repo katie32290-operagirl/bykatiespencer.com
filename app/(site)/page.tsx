@@ -1,14 +1,5 @@
-import { HomeV3 } from "@/components/sections/home-v3";
-import { jsonLdScript, personJsonLd } from "@/lib/seo";
+import { HomeV4 } from "@/components/sections/home-v4";
 
 export default function HomePage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLdScript(personJsonLd())}
-      />
-      <HomeV3 />
-    </>
-  );
+  return <HomeV4 />;
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fragment, type ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -7,6 +8,8 @@ import { Reveal } from "@/components/motion/reveal";
 import { createMetadata, jsonLdScript } from "@/lib/seo";
 import { site } from "@/content/site";
 import { notes, getNote } from "@/content/writing";
+
+const PAD = "px-[clamp(20px,4.5vw,56px)]";
 
 export function generateStaticParams() {
   return notes.map((note) => ({ slug: note.slug }));
@@ -55,7 +58,7 @@ function renderInline(text: string): ReactNode {
             href={link[2]}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-underline text-brand hover:text-red-deep"
+            className="font-medium text-red underline decoration-red/40 underline-offset-[3px] transition-colors hover:text-red-deep hover:decoration-red-deep"
           >
             {link[1]}
           </a>
@@ -79,9 +82,9 @@ function Divider() {
       aria-hidden
       className="flex items-center justify-center gap-2.5 py-8 md:py-12"
     >
-      <span className="size-1 rounded-full bg-brand/50" />
-      <span className="size-1 rounded-full bg-brand/50" />
-      <span className="size-1 rounded-full bg-brand/50" />
+      <span className="size-1 rounded-full bg-red/50" />
+      <span className="size-1 rounded-full bg-gold/60" />
+      <span className="size-1 rounded-full bg-red/50" />
     </div>
   );
 }
@@ -116,49 +119,51 @@ export default async function NotePage({
         dangerouslySetInnerHTML={jsonLdScript(articleJsonLd)}
       />
 
-      <article className="px-6 py-16 sm:px-14 md:py-20">
-        {/* Program header — mono credits framing the piece */}
-        <Reveal className="mx-auto max-w-[1180px]">
+      <article className={`${PAD} py-[clamp(40px,6vw,72px)]`}>
+        {/* Back to the column */}
+        <Reveal className="mx-auto max-w-[660px]">
           <Link
             href="/writing"
-            className="link-underline group inline-flex items-center gap-2 font-accent text-[11px] uppercase tracking-[0.12em] text-brand hover:text-red-deep"
+            className="link-underline group inline-flex items-center gap-2 font-accent text-[11px] uppercase tracking-[0.12em] text-red hover:text-red-deep"
           >
             <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-1" />
             All notes
           </Link>
-          <div className="mt-8 flex flex-wrap items-baseline justify-between gap-5 border-t-2 border-foreground pt-7">
-            <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-brand">
-              {note.category} &middot; {note.date}
+        </Reveal>
+
+        {/* Masthead — the theatrical credits for one piece */}
+        <Reveal className="mx-auto mt-8 max-w-[660px]" delay={0.05}>
+          <div className="border-t-2 border-foreground pt-7">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-5 gap-y-2 font-accent text-[11px] uppercase tracking-[0.12em]">
+              <span className="text-red">
+                {note.category} &middot; {note.date}
+              </span>
+              <span className="text-ink-faint">Words &middot; Katie Spencer</span>
+            </div>
+
+            <p className="mt-9 font-accent text-[13px] uppercase tracking-[0.12em] text-red">
+              <span className="mr-2 text-gold-bright">&#10022;</span>
+              {note.eyebrow}
             </p>
-            <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-ink-faint">
-              Words &middot; Katie Spencer
-            </p>
+            <h1 className="mt-4 font-serif text-[clamp(34px,5vw,60px)] font-medium leading-[1.05] text-foreground">
+              {note.title}
+              <span className="text-red">.</span>
+            </h1>
+            {note.subtitle ? (
+              <p className="mt-5 font-serif text-[clamp(20px,2.4vw,28px)] italic leading-[1.35] text-red">
+                {renderInline(note.subtitle)}
+              </p>
+            ) : (
+              <p className="mt-6 font-serif text-xl italic leading-[1.5] text-muted-foreground">
+                {renderInline(note.lead)}
+              </p>
+            )}
           </div>
         </Reveal>
 
-        {/* Title block — narrower measure for reading */}
-        <Reveal className="mx-auto mt-12 max-w-[660px]" delay={0.05}>
-          <p className="font-accent text-[13px] uppercase tracking-[0.12em] text-brand">
-            {note.eyebrow}
-          </p>
-          <h1 className="mt-4 font-serif text-[clamp(34px,5vw,60px)] leading-[1.05] text-foreground">
-            {note.title}
-            <span className="text-brand">.</span>
-          </h1>
-          {note.subtitle ? (
-            <p className="mt-5 font-serif text-[clamp(20px,2.4vw,28px)] italic leading-[1.35] text-brand">
-              {renderInline(note.subtitle)}
-            </p>
-          ) : (
-            <p className="mt-6 font-serif text-xl italic leading-[1.5] text-muted-foreground">
-              {renderInline(note.lead)}
-            </p>
-          )}
-        </Reveal>
-
-        {/* Body */}
-        <Reveal className="mx-auto mt-12 max-w-[660px]" delay={0.05}>
-          <div className="space-y-6 font-sans text-lg leading-[1.7] text-foreground/90">
+        {/* Body — one clean, comfortable measure */}
+        <Reveal className="mx-auto mt-[clamp(36px,5vw,56px)] max-w-[660px]" delay={0.05}>
+          <div className="space-y-6 font-sans text-[18px] leading-[1.75] text-foreground/90">
             {blocks.map((block, i) =>
               block === "---" ? (
                 <Divider key={i} />
@@ -171,9 +176,9 @@ export default async function NotePage({
           {/* Sign-off */}
           <div className="mt-14 flex flex-col items-center gap-3">
             <div className="flex items-center gap-3" aria-hidden>
-              <span className="h-px w-16 bg-border" />
-              <span className="size-1.5 rounded-full bg-brand" />
-              <span className="h-px w-16 bg-border" />
+              <span className="h-px w-16 bg-line" />
+              <span className="text-sm text-gold">&#10022;</span>
+              <span className="h-px w-16 bg-line" />
             </div>
             <p className="font-serif text-lg italic text-muted-foreground">
               Katie Spencer
@@ -181,32 +186,60 @@ export default async function NotePage({
           </div>
         </Reveal>
 
-        {/* Author bio — a quiet line that does more for Narratives than a CTA */}
-        <Reveal
-          className="mx-auto mt-16 max-w-[660px] border-t border-border pt-6"
-          delay={0.05}
-        >
-          <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-ink-faint">
-            About the writer
-          </p>
-          <p className="mt-3 text-base leading-[1.7] text-muted-foreground">
-            Katie Spencer is an opera singer turned founder in Knoxville,
-            Tennessee. Through{" "}
-            <Link
-              href="/narratives"
-              className="link-underline text-brand hover:text-red-deep"
-            >
-              Narratives
-            </Link>
-            , she helps performing arts organizations find the story inside a
-            season and turn it into a reason audiences want to show up.
-          </p>
+        {/* Author bio — a torn clipping taped to the end of the piece */}
+        <Reveal className="mx-auto mt-[clamp(48px,7vw,80px)] max-w-[660px]" delay={0.05}>
+          <div
+            className="relative border border-line bg-paper-bright p-[clamp(20px,3vw,32px)] text-ink"
+            style={{
+              transform: "rotate(-0.7deg)",
+              boxShadow: "var(--shadow-paper)",
+              backgroundImage: "var(--paper-grain)",
+            }}
+          >
+            <span className="ks-tape absolute -top-3 left-[10%]" />
+            <div className="flex flex-wrap items-start gap-6">
+              <div
+                className="shrink-0 bg-[#F8F1E2] p-2"
+                style={{
+                  transform: "rotate(1.6deg)",
+                  boxShadow: "var(--shadow-soft)",
+                }}
+              >
+                <Image
+                  src="/on/cafe-shoot.jpg"
+                  alt="Katie Spencer"
+                  width={112}
+                  height={140}
+                  className="block h-[140px] w-[112px] object-cover"
+                  style={{ objectPosition: "50% 30%" }}
+                />
+              </div>
+              <div className="min-w-[220px] flex-1">
+                <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-red">
+                  About the writer
+                </p>
+                <p className="mt-3 font-sans text-base leading-[1.7] text-muted-foreground">
+                  Katie Spencer is an opera singer turned founder in Knoxville,
+                  Tennessee. Through{" "}
+                  <Link
+                    href="/narratives"
+                    className="link-underline font-medium text-red hover:text-red-deep"
+                  >
+                    Narratives
+                  </Link>
+                  , she helps performing arts organizations find the story
+                  inside a season and turn it into a reason audiences want to
+                  show up.
+                </p>
+              </div>
+            </div>
+          </div>
         </Reveal>
       </article>
 
       {/* Next note — near-black */}
       {next && (
-        <section className="bg-ink px-6 py-16 text-on-black sm:px-14 md:py-20">
+        <section className={`bg-ink text-on-black ${PAD} py-[clamp(48px,7vw,80px)]`}>
           <Reveal className="mx-auto max-w-[1180px] border-t border-line-dark pt-8">
             <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-on-black-mute">
               Keep reading
@@ -215,11 +248,11 @@ export default async function NotePage({
               href={`/writing/${next.slug}`}
               className="group mt-4 flex flex-wrap items-end justify-between gap-x-10 gap-y-3"
             >
-              <h2 className="max-w-[760px] font-serif text-[clamp(28px,3.6vw,46px)] leading-[1.08]">
+              <h2 className="max-w-[760px] font-serif text-[clamp(28px,3.6vw,46px)] font-medium leading-[1.08]">
                 {next.title}
-                <span className="text-brand">.</span>
+                <span className="text-red">.</span>
               </h2>
-              <span className="inline-flex items-center gap-2 font-accent text-[11px] uppercase tracking-[0.12em] text-brand">
+              <span className="inline-flex items-center gap-2 font-accent text-[11px] uppercase tracking-[0.12em] text-red">
                 Read
                 <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
               </span>
