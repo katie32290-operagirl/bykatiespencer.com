@@ -140,13 +140,13 @@ export function NarrativesV2() {
             </p>
             <h1 className="mb-6 font-serif text-[clamp(44px,6.4vw,86px)] font-normal leading-[0.98] [text-wrap:pretty]">
               Story strategy for{" "}
-              <em className="italic text-red">the performing arts.</em>
+              <em className="italic text-paper-bright">the performing arts.</em>
             </h1>
-            <span aria-hidden className="mb-6 block h-[3px] w-[68px] bg-red" />
-            <p className="mb-6 max-w-[520px] font-serif text-[clamp(20px,2.4vw,28px)] italic leading-[1.3] text-red">
+            <span aria-hidden className="mb-6 block h-[3px] w-[68px] bg-paper-bright/75" />
+            <p className="mb-6 max-w-[520px] font-serif text-[clamp(20px,2.4vw,28px)] italic leading-[1.3] text-paper-bright">
               Turn a season into something audiences want to step inside.
             </p>
-            <p className="mb-8 max-w-[520px] text-[16px] leading-[1.7]">
+            <p className="mb-8 max-w-[520px] text-[16px] leading-[1.7] text-paper-bright">
               Narratives gives small arts teams the story strategy and campaign
               plan they don&rsquo;t have the hours to build from scratch. One
               season, written for your organization.
@@ -159,8 +159,8 @@ export function NarrativesV2() {
             <Leader
               label="A campaign method"
               value="Katie Spencer"
-              className={`mt-[30px] max-w-[420px] ${MONO} text-[12px] text-ink-mid`}
-              ruleClass="border-ink/40"
+              className={`mt-[30px] max-w-[420px] ${MONO} text-[12px] text-paper-bright/90`}
+              ruleClass="border-paper-bright/45"
             />
           </Reveal>
 
