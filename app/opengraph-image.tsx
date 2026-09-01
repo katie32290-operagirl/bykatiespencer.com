@@ -5,8 +5,25 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Branded social-share card, generated at build time. Cream / teal / plum.
-export default function OpengraphImage() {
+/** Load the brand display serif for the card. Falls back to the default face
+ *  if the font can't be fetched, so the build never fails on it. */
+async function loadSerif(): Promise<ArrayBuffer | null> {
+  try {
+    const res = await fetch(
+      "https://raw.githubusercontent.com/google/fonts/main/ofl/dmserifdisplay/DMSerifDisplay-Regular.ttf",
+    );
+    if (!res.ok) return null;
+    return await res.arrayBuffer();
+  } catch {
+    return null;
+  }
+}
+
+// Branded social-share card — an "Opening Night" playbill on velvet green.
+export default async function OpengraphImage() {
+  const serif = await loadSerif();
+  const display = serif ? "DM Serif Display" : "serif";
+
   return new ImageResponse(
     (
       <div
@@ -14,70 +31,106 @@ export default function OpengraphImage() {
           height: "100%",
           width: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "72px 80px",
-          backgroundColor: "#FAF4EC",
-          color: "#0E4E68",
+          padding: 34,
+          backgroundColor: "#143F38",
         }}
       >
         <div
           style={{
             display: "flex",
-            fontSize: 26,
-            letterSpacing: 6,
-            textTransform: "uppercase",
-            color: "#C23A78",
-          }}
-        >
-          Storyteller · Builder · Founder
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 82,
-              fontWeight: 600,
-              lineHeight: 1.06,
-              letterSpacing: -2,
-              maxWidth: 1000,
-            }}
-          >
-            Stories build what strategy alone can&rsquo;t
-            <span style={{ color: "#C23A78" }}>.</span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 30,
-              color: "#5F7A86",
-              marginTop: 28,
-              maxWidth: 940,
-            }}
-          >
-            Founder, builder, speaker, and writer helping ideas become things
-            people believe in.
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
+            flexDirection: "column",
             justifyContent: "space-between",
-            alignItems: "center",
-            fontSize: 28,
-            color: "#5F7A86",
+            height: "100%",
+            width: "100%",
+            padding: "54px 66px",
+            border: "2px solid #AE8434",
           }}
         >
-          <span style={{ color: "#0E4E68", fontWeight: 600 }}>
-            Katie Spencer
-            <span style={{ color: "#C23A78" }}>.</span>
-          </span>
-          <span>bykatiespencer.com</span>
+          {/* eyebrow */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: 25,
+              letterSpacing: 7,
+              textTransform: "uppercase",
+              color: "#C9A24B",
+            }}
+          >
+            <span
+              style={{
+                width: 12,
+                height: 12,
+                background: "#C9A24B",
+                transform: "rotate(45deg)",
+                marginRight: 22,
+              }}
+            />
+            Storyteller · Builder · Founder
+          </div>
+
+          {/* the line */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                fontFamily: display,
+                fontSize: 88,
+                lineHeight: 1.04,
+                color: "#EFE3CB",
+                maxWidth: 1010,
+              }}
+            >
+              Stories build what strategy alone can&rsquo;t
+              <span style={{ color: "#C9A24B" }}>.</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                fontSize: 29,
+                lineHeight: 1.4,
+                color: "#DCC08A",
+                marginTop: 28,
+                maxWidth: 900,
+              }}
+            >
+              An opera singer turned founder, building stories and tools for the
+              performing arts.
+            </div>
+          </div>
+
+          {/* footer */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontSize: 28,
+              color: "#DCC08A",
+            }}
+          >
+            <span style={{ display: "flex", alignItems: "center", color: "#EFE3CB" }}>
+              Katie Spencer
+              <span
+                style={{
+                  width: 10,
+                  height: 10,
+                  background: "#C9A24B",
+                  transform: "rotate(45deg)",
+                  marginLeft: 16,
+                }}
+              />
+            </span>
+            <span style={{ display: "flex" }}>bykatiespencer.com</span>
+          </div>
         </div>
       </div>
     ),
-    { ...size },
+    {
+      ...size,
+      fonts: serif
+        ? [{ name: "DM Serif Display", data: serif, weight: 400, style: "normal" }]
+        : undefined,
+    },
   );
 }
