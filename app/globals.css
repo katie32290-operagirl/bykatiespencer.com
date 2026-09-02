@@ -246,14 +246,15 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* Brand orange canvas — shows behind the page in the overscroll area.
+       Redesign sections paint their own cream/terracotta on top. */
+    background-color: #d65a2e;
   }
 
   body {
-    @apply bg-background text-foreground;
-    background-image: var(--paper-grain);
+    @apply text-foreground;
+    background-color: #d65a2e;
     overflow-x: hidden;
-    /* DM Serif Display ships one weight (400); never faux-bold it. Karla and
-       Special Elite load their real weights, so this only affects the serif. */
     font-synthesis-weight: none;
   }
 
