@@ -1,16 +1,16 @@
 import Link from "next/link";
-import { Nav, GiantTitle, TickerBand, Cta, Footer, Shell, PAD, C, SANS } from "./chrome";
+import { Nav, GiantTitle, Cta, Footer, Shell, PAD, C, SANS } from "./chrome";
 
 const CHAPTERS: [string, string, string, React.ReactNode, string | null][] = [
   ["Chapter I", "Opera & Performance", "The stage.", "Years performing opera taught me the lesson behind everything I build: a story doesn't just inform people, it moves them. Performance is where I first felt how a story takes hold, in a room, in a body, in a single held note.", null],
-  ["Chapter II", "City Lyric Opera", "The leap.", "Co-founding a company from nothing taught me that belief is built, not waited for. I learned to gather people around an idea before it fully existed, and found I loved creating the vessel as much as performing inside it.", null],
+  ["Chapter II", "City Lyric Opera", "The leap.", "Co-founding a company from nothing taught me you build the thing before anyone is sure of it. I learned to gather people around an idea before it fully existed, and found I loved creating the vessel as much as performing inside it.", null],
   ["Chapter III", "Knoxville Opera", "Growing an institution.", "Leading fundraising and marketing taught me that strategy only works when a story carries it. People don't invest in budgets or buy tickets to logistics, they give themselves to a narrative they want to belong to.", null],
   [
     "Chapter IV",
     "Now building",
     "Building the future.",
     <>
-      Building software taught me that belief has to scale. GreenRoom turns hard-won lessons about arts organizations into tools they use every day, the infrastructure a story needs to keep being told. Alongside it I&rsquo;m building{" "}
+      Building software taught me the work has to scale. GreenRoom turns hard-won lessons about arts organizations into tools they use every day, the infrastructure a story needs to keep being told. Alongside it I&rsquo;m building{" "}
       <Link href="/narratives" style={{ fontStyle: "italic", color: C.ox, textDecoration: "underline" }}>Narratives</Link>, which brings story strategy to the marketing teams inside performing arts organizations. Two companies, one field, opposite ends of the same problem.
     </>,
     "The venture · GreenRoom  •  Status · Launching 2026  •  greenroomcrm.com →",
@@ -33,16 +33,9 @@ export function AboutRedesign() {
           Different rooms, one throughline.
         </h1>
         <p style={{ fontSize: 19, lineHeight: 1.6, color: C.ox, maxWidth: 620, margin: "28px auto 0" }}>
-          I&rsquo;ve performed on opera stages, co-founded a company, helped lead an institution, and now I&rsquo;m building software. The work looks different every time. Underneath, I build things people believe in.
+          I&rsquo;ve performed on opera stages, co-founded a company, helped lead an institution, and now I&rsquo;m building software. The work looks different every time. The instinct underneath it doesn&rsquo;t.
         </p>
       </div>
-
-      <TickerBand>
-        <span style={{ color: C.peri }}>The program &mdash;</span>
-        {[["Act I", "Opera"], ["Act II", "City Lyric"], ["Act III", "Knoxville Opera"], ["Act IV", "GreenRoom"], ["Act V", "What's next"]].map(([a, b]) => (
-          <span key={a}>{a} <span style={{ color: C.peri }}>•</span> {b}</span>
-        ))}
-      </TickerBand>
 
       {/* my story — terracotta */}
       <div className={`${PAD} py-[clamp(64px,9vw,90px)]`} style={{ background: C.terra }}>
@@ -79,7 +72,7 @@ export function AboutRedesign() {
       <div className={`${PAD} py-[clamp(64px,9vw,90px)]`} style={{ background: C.peri }}>
         <div className="mx-auto grid max-w-[1180px] gap-[clamp(28px,4vw,56px)] md:grid-cols-[320px_1fr]">
           <div>
-            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.ox }}>The program · five chapters</div>
+            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.ox }}>Five chapters</div>
             <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(40px,6vw,60px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 0.95, marginTop: 14 }}>
               The moments that shaped how I build.
             </div>
