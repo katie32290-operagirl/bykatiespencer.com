@@ -17,6 +17,12 @@ const nextConfig: NextConfig = {
           "/?utm_source=linkedin&utm_medium=social&utm_campaign=profile",
         permanent: false,
       },
+      // Retired "Collaborate" page — folded into Narratives. 308 permanent.
+      {
+        source: "/work-with-me",
+        destination: "/narratives",
+        permanent: true,
+      },
     ];
   },
 };

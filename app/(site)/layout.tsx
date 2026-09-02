@@ -1,6 +1,3 @@
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-
 export default function SiteLayout({
   children,
 }: {
@@ -14,11 +11,9 @@ export default function SiteLayout({
       >
         Skip to content
       </a>
-      <Navbar />
       <main id="main" className="flex-1">
         {children}
       </main>
-      <Footer />
     </>
   );
 }
