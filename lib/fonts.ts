@@ -1,4 +1,40 @@
-import { DM_Serif_Display, Karla, Special_Elite } from "next/font/google";
+import {
+  DM_Serif_Display,
+  Karla,
+  Special_Elite,
+  Instrument_Serif,
+  Newsreader,
+  Instrument_Sans,
+} from "next/font/google";
+
+/* ------------------------------------------------------------------ */
+/*  Redesign type system — the name & headlines run on Instrument Sans */
+/*  bold, the reading voice on Newsreader, expressive display on       */
+/*  Instrument Serif. Used by the new homepage; the rest of the site   */
+/*  still runs the Opening Night trio below.                           */
+/* ------------------------------------------------------------------ */
+export const fontKsLabel = Instrument_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-ks-label",
+  weight: ["400", "500", "600", "700"],
+});
+
+export const fontKsVoice = Newsreader({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-ks-voice",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+});
+
+export const fontKsDisplay = Instrument_Serif({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-ks-display",
+  weight: "400",
+  style: ["normal", "italic"],
+});
 
 /**
  * Display serif — the name, headlines, italic pull-lines. DM Serif Display: a

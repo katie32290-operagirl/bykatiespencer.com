@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { site } from "@/content/site";
 
 const socials = site.socials.filter((s) =>
@@ -7,6 +10,8 @@ const socials = site.socials.filter((s) =>
 
 /** The exit — a dark, proscenium-lit close. Copy unchanged. */
 export function Footer() {
+  // the redesigned homepage carries its own footer
+  if (usePathname() === "/") return null;
   return (
     <footer
       id="connect"

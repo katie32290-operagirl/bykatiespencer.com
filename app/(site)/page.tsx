@@ -1,5 +1,5 @@
-import { HomeV4 } from "@/components/sections/home-v4";
+import { HomeRedesign } from "@/components/redesign/home";
 
 export default function HomePage() {
-  return <HomeV4 />;
+  return <HomeRedesign />;
 }

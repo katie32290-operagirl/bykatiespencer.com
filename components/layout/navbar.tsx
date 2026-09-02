@@ -20,6 +20,8 @@ import {
  *  sits seamlessly on the hero: green (About), burgundy (Notes), gold (Narratives). */
 export function Navbar() {
   const pathname = usePathname();
+  // the redesigned homepage carries its own nav baked into the hero
+  if (pathname === "/") return null;
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 

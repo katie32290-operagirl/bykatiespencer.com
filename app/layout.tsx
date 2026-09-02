@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { fontSans, fontDisplay, fontAccent } from "@/lib/fonts";
+import {
+  fontSans,
+  fontDisplay,
+  fontAccent,
+  fontKsLabel,
+  fontKsVoice,
+  fontKsDisplay,
+} from "@/lib/fonts";
 import { site } from "@/content/site";
 import { createMetadata, jsonLdScript, websiteJsonLd } from "@/lib/seo";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -41,7 +48,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fontSans.variable} ${fontDisplay.variable} ${fontAccent.variable} h-full`}
+      className={`${fontSans.variable} ${fontDisplay.variable} ${fontAccent.variable} ${fontKsLabel.variable} ${fontKsVoice.variable} ${fontKsDisplay.variable} h-full`}
     >
       <body className="flex min-h-full flex-col">
         <script
