@@ -86,7 +86,7 @@ export function HomeV4() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  Act I · The premise — deep theatre green                        */}
+      {/*  The premise — deep theatre green                                */}
       {/* ---------------------------------------------------------------- */}
       <section
         className={`relative bg-green text-on-black ${PAD} py-[clamp(64px,9vw,120px)]`}
@@ -94,7 +94,7 @@ export function HomeV4() {
       >
         <div className="mx-auto max-w-[1180px]">
           <p className="mb-10 font-accent text-xs uppercase tracking-[0.12em] text-gold-bright">
-            Act I &middot; The premise
+            The premise
           </p>
           <div className="flex flex-wrap items-center gap-[clamp(36px,5vw,80px)]">
             <Reveal className="relative min-w-[320px] flex-[1.1]">
@@ -151,7 +151,7 @@ export function HomeV4() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  Act II · What's on the table — the working desk                 */}
+      {/*  In rehearsal · What's on the table — the working desk           */}
       {/* ---------------------------------------------------------------- */}
       <section className={`relative overflow-hidden ${PAD} py-[clamp(56px,8vw,110px)]`}>
         <div className="mx-auto max-w-[1180px]">
@@ -160,7 +160,7 @@ export function HomeV4() {
               What&rsquo;s on the table right now.
             </h2>
             <span className={`${MONO} text-[12px] text-ink-mid`}>
-              Act II &middot; In rehearsal
+              In rehearsal
             </span>
           </div>
 
@@ -389,7 +389,7 @@ export function HomeV4() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  Act III · Narratives — velvet burgundy                          */}
+      {/*  Narratives — velvet burgundy                                    */}
       {/* ---------------------------------------------------------------- */}
       <section
         id="narratives"
@@ -582,7 +582,7 @@ export function HomeV4() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  Act IV · Notes from the house — torn clippings                  */}
+      {/*  Notes from the house — torn clippings                           */}
       {/* ---------------------------------------------------------------- */}
       <section id="notes" className={`relative z-[4] ${PAD} py-[clamp(56px,8vw,110px)]`}>
         {/* the arts review, left on top of the pile, crossing into intermission */}
@@ -595,13 +595,10 @@ export function HomeV4() {
           style={{ filter: "drop-shadow(0 4px 10px rgba(22,17,13,.3))" }}
         />
         <div className="mx-auto max-w-[1180px]">
-          <div className="mb-[clamp(40px,6vw,64px)] flex flex-wrap items-baseline justify-between gap-3 border-b-2 border-ink pb-3.5">
+          <div className="mb-[clamp(40px,6vw,64px)] border-b-2 border-ink pb-3.5">
             <h2 className="font-serif text-[clamp(34px,4vw,52px)] font-medium">
               Notes from the house
             </h2>
-            <span className="font-accent text-xs uppercase tracking-[0.12em] text-muted-foreground">
-              Act IV &middot; Director&rsquo;s notes
-            </span>
           </div>
           <div className="flex flex-wrap items-start justify-center gap-x-2 gap-y-0">
             {/* torn newspaper clipping — newest essay */}
