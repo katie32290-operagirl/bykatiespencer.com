@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { NarrativesV2 } from "@/components/sections/narratives-v2";
+import { NarrativesRedesign } from "@/components/redesign/narratives";
 import { narratives as n } from "@/content/narratives";
 import { createMetadata, jsonLdScript } from "@/lib/seo";
 import { site } from "@/content/site";
@@ -47,7 +47,7 @@ export default function NarrativesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLdScript(serviceJsonLd())}
       />
-      <NarrativesV2 />
+      <NarrativesRedesign />
     </>
   );
 }

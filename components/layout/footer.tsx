@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/content/site";
+import { REDESIGNED } from "@/components/redesign/routes";
 
 const socials = site.socials.filter((s) =>
   ["instagram", "linkedin"].includes(s.icon),
@@ -10,8 +11,8 @@ const socials = site.socials.filter((s) =>
 
 /** The exit — a dark, proscenium-lit close. Copy unchanged. */
 export function Footer() {
-  // the redesigned homepage carries its own footer
-  if (usePathname() === "/") return null;
+  // redesigned routes carry their own footer
+  if (REDESIGNED.has(usePathname())) return null;
   return (
     <footer
       id="connect"

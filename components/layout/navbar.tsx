@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { Fragment } from "react";
 import { site } from "@/content/site";
+import { REDESIGNED } from "@/components/redesign/routes";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,8 +21,8 @@ import {
  *  sits seamlessly on the hero: green (About), burgundy (Notes), gold (Narratives). */
 export function Navbar() {
   const pathname = usePathname();
-  // the redesigned homepage carries its own nav baked into the hero
-  if (pathname === "/") return null;
+  // redesigned routes carry their own nav; the old Opening Night bar is hidden
+  if (REDESIGNED.has(pathname)) return null;
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
