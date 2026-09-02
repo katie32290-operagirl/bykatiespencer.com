@@ -399,11 +399,8 @@ export function WorkSections() {
         style={{ backgroundImage: "var(--paper-grain)" }}
       >
         <Reveal className="mx-auto max-w-[720px]">
-          <p className={`mb-2.5 text-center ${MONO} text-[12px]`}>
+          <p className={`mb-[30px] text-center ${MONO} text-[12px]`}>
             Trusted by
-          </p>
-          <p className="mb-[30px] text-center font-serif text-[17px] italic text-ink-mid">
-            Organizations doing meaningful work in the world.
           </p>
           <div className={`grid gap-3.5 ${MONO} text-[clamp(12px,1.5vw,15px)]`}>
             {[
