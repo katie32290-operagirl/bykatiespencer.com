@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { Fragment } from "react";
 import { site } from "@/content/site";
-import { REDESIGNED } from "@/components/redesign/routes";
+import { isRedesigned } from "@/components/redesign/routes";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +22,7 @@ import {
 export function Navbar() {
   const pathname = usePathname();
   // redesigned routes carry their own nav; the old Opening Night bar is hidden
-  if (REDESIGNED.has(pathname)) return null;
+  if (isRedesigned(pathname)) return null;
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 

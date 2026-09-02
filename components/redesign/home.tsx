@@ -311,27 +311,23 @@ export function HomeRedesign() {
       </div>
 
       {/* -------------------------------------------------------------- */}
-      {/*  Footer — the giant name                                        */}
+      {/*  Footer — compact closing credits                               */}
       {/* -------------------------------------------------------------- */}
-      <div style={{ background: C.cream, borderTop: `1.5px solid ${C.ox}`, paddingTop: 56 }}>
-        <div
-          className="text-center"
-          style={{ fontFamily: SANS, fontWeight: 700, fontSize: "min(13.2vw,169px)", lineHeight: 0.82, letterSpacing: "-.045em", color: C.terra, whiteSpace: "nowrap" }}
-        >
-          Katie Spencer
+      <div
+        className={`grid items-center gap-y-3 py-8 ${PAD} md:grid-cols-[1fr_auto_1fr]`}
+        style={{ background: C.cream, borderTop: `1.5px solid ${C.ox}`, fontFamily: SANS, fontSize: 12, letterSpacing: ".06em", color: C.ox }}
+      >
+        <div className="text-center md:text-left">© 2026 Katie Spencer</div>
+        <div className="text-center" style={{ fontWeight: 700, fontSize: 16 }}>
+          Katie Spencer<span style={{ color: C.terra }}>.</span>
         </div>
-        <div
-          className={`grid items-center gap-y-4 pt-[clamp(32px,5vw,56px)] pb-[clamp(24px,4vw,40px)] ${PAD} md:grid-cols-[1fr_auto_1fr]`}
-          style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".06em", color: C.ox }}
-        >
-          <div className="text-center md:text-left">© 2026 Katie Spencer</div>
-          <div className="text-center" style={{ fontWeight: 700, fontSize: 16 }}>
-            Katie Spencer<span style={{ color: C.terra }}>.</span>
-          </div>
-          <div className="flex justify-center gap-[22px] md:justify-end">
-            <a href="https://www.instagram.com/bykatiespencer" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://www.linkedin.com/in/katie-spencer-83565066/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
+        <div className="flex flex-wrap justify-center gap-x-[22px] gap-y-1 md:justify-end">
+          <span>
+            Founder,{" "}
+            <a href="https://greenroomcrm.com" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-60">GreenRoom</a>
+          </span>
+          <a href="https://www.instagram.com/bykatiespencer" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-60">Instagram</a>
+          <a href="https://www.linkedin.com/in/katie-spencer-83565066/" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-60">LinkedIn</a>
         </div>
       </div>
     </div>
