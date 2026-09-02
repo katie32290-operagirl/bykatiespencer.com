@@ -26,10 +26,7 @@ export function AboutRedesign() {
 
       {/* hero */}
       <div className={`${PAD} pb-[clamp(56px,9vw,90px)] pt-[clamp(48px,6vw,64px)] text-center`}>
-        <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".26em", textTransform: "uppercase", color: C.terra }}>
-          About · off book
-        </div>
-        <h1 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(38px,6vw,64px)", lineHeight: 1, letterSpacing: "-.03em", color: C.ox, maxWidth: 820, margin: "26px auto 0" }}>
+        <h1 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(38px,6vw,64px)", lineHeight: 1, letterSpacing: "-.03em", color: C.ox, maxWidth: 820, margin: "0 auto" }}>
           Different rooms, one throughline.
         </h1>
         <p style={{ fontSize: 19, lineHeight: 1.6, color: C.ox, maxWidth: 620, margin: "28px auto 0" }}>
