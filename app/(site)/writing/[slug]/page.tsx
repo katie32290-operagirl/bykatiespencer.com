@@ -142,7 +142,6 @@ export default async function NotePage({
             </div>
 
             <p className="mt-9 font-accent text-[13px] uppercase tracking-[0.12em] text-red">
-              <span className="mr-2 text-gold-bright">&#10022;</span>
               {note.eyebrow}
             </p>
             <h1 className="mt-4 font-serif text-[clamp(34px,5vw,60px)] font-medium leading-[1.05] text-foreground">
@@ -175,63 +174,55 @@ export default async function NotePage({
 
           {/* Sign-off */}
           <div className="mt-14 flex flex-col items-center gap-3">
-            <div className="flex items-center gap-3" aria-hidden>
-              <span className="h-px w-16 bg-line" />
-              <span className="text-sm text-gold">&#10022;</span>
-              <span className="h-px w-16 bg-line" />
-            </div>
+            <span aria-hidden className="h-px w-16 bg-line" />
             <p className="font-serif text-lg italic text-muted-foreground">
               Katie Spencer
             </p>
           </div>
         </Reveal>
 
-        {/* Author bio — a torn clipping taped to the end of the piece */}
-        <Reveal className="mx-auto mt-[clamp(48px,7vw,80px)] max-w-[660px]" delay={0.05}>
+        {/* Author bio — a small torn clipping at the end of the piece */}
+        <Reveal className="mx-auto mt-[clamp(40px,6vw,64px)] max-w-[660px]" delay={0.05}>
           <div
-            className="relative border border-line bg-paper-bright p-[clamp(20px,3vw,32px)] text-ink"
+            className="relative flex flex-wrap items-start gap-5 border border-line bg-paper-bright p-[clamp(16px,2.4vw,24px)] text-ink"
             style={{
-              transform: "rotate(-0.7deg)",
-              boxShadow: "var(--shadow-paper)",
+              transform: "rotate(-0.6deg)",
+              boxShadow: "var(--shadow-soft)",
               backgroundImage: "var(--paper-grain)",
             }}
           >
-            <span className="ks-tape absolute -top-3 left-[10%]" />
-            <div className="flex flex-wrap items-start gap-6">
-              <div
-                className="shrink-0 bg-[#F8F1E2] p-2"
-                style={{
-                  transform: "rotate(1.6deg)",
-                  boxShadow: "var(--shadow-soft)",
-                }}
-              >
-                <Image
-                  src="/katie-portrait.jpg"
-                  alt="Katie Spencer"
-                  width={112}
-                  height={140}
-                  className="block h-[140px] w-[112px] object-cover"
-                  style={{ objectPosition: "50% 18%" }}
-                />
-              </div>
-              <div className="min-w-[220px] flex-1">
-                <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-red">
-                  About the writer
-                </p>
-                <p className="mt-3 font-sans text-base leading-[1.7] text-muted-foreground">
-                  Katie Spencer is an opera singer turned founder in Knoxville,
-                  Tennessee. Through{" "}
-                  <Link
-                    href="/narratives"
-                    className="link-underline font-medium text-red hover:text-red-deep"
-                  >
-                    Narratives
-                  </Link>
-                  , she helps performing arts organizations find the story
-                  inside a season and turn it into a reason audiences want to
-                  show up.
-                </p>
-              </div>
+            <div
+              className="shrink-0 bg-[#F8F1E2] p-1.5"
+              style={{
+                transform: "rotate(1.4deg)",
+                boxShadow: "var(--shadow-soft)",
+              }}
+            >
+              <Image
+                src="/katie-portrait.jpg"
+                alt="Katie Spencer"
+                width={80}
+                height={100}
+                className="block h-[100px] w-[80px] object-cover"
+                style={{ objectPosition: "50% 18%" }}
+              />
+            </div>
+            <div className="min-w-[200px] flex-1">
+              <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-red">
+                About the writer
+              </p>
+              <p className="mt-2.5 font-sans text-[15px] leading-[1.65] text-muted-foreground">
+                Katie Spencer is an opera singer turned founder in Knoxville,
+                Tennessee. Through{" "}
+                <Link
+                  href="/narratives"
+                  className="link-underline font-medium text-red hover:text-red-deep"
+                >
+                  Narratives
+                </Link>
+                , she helps performing arts organizations find the story inside
+                a season and turn it into a reason audiences want to show up.
+              </p>
             </div>
           </div>
         </Reveal>
@@ -239,16 +230,16 @@ export default async function NotePage({
 
       {/* Next note — near-black */}
       {next && (
-        <section className={`bg-ink text-on-black ${PAD} py-[clamp(48px,7vw,80px)]`}>
+        <section className={`bg-ink text-on-black ${PAD} py-[clamp(36px,5vw,60px)]`}>
           <Reveal className="mx-auto max-w-[1180px] border-t border-line-dark pt-8">
             <p className="font-accent text-[11px] uppercase tracking-[0.12em] text-on-black-mute">
               Keep reading
             </p>
             <Link
               href={`/writing/${next.slug}`}
-              className="group mt-4 flex flex-wrap items-end justify-between gap-x-10 gap-y-3"
+              className="group mt-3 flex flex-wrap items-end justify-between gap-x-10 gap-y-2"
             >
-              <h2 className="max-w-[760px] font-serif text-[clamp(28px,3.6vw,46px)] font-medium leading-[1.08]">
+              <h2 className="max-w-[760px] font-serif text-[clamp(24px,2.8vw,34px)] font-medium leading-[1.12]">
                 {next.title}
                 <span className="text-red">.</span>
               </h2>

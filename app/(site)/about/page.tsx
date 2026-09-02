@@ -156,25 +156,19 @@ export default function AboutPage() {
               }}
             />
 
-            {/* THE PROGRAM card */}
+            {/* a quiet playbill note, taped to the cluster */}
             <div
-              className="relative z-[2] border border-ink bg-paper-bright p-[clamp(22px,2.6vw,34px)] text-ink"
+              className="relative z-[2] border border-ink bg-paper-bright p-[clamp(26px,3vw,38px)] text-ink"
               style={{
                 transform: "rotate(var(--tilt-2))",
                 boxShadow: "var(--shadow-card)",
               }}
             >
               <span className="ks-tape absolute left-[38%] top-[-11px]" />
-              <p className={`mb-5 text-center ${MONO} text-[11px] text-ink`}>
-                &#10022; The program &#10022;
+              <p className="font-serif text-[clamp(19px,2.1vw,25px)] italic leading-[1.4] text-ink">
+                Every room I&rsquo;ve worked in has been, one way or another, a
+                theatre.
               </p>
-              <div className={`grid gap-[13px] ${MONO} text-[clamp(12px,1.3vw,14px)]`}>
-                <Leader label="Act I" value="Opera" />
-                <Leader label="Act II" value="City Lyric" />
-                <Leader label="Act III" value="Knoxville Opera" />
-                <Leader label="Act IV" value="GreenRoom" />
-                <Leader label="Act V" value="What’s next" />
-              </div>
             </div>
 
             {/* peony, tucked at the card's lower-left */}
@@ -278,7 +272,7 @@ export default function AboutPage() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  The program — five chapters, over a faint harlequin band         */}
+      {/*  Five chapters, over a faint harlequin band                       */}
       {/* ---------------------------------------------------------------- */}
       <section
         className={`relative overflow-hidden ${PAD} py-[clamp(56px,8vw,110px)]`}
@@ -292,13 +286,10 @@ export default function AboutPage() {
       >
         <div className="mx-auto max-w-[1100px]">
           <Reveal>
-            <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3 border-b-2 border-ink pb-3.5">
+            <div className="mb-3 border-b-2 border-ink pb-3.5">
               <h2 className="font-serif text-[clamp(32px,4vw,50px)] font-normal">
-                The program
-              </h2>
-              <span className={`${MONO} text-[12px] text-ink-mid`}>
                 Five chapters
-              </span>
+              </h2>
             </div>
             <p className="mb-[clamp(40px,6vw,64px)] font-serif text-[17px] italic text-ink-mid">
               the moments that shaped how I build
@@ -441,13 +432,6 @@ export default function AboutPage() {
                 transform: "rotate(-.5deg)",
               }}
             >
-            <span
-              data-anim="true"
-              aria-hidden
-              className="absolute right-[4%] top-[8%] text-[22px] text-gold-bright [animation:ks-star-twinkle_2.2s_ease_0.8s_1]"
-            >
-              &#10022;
-            </span>
             <p className={`mb-3.5 ${MONO} text-[11px] text-gold-bright`}>
               Chapter IV &middot; Now building
             </p>
@@ -457,10 +441,10 @@ export default function AboutPage() {
                   Building the future.
                 </h3>
                 <p className="max-w-[560px] text-[15px] leading-[1.7] text-on-black-soft">
-                  Building software taught me that belief has to scale.
-                  GreenRoom turns hard-won lessons about arts organizations into
-                  tools they use every day, the infrastructure a story needs to
-                  keep being told. Alongside it I&rsquo;m building{" "}
+                  Building software taught me that the work only lasts if it
+                  scales. GreenRoom turns hard-won lessons about arts
+                  organizations into tools they use every day, the
+                  infrastructure a story needs to keep being told. Alongside it I&rsquo;m building{" "}
                   <Link href="/narratives" className="text-gold-pale underline decoration-dotted underline-offset-2">
                     Narratives
                   </Link>

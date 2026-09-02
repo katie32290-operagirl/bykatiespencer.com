@@ -72,7 +72,7 @@ function Slot({
       {local ? (
         <Image
           src={post.src}
-          alt="Katie Spencer — off stage"
+          alt="Katie Spencer, off stage"
           fill
           sizes={sizes}
           className={`${objectClass} transition-transform duration-500 group-hover:scale-[1.03]`}
@@ -81,7 +81,7 @@ function Slot({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={post.src}
-          alt="Katie Spencer — off stage"
+          alt="Katie Spencer, off stage"
           loading="lazy"
           className={`size-full ${objectClass} transition-transform duration-500 group-hover:scale-[1.03]`}
         />
@@ -135,25 +135,10 @@ export function OffStage() {
         backgroundPosition: "center, 50% 40%",
       }}
     >
-      {/* the woman with opera glasses peeks in from the right */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/on/opera-glasses.webp"
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute right-[-50px] top-[8%] z-[4] hidden h-[clamp(210px,24vw,360px)] w-[clamp(150px,17vw,260px)] [transform:rotate(-4deg)] lg:block"
-        style={{
-          objectFit: "cover",
-          objectPosition: "36% 30%",
-          clipPath:
-            "polygon(4% 6%, 26% 0%, 52% 5%, 78% 1%, 100% 6%, 100% 96%, 74% 100%, 48% 94%, 22% 99%, 2% 94%, 6% 68%, 0% 44%, 5% 22%)",
-          boxShadow: "-4px 8px 20px rgba(22,17,13,.25)",
-        }}
-      />
       <Reveal className="relative z-[2] mx-auto max-w-[1180px]">
         <div className="mb-12 text-center">
           <p className="mb-3.5 font-accent text-xs uppercase tracking-[0.12em] text-rose">
-            &#10022; Intermission &#10022;
+            Intermission
           </p>
           <h2 className="mb-3 font-serif text-[clamp(34px,4vw,52px)] font-medium">
             Off stage

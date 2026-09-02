@@ -7,8 +7,9 @@ import { createMetadata } from "@/lib/seo";
 /**
  * Unlisted Knoxville Opera impact case study, rebuilt in the "Opening Night"
  * collage system — a hand-assembled vintage-theatre playbill. Photography-led:
- * a dark proscenium masthead, ticket-stub stat callouts, program-page pull
- * quotes, tilted production photos taped to the page. Copy is unchanged.
+ * a dark proscenium masthead, plainly labeled stat callouts, program-page pull
+ * quotes, tilted production photos taped to the page. The three Act labels
+ * organize the story (Challenge / What we did / Impact), not the metrics.
  *
  * Linked only from the Work page's featured card — kept out of search and the
  * sitemap via robots: noindex. Numbers are from Katie's FY26 impact one-pager.
@@ -28,33 +29,29 @@ const PAD = "px-[clamp(20px,4.5vw,56px)]";
 const heroStats = [
   {
     value: "+101%",
-    label: "first-time attendees / show",
+    label: "First-time attendance",
     detail: "≈473 vs. 235 before",
-    stub: "Act I",
     accent: "text-red-deep",
     tilt: "-1.6deg",
   },
   {
     value: "+27%",
-    label: "revenue per show",
+    label: "Revenue per show",
     detail: "$107k vs. $85k",
-    stub: "Act II",
     accent: "text-green",
     tilt: "1.1deg",
   },
   {
     value: "+35%",
-    label: "annual donations",
+    label: "Annual giving",
     detail: "+65% FY26 vs. FY23",
-    stub: "Act III",
     accent: "text-gold",
     tilt: "-0.7deg",
   },
   {
     value: "+178%",
-    label: "Rossini Festival net",
+    label: "Rossini Festival",
     detail: "the city's free street festival",
-    stub: "Encore",
     accent: "text-burgundy",
     tilt: "2.2deg",
   },
@@ -124,16 +121,6 @@ export default function KnoxvilleOperaCaseStudy() {
             opacity: 0.6,
           }}
         />
-        {/* gold star — the page's single twinkle */}
-        <span
-          data-anim="true"
-          aria-hidden
-          className="absolute z-[1] leading-none text-gold-bright [animation:ks-star-twinkle_2.4s_ease_1s_1]"
-          style={{ left: "13%", top: "16%", fontSize: "clamp(30px,4vw,52px)" }}
-        >
-          &#10022;
-        </span>
-
         <div className="relative mx-auto max-w-[1180px] pb-[clamp(64px,9vw,120px)] pt-[clamp(40px,6vw,80px)]">
           <Reveal>
             <Link
@@ -203,32 +190,22 @@ export default function KnoxvilleOperaCaseStudy() {
             {heroStats.map((s, i) => (
               <Reveal key={s.value} delay={i * 0.06}>
                 <div
-                  className="flex items-stretch"
+                  className="flex h-full flex-col justify-between gap-4 border border-ink bg-paper-bright p-5"
                   style={{
                     transform: `rotate(${s.tilt})`,
                     boxShadow: "var(--shadow-paper)",
                   }}
                 >
-                  {/* perforated stub */}
-                  <span
-                    className="flex items-center border border-r-0 border-ink bg-paper-deep px-3 py-4 font-accent text-[10px] uppercase tracking-[0.14em] text-ink [border-right:1px_dashed_var(--ink)] [writing-mode:vertical-rl]"
-                    style={{ transform: "rotate(180deg)" }}
-                  >
-                    {s.stub}
-                  </span>
-                  {/* body */}
-                  <div className="flex flex-1 flex-col justify-between gap-4 border border-l-0 border-ink bg-paper-bright p-5">
-                    <p className={`font-serif text-[clamp(44px,5vw,58px)] font-medium leading-none ${s.accent}`}>
-                      {s.value}
+                  <p className={`font-serif text-[clamp(44px,5vw,58px)] font-medium leading-none ${s.accent}`}>
+                    {s.value}
+                  </p>
+                  <div>
+                    <p className="font-accent text-[11px] uppercase leading-snug tracking-[0.1em] text-ink">
+                      {s.label}
                     </p>
-                    <div>
-                      <p className="font-accent text-[11px] uppercase leading-snug tracking-[0.1em] text-ink">
-                        {s.label}
-                      </p>
-                      <p className="mt-1.5 font-serif text-[15px] italic leading-tight text-muted-foreground">
-                        {s.detail}
-                      </p>
-                    </div>
+                    <p className="mt-1.5 font-serif text-[15px] italic leading-tight text-muted-foreground">
+                      {s.detail}
+                    </p>
                   </div>
                 </div>
               </Reveal>
@@ -343,7 +320,7 @@ export default function KnoxvilleOperaCaseStudy() {
         <div className="mx-auto flex max-w-[1180px] flex-wrap items-center gap-[clamp(36px,5vw,72px)]">
           <Reveal className="min-w-[320px] flex-[1.4]">
             <p className="mb-7 font-accent text-xs uppercase tracking-[0.12em] text-gold-bright">
-              &#10022; From the review
+              Act III &middot; The Impact
             </p>
             <p className="max-w-[720px] font-serif text-[clamp(28px,3.6vw,50px)] font-medium leading-[1.16]">
               &ldquo;A bold rebrand and sharper storytelling doubled first-time
@@ -386,11 +363,8 @@ export default function KnoxvilleOperaCaseStudy() {
           <Reveal>
             <div className="flex flex-wrap items-baseline justify-between gap-3 border-b-2 border-ink pb-3.5">
               <h2 className="font-serif text-[clamp(30px,4vw,50px)] font-medium">
-                By the numbers
+                By the Numbers
               </h2>
-              <span className="font-accent text-xs uppercase tracking-[0.12em] text-muted-foreground">
-                Encore &middot; the ledger
-              </span>
             </div>
           </Reveal>
 

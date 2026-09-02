@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { createMetadata } from "@/lib/seo";
 import { notes } from "@/content/writing";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = createMetadata({
   title: "Notes",
@@ -85,10 +84,7 @@ export default function WritingIndex() {
         </div>
 
         <Reveal className="relative z-[1] mx-auto max-w-[1180px]">
-          <p className="font-accent text-[13px] uppercase tracking-[0.16em] text-gold-bright">
-            Notes from the house
-          </p>
-          <h1 className="mt-4 max-w-[900px] font-serif text-[clamp(48px,7vw,104px)] font-normal leading-[0.96]">
+          <h1 className="max-w-[900px] font-serif text-[clamp(48px,7vw,104px)] font-normal leading-[0.96]">
             Notes from <em className="italic">the house.</em>
           </h1>
           <p className="mt-6 max-w-[600px] font-serif text-[clamp(19px,2.2vw,25px)] italic leading-[1.4] text-gold-pale">
@@ -97,24 +93,13 @@ export default function WritingIndex() {
             column, kept in public.
           </p>
           <span aria-hidden className="mt-8 block h-px w-[clamp(80px,10vw,140px)] bg-gold/50" />
-          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
-            {[
-              ["Filed by", "Katie Spencer"],
-              ["In this issue", issueLabel(notes.length)],
-              ["Updated", featured?.date ?? "2026"],
-            ].map(([label, value], i) => (
-              <div
-                key={label}
-                className={cn(
-                  "font-accent text-[11px] uppercase tracking-[0.14em]",
-                  i > 0 && "border-l border-on-black-mute pl-8",
-                )}
-              >
-                <div className="text-on-black-mute">{label}</div>
-                <div className="mt-1.5 text-on-black">{value}</div>
-              </div>
-            ))}
-          </div>
+          <p className="mt-6 font-accent text-[11px] uppercase tracking-[0.14em] text-on-black-mute">
+            Filed by <span className="text-on-black">Katie Spencer</span>
+            <span aria-hidden className="mx-3 text-on-black-mute/60">&middot;</span>
+            <span className="text-on-black">{issueLabel(notes.length)}</span>
+            <span aria-hidden className="mx-3 text-on-black-mute/60">&middot;</span>
+            Updated <span className="text-on-black">{featured?.date ?? "2026"}</span>
+          </p>
         </Reveal>
 
         {/* scalloped deckle edge — burgundy tears away to the paper below */}
@@ -207,7 +192,7 @@ export default function WritingIndex() {
         <section className={`relative ${PAD} pb-[clamp(48px,7vw,88px)]`}>
           <Reveal className="mx-auto max-w-[1180px]">
             <p className="mb-[clamp(28px,4vw,44px)] text-center font-accent text-xs uppercase tracking-[0.12em] text-muted-foreground">
-              &#10022; Also in the file &#10022;
+              Also in the file
             </p>
             <div className="flex flex-wrap items-start justify-center gap-x-[clamp(16px,3vw,48px)] gap-y-12">
               {rest.map((note, i) => (

@@ -58,8 +58,8 @@ export function HomeV4() {
         style={{ backgroundImage: "var(--paper-grain)" }}
       >
         <Reveal className="relative mx-auto max-w-[720px]">
-          <p className="mb-8 text-center font-accent text-xs uppercase tracking-[0.12em]">
-            &#10022; The cast &#10022;
+          <p className="mb-8 text-center font-accent text-xs uppercase tracking-[0.12em] text-ink-mid">
+            The cast
           </p>
           <div className="grid gap-4 font-accent text-[clamp(13px,1.6vw,16px)] uppercase tracking-[0.12em]">
             {CREDITS.map(([role, title]) => (
@@ -98,18 +98,6 @@ export function HomeV4() {
           </p>
           <div className="flex flex-wrap items-center gap-[clamp(36px,5vw,80px)]">
             <Reveal className="relative min-w-[320px] flex-[1.1]">
-              {/* torn gold scrap tucked behind the headline */}
-              <span
-                aria-hidden
-                className="absolute left-[-34px] top-[-26px] z-0 h-[82px] w-[120px] [transform:rotate(-5deg)]"
-                style={{
-                  backgroundColor: "var(--gold)",
-                  backgroundImage: "var(--paper-grain)",
-                  opacity: 0.28,
-                  clipPath:
-                    "polygon(6% 10%, 34% 0%, 68% 8%, 96% 2%, 100% 40%, 92% 70%, 97% 98%, 62% 92%, 30% 100%, 2% 94%, 8% 56%, 0% 28%)",
-                }}
-              />
               <h2 className="relative mb-7 font-serif text-[clamp(38px,5vw,64px)] font-medium leading-[1.05]">
                 The art doesn&rsquo;t need to change.{" "}
                 <em className="italic text-gold-pale">
@@ -175,22 +163,9 @@ export function HomeV4() {
               Act II &middot; In rehearsal
             </span>
           </div>
-          <p className="mb-[clamp(28px,4vw,48px)] font-serif text-[17px] italic text-ink-mid">
-            remember: it&rsquo;s a story, not a sales pitch
-          </p>
 
           {/* the desk */}
-          <div className="relative">
-            <span
-              aria-hidden
-              className="absolute left-[36%] top-[30px] z-[1] size-3 rotate-45 border-[1.5px] border-gold"
-            />
-            <span
-              aria-hidden
-              className="absolute left-[41%] top-[120px] z-[1] text-[20px] text-gold"
-            >
-              &#10022;
-            </span>
+          <div className="relative mt-[clamp(34px,5vw,56px)]">
             <div className="flex flex-wrap items-start justify-center">
               {/* NARRATIVES — the poster, largest on the desk */}
               <div className="relative z-[3] mr-[clamp(-36px,-2vw,-16px)] w-[clamp(260px,30vw,420px)] [transform:rotate(-2.5deg)]">
@@ -421,13 +396,6 @@ export function HomeV4() {
         className={`relative overflow-hidden border-t-4 border-gold bg-burgundy text-on-black ${PAD} py-[clamp(56px,8vw,110px)]`}
         style={{ backgroundImage: "var(--paper-grain-light)" }}
       >
-        <span
-          data-anim="true"
-          aria-hidden
-          className="absolute left-[4%] bottom-[10%] text-xl text-gold-bright [transform:rotate(-10deg)] [animation:ks-star-twinkle_2.4s_ease_1s_1]"
-        >
-          &#10022;
-        </span>
         <div className="mx-auto flex max-w-[1180px] flex-wrap items-center gap-[clamp(36px,5vw,72px)]">
           <Reveal className="min-w-[320px] flex-[1.2]">
             <p className="mb-6 font-accent text-xs uppercase tracking-[0.12em] text-gold-bright">
@@ -667,7 +635,6 @@ export function HomeV4() {
               className="group z-[3] mx-[-6px] mb-7 mt-[34px] block w-[clamp(230px,24vw,300px)] border border-line bg-paper-bright p-8 text-center text-ink transition-transform duration-300 hover:-translate-y-1"
               style={{ transform: "rotate(1deg)", boxShadow: "0 4px 14px rgba(22,17,13,.18)" }}
             >
-              <div className="mb-2.5 text-sm text-gold">&#10022;</div>
               <div className="mb-4 border-b border-t border-ink py-1.5 font-accent text-[10px] uppercase tracking-[0.18em]">
                 On craft &middot; 07/2026
               </div>
@@ -677,9 +644,6 @@ export function HomeV4() {
               <div className="text-[13px] leading-[1.6] text-muted-foreground">
                 I spent fifteen years preparing to walk onto stages I
                 couldn&rsquo;t fully see until the lights came up.
-              </div>
-              <div className="mt-4 font-accent text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-                &mdash; page 07 &mdash;
               </div>
             </Link>
             {/* typed note with pencil marking */}

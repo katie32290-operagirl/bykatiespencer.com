@@ -282,7 +282,7 @@ export function NarrativesV2() {
       >
         <Reveal className="mx-auto max-w-[1100px]">
           <p className={`mb-9 ${MONO} text-[12px] text-gold-bright`}>
-            Act I &middot; Why Narratives exists
+            Why Narratives exists
           </p>
           <div className="flex flex-wrap gap-[clamp(36px,5vw,80px)]">
             <div className="min-w-[320px] flex-[1.2]">
@@ -301,9 +301,6 @@ export function NarrativesV2() {
                 making prettier posters.
               </p>
               <div className="max-w-[520px] border-l-[3px] border-gold pl-6">
-                <p className={`mb-3 ${MONO} text-[11px] text-gold-bright`}>
-                  The belief
-                </p>
                 <p className="mb-3 font-serif text-[clamp(22px,2.5vw,30px)] italic leading-[1.28]">
                   Lower the social friction without lowering the art.
                 </p>
@@ -381,7 +378,7 @@ export function NarrativesV2() {
       >
         <Reveal className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-x-[clamp(28px,4vw,56px)] gap-y-6">
           <p className={`max-w-[210px] ${MONO} text-[11px] text-red`}>
-            &#10022; Already tested &middot; Knoxville Opera
+            Already tested &middot; Knoxville Opera
           </p>
           <div className="flex flex-wrap gap-x-[clamp(26px,4vw,52px)] gap-y-5">
             {[
@@ -415,7 +412,7 @@ export function NarrativesV2() {
         <Reveal className="mx-auto max-w-[1100px]">
           <ActHeader
             title="Three steps, one season."
-            kicker="Act II · How it works"
+            kicker="How it works"
             sub="what the work looks like from your side"
           />
           <div className="mt-[clamp(36px,5vw,56px)] grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[clamp(20px,3vw,36px)]">
@@ -484,7 +481,7 @@ export function NarrativesV2() {
         <Reveal className="mx-auto max-w-[940px]">
           <div className="mb-11 text-center">
             <p className={`mb-3.5 ${MONO} text-[12px] text-red`}>
-              &#10022; The method &#10022;
+              &#10022; The method
             </p>
             <h2 className="mb-3 font-serif text-[clamp(30px,3.8vw,48px)] font-normal">
               Five movements, one experience.
@@ -726,7 +723,7 @@ export function NarrativesV2() {
         <Reveal className="mx-auto max-w-[1100px]">
           <ActHeader
             title="A framework, not a formula."
-            kicker="Act III · The core deliverables"
+            kicker="The core deliverables"
           />
           <p className="mb-[clamp(36px,5vw,56px)] mt-3 max-w-[640px] font-serif text-[17px] italic text-ink-mid">
             Every Narratives engagement is built around a core set of strategic
@@ -942,44 +939,36 @@ export function NarrativesV2() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-[clamp(18px,2.5vw,30px)]">
-            {[
-              {
-                k: "What it isn't · i",
-                t: "Not dumbing anything down.",
-                b: "It removes thresholds, not depth.",
-                tilt: "rotate-[-0.8deg]",
-                mt: "",
-              },
-              {
-                k: "What it isn't · ii",
-                t: "Not a content mill.",
-                b: "Volume isn't the point. The right emotional entry point is.",
-                tilt: "rotate-[0.6deg]",
-                mt: "sm:mt-[10px]",
-              },
-              {
-                k: "What it isn't · iii",
-                t: "Not apologizing for opera.",
-                b: "Irreverent about the framing, never about the work.",
-                tilt: "rotate-[-0.5deg]",
-                mt: "",
-              },
-            ].map((w) => (
-              <div
-                key={w.k}
-                className={`px-[22px] pb-[26px] pt-[22px] text-ink ${w.tilt} ${w.mt}`}
-                style={{
-                  backgroundColor: "#F4EAD3",
-                  backgroundImage: "var(--paper-grain)",
-                  boxShadow: "0 2px 8px rgba(22,17,13,.2)",
-                }}
-              >
-                <div className={`mb-2.5 ${MONO} text-[10px] text-red`}>{w.k}</div>
-                <div className="mb-2 font-serif text-[20px]">{w.t}</div>
-                <p className="text-[13px] leading-[1.6] text-ink-mid">{w.b}</p>
-              </div>
-            ))}
+          <div
+            className="px-[clamp(24px,4vw,44px)] pb-[clamp(28px,4vw,40px)] pt-[clamp(24px,3.5vw,36px)] text-ink"
+            style={{
+              backgroundColor: "#F4EAD3",
+              backgroundImage: "var(--paper-grain)",
+              boxShadow: "0 2px 8px rgba(22,17,13,.2)",
+            }}
+          >
+            <div className={`mb-6 ${MONO} text-[11px] text-red`}>What it isn&rsquo;t</div>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-x-[clamp(28px,4vw,52px)] gap-y-7">
+              {[
+                {
+                  t: "Not dumbing anything down.",
+                  b: "It removes thresholds, not depth.",
+                },
+                {
+                  t: "Not a content mill.",
+                  b: "Volume isn't the point. The right emotional entry point is.",
+                },
+                {
+                  t: "Not apologizing for opera.",
+                  b: "Irreverent about the framing, never about the work.",
+                },
+              ].map((w) => (
+                <div key={w.t}>
+                  <div className="mb-2 font-serif text-[20px] leading-[1.15]">{w.t}</div>
+                  <p className="text-[13px] leading-[1.6] text-ink-mid">{w.b}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </Reveal>
       </section>

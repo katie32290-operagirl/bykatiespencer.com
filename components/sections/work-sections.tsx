@@ -71,28 +71,31 @@ function Body({
   title: string;
   demonstrates: string;
   children: React.ReactNode;
-  href: string;
-  cta: string;
+  href?: string;
+  cta?: string;
   external?: boolean;
   tilt?: string;
 }) {
-  const link = external ? (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`${MONO} text-[11px] text-red transition-colors hover:text-red-deep`}
-    >
-      {cta} &rarr;
-    </a>
-  ) : (
-    <Link
-      href={href}
-      className={`${MONO} text-[11px] text-red transition-colors hover:text-red-deep`}
-    >
-      {cta} &rarr;
-    </Link>
-  );
+  const link =
+    href && cta ? (
+      external ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${MONO} text-[11px] text-red transition-colors hover:text-red-deep`}
+        >
+          {cta} &rarr;
+        </a>
+      ) : (
+        <Link
+          href={href}
+          className={`${MONO} text-[11px] text-red transition-colors hover:text-red-deep`}
+        >
+          {cta} &rarr;
+        </Link>
+      )
+    ) : null;
   return (
     <div
       className="relative flex min-w-[300px] flex-1 flex-col border-t-2 border-ink pt-5"
@@ -111,7 +114,7 @@ function Body({
       <div className="mt-4 max-w-[440px] text-[15px] leading-[1.7] text-ink-mid">
         {children}
       </div>
-      <div className="mt-5">{link}</div>
+      {link ? <div className="mt-5">{link}</div> : null}
     </div>
   );
 }
@@ -222,22 +225,26 @@ export function WorkSections() {
           </Reveal>
           <Reveal>
             <div className="flex flex-wrap gap-x-[clamp(40px,6vw,80px)] gap-y-10">
-              {/* Film & story */}
+              {/* Film & story — the full films lead */}
               <div className="min-w-[280px] flex-1">
                 <p className={`mb-3 ${MONO} text-[11px] text-red`}>
-                  &#10022; Film &amp; story
+                  Film &amp; story
                 </p>
                 <Evidence href={yt("LW18K-g2zmo")} label="Carmen, explained in 60 seconds" kind="film" />
                 <Evidence href={yt("VZYnfdr1uJA")} label="Season year in review" kind="film" />
                 <Evidence href={yt("sFTJvKsy97I")} label="Meeting the Moment" kind="film" />
                 <Evidence href={yt("ZqJPkheBt-4")} label="Behind the Music" kind="film" />
+                {/* reels read as a smaller, secondary collection */}
+                <p className={`mb-1 mt-6 ${MONO} text-[10px] text-ink-faint`}>
+                  Short-form
+                </p>
                 <Evidence href={short("Y4kyen1P47k")} label="Confessions: Simone" kind="reel" />
                 <Evidence href={short("D5f847ntDYw")} label="Pirates: opening night" kind="reel" />
               </div>
               {/* On stage & in print */}
               <div className="min-w-[280px] flex-1">
                 <p className={`mb-3 ${MONO} text-[11px] text-red`}>
-                  &#10022; On stage &amp; in print
+                  On stage &amp; in print
                 </p>
                 <Evidence href={yt("kHryFCWRDAY")} label="Opera Ball, the signature gala" kind="event" />
                 <Evidence href={yt("xsYWaTxkcW4")} label="Couture for a Cause" kind="event" />
@@ -264,30 +271,55 @@ export function WorkSections() {
         <div className="mx-auto max-w-[1180px]">
           <Reveal>
             <p className={`mb-2.5 ${MONO} text-[12px] text-ink-mid`}>
-              &#10022; The rest of the repertoire
+              The rest of the repertoire
             </p>
             <h2 className="mb-[clamp(40px,6vw,64px)] max-w-[760px] font-serif text-[clamp(30px,3.8vw,50px)] font-normal leading-[1.06]">
               Organizations built, brands shaped, and products made for the
               field.
             </h2>
           </Reveal>
+
+          {/* GreenRoom — the venture, set apart from the program tiles */}
+          <Reveal>
+            <div className="mb-[clamp(48px,6vw,72px)] border-t-2 border-ink pt-6">
+              <div className="mb-4 flex items-baseline gap-3">
+                <span className={`${MONO} text-[11px] text-gold`}>
+                  The venture
+                </span>
+                <span className={`${MONO} text-[11px] text-ink-mid`}>
+                  Founder &middot; Software
+                </span>
+              </div>
+              <div className="flex flex-wrap items-baseline gap-x-[clamp(36px,5vw,72px)] gap-y-4">
+                <h3 className="font-serif text-[clamp(38px,4.6vw,58px)] font-normal leading-[1]">
+                  GreenRoom
+                </h3>
+                <p className="font-serif text-[clamp(18px,2vw,23px)] italic text-ink-mid">
+                  Software for performing arts organizations.
+                </p>
+              </div>
+              <div className="mt-5 flex flex-wrap items-end justify-between gap-x-[clamp(36px,5vw,64px)] gap-y-5">
+                <p className="max-w-[560px] text-[15.5px] leading-[1.7] text-ink-mid">
+                  Fundraising, marketing, ticketing and operations in one
+                  platform, built by people who have actually run the box office.
+                  Proof that the point of view scales past a single company.
+                </p>
+                <a
+                  href="https://greenroomcrm.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${MONO} shrink-0 text-[12px] text-red transition-colors hover:text-red-deep`}
+                >
+                  Visit GreenRoom &rarr;
+                </a>
+              </div>
+            </div>
+          </Reveal>
+
           <Reveal>
             <div className="flex flex-wrap gap-x-[clamp(40px,6vw,80px)] gap-y-[clamp(44px,6vw,64px)]">
               <Body
                 no="01"
-                eyebrow="Founder &middot; Software"
-                title="GreenRoom"
-                demonstrates="Software for performing arts organizations."
-                href="https://greenroomcrm.com"
-                cta="Visit GreenRoom"
-                tilt="-0.4deg"
-              >
-                Fundraising, marketing, ticketing and operations in one platform,
-                built by people who have actually run the box office. Proof that
-                the point of view scales past a single company.
-              </Body>
-              <Body
-                no="02"
                 eyebrow="Founder &middot; Story strategy"
                 title="Narratives"
                 demonstrates="Turning a season into something audiences want to step inside."
@@ -301,7 +333,7 @@ export function WorkSections() {
                 an audience can understand, feel, and join.
               </Body>
               <Body
-                no="03"
+                no="02"
                 eyebrow="Co-founder &middot; New York"
                 title="City Lyric Opera"
                 demonstrates="Building an organization from nothing."
@@ -314,18 +346,41 @@ export function WorkSections() {
                 following, and a model other companies now study.
               </Body>
               <Body
-                no="04"
+                no="03"
                 eyebrow="Brand &amp; systems"
                 title="MyNanny"
                 demonstrates="The same instinct, outside the arts."
-                href="/work/mynanny-interview.pdf"
-                cta="View the guides"
                 tilt="0.4deg"
               >
-                Brand, voice and onboarding for a childcare company: the
-                interview guide, the welcome, the trial day. Range that shows the
-                method isn&rsquo;t about opera. It&rsquo;s about making people
-                feel oriented and cared for.
+                Brand, voice and onboarding for a childcare company. One body of
+                work in three guides that make a new family feel oriented and
+                cared for, proof the method isn&rsquo;t really about opera.
+                <span className="mt-4 flex flex-col gap-1.5">
+                  <a
+                    href="/work/mynanny-interview.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${MONO} text-[10.5px] text-red transition-colors hover:text-red-deep`}
+                  >
+                    The interview guide &rarr;
+                  </a>
+                  <a
+                    href="/work/mynanny-onboarding.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${MONO} text-[10.5px] text-red transition-colors hover:text-red-deep`}
+                  >
+                    The onboarding &rarr;
+                  </a>
+                  <a
+                    href="/work/mynanny-trial.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${MONO} text-[10.5px] text-red transition-colors hover:text-red-deep`}
+                  >
+                    The trial day &rarr;
+                  </a>
+                </span>
               </Body>
             </div>
           </Reveal>
@@ -345,7 +400,7 @@ export function WorkSections() {
       >
         <Reveal className="mx-auto max-w-[720px]">
           <p className={`mb-2.5 text-center ${MONO} text-[12px]`}>
-            &#10022; Trusted by &#10022;
+            Trusted by
           </p>
           <p className="mb-[30px] text-center font-serif text-[17px] italic text-ink-mid">
             Organizations doing meaningful work in the world.
