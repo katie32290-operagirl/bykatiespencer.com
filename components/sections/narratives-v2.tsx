@@ -4,9 +4,9 @@ import { Reveal } from "@/components/motion/reveal";
 
 /**
  * Narratives — the story-strategy practice, set as an Opening Night program.
- * Faithful to the design-system template: hero playbill, the argument in acts
- * (why → belief → how → the five-movement method → deliverables → proof →
- * who it's for → begin). Copy unchanged. Global Navbar/Footer wrap the page.
+ * The product language is the structure: why Narratives exists → proof →
+ * three steps → five movements → deliverables → an example → why me →
+ * who it's for → engagement details. Global Navbar/Footer wrap the page.
  */
 
 const MONO = "font-accent uppercase tracking-[0.12em]";
@@ -274,7 +274,7 @@ export function NarrativesV2() {
       </section>
 
       {/* ------------------------------------------------------------ */}
-      {/*  Act I · Why Narratives exists — theatre green                */}
+      {/*  Why Narratives exists — theatre green                        */}
       {/* ------------------------------------------------------------ */}
       <section
         className={`bg-green text-on-black ${PAD} py-[clamp(64px,9vw,120px)]`}
@@ -406,7 +406,7 @@ export function NarrativesV2() {
       </section>
 
       {/* ------------------------------------------------------------ */}
-      {/*  Act II · How it works — three steps                          */}
+      {/*  How it works — three steps                                   */}
       {/* ------------------------------------------------------------ */}
       <section className={`${PAD} py-[clamp(56px,8vw,110px)]`}>
         <Reveal className="mx-auto max-w-[1100px]">
@@ -717,7 +717,7 @@ export function NarrativesV2() {
       </section>
 
       {/* ------------------------------------------------------------ */}
-      {/*  Act III · Deliverables                                       */}
+      {/*  Deliverables                                                 */}
       {/* ------------------------------------------------------------ */}
       <section className={`${PAD} py-[clamp(56px,8vw,110px)]`}>
         <Reveal className="mx-auto max-w-[1100px]">

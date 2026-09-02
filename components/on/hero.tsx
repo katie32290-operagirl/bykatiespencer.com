@@ -105,14 +105,6 @@ export function HeroV4() {
     >
       <h1 className="sr-only">Katie Spencer</h1>
 
-      {/* thin gilt rule with a centered star, just under the masthead */}
-      <div aria-hidden className="relative mx-auto max-w-[1200px] pt-3">
-        <span className="block h-px w-full bg-gold/45" />
-        <span className="absolute left-1/2 top-[1px] -translate-x-1/2 -translate-y-1/2 bg-[color:var(--paper)] px-3 text-[15px] leading-none text-gold">
-          &#10022;
-        </span>
-      </div>
-
       {/* MOBILE: eyebrow above the plate */}
       <div className="px-1 pb-4 pt-8 md:hidden">
         <NowPlaying center />

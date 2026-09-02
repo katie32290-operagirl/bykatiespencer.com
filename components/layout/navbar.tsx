@@ -46,6 +46,9 @@ export function Navbar() {
         ? "var(--burgundy)"
         : "var(--ink)";
   const gold = pathname === "/narratives";
+  // the homepage sits on paper: same gilt ornament rule as the velvet pages,
+  // grounded in the hero's paper + grain so the ornament patch is seamless
+  const home = pathname === "/";
 
   return (
     <header
@@ -155,7 +158,7 @@ export function Navbar() {
         </Sheet>
       </div>
 
-      {velvet ? (
+      {velvet || home ? (
         <div className="relative">
           <div aria-hidden className="h-[3px] border-t-2 border-gold" />
           <div aria-hidden className="border-t border-gold/50" />
@@ -163,8 +166,10 @@ export function Navbar() {
             aria-hidden
             className="absolute left-1/2 top-[-10px] -translate-x-1/2 px-3 text-[15px] leading-none text-gold"
             style={{
-              backgroundColor: velvetGround,
-              backgroundImage: "var(--paper-grain-light)",
+              backgroundColor: velvet ? velvetGround : "var(--paper)",
+              backgroundImage: velvet
+                ? "var(--paper-grain-light)"
+                : "var(--paper-grain)",
             }}
           >
             &#10022;

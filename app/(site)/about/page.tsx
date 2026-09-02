@@ -114,8 +114,8 @@ export default function AboutPage() {
               <p className="text-[17px] leading-[1.75] text-on-black">
                 I&rsquo;ve performed on opera stages, co-founded a company,
                 helped lead an institution, and now I&rsquo;m building software.
-                The work looks different every time. Underneath, I build things
-                people believe in.
+                The work looks different every time. The instinct underneath it
+                doesn&rsquo;t.
               </p>
             </div>
           </Reveal>
@@ -171,21 +171,21 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* peony, tucked at the card's lower-left */}
+            {/* peony, peeking out from behind the card's lower-left corner */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/on/peony-stem.webp"
               alt=""
               aria-hidden
-              className="pointer-events-none absolute bottom-[-26%] left-[-13%] z-[3] w-[clamp(120px,14vw,190px)] -rotate-[8deg]"
+              className="pointer-events-none absolute bottom-[-26%] left-[-18%] z-[1] w-[clamp(110px,13vw,175px)] -rotate-[8deg]"
               style={{ filter: "drop-shadow(2px 4px 8px rgba(13,26,23,.4))" }}
             />
-            {/* the ticket, hanging off the card's lower edge */}
+            {/* the ticket, peeking out from behind the card's lower-right edge */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/on/ticket-tennessee.webp"
               alt="Tennessee Theatre dress rehearsal ticket, orchestra, admit one"
-              className="absolute bottom-[-34%] left-[30%] z-[4] w-[clamp(120px,15vw,185px)] -rotate-[8deg]"
+              className="absolute bottom-[-42%] right-[2%] z-[1] w-[clamp(115px,14vw,175px)] -rotate-[8deg]"
               style={{ filter: "drop-shadow(0 5px 12px rgba(13,26,23,.45))" }}
             />
           </Reveal>
