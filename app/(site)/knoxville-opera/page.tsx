@@ -81,12 +81,6 @@ const moves = [
   },
 ];
 
-const moreResults = [
-  { value: "40%", label: "overall audience growth" },
-  { value: "+65%", label: "giving, FY26 vs. FY23" },
-  { value: "#1", label: "La Bohème, best-selling production in company history" },
-];
-
 export default function KnoxvilleOperaCaseStudy() {
   return (
     <>
@@ -111,16 +105,6 @@ export default function KnoxvilleOperaCaseStudy() {
           <div className="absolute inset-0 bg-gradient-to-r from-ink/85 to-transparent" />
         </div>
 
-        {/* thin gold ring, like a spotlight edge */}
-        <span
-          aria-hidden
-          className="absolute left-1/2 top-[6%] z-0 aspect-square -translate-x-1/2 rounded-full"
-          style={{
-            width: "clamp(320px,44vw,620px)",
-            border: "1.5px solid var(--gold)",
-            opacity: 0.6,
-          }}
-        />
         <div className="relative mx-auto max-w-[1180px] pb-[clamp(64px,9vw,120px)] pt-[clamp(40px,6vw,80px)]">
           <Reveal>
             <Link
@@ -170,47 +154,6 @@ export default function KnoxvilleOperaCaseStudy() {
               }}
             />
           </span>
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------------------- */}
-      {/*  Stat band — ticket-stub callouts on warm paper                   */}
-      {/* ---------------------------------------------------------------- */}
-      <section
-        className={`relative border-t-2 border-ink bg-paper ${PAD} py-[clamp(56px,8vw,96px)]`}
-        style={{ backgroundImage: "var(--paper-grain)" }}
-      >
-        <div className="mx-auto max-w-[1180px]">
-          <Reveal>
-            <p className="mb-9 text-center font-accent text-xs uppercase tracking-[0.12em] text-red">
-              The house count &middot; FY26
-            </p>
-          </Reveal>
-          <div className="grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
-            {heroStats.map((s, i) => (
-              <Reveal key={s.value} delay={i * 0.06}>
-                <div
-                  className="flex h-full flex-col justify-between gap-4 border border-ink bg-paper-bright p-5"
-                  style={{
-                    transform: `rotate(${s.tilt})`,
-                    boxShadow: "var(--shadow-paper)",
-                  }}
-                >
-                  <p className={`font-serif text-[clamp(44px,5vw,58px)] font-medium leading-none ${s.accent}`}>
-                    {s.value}
-                  </p>
-                  <div>
-                    <p className="font-accent text-[11px] uppercase leading-snug tracking-[0.1em] text-ink">
-                      {s.label}
-                    </p>
-                    <p className="mt-1.5 font-serif text-[15px] italic leading-tight text-muted-foreground">
-                      {s.detail}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -320,31 +263,31 @@ export default function KnoxvilleOperaCaseStudy() {
         <div className="mx-auto flex max-w-[1180px] flex-wrap items-center gap-[clamp(36px,5vw,72px)]">
           <Reveal className="min-w-[320px] flex-[1.4]">
             <p className="mb-7 font-accent text-xs uppercase tracking-[0.12em] text-gold-bright">
-              Act III &middot; The Impact
+              Act III &middot; The impact
             </p>
             <p className="max-w-[720px] font-serif text-[clamp(28px,3.6vw,50px)] font-medium leading-[1.16]">
-              &ldquo;A bold rebrand and sharper storytelling doubled first-time
+              A bold rebrand and sharper storytelling doubled first-time
               attendance and grew revenue per show 27%, and{" "}
               <span className="italic text-gold-pale">La Bohème</span> became the
-              best-selling production in company history.&rdquo;
+              best-selling production in company history.
             </p>
           </Reveal>
 
           {/* tilted photo scrap on the velvet */}
-          <Reveal delay={0.08} className="relative mx-auto min-w-[220px] max-w-[300px] flex-1 [transform:rotate(-2deg)]">
+          <Reveal delay={0.08} className="relative mx-auto min-w-[260px] max-w-[400px] flex-1 [transform:rotate(-2deg)]">
             <div
               className="bg-[#F8F1E2] p-2.5"
               style={{ boxShadow: "0 10px 28px rgba(0,0,0,.42)" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/on/couture-red.jpg"
-                alt="Knoxville Opera campaign portrait"
+                src="/on/on-stage.jpg"
+                alt="A Knoxville Opera season being filmed on the Tennessee Theatre stage"
                 className="block w-full"
-                style={{ aspectRatio: "3 / 4", objectFit: "cover" }}
+                style={{ aspectRatio: "3 / 2", objectFit: "cover" }}
               />
               <p className="pt-3 font-accent text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
-                the invitation, dressed for the occasion
+                media day &middot; on the Tennessee Theatre stage
               </p>
             </div>
             <span className="ks-tape absolute -top-3 right-[16%] z-[2]" />
@@ -363,20 +306,26 @@ export default function KnoxvilleOperaCaseStudy() {
           <Reveal>
             <div className="flex flex-wrap items-baseline justify-between gap-3 border-b-2 border-ink pb-3.5">
               <h2 className="font-serif text-[clamp(30px,4vw,50px)] font-medium">
-                By the Numbers
+                By the numbers
               </h2>
+              <span className="font-accent text-xs uppercase tracking-[0.12em] text-muted-foreground">
+                FY26 vs. FY23
+              </span>
             </div>
           </Reveal>
 
-          <div className="mt-[clamp(36px,5vw,56px)] grid gap-x-9 gap-y-12 sm:grid-cols-3">
-            {moreResults.map((r, i) => (
-              <Reveal key={r.label} delay={i * 0.08}>
+          <div className="mt-[clamp(36px,5vw,56px)] grid gap-x-9 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+            {heroStats.map((s, i) => (
+              <Reveal key={s.value} delay={i * 0.06}>
                 <div className="border-t-2 border-ink pt-5">
-                  <p className="font-serif text-[clamp(52px,6vw,80px)] font-medium leading-none text-red">
-                    {r.value}
+                  <p className={`font-serif text-[clamp(46px,5.4vw,72px)] font-medium leading-none ${s.accent}`}>
+                    {s.value}
                   </p>
-                  <p className="mt-4 font-accent text-[11px] uppercase leading-[1.6] tracking-[0.1em] text-ink">
-                    {r.label}
+                  <p className="mt-4 font-accent text-[11px] uppercase leading-snug tracking-[0.1em] text-ink">
+                    {s.label}
+                  </p>
+                  <p className="mt-1.5 font-serif text-[15px] italic leading-tight text-muted-foreground">
+                    {s.detail}
                   </p>
                 </div>
               </Reveal>
