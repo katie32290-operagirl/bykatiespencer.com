@@ -70,7 +70,8 @@ export function HomeRedesign() {
         <div
           className="pointer-events-none absolute inset-x-0 text-center"
           style={{
-            bottom: "-32px",
+            // offset scales with the name so the straddle ratio holds on mobile
+            bottom: "clamp(-32px,-2.5vw,-8px)",
             fontFamily: SANS,
             fontWeight: 700,
             fontSize: "min(13.2vw,169px)",
