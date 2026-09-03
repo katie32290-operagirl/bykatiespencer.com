@@ -52,20 +52,15 @@ export function ToolkitsRedesign() {
 
       {/* 3 · the Development Toolkit — paper, cover at left */}
       <div className={`${PAD} py-[clamp(56px,8vw,88px)]`} style={{ background: C.cream, borderTop: `1.5px solid ${C.ox}` }}>
-        <div className="mx-auto grid max-w-[1180px] items-start gap-[clamp(36px,5vw,64px)] md:grid-cols-[360px_1fr]">
-          {/* guide cover — placeholder until the Payhip mockup is dropped in */}
-          <div
-            className="mx-auto w-full max-w-[360px]"
-            style={{ background: C.ox, color: C.cream, aspectRatio: "3 / 4", padding: "clamp(24px,3vw,34px)", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
-          >
-            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".2em", textTransform: "uppercase", color: C.peach }}>Toolkit 01</div>
-            <div>
-              <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(28px,3.4vw,38px)", lineHeight: 1.0, letterSpacing: "-.02em" }}>
-                The Small-Shop Development Toolkit<span style={{ color: C.terra }}>.</span>
-              </div>
-              <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.peach, marginTop: 18 }}>By Katie Spencer</div>
-            </div>
-          </div>
+        <div className="mx-auto grid max-w-[1180px] items-start gap-[clamp(36px,5vw,64px)] md:grid-cols-[minmax(0,480px)_1fr]">
+          {/* guide cover mockup */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/redesign/toolkit-cover.webp"
+            alt="The Small-Shop Development Toolkit, a field guide by Katie Spencer"
+            className="block w-full object-cover"
+            style={{ aspectRatio: "4 / 3" }}
+          />
 
           <div>
             <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".2em", textTransform: "uppercase", color: C.terra }}>Toolkit 01 · Available now</div>
