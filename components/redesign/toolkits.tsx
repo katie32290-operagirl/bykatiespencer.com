@@ -1,6 +1,7 @@
 import Script from "next/script";
 import { Nav, GiantTitle, Footer, Shell, PAD, C, SANS, SERIF } from "./chrome";
 import { BuyButton, SeeInsideLink, DoorLink } from "./toolkit-buttons";
+import { ToolkitCarousel } from "./toolkit-carousel";
 
 const INSIDE: [string, string][] = [
   ["The Guide.", "Fifteen pages on how small-shop fundraising actually works: why your top twenty donors matter more than your mailing list, the five-stage pipeline in plain language, the weekly floor, and the Giving Risk Checklist."],
@@ -53,13 +54,14 @@ export function ToolkitsRedesign() {
       {/* 3 · the Development Toolkit — paper, cover at left */}
       <div className={`${PAD} py-[clamp(56px,8vw,88px)]`} style={{ background: C.cream, borderTop: `1.5px solid ${C.ox}` }}>
         <div className="mx-auto grid max-w-[1180px] items-start gap-[clamp(36px,5vw,64px)] md:grid-cols-[minmax(0,480px)_1fr]">
-          {/* guide cover mockup */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/redesign/toolkit-cover.webp"
-            alt="The Small-Shop Development Toolkit, a field guide by Katie Spencer"
-            className="block w-full object-cover"
-            style={{ aspectRatio: "4 / 3" }}
+          {/* guide mockups — the cover and what's inside */}
+          <ToolkitCarousel
+            slides={[
+              { src: "/redesign/toolkit-1.webp", alt: "The Small-Shop Development Toolkit field guide and the five-stage pipeline" },
+              { src: "/redesign/toolkit-2.webp", alt: "The Scripts: handwritten notecard formulas" },
+              { src: "/redesign/toolkit-3.webp", alt: "The printables: Board Report Card and the Who do you know worksheet" },
+              { src: "/redesign/toolkit-4.webp", alt: "The Giving Risk Checklist" },
+            ]}
           />
 
           <div>
