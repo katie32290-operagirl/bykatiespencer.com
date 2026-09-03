@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { C, SANS } from "./tokens";
 
@@ -14,8 +15,25 @@ function ga(event: string, params?: Record<string, string>) {
 /** Payhip overlay-checkout buy button. The Payhip script (loaded on the page)
  *  intercepts the click to open the overlay; the GA event still fires. */
 export function BuyButton() {
+  const ref = useRef<HTMLAnchorElement>(null);
+
+  // Payhip's script restyles .payhip-buy-button (default green) after it loads;
+  // re-assert the brand orange with !important, a few times to catch it.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const paint = () => {
+      el.style.setProperty("background", C.terra, "important");
+      el.style.setProperty("color", C.cream, "important");
+    };
+    paint();
+    const timers = [150, 600, 1500, 3000].map((t) => window.setTimeout(paint, t));
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
   return (
     <a
+      ref={ref}
       href="https://payhip.com/b/ocvs9"
       className="payhip-buy-button transition-opacity hover:opacity-90"
       data-product="ocvs9"

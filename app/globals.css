@@ -258,6 +258,19 @@
     font-synthesis-weight: none;
   }
 
+  /* Payhip restyles its buy button (default green) on load; force the brand
+     orange pill over it. */
+  a.payhip-buy-button,
+  a.payhip-buy-button:hover,
+  a.payhip-buy-button:focus {
+    background: #d65a2e !important;
+    background-color: #d65a2e !important;
+    color: #f0efec !important;
+    border: 0 !important;
+    border-radius: 40px !important;
+    box-shadow: none !important;
+  }
+
   /* Headlines default to DM Serif Display — single weight, hierarchy by size. */
   h1,
   h2,
