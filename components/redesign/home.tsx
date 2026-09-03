@@ -58,7 +58,7 @@ export function HomeRedesign() {
           src="/redesign/portrait-hero.webp"
           alt="Katie Spencer"
           className="block w-full object-cover"
-          style={{ height: "clamp(440px,58vw,680px)", objectPosition: "center 42%" }}
+          style={{ height: "clamp(440px,58vw,680px)", objectPosition: "center 44%" }}
         />
         <div
           className={`absolute inset-x-0 top-0 flex flex-wrap items-center justify-between gap-y-3 py-[clamp(18px,2.6vw,28px)] ${PAD}`}
@@ -70,13 +70,15 @@ export function HomeRedesign() {
         <div
           className="pointer-events-none absolute inset-x-0 text-center"
           style={{
-            bottom: "clamp(-26px,-3.4vw,-52px)",
+            bottom: "-32px",
             fontFamily: SANS,
             fontWeight: 700,
             fontSize: "min(13.2vw,169px)",
             lineHeight: 0.82,
             letterSpacing: "-.045em",
             color: C.terra,
+            WebkitTextStrokeWidth: "clamp(2px,0.4vw,5px)",
+            WebkitTextStrokeColor: C.terra,
             whiteSpace: "nowrap",
           }}
         >
