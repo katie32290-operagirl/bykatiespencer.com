@@ -69,7 +69,7 @@ export function ToolkitsRedesign() {
             <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(32px,4.4vw,46px)", lineHeight: 1.02, letterSpacing: "-.02em", color: C.ox, marginTop: 14 }}>
               The Small-Shop Development Toolkit
             </h2>
-            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "clamp(19px,2.2vw,24px)", color: C.terra, marginTop: 12 }}>Run a real donor program without a development director.</p>
+            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "clamp(19px,2.2vw,24px)", color: C.terra, marginTop: 12 }}>Run a real donor program without a development team.</p>
 
             <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
               <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 40, letterSpacing: "-.02em", color: C.ox }}>$59</span>
