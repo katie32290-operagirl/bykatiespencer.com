@@ -28,7 +28,11 @@ export function ToolkitsRedesign() {
 
       {/* 1 · hero — burnt orange */}
       <div className={`${PAD} pb-[clamp(48px,8vw,80px)] pt-[clamp(16px,2vw,28px)] text-center`}>
-        <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".26em", textTransform: "uppercase", color: C.cream }}>By Katie Spencer</div>
+        {/* byline lockup — Newsreader italic "by" + tracked caps */}
+        <div className="flex items-baseline justify-center gap-2">
+          <span style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 16, color: C.cream, lineHeight: 1 }}>by</span>
+          <span style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".24em", textTransform: "uppercase", color: C.cream, lineHeight: 1 }}>Katie Spencer</span>
+        </div>
         <GiantTitle ground="terra" size="min(22vw,260px)">
           Toolkits<span style={{ color: C.cream }}>.</span>
         </GiantTitle>
@@ -156,10 +160,9 @@ export function ToolkitsRedesign() {
         <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(34px,5vw,60px)", letterSpacing: "-.025em", color: C.cream, lineHeight: 1 }}>
           Go have the coffee<span style={{ color: C.terra }}>.</span>
         </div>
-        {/* by Katie Spencer lockup — italic orange "by" + bold caps name */}
-        <div className="mt-6 flex items-baseline justify-center gap-2.5">
-          <span style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 28, color: C.terra, lineHeight: 1 }}>by</span>
-          <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 22, letterSpacing: ".02em", textTransform: "uppercase", color: C.cream, lineHeight: 1 }}>Katie Spencer</span>
+        {/* signature sign-off lockup, on dark red: paper white + periwinkle period */}
+        <div className="mt-6" style={{ fontFamily: SANS, fontWeight: 700, fontSize: 22, letterSpacing: "-.01em", color: C.cream }}>
+          Katie Spencer<span style={{ color: C.peri }}>.</span>
         </div>
       </div>
 
