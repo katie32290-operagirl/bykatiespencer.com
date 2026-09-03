@@ -156,8 +156,10 @@ export function ToolkitsRedesign() {
         <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(34px,5vw,60px)", letterSpacing: "-.025em", color: C.cream, lineHeight: 1 }}>
           Go have the coffee<span style={{ color: C.terra }}>.</span>
         </div>
-        <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, letterSpacing: "-.01em", color: C.peach, marginTop: 22 }}>
-          bykatiespencer<span style={{ color: C.terra }}>.</span>
+        {/* by Katie Spencer lockup — italic orange "by" + bold caps name */}
+        <div className="mt-6 flex items-baseline justify-center gap-2.5">
+          <span style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 28, color: C.terra, lineHeight: 1 }}>by</span>
+          <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 22, letterSpacing: ".02em", textTransform: "uppercase", color: C.cream, lineHeight: 1 }}>Katie Spencer</span>
         </div>
       </div>
 
