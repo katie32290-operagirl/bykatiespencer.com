@@ -256,6 +256,10 @@ export function NarrativesRedesign() {
               </div>
             ))}
           </div>
+          <p style={{ fontSize: 17, color: C.ox, marginTop: 32 }}>
+            Want to do it yourself?{" "}
+            <Link href="/toolkits" style={{ fontStyle: "italic", color: C.terra, textDecoration: "underline" }}>Start with the toolkits →</Link>
+          </p>
         </div>
       </div>
 
