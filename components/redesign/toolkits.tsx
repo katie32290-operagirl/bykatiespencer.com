@@ -10,7 +10,7 @@ const INSIDE: [string, string][] = [
 ];
 
 const SERIES: [string, string, string, string][] = [
-  ["Toolkit 02", "The Arts Marketing Kit", "Announce and sell a season as an invitation, not a listing. The Narratives thesis, in a planner, a set of copy frameworks, and the post-show survey I ran at Knoxville Opera.", "Fall 2026"],
+  ["Toolkit 02", "The Arts Marketing Toolkit", "Announce and sell a season as an invitation, not a listing. The Narratives thesis, in a planner, a set of copy frameworks, and the post-show survey I ran at Knoxville Opera.", "Fall 2026"],
   ["Toolkit 03", "The Fundraising Event Toolkit", "Plan a fundraising event that nets money, not just goodwill, with a two-person team. The honest math on galas, a sponsorship deck, the paddle-raise script, and the follow-up that moves guests into your donor pipeline.", "Fall 2026"],
 ];
 
@@ -156,8 +156,8 @@ export function ToolkitsRedesign() {
         <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(34px,5vw,60px)", letterSpacing: "-.025em", color: C.cream, lineHeight: 1 }}>
           Go have the coffee<span style={{ color: C.terra }}>.</span>
         </div>
-        <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, color: C.peach, marginTop: 22 }}>
-          Katie Spencer<span style={{ color: C.terra }}>.</span>
+        <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, letterSpacing: "-.01em", color: C.peach, marginTop: 22 }}>
+          bykatiespencer<span style={{ color: C.terra }}>.</span>
         </div>
       </div>
 
