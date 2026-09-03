@@ -109,7 +109,7 @@ export function Footer() {
       className={`grid items-center gap-y-4 py-9 ${PAD} md:grid-cols-[1fr_auto_1fr]`}
       style={{ background: C.cream, fontFamily: SANS, fontSize: 12, letterSpacing: ".06em", color: C.ox }}
     >
-      <div className="text-center md:text-left">© 2026 Katie Spencer · High art · Real life · Meaningful work</div>
+      <div className="text-center md:text-left">© 2026 Katie Spencer · Art · Real life · Meaningful work</div>
       <div className="text-center" style={{ fontWeight: 700, fontSize: 16 }}>
         Katie Spencer<span style={{ color: C.terra }}>.</span>
       </div>
