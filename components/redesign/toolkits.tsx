@@ -10,7 +10,7 @@ const INSIDE: [string, string][] = [
 ];
 
 const SERIES: [string, string, string, string][] = [
-  ["Toolkit 02", "The Season Invitation Kit", "Announce and sell a season as an invitation, not a listing. The Narratives thesis, in a planner, a set of copy frameworks, and the post-show survey I ran at Knoxville Opera.", "Fall 2026"],
+  ["Toolkit 02", "The Arts Marketing Kit", "Announce and sell a season as an invitation, not a listing. The Narratives thesis, in a planner, a set of copy frameworks, and the post-show survey I ran at Knoxville Opera.", "Fall 2026"],
   ["Toolkit 03", "The Fundraising Event Toolkit", "Plan a fundraising event that nets money, not just goodwill, with a two-person team. The honest math on galas, a sponsorship deck, the paddle-raise script, and the follow-up that moves guests into your donor pipeline.", "Fall 2026"],
 ];
 
