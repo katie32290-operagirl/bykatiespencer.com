@@ -46,11 +46,26 @@ function computeDates(closing: Date) {
   const close = addDays(closing, 7);
   return { send: addDays(closing, 1), close, log: mondayAfter(close) };
 }
-function qrSvg(url: string, cellSize: number): string {
+/** "a" or "an" based on the first letter of the word (vowel-letter heuristic). */
+function article(word: string): string {
+  const m = word.match(/[A-Za-z]/);
+  return m && "aeiou".includes(m[0].toLowerCase()) ? "an" : "a";
+}
+function escapeXml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function qrSvg(url: string, cellSize: number, label?: string): string {
   const qr = qrcode(0, "M");
   qr.addData(url);
   qr.make();
-  return qr.createSvgTag({ cellSize, margin: 0, scalable: true });
+  let svg = qr.createSvgTag({ cellSize, margin: 0, scalable: true });
+  // Give the SVG itself an accessible name and a <title>, so it is not an
+  // unlabelled graphic (the wrapper is left presentational).
+  const name = escapeXml(label ?? `QR code linking to ${url}`);
+  svg = svg.replace("<svg", `<svg role="img" aria-label="${name}"`);
+  const gt = svg.indexOf(">");
+  if (gt !== -1) svg = svg.slice(0, gt + 1) + `<title>${name}</title>` + svg.slice(gt + 1);
+  return svg;
 }
 
 /* ---- small UI pieces -------------------------------------------------- */
@@ -146,8 +161,8 @@ export function SurveyGenerator() {
   const dates = closingDate ? computeDates(closingDate) : null;
 
   const questions: { n: number; q: string; meta: string; required: boolean }[] = [
-    { n: 1, q: `Have you ever been to a ${AF} performance before?`, meta: "Yes / No · Multiple choice", required: true },
-    { n: 2, q: `Have you ever been to a ${CO} production before?`, meta: "Yes / No · Multiple choice", required: true },
+    { n: 1, q: `Have you ever attended ${article(AF)} ${AF} performance before?`, meta: "Yes / No · Multiple choice", required: true },
+    { n: 2, q: `Have you ever been to ${article(CO)} ${CO} production before?`, meta: "Yes / No · Multiple choice", required: true },
     { n: 3, q: "How would you rate your overall experience?", meta: "1 to 5, Not great to Wonderful · Linear scale", required: true },
     { n: 4, q: `Would you come back to another ${CO} performance?`, meta: "Yes / No · Multiple choice", required: true },
     { n: 5, q: "Anything else you'd like to share with us?", meta: "Long answer · Paragraph", required: false },
@@ -162,7 +177,11 @@ export function SurveyGenerator() {
 
   const qrLine = "How was tonight? Five questions, anonymous, one minute.";
   const shortUrl = formUrl.replace(/^https?:\/\//, "").replace(/\/$/, "");
-  const qrMarkup = useMemo(() => (formUrl ? { __html: qrSvg(formUrl, 8) } : null), [formUrl]);
+  const qrMarkup = useMemo(
+    () => (formUrl ? { __html: qrSvg(formUrl, 8, `QR code linking to ${shortUrl}`) } : null),
+    [formUrl, shortUrl],
+  );
+  const countWord = questions.length === 6 ? "six" : "five";
 
   const printSign = (which: "exit" | "card") => {
     document.body.setAttribute("data-print", which);
@@ -244,7 +263,7 @@ export function SurveyGenerator() {
 
           {/* The five questions */}
           <section aria-live="polite">
-            <h2 style={H2}>The five questions.</h2>
+            <h2 style={H2}>The {countWord} questions.</h2>
             <p style={{ ...P, marginTop: 14, marginBottom: 22 }}>
               {mounted ? "These are written out with your details filled in. Copy them straight into Google Forms." : "Copy these. Replace [ART FORM] with yours, opera, theatre, dance, music, and [COMPANY NAME] with yours."}
             </p>
@@ -340,11 +359,17 @@ export function SurveyGenerator() {
               {formUrl && qrMarkup && (
                 <div className="mt-6 grid gap-6 sm:grid-cols-[200px_1fr] sm:items-center">
                   <div style={{ background: "#FFFFFF", border: `1.5px solid ${C.ox}`, padding: 16, width: 200, height: 200, boxSizing: "border-box" }}>
-                    <div className="survey-qr" aria-label={`QR code linking to ${shortUrl}`} role="img" style={{ width: "100%", height: "100%" }} dangerouslySetInnerHTML={qrMarkup} />
+                    <div className="survey-qr" style={{ width: "100%", height: "100%" }} dangerouslySetInnerHTML={qrMarkup} />
                   </div>
-                  <div className="flex flex-wrap gap-3">
-                    <button type="button" onClick={() => printSign("exit")} style={{ fontFamily: SANS, fontSize: 14, color: C.cream, background: C.ox, padding: "12px 24px", borderRadius: 40 }} className="transition-opacity hover:opacity-90">Print the exit sign</button>
-                    <button type="button" onClick={() => printSign("card")} style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: "transparent", border: `1.5px solid ${C.ox}`, padding: "12px 24px", borderRadius: 40 }} className="transition-opacity hover:opacity-70">Print the program cards</button>
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: C.terra, marginBottom: 4 }}>Links to</div>
+                      <a href={formUrl} target="_blank" rel="noopener noreferrer" style={{ fontFamily: SANS, fontSize: 14, color: C.ox, wordBreak: "break-all" }} className="underline decoration-1 underline-offset-2 transition-opacity hover:opacity-70">{shortUrl}</a>
+                    </div>
+                    <div className="flex flex-wrap gap-3">
+                      <button type="button" onClick={() => printSign("exit")} style={{ fontFamily: SANS, fontSize: 14, color: C.cream, background: C.ox, padding: "12px 24px", borderRadius: 40 }} className="transition-opacity hover:opacity-90">Print the exit sign</button>
+                      <button type="button" onClick={() => printSign("card")} style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: "transparent", border: `1.5px solid ${C.ox}`, padding: "12px 24px", borderRadius: 40 }} className="transition-opacity hover:opacity-70">Print the program cards</button>
+                    </div>
                   </div>
                 </div>
               )}
