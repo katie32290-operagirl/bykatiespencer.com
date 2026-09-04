@@ -470,7 +470,13 @@ function OptIn({ company, artForm }: { company: string; artForm: string }) {
     try {
       const res = await fetch(ZAPIER_HOOK, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        // Keep this as text/plain. application/json triggers a CORS preflight
+        // (OPTIONS), which Zapier catch hooks don't answer, so the browser
+        // blocks the request before it leaves and fetch throws "Failed to
+        // fetch". text/plain is a CORS-safelisted content type: no preflight,
+        // and Zapier still parses the JSON body. Do NOT use mode: "no-cors" —
+        // that makes the response opaque so we can't tell success from failure.
+        headers: { "Content-Type": "text/plain;charset=UTF-8" },
         body: JSON.stringify({
           email: email.trim(),
           timestamp: new Date().toISOString(),
