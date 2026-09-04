@@ -238,20 +238,15 @@ export function HomeRedesign() {
             What I&rsquo;m building
           </div>
           <div className="grid gap-[22px] md:grid-cols-[1.3fr_1fr]">
-            {/* GreenRoom — the big card, on cream so the mark reads transparent */}
-            <div className="flex flex-col justify-between" style={{ background: C.cream, border: `1.5px solid ${C.ox}`, padding: "clamp(32px,4vw,48px)", minHeight: 360 }}>
-              <div className="flex items-center gap-3">
+            {/* GreenRoom — the big card, on cream so the lockup reads on its own */}
+            <div className="flex flex-col justify-between gap-10" style={{ background: C.cream, border: `1.5px solid ${C.ox}`, padding: "clamp(32px,4vw,48px)", minHeight: 360 }}>
+              <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.terra }}>
+                Now building
+              </span>
+              <div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/redesign/greenroom-icon.webp" alt="GreenRoom" className="shrink-0" style={{ width: 40, height: 40 }} />
-                <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.terra }}>
-                  Now building
-                </span>
-              </div>
-              <div className="mt-10">
-                <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(44px,6vw,60px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 0.95 }}>
-                  GreenRoom<span style={{ color: C.terra }}>.</span>
-                </div>
-                <p style={{ fontSize: 18, lineHeight: 1.55, color: C.ox, maxWidth: 420, marginTop: 16 }}>
+                <img src="/redesign/greenroom-logo.svg" alt="GreenRoom" style={{ width: 320, maxWidth: "88%", height: "auto", display: "block" }} />
+                <p style={{ fontSize: 18, lineHeight: 1.55, color: C.ox, maxWidth: 420, marginTop: 22 }}>
                   Bringing fundraising, marketing, ticketing, and operations into one platform for arts organizations.{" "}
                   <span style={{ fontStyle: "italic", color: C.terra }}>Launching 2026.</span>
                 </p>
