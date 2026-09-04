@@ -109,33 +109,45 @@ export function ToolkitsRedesign() {
         </div>
       </div>
 
-      {/* 3b · the Arts Marketing Kit — paper, now available (text card, no mockups) */}
+      {/* 3b · the Arts Marketing Kit — paper, now available, cover at left */}
       <div className={`${PAD} py-[clamp(56px,8vw,88px)]`} style={{ background: C.cream, borderTop: `1.5px solid ${C.ox}` }}>
-        <div className="mx-auto max-w-[820px]">
-          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".2em", textTransform: "uppercase", color: C.terra }}>Toolkit 02 · Available now</div>
-          <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(32px,4.4vw,46px)", lineHeight: 1.02, letterSpacing: "-.02em", color: C.ox, marginTop: 14 }}>
-            The Arts Marketing Kit
-          </h2>
-          <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "clamp(19px,2.2vw,24px)", color: C.terra, marginTop: 12 }}>Announce and sell a season as an invitation, not a listing.</p>
+        <div className="mx-auto grid max-w-[1180px] items-start gap-[clamp(36px,5vw,64px)] md:grid-cols-[minmax(0,480px)_1fr]">
+          {/* kit mockups — the guide, the templates, the printables, the survey */}
+          <ToolkitCarousel
+            slides={[
+              { src: "/redesign/kit-1.webp", alt: "The Arts Marketing Kit field guide and what's inside" },
+              { src: "/redesign/kit-2.webp", alt: "The Copy Templates: the first-timer email framework" },
+              { src: "/redesign/kit-3.webp", alt: "The Show Story Worksheet and the Survey Log" },
+              { src: "/redesign/kit-4.webp", alt: "The Post-Show Survey: five questions and what each one tells you" },
+            ]}
+          />
 
-          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 40, letterSpacing: "-.02em", color: C.ox }}>$49</span>
-            <BuyButton productId="YuMdI" productName="arts_marketing" />
-            <SeeInsideLink productId="YuMdI" productName="arts_marketing" />
+          <div>
+            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".2em", textTransform: "uppercase", color: C.terra }}>Toolkit 02 · Available now</div>
+            <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(32px,4.4vw,46px)", lineHeight: 1.02, letterSpacing: "-.02em", color: C.ox, marginTop: 14 }}>
+              The Arts Marketing Kit
+            </h2>
+            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "clamp(19px,2.2vw,24px)", color: C.terra, marginTop: 12 }}>Announce and sell a season as an invitation, not a listing.</p>
+
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 40, letterSpacing: "-.02em", color: C.ox }}>$49</span>
+              <BuyButton productId="YuMdI" productName="arts_marketing" />
+              <SeeInsideLink productId="YuMdI" productName="arts_marketing" />
+            </div>
+
+            <div className="mt-9 flex flex-col gap-5" style={{ borderTop: `1.5px solid ${C.ox}`, paddingTop: 24 }}>
+              {KIT_INSIDE.map(([t, b]) => (
+                <div key={t}>
+                  <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, color: C.ox }}>{t}</span>{" "}
+                  <span style={{ fontSize: 16, lineHeight: 1.6, color: C.ox }}>{b}</span>
+                </div>
+              ))}
+            </div>
+
+            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 18, lineHeight: 1.55, color: C.ox, marginTop: 24, maxWidth: 620 }}>
+              If the season announcement goes out Friday and nobody has written the one sentence that says why anyone should come, start here.
+            </p>
           </div>
-
-          <div className="mt-9 flex flex-col gap-5" style={{ borderTop: `1.5px solid ${C.ox}`, paddingTop: 24 }}>
-            {KIT_INSIDE.map(([t, b]) => (
-              <div key={t}>
-                <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, color: C.ox }}>{t}</span>{" "}
-                <span style={{ fontSize: 16, lineHeight: 1.6, color: C.ox }}>{b}</span>
-              </div>
-            ))}
-          </div>
-
-          <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 18, lineHeight: 1.55, color: C.ox, marginTop: 24, maxWidth: 620 }}>
-            If the season announcement goes out Friday and nobody has written the one sentence that says why anyone should come, start here.
-          </p>
         </div>
       </div>
 
