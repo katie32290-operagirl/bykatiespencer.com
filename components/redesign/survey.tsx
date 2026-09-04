@@ -189,7 +189,7 @@ export function SurveyGenerator() {
             The Post-Show Survey<span style={{ color: C.terra }}>.</span>
           </h1>
           <p style={{ ...P, fontSize: 19, marginTop: 20 }}>
-            Five questions, anonymous, sent the morning after. This is the survey I ran at a regional opera company, and it is the fastest way to find out whether the experience kept the promise your marketing made.
+            Five questions, anonymous, sent after the show. This is the survey I ran at a regional opera company, and it is the fastest way to find out whether the experience kept the promise your marketing made.
           </p>
           <p style={{ ...P, marginTop: 14 }}>Everything you need to build it is on this page. It takes about six minutes.</p>
         </div>
