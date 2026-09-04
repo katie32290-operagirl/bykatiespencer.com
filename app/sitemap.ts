@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       // a separate entry. It's the page most worth surfacing in search.
       priority: n.href === "/narratives" ? 0.9 : 0.8,
     })),
+    // Public utility page linked from the printed Kit; worth indexing.
+    { url: `${site.url}/survey`, changeFrequency: "monthly" as const, priority: 0.7 },
     // Note: /knoxville-opera is intentionally noindex'd (internal case study),
     // so it's deliberately kept OUT of the sitemap to avoid contradictory signals.
   ];

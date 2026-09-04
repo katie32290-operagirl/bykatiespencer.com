@@ -420,3 +420,69 @@
     animation: none !important;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/*  /survey — print-only artefacts (exit sign + program cards)         */
+/* ------------------------------------------------------------------ */
+.survey-print { display: none; }
+.survey-qr svg,
+.survey-sign-qr svg,
+.survey-card-qr svg { width: 100%; height: 100%; display: block; }
+
+@media print {
+  /* isolate the chosen printable: hide everything, reveal one block */
+  body[data-print] * { visibility: hidden !important; }
+  body[data-print="exit"] .survey-print-exit,
+  body[data-print="exit"] .survey-print-exit *,
+  body[data-print="card"] .survey-print-card,
+  body[data-print="card"] .survey-print-card * { visibility: visible !important; }
+  body[data-print] .survey-print-exit,
+  body[data-print] .survey-print-card {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    background: #fff;
+  }
+
+  /* exit sign: one portrait page */
+  .survey-sign {
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 14mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #000;
+    font-family: "Instrument Sans", system-ui, sans-serif;
+  }
+  .survey-sign-qr { width: 95mm; height: 95mm; }
+  .survey-sign-co { font-weight: 700; font-size: 30pt; letter-spacing: -0.02em; margin-top: 9mm; }
+  .survey-sign-line { font-size: 15pt; margin-top: 5mm; max-width: 150mm; line-height: 1.35; }
+  .survey-sign-url { font-size: 12pt; margin-top: 4mm; letter-spacing: 0.03em; }
+
+  /* program cards: four to a sheet with cut marks */
+  .survey-cards {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .survey-card {
+    border: 1px dashed #999;
+    box-sizing: border-box;
+    padding: 8mm;
+    display: flex;
+    align-items: center;
+    gap: 6mm;
+    color: #000;
+    font-family: "Instrument Sans", system-ui, sans-serif;
+  }
+  .survey-card-qr { width: 32mm; height: 32mm; flex-shrink: 0; }
+  .survey-card-co { font-weight: 700; font-size: 13pt; letter-spacing: -0.01em; }
+  .survey-card-line { font-size: 10pt; margin-top: 2mm; line-height: 1.3; }
+  .survey-card-url { font-size: 9pt; margin-top: 2mm; letter-spacing: 0.02em; }
+
+  @page { margin: 0; }
+}
