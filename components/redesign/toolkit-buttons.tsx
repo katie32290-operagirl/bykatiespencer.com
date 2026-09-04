@@ -14,7 +14,7 @@ function ga(event: string, params?: Record<string, string>) {
 
 /** Payhip overlay-checkout buy button. The Payhip script (loaded on the page)
  *  intercepts the click to open the overlay; the GA event still fires. */
-export function BuyButton() {
+export function BuyButton({ productId = "ocvs9", productName = "development" }: { productId?: string; productName?: string } = {}) {
   const ref = useRef<HTMLAnchorElement>(null);
 
   // Payhip's script restyles .payhip-buy-button (default green) after it loads;
@@ -34,10 +34,10 @@ export function BuyButton() {
   return (
     <a
       ref={ref}
-      href="https://payhip.com/b/ocvs9"
+      href={`https://payhip.com/b/${productId}`}
       className="payhip-buy-button transition-opacity hover:opacity-90"
-      data-product="ocvs9"
-      onClick={() => ga("toolkit_buy_click", { product: "development" })}
+      data-product={productId}
+      onClick={() => ga("toolkit_buy_click", { product: productName })}
       style={{ fontFamily: SANS, fontSize: 16, fontWeight: 500, color: C.cream, background: C.terra, padding: "15px 34px", borderRadius: 40, display: "inline-block", textDecoration: "none" }}
     >
       Buy the toolkit
@@ -46,13 +46,13 @@ export function BuyButton() {
 }
 
 /** Secondary text link to the full Payhip listing. */
-export function SeeInsideLink() {
+export function SeeInsideLink({ productId = "ocvs9", productName = "development" }: { productId?: string; productName?: string } = {}) {
   return (
     <a
-      href="https://payhip.com/b/ocvs9"
+      href={`https://payhip.com/b/${productId}`}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => ga("toolkit_see_inside", { product: "development" })}
+      onClick={() => ga("toolkit_see_inside", { product: productName })}
       style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".08em", textTransform: "uppercase", color: C.ox }}
       className="transition-opacity hover:opacity-60"
     >

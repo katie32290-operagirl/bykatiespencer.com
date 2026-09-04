@@ -1,4 +1,5 @@
 import Script from "next/script";
+import Link from "next/link";
 import { Nav, GiantTitle, Footer, Shell, PAD, C, SANS, SERIF } from "./chrome";
 import { BuyButton, SeeInsideLink, DoorLink } from "./toolkit-buttons";
 import { ToolkitCarousel } from "./toolkit-carousel";
@@ -10,14 +11,29 @@ const INSIDE: [string, string][] = [
   ["Two printables.", "A Board Report Card to share at mid-year and year-end, and the prospect worksheet to hand out at a board meeting."],
 ];
 
+const KIT_INSIDE: [string, React.ReactNode][] = [
+  ["The Guide.", "Twenty-eight pages on why most season marketing lists what is happening instead of inviting anyone: the two questions every company should ask, three real stories from a real season, and the one-pager nobody wants to write when a production doesn’t land."],
+  ["The Season Marketing Planner.", "A Google Sheets workbook you copy and keep. A season timeline that builds itself from eight anchor dates, an eight-week show sequence to duplicate per production, a channel calendar that shows you the gaps, an Audience Development Scorecard, and a survey log."],
+  ["The Copy Templates and the Show Story Worksheet.", "Every framework blank and then filled with real examples, plus the twenty-minute exercise that makes the rest of them easier."],
+  [
+    "The Post-Show Survey.",
+    <>
+      Five questions, anonymous, sent the morning after.{" "}
+      <Link href="/survey" style={{ color: C.terra, textDecoration: "underline", textUnderlineOffset: 2 }} className="transition-opacity hover:opacity-70">
+        The generator on this site
+      </Link>{" "}
+      writes the form for you.
+    </>,
+  ],
+];
+
 const SERIES: [string, string, string, string][] = [
-  ["Toolkit 02", "The Arts Marketing Toolkit", "Announce and sell a season as an invitation, not a listing. The Narratives thesis, in a planner, a set of copy frameworks, and the post-show survey I ran at Knoxville Opera.", "Fall 2026"],
   ["Toolkit 03", "The Fundraising Event Toolkit", "Plan a fundraising event that nets money, not just goodwill, with a two-person team. The honest math on galas, a sponsorship deck, the paddle-raise script, and the follow-up that moves guests into your donor pipeline.", "Fall 2026"],
 ];
 
 const QUESTIONS: [string, string][] = [
-  ["How is it delivered?", "Instantly, after checkout. The Guide, the Scripts, and the two printables come as PDFs; the workbook comes as a link that makes your own copy in Google Sheets. Updates go out to every past buyer for free."],
-  ["Do I need anything?", "A free Google account for the workbook. The Dashboard formulas only work in Google Sheets, so open it there, not in Excel."],
+  ["How is it delivered?", "Instantly, after checkout. The written pieces come as PDFs; the workbooks come as links that make your own copy in Google Sheets. Updates are free for life."],
+  ["Do I need anything?", "A free Google account for the workbooks. They only work in Google Sheets, so open them there, not in Excel."],
   ["What if it isn’t for me?", "Email within 14 days and I’ll refund it."],
 ];
 
@@ -93,12 +109,42 @@ export function ToolkitsRedesign() {
         </div>
       </div>
 
+      {/* 3b · the Arts Marketing Kit — paper, now available (text card, no mockups) */}
+      <div className={`${PAD} py-[clamp(56px,8vw,88px)]`} style={{ background: C.cream, borderTop: `1.5px solid ${C.ox}` }}>
+        <div className="mx-auto max-w-[820px]">
+          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".2em", textTransform: "uppercase", color: C.terra }}>Toolkit 02 · Available now</div>
+          <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(32px,4.4vw,46px)", lineHeight: 1.02, letterSpacing: "-.02em", color: C.ox, marginTop: 14 }}>
+            The Arts Marketing Kit
+          </h2>
+          <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "clamp(19px,2.2vw,24px)", color: C.terra, marginTop: 12 }}>Announce and sell a season as an invitation, not a listing.</p>
+
+          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 40, letterSpacing: "-.02em", color: C.ox }}>$49</span>
+            <BuyButton productId="YuMdI" productName="arts_marketing" />
+            <SeeInsideLink productId="YuMdI" productName="arts_marketing" />
+          </div>
+
+          <div className="mt-9 flex flex-col gap-5" style={{ borderTop: `1.5px solid ${C.ox}`, paddingTop: 24 }}>
+            {KIT_INSIDE.map(([t, b]) => (
+              <div key={t}>
+                <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, color: C.ox }}>{t}</span>{" "}
+                <span style={{ fontSize: 16, lineHeight: 1.6, color: C.ox }}>{b}</span>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 18, lineHeight: 1.55, color: C.ox, marginTop: 24, maxWidth: 620 }}>
+            If the season announcement goes out Friday and nobody has written the one sentence that says why anyone should come, start here.
+          </p>
+        </div>
+      </div>
+
       {/* 4 · coming this fall — periwinkle */}
       <div className={`${PAD} py-[clamp(64px,9vw,90px)]`} style={{ background: C.peri }}>
         <div className="mx-auto max-w-[1180px]">
           <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.ox }}>The series</div>
           <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(28px,3.6vw,40px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1.05, marginTop: 12, maxWidth: 820 }}>
-            Three toolkits, one buyer, one season. The other two arrive this fall, with a bundle for all three.
+            Three toolkits, one buyer, one season. The third arrives this fall, with a bundle for all three.
           </div>
           <div className="mt-10 grid gap-[22px] md:grid-cols-2">
             {SERIES.map(([kicker, name, body, when]) => (
@@ -112,7 +158,6 @@ export function ToolkitsRedesign() {
               </div>
             ))}
           </div>
-          <p style={{ fontSize: 16, fontStyle: "italic", color: C.ox, marginTop: 24 }}>Buy the Development Toolkit now and you&rsquo;ll hear first when the others land.</p>
         </div>
       </div>
 
