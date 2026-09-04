@@ -34,7 +34,6 @@ const SERIES: [string, string, string, string][] = [
 const QUESTIONS: [string, string][] = [
   ["How is it delivered?", "Instantly, after checkout. The written pieces come as PDFs; the workbooks come as links that make your own copy in Google Sheets. Updates are free for life."],
   ["Do I need anything?", "A free Google account for the workbooks. They only work in Google Sheets, so open them there, not in Excel."],
-  ["What if it isn’t for me?", "Email within 14 days and I’ll refund it."],
 ];
 
 export function ToolkitsRedesign() {
@@ -197,9 +196,9 @@ export function ToolkitsRedesign() {
         </div>
       </div>
 
-      {/* 6 · three questions — paper, compact */}
+      {/* 6 · the questions — paper, compact */}
       <div className={`${PAD} py-[clamp(56px,8vw,80px)]`} style={{ background: C.cream, borderTop: `1.5px solid ${C.ox}` }}>
-        <div className="mx-auto grid max-w-[1180px] gap-x-[clamp(28px,4vw,56px)] gap-y-8 md:grid-cols-3">
+        <div className="mx-auto grid max-w-[1180px] gap-x-[clamp(28px,4vw,56px)] gap-y-8 md:grid-cols-2">
           {QUESTIONS.map(([q, a]) => (
             <div key={q}>
               <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, color: C.ox }}>{q}</div>
