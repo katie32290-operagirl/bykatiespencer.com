@@ -130,6 +130,10 @@ export function WorkRedesign() {
           <div className="mt-10 grid gap-[22px] md:grid-cols-2">
             {REP.map(([label, title, italic, body, cta, href]) => (
               <div key={title} style={{ background: C.cream, padding: 32 }}>
+                {title === "GreenRoom" && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src="/redesign/greenroom-icon.webp" alt="GreenRoom" style={{ width: 40, height: 40, display: "block", marginBottom: 16 }} />
+                )}
                 <div style={{ fontFamily: SANS, fontSize: 11, letterSpacing: ".14em", textTransform: "uppercase", color: C.terra }}>{label}</div>
                 <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 28, color: C.ox, marginTop: 10 }}>{title}</div>
                 <div style={{ fontSize: 16, fontStyle: "italic", color: C.terra, marginTop: 4 }}>{italic}</div>

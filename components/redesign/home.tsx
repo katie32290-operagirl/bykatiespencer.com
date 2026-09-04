@@ -241,7 +241,10 @@ export function HomeRedesign() {
             {/* GreenRoom — the big card */}
             <div className="flex flex-col justify-between" style={{ background: C.ox, padding: "clamp(32px,4vw,48px)", minHeight: 360 }}>
               <div className="flex items-center gap-3">
-                <span style={{ width: 30, height: 30, background: C.peri }} />
+                <span className="flex shrink-0 items-center justify-center" style={{ width: 36, height: 36, background: C.cream }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/redesign/greenroom-icon.webp" alt="GreenRoom" style={{ width: 27, height: 27 }} />
+                </span>
                 <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.peach }}>
                   Now building
                 </span>
