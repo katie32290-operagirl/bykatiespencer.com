@@ -22,9 +22,9 @@ export const SERIF = "var(--font-ks-voice), 'Newsreader', Georgia, serif";
 /** The site's one nav, shared across every page. */
 export const NAV = [
   { label: "About", href: "/about" },
+  { label: "Work", href: "/portfolio" },
   { label: "Narratives", href: "/narratives" },
   { label: "Toolkits", href: "/toolkits" },
-  { label: "Work", href: "/portfolio" },
   { label: "Notes", href: "/writing" },
   { label: "Connect", href: "/contact" },
 ] as const;
