@@ -68,10 +68,92 @@ function qrSvg(url: string, cellSize: number, label?: string): string {
   return svg;
 }
 
+/**
+ * Escape a value for injection into a single-quoted string literal in the
+ * generated Apps Script. Company names carry apostrophes and the occasional
+ * backslash; an unescaped one is a syntax error the visitor can't debug.
+ * Backslashes first, then quotes and newlines, then strip other control chars.
+ */
+function escGs(s: string): string {
+  return s
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
+    .replace(/\r\n?|\n/g, "\\n")
+    .replace(/[\u0000-\u001F\u007F]/g, "");
+}
+
+/**
+ * Build the Google Apps Script the visitor pastes into script.google.com. The
+ * a/an question text is already computed on the page, so it is baked into the
+ * strings here rather than recomputed in the script. Runs entirely in the
+ * visitor's own account; nothing here touches our infrastructure.
+ */
+function buildAppsScript(o: { title: string; q1: string; q2: string; q4: string; sixth: boolean }): string {
+  const sixthBlock = o.sixth
+    ? `
+  form.addTextItem()
+    .setTitle('How did you hear about this production?')
+    .setRequired(false);
+`
+    : "";
+  return `/**
+ * Creates your post-show audience survey in your own Google Drive.
+ * From bykatiespencer.com/survey
+ *
+ * Click Run. Google will ask you to authorize this script the first time.
+ * When it finishes, your form links are in the Execution log at the bottom.
+ */
+function createPostShowSurvey() {
+  var TITLE = '${escGs(o.title)}';
+  var INTRO = 'Thanks for joining us. Five questions, anonymous, no wrong answers.';
+
+  var form = FormApp.create(TITLE);
+  form.setDescription(INTRO);
+
+  // Anonymity. These three are the whole point.
+  form.setCollectEmail(false);
+  form.setLimitOneResponsePerUser(false);
+  form.setPublishingSummary(false);
+  try { form.setRequireLogin(false); } catch (e) {} // Workspace accounts only
+
+  form.addMultipleChoiceItem()
+    .setTitle('${escGs(o.q1)}')
+    .setChoiceValues(['Yes', 'No'])
+    .setRequired(true);
+
+  form.addMultipleChoiceItem()
+    .setTitle('${escGs(o.q2)}')
+    .setChoiceValues(['Yes', 'No'])
+    .setRequired(true);
+
+  form.addScaleItem()
+    .setTitle('How would you rate your overall experience?')
+    .setBounds(1, 5)
+    .setLabels('Not great', 'Wonderful')
+    .setRequired(true);
+
+  form.addMultipleChoiceItem()
+    .setTitle('${escGs(o.q4)}')
+    .setChoiceValues(['Yes', 'No'])
+    .setRequired(true);
+
+  form.addParagraphTextItem()
+    .setTitle("Anything else you'd like to share with us?")
+    .setRequired(false);
+${sixthBlock}
+  Logger.log('Your survey is ready.');
+  Logger.log('Share this link with your audience: ' + form.getPublishedUrl());
+  Logger.log('Edit it here: ' + form.getEditUrl());
+}`;
+}
+
 /* ---- small UI pieces -------------------------------------------------- */
 
-function CopyButton({ text, label = "Copy" }: { text: string; label?: string }) {
+function CopyButton({ text, label = "Copy", filled = false }: { text: string; label?: string; filled?: boolean }) {
   const [done, setDone] = useState(false);
+  const base: React.CSSProperties = filled
+    ? { fontFamily: SANS, fontSize: 14, color: C.cream, background: C.terra, border: `1.5px solid ${C.terra}`, padding: "12px 24px", borderRadius: 40 }
+    : { fontFamily: SANS, fontSize: 12, letterSpacing: ".08em", textTransform: "uppercase", color: C.terra, background: "transparent", border: `1.5px solid ${C.terra}`, padding: "8px 16px", borderRadius: 40 };
   return (
     <button
       type="button"
@@ -84,7 +166,7 @@ function CopyButton({ text, label = "Copy" }: { text: string; label?: string }) 
           setDone(false);
         }
       }}
-      style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".08em", textTransform: "uppercase", color: C.terra, background: "transparent", border: `1.5px solid ${C.terra}`, padding: "8px 16px", borderRadius: 40 }}
+      style={base}
       className="transition-opacity hover:opacity-70"
     >
       {done ? "Copied" : label}
@@ -182,6 +264,14 @@ export function SurveyGenerator() {
     [formUrl, shortUrl],
   );
   const countWord = questions.length === 6 ? "six" : "five";
+
+  const q1 = questions[0].q;
+  const q2 = questions[1].q;
+  const q4 = questions[3].q;
+  const script = useMemo(
+    () => buildAppsScript({ title, q1, q2, q4, sixth }),
+    [title, q1, q2, q4, sixth],
+  );
 
   const printSign = (which: "exit" | "card") => {
     document.body.setAttribute("data-print", which);
@@ -344,7 +434,67 @@ export function SurveyGenerator() {
             </OutputCard>
           </section>
 
-          {/* Step 2 + QR + printables (enhancement only) */}
+          {/* Step 2: generate the form (with a manual fallback that works JS-off) */}
+          <section>
+            <h2 style={H2}>Create your form.</h2>
+            {mounted ? (
+              <>
+                <p style={{ ...P, marginTop: 14, marginBottom: 22 }}>
+                  This writes the form for you. Copy the script, paste it into Google&rsquo;s script editor, and click Run. Your survey appears in your own Google Drive, with the anonymity settings already correct.
+                </p>
+                <div style={{ background: C.ox, padding: "clamp(16px,2.4vw,22px)" }}>
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+                    <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.peachSoft }}>Your script</div>
+                    <CopyButton text={script} label="Copy the script" filled />
+                  </div>
+                  <pre style={{ margin: 0, overflow: "auto", maxHeight: 360, color: C.cream, fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace", fontSize: 12.5, lineHeight: 1.6 }}>
+                    <code>{script}</code>
+                  </pre>
+                </div>
+                <div className="mt-5 flex flex-wrap items-center gap-4">
+                  <a href="https://script.google.com/home/projects/create" target="_blank" rel="noopener noreferrer" style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: "transparent", border: `1.5px solid ${C.ox}`, padding: "12px 24px", borderRadius: 40 }} className="transition-opacity hover:opacity-70">Open Apps Script</a>
+                </div>
+                <ol className="mt-6 flex flex-col gap-3">
+                  {[
+                    "Copy the script.",
+                    "Open Apps Script, delete whatever is in the editor, and paste.",
+                    "Click Run. Google will ask you to authorize your own script the first time. When it finishes, your form link is in the log at the bottom.",
+                  ].map((step, i) => (
+                    <li key={i} className="flex gap-4" style={P}>
+                      <span style={{ fontFamily: SANS, fontWeight: 700, color: C.terra }}>{i + 1}</span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+                <p style={{ fontSize: 15, lineHeight: 1.6, color: C.ox, opacity: 0.85, marginTop: 16 }}>
+                  The script runs in your Google account, not mine. I never see your form or your responses.
+                </p>
+              </>
+            ) : (
+              <p style={{ ...P, marginTop: 14 }}>With JavaScript on, this page writes the form-building script for you. Either way, here is how to build it by hand:</p>
+            )}
+
+            <details open={!mounted} style={{ marginTop: mounted ? 30 : 18, borderTop: `1.5px solid ${C.ox}`, paddingTop: 20 }}>
+              <summary style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, color: C.terra, cursor: "pointer" }}>Prefer to build it yourself?</summary>
+              <ol className="mt-5 flex flex-col gap-3">
+                {[
+                  "Go to forms.google.com and start a blank form.",
+                  <>Title it &ldquo;{title}.&rdquo;</>,
+                  "Add the five questions. Questions 1, 2 and 4 are Multiple choice. Question 3 is Linear scale, 1 to 5, labelled Not great and Wonderful. Question 5 is Paragraph.",
+                  "Mark 1 through 4 Required. Leave 5 optional.",
+                  "Open Settings and set the three items above.",
+                  "Click Send, copy the link, and shorten it. Make a QR code from the same link for the program book and a sign at the exit.",
+                ].map((step, i) => (
+                  <li key={i} className="flex gap-4" style={P}>
+                    <span style={{ fontFamily: SANS, fontWeight: 700, color: C.terra }}>{i + 1}</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </details>
+          </section>
+
+          {/* Step 3: QR + printables (enhancement only) */}
           {mounted && (
             <section aria-live="polite">
               <h2 style={H2}>The QR code and printables.</h2>
@@ -375,26 +525,6 @@ export function SurveyGenerator() {
               )}
             </section>
           )}
-
-          {/* Build it in six minutes (static) */}
-          <section>
-            <h2 style={H2}>Build it in six minutes.</h2>
-            <ol className="mt-5 flex flex-col gap-3">
-              {[
-                "Go to forms.google.com and start a blank form.",
-                <>Title it &ldquo;{title}.&rdquo;</>,
-                "Add the five questions. Questions 1, 2 and 4 are Multiple choice. Question 3 is Linear scale, 1 to 5, labelled Not great and Wonderful. Question 5 is Paragraph.",
-                "Mark 1 through 4 Required. Leave 5 optional.",
-                "Open Settings and set the three items above.",
-                "Click Send, copy the link, and shorten it. Make a QR code from the same link for the program book and a sign at the exit.",
-              ].map((step, i) => (
-                <li key={i} className="flex gap-4" style={P}>
-                  <span style={{ fontFamily: SANS, fontWeight: 700, color: C.terra }}>{i + 1}</span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </section>
 
           {/* Sending it (static) */}
           <section>
