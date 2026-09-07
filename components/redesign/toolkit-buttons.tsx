@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { C, SANS } from "./tokens";
+import { C, SANS, SERIF } from "./tokens";
 
 /* Fire a GA4 event if gtag is present. */
 export function ga(event: string, params?: Record<string, string>) {
@@ -14,7 +14,7 @@ export function ga(event: string, params?: Record<string, string>) {
 
 /** Payhip overlay-checkout buy button. The Payhip script (loaded on the page)
  *  intercepts the click to open the overlay; the GA event still fires. */
-export function BuyButton({ productId = "ocvs9", productName = "development" }: { productId?: string; productName?: string } = {}) {
+export function BuyButton({ productId = "ocvs9", productName = "development", label = "Buy the toolkit" }: { productId?: string; productName?: string; label?: string } = {}) {
   const ref = useRef<HTMLAnchorElement>(null);
 
   // Payhip's script restyles .payhip-buy-button (default green) after it loads;
@@ -40,7 +40,7 @@ export function BuyButton({ productId = "ocvs9", productName = "development" }: 
       onClick={() => ga("toolkit_buy_click", { product: productName })}
       style={{ fontFamily: SANS, fontSize: 16, fontWeight: 500, color: C.cream, background: C.terra, padding: "15px 34px", borderRadius: 40, display: "inline-block", textDecoration: "none" }}
     >
-      Buy the toolkit
+      {label}
     </a>
   );
 }
@@ -67,6 +67,7 @@ export function DoorLink({
   event,
   external = false,
   tone = "terra",
+  variant = "label",
   children,
 }: {
   href: string;
@@ -74,10 +75,15 @@ export function DoorLink({
   external?: boolean;
   /** terra reads on cream; peri reads on the oxblood band. */
   tone?: "terra" | "peri" | "cream";
+  /** label = tracked uppercase; italic = Newsreader italic (the editorial "door"). */
+  variant?: "label" | "italic";
   children: React.ReactNode;
 }) {
   const color = tone === "peri" ? C.peri : tone === "cream" ? C.cream : C.terra;
-  const style: React.CSSProperties = { fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color };
+  const style: React.CSSProperties =
+    variant === "italic"
+      ? { fontFamily: SERIF, fontStyle: "italic", fontSize: 17, color }
+      : { fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color };
   const onClick = () => ga(event);
   return external ? (
     <a href={href} target="_blank" rel="noopener noreferrer" onClick={onClick} style={style} className="transition-opacity hover:opacity-60">
