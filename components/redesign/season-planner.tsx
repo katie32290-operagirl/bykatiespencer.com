@@ -1,12 +1,16 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { Fragment, useMemo, useState, useEffect } from "react";
 import { Nav, Footer, Shell, PAD, C, SANS, SERIF } from "./chrome";
 import {
   buildCalendar,
   heavyWeeks,
+  busiestStretch,
   fmtDate,
+  fmtLong,
+  fmtMonth,
   fmtWeek,
+  monthKey,
   LANE_LABEL,
   type Lane,
   type Production,
@@ -14,11 +18,14 @@ import {
 } from "./season-logic";
 
 /**
- * /season-planner — "Your Season, Built for You." The bundle-exclusive tool.
- * The buyer enters their real dates; the three kits' calendars merge into one
+ * /season-planner — "Your Season, Built for You." The bundle tool.
+ * The buyer enters real dates; the three kits' calendars merge into one
  * chronological operating calendar so they can see where the year collides
  * before it does. Progressive enhancement: the orientation copy renders always;
  * the calculator itself is gated behind `mounted` (it needs JavaScript).
+ *
+ * The planner is open to everyone. Taking the calendar away (the .ics / .csv /
+ * print exports) is gated behind a Payhip unlock, mounted separately.
  */
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -44,13 +51,11 @@ const labelStyle: React.CSSProperties = { fontFamily: SANS, fontSize: 11, letter
 const H2: React.CSSProperties = { fontFamily: SANS, fontWeight: 700, fontSize: "clamp(24px,3.2vw,34px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1.05 };
 const P: React.CSSProperties = { fontSize: 17, lineHeight: 1.7, color: C.ox };
 
-function LanePill({ lane }: { lane: Lane }) {
+function LanePill({ lane, onClick }: { lane: Lane; onClick?: () => void }) {
   const c = LANE_COLOR[lane];
-  return (
-    <span style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".08em", textTransform: "uppercase", color: c.fg, background: c.bg, padding: "3px 9px", borderRadius: 40, whiteSpace: "nowrap" }}>
-      {LANE_LABEL[lane]}
-    </span>
-  );
+  const style: React.CSSProperties = { fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".08em", textTransform: "uppercase", color: c.fg, background: c.bg, padding: "3px 9px", borderRadius: 40, whiteSpace: "nowrap", border: "none", lineHeight: 1.6 };
+  if (onClick) return <button type="button" onClick={onClick} aria-label={`Show only ${LANE_LABEL[lane]}`} style={{ ...style, cursor: "pointer" }} className="transition-opacity hover:opacity-75">{LANE_LABEL[lane]}</button>;
+  return <span style={style}>{LANE_LABEL[lane]}</span>;
 }
 
 export function SeasonPlanner() {
@@ -79,15 +84,65 @@ export function SeasonPlanner() {
     [seasonStartMonth, announcement, onSale, fiscalYearEndMonth, productions, events],
   );
   const crunch = useMemo(() => heavyWeeks(calendar), [calendar]);
+  const busiest = useMemo(() => busiestStretch(calendar), [calendar]);
 
   const visible = view === "workstream" ? calendar.filter((m) => lanesOn[m.lane]) : calendar;
   const counts = { development: 0, marketing: 0, events: 0 } as Record<Lane, number>;
   for (const m of calendar) counts[m.lane]++;
+  const prodCount = productions.filter((p) => p.opening).length;
+  const eventCount = events.filter((e) => e.date).length;
 
   const setProd = (i: number, key: keyof Production, v: string) =>
     setProductions((rows) => rows.map((r, j) => (j === i ? { ...r, [key]: v } : r)));
   const setEvt = (i: number, key: keyof FundEvent, v: string) =>
     setEvents((rows) => rows.map((r, j) => (j === i ? { ...r, [key]: v } : r)));
+
+  const filterToLane = (lane: Lane) => {
+    setView("workstream");
+    setLanesOn({ development: lane === "development", marketing: lane === "marketing", events: lane === "events" });
+  };
+
+  // The timeline table (used by Everything + By workstream): month bands + sticky header.
+  const timeline = () => {
+    let last = "";
+    return (
+      <div style={{ maxHeight: "min(72vh, 760px)", overflow: "auto", border: `1.5px solid ${C.ox}` }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", background: "#FFFDF8" }}>
+          <thead>
+            <tr>
+              {["Date", "What happens", "Kit", "Why"].map((h) => (
+                <th key={h} style={{ position: "sticky", top: 0, zIndex: 2, textAlign: "left", fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", padding: "11px 16px", whiteSpace: "nowrap", background: C.ox, color: C.cream }}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {visible.map((m, i) => {
+              const mk = monthKey(m.date);
+              const band = mk !== last;
+              last = mk;
+              return (
+                <Fragment key={i}>
+                  {band && (
+                    <tr>
+                      <td colSpan={4} style={{ fontFamily: SANS, fontSize: 12, fontWeight: 700, letterSpacing: ".16em", color: C.terra, background: C.peachSoft, padding: "8px 16px", position: "sticky", top: 38, zIndex: 1 }}>
+                        {fmtMonth(m.date)}
+                      </td>
+                    </tr>
+                  )}
+                  <tr style={{ borderTop: `1px solid rgba(140,27,18,0.14)` }}>
+                    <td style={{ fontFamily: SANS, fontSize: 13, color: C.terra, padding: "12px 16px", whiteSpace: "nowrap", verticalAlign: "top" }}>{fmtDate(m.date)}</td>
+                    <td style={{ fontSize: 15, lineHeight: 1.45, color: C.ox, padding: "12px 16px", minWidth: 220, verticalAlign: "top" }}>{m.what}</td>
+                    <td style={{ padding: "12px 16px", verticalAlign: "top" }}><LanePill lane={m.lane} onClick={() => filterToLane(m.lane)} /></td>
+                    <td style={{ fontSize: 14, lineHeight: 1.45, color: C.ox, opacity: 0.8, padding: "12px 16px", minWidth: 180, verticalAlign: "top" }}>{m.why}</td>
+                  </tr>
+                </Fragment>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
 
   return (
     <Shell ground="cream">
@@ -113,7 +168,6 @@ export function SeasonPlanner() {
       {mounted && (
         <div className={`${PAD} py-[clamp(28px,4vw,44px)]`} style={{ background: C.peri }}>
           <div className="mx-auto max-w-[900px]">
-            {/* your season */}
             <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>Your season</div>
             <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               <div>
@@ -140,7 +194,6 @@ export function SeasonPlanner() {
               </div>
             </div>
 
-            {/* your productions */}
             <div className="mt-9" style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>Your productions</div>
             <div className="mt-4 flex flex-col gap-4">
               {productions.map((p, i) => (
@@ -167,7 +220,6 @@ export function SeasonPlanner() {
               + Add another production
             </button>
 
-            {/* your events */}
             <div className="mt-9" style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>Your fundraising events</div>
             <div className="mt-4 flex flex-col gap-4">
               {events.map((ev, i) => (
@@ -211,20 +263,38 @@ export function SeasonPlanner() {
             </div>
           ) : (
             <>
-              {/* view toggle */}
-              <div className="flex flex-wrap items-center justify-between gap-4">
+              {/* season summary */}
+              <div style={{ border: `1.5px solid ${C.ox}`, background: "#FFFDF8", padding: "clamp(20px,3vw,30px)" }}>
+                <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.terra }}>Your season at a glance</div>
+                <div className="mt-4 flex flex-wrap gap-x-10 gap-y-4">
+                  {[
+                    [prodCount, prodCount === 1 ? "production" : "productions"],
+                    [eventCount, eventCount === 1 ? "fundraising event" : "fundraising events"],
+                    [calendar.length, "actions"],
+                    [crunch.length, crunch.length === 1 ? "heavy week" : "heavy weeks"],
+                  ].map(([n, label]) => (
+                    <div key={label as string}>
+                      <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(28px,3.4vw,38px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1 }}>{n}</div>
+                      <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", color: C.ox, opacity: 0.8, marginTop: 4 }}>{label}</div>
+                    </div>
+                  ))}
+                </div>
+                {busiest && (
+                  <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "clamp(17px,2vw,21px)", lineHeight: 1.5, color: C.ox, marginTop: 20 }}>
+                    Your busiest stretch is {fmtLong(busiest.start)} through {fmtLong(busiest.end)}.
+                  </p>
+                )}
+              </div>
+
+              {/* view toggle + count */}
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex flex-wrap gap-2">
                   {([["everything", "Everything"], ["workstream", "By workstream"], ["crunch", "The crunch"]] as const).map(([key, label]) => (
                     <button
                       key={key}
                       type="button"
                       onClick={() => setView(key)}
-                      style={{
-                        fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", padding: "9px 18px", borderRadius: 40,
-                        border: `1.5px solid ${C.ox}`,
-                        background: view === key ? C.ox : "transparent",
-                        color: view === key ? C.cream : C.ox,
-                      }}
+                      style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", padding: "9px 18px", borderRadius: 40, border: `1.5px solid ${C.ox}`, background: view === key ? C.ox : "transparent", color: view === key ? C.cream : C.ox }}
                       className="transition-opacity hover:opacity-80"
                     >
                       {label}
@@ -232,13 +302,13 @@ export function SeasonPlanner() {
                   ))}
                 </div>
                 <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: C.ox, opacity: 0.7 }}>
-                  {calendar.length} dates across your year
+                  {calendar.length} actions across your season
                 </div>
               </div>
 
               {/* by-workstream lane filter */}
               {view === "workstream" && (
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-2">
                   {(["development", "marketing", "events"] as Lane[]).map((lane) => {
                     const on = lanesOn[lane];
                     const c = LANE_COLOR[lane];
@@ -248,11 +318,7 @@ export function SeasonPlanner() {
                         type="button"
                         aria-pressed={on}
                         onClick={() => setLanesOn((s) => ({ ...s, [lane]: !s[lane] }))}
-                        style={{
-                          fontFamily: SANS, fontSize: 12, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase",
-                          padding: "7px 14px", borderRadius: 40, border: `1.5px solid ${c.bg}`,
-                          background: on ? c.bg : "transparent", color: on ? c.fg : c.bg, opacity: on ? 1 : 0.55,
-                        }}
+                        style={{ fontFamily: SANS, fontSize: 12, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", padding: "7px 14px", borderRadius: 40, border: `1.5px solid ${c.bg}`, background: on ? c.bg : "transparent", color: on ? c.fg : c.bg, opacity: on ? 1 : 0.55 }}
                         className="transition-opacity"
                       >
                         {LANE_LABEL[lane]} · {counts[lane]}
@@ -265,13 +331,13 @@ export function SeasonPlanner() {
               {/* the crunch */}
               {view === "crunch" ? (
                 <div className="mt-7">
-                  <p style={{ ...P, marginBottom: 20, maxWidth: 680 }}>
-                    Weeks where three or more deadlines land across at least two kits. Decide now what can move, what can be drafted early, and what needs another owner.
+                  <p style={{ ...P, marginBottom: 20, maxWidth: 700 }}>
+                    Weeks where the load piles up across at least two kits, weighted so an opening night counts for more than a reminder. Each one comes with what to do about it.
                   </p>
                   {crunch.length === 0 ? (
                     <div style={{ border: `1.5px solid ${C.ox}`, padding: "clamp(20px,3vw,32px)", background: "#FFFDF8" }}>
                       <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 20, color: C.ox }}>No pileups yet.</div>
-                      <p style={{ ...P, marginTop: 8 }}>Nothing stacks three-deep across kits. Add the rest of your dates, or enjoy the room.</p>
+                      <p style={{ ...P, marginTop: 8 }}>Nothing stacks up heavy enough across kits. Add the rest of your dates, or enjoy the room.</p>
                     </div>
                   ) : (
                     <div className="flex flex-col gap-4">
@@ -289,34 +355,16 @@ export function SeasonPlanner() {
                               </li>
                             ))}
                           </ul>
+                          <div style={{ borderTop: `1.5px solid ${C.ox}`, background: C.peachSoft, padding: "12px 18px", fontFamily: SERIF, fontStyle: "italic", fontSize: 16, lineHeight: 1.5, color: C.ox }}>
+                            {w.advice}
+                          </div>
                         </div>
                       ))}
                     </div>
                   )}
                 </div>
               ) : (
-                /* everything / by-workstream table */
-                <div className="mt-6 overflow-x-auto" style={{ border: `1.5px solid ${C.ox}` }}>
-                  <table style={{ width: "100%", borderCollapse: "collapse", background: "#FFFDF8" }}>
-                    <thead>
-                      <tr style={{ background: C.ox, color: C.cream }}>
-                        {["Date", "What happens", "Kit", "Why"].map((h) => (
-                          <th key={h} style={{ textAlign: "left", fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", padding: "11px 16px", whiteSpace: "nowrap" }}>{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {visible.map((m, i) => (
-                        <tr key={i} style={{ borderTop: `1px solid rgba(140,27,18,0.16)` }}>
-                          <td style={{ fontFamily: SANS, fontSize: 13, color: C.terra, padding: "12px 16px", whiteSpace: "nowrap", verticalAlign: "top" }}>{fmtDate(m.date)}</td>
-                          <td style={{ fontSize: 15, lineHeight: 1.45, color: C.ox, padding: "12px 16px", minWidth: 220, verticalAlign: "top" }}>{m.what}</td>
-                          <td style={{ padding: "12px 16px", verticalAlign: "top" }}><LanePill lane={m.lane} /></td>
-                          <td style={{ fontSize: 14, lineHeight: 1.45, color: C.ox, opacity: 0.8, padding: "12px 16px", minWidth: 180, verticalAlign: "top" }}>{m.why}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                <div className="mt-6">{timeline()}</div>
               )}
             </>
           )}
