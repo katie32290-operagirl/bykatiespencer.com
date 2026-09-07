@@ -3,6 +3,7 @@
 import { Fragment, useMemo, useState, useEffect } from "react";
 import { Nav, Footer, Shell, PAD, C, SANS, SERIF } from "./chrome";
 import { parseText, parseIcs, guessKind, collapseConsecutive } from "@/lib/season-import";
+import { ga, DoorLink } from "./toolkit-buttons";
 import {
   buildCalendar,
   heavyWeeks,
@@ -509,6 +510,40 @@ export function SeasonPlanner() {
               <p style={{ fontSize: 15, lineHeight: 1.65, color: C.ox, marginTop: 8 }}>{b}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* GreenRoom — the one commercial moment on the page, at peak intent */}
+      <div className={`${PAD} py-[clamp(56px,8vw,88px)]`} style={{ background: C.ox }}>
+        <div className="mx-auto max-w-[820px]">
+          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.peri }}>Built by the same person</div>
+          <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(26px,3.6vw,38px)", letterSpacing: "-.02em", color: C.cream, lineHeight: 1.05, marginTop: 12 }}>
+            The calendar is the easy half.
+          </h2>
+          <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: C.cream, marginTop: 18, maxWidth: 660 }}>
+            You just watched a year land on one desk. This page can tell you when it hits. It cannot tell you who gave last year, who came to the gala and never came back, or who is owed a thank-you by Friday.
+          </p>
+          <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: C.cream, marginTop: 14, maxWidth: 660 }}>
+            That is the forty-eight hour handoff above, and it is the part a spreadsheet quietly stops doing somewhere around the second event. GreenRoom is the CRM I built for it. It runs the same five stages the kit teaches, Identify through Steward, so the ladder you just learned is the one you work in.
+          </p>
+          <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: C.cream, marginTop: 14 }}>
+            Free up to 500 active accounts.
+          </p>
+          <div className="mt-7 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-7">
+            <a
+              href="https://app.greenroomcrm.com/signup?utm_source=bykatiespencer&utm_medium=referral&utm_campaign=season-planner"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => ga("season_greenroom_start")}
+              style={{ fontFamily: SANS, fontSize: 15, color: C.ox, background: C.cream, padding: "12px 26px", borderRadius: 40, textDecoration: "none", display: "inline-block" }}
+              className="transition-opacity hover:opacity-90"
+            >
+              Start free
+            </a>
+            <DoorLink href="https://greenroomcrm.com?utm_source=bykatiespencer&utm_medium=referral&utm_campaign=season-planner" event="season_greenroom_learn" external tone="peri">
+              See how it works →
+            </DoorLink>
+          </div>
         </div>
       </div>
 

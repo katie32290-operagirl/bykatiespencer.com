@@ -5,7 +5,7 @@ import Link from "next/link";
 import { C, SANS } from "./tokens";
 
 /* Fire a GA4 event if gtag is present. */
-function ga(event: string, params?: Record<string, string>) {
+export function ga(event: string, params?: Record<string, string>) {
   if (typeof window !== "undefined") {
     const w = window as unknown as { gtag?: (...a: unknown[]) => void };
     w.gtag?.("event", event, params ?? {});
@@ -66,14 +66,18 @@ export function DoorLink({
   href,
   event,
   external = false,
+  tone = "terra",
   children,
 }: {
   href: string;
   event: string;
   external?: boolean;
+  /** terra reads on cream; peri reads on the oxblood band. */
+  tone?: "terra" | "peri" | "cream";
   children: React.ReactNode;
 }) {
-  const style: React.CSSProperties = { fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.terra };
+  const color = tone === "peri" ? C.peri : tone === "cream" ? C.cream : C.terra;
+  const style: React.CSSProperties = { fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color };
   const onClick = () => ga(event);
   return external ? (
     <a href={href} target="_blank" rel="noopener noreferrer" onClick={onClick} style={style} className="transition-opacity hover:opacity-60">
