@@ -181,7 +181,12 @@ export function SeasonPlanner() {
                   )}
                   <tr style={{ borderTop: `1px solid rgba(140,27,18,0.14)` }}>
                     <td style={{ fontFamily: SANS, fontSize: 13, color: C.terra, padding: "12px 16px", whiteSpace: "nowrap", verticalAlign: "top" }}>{fmtDate(m.date)}</td>
-                    <td style={{ fontSize: 15, lineHeight: 1.45, color: C.ox, padding: "12px 16px", minWidth: 220, verticalAlign: "top" }}>{m.what}</td>
+                    <td style={{ fontSize: 15, lineHeight: 1.45, color: C.ox, padding: "12px 16px", minWidth: 220, verticalAlign: "top" }}>
+                      {m.what}
+                      {m.warning && (
+                        <span style={{ display: "block", fontFamily: SANS, fontSize: 12, lineHeight: 1.45, color: C.terra, marginTop: 5 }}>⚠ {m.warning}</span>
+                      )}
+                    </td>
                     <td style={{ padding: "12px 16px", verticalAlign: "top" }}><LanePill lane={m.lane} onClick={() => filterToLane(m.lane)} /></td>
                     <td style={{ fontSize: 14, lineHeight: 1.45, color: C.ox, opacity: 0.8, padding: "12px 16px", minWidth: 180, verticalAlign: "top" }}>{m.why}</td>
                   </tr>
@@ -416,6 +421,9 @@ export function SeasonPlanner() {
                   {calendar.length} actions across your season
                 </div>
               </div>
+              <p style={{ fontFamily: SANS, fontSize: 12, lineHeight: 1.5, color: C.ox, opacity: 0.6, marginTop: 8 }}>
+                A ⚠ marks a date that lands on a holiday that would hurt it — mail on a postal day, a donor ask over the winter break. US federal calendar only.
+              </p>
 
               {/* by-workstream lane filter */}
               {view === "workstream" && (
@@ -468,6 +476,9 @@ export function SeasonPlanner() {
                           </ul>
                           <div style={{ borderTop: `1.5px solid ${C.ox}`, background: C.peachSoft, padding: "12px 18px", fontFamily: SERIF, fontStyle: "italic", fontSize: 16, lineHeight: 1.5, color: C.ox }}>
                             {w.advice}
+                            {w.closure && (
+                              <span style={{ display: "block", fontFamily: SANS, fontStyle: "normal", fontSize: 13, color: C.terra, marginTop: 6 }}>⚠ And it runs against {w.closure} — the genuinely bad case. Move what you can out of this week.</span>
+                            )}
                           </div>
                         </div>
                       ))}

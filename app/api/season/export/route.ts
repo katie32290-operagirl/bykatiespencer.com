@@ -96,6 +96,7 @@ export async function POST(request: Request) {
     what: m.what,
     lane: LANE_LABEL[m.lane],
     why: m.why,
+    note: m.warning,
   }));
 
   const title = lanes

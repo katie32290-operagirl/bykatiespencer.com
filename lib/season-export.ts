@@ -7,7 +7,7 @@
  * dragging the exports along with it.
  */
 
-export type ExportRow = { date: Date; what: string; lane: string; why: string };
+export type ExportRow = { date: Date; what: string; lane: string; why: string; note?: string };
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const ymd = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
@@ -36,9 +36,9 @@ function rowId(r: ExportRow): string {
  */
 export function toCsv(rows: ExportRow[]): string {
   const esc = (v: string) => `"${String(v).replace(/"/g, '""')}"`;
-  const lines = [["Date", "Day", "What happens", "Kit", "Why"].map(esc).join(",")];
+  const lines = [["Date", "Day", "What happens", "Kit", "Why", "Heads up"].map(esc).join(",")];
   for (const r of rows) {
-    lines.push([ymd(r.date), dayName(r.date), r.what, r.lane, r.why].map(esc).join(","));
+    lines.push([ymd(r.date), dayName(r.date), r.what, r.lane, r.why, r.note ?? ""].map(esc).join(","));
   }
   return `﻿${lines.join("\r\n")}\r\n`;
 }
