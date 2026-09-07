@@ -15,7 +15,9 @@ import {
   type Lane,
   type Production,
   type FundEvent,
+  type SeasonInput,
 } from "./season-logic";
+import { SeasonExport } from "./season-export";
 
 /**
  * /season-planner — "Your Season, Built for You." The bundle tool.
@@ -71,18 +73,18 @@ export function SeasonPlanner() {
 
   useEffect(() => setMounted(true), []);
 
-  const calendar = useMemo(
-    () =>
-      buildCalendar({
-        seasonStartMonth: seasonStartMonth === "" ? null : Number(seasonStartMonth),
-        announcement,
-        onSale,
-        fiscalYearEndMonth: fiscalYearEndMonth === "" ? null : Number(fiscalYearEndMonth),
-        productions,
-        events,
-      }),
+  const seasonInput = useMemo<SeasonInput>(
+    () => ({
+      seasonStartMonth: seasonStartMonth === "" ? null : Number(seasonStartMonth),
+      announcement,
+      onSale,
+      fiscalYearEndMonth: fiscalYearEndMonth === "" ? null : Number(fiscalYearEndMonth),
+      productions,
+      events,
+    }),
     [seasonStartMonth, announcement, onSale, fiscalYearEndMonth, productions, events],
   );
+  const calendar = useMemo(() => buildCalendar(seasonInput), [seasonInput]);
   const crunch = useMemo(() => heavyWeeks(calendar), [calendar]);
   const busiest = useMemo(() => busiestStretch(calendar), [calendar]);
 
@@ -366,6 +368,9 @@ export function SeasonPlanner() {
               ) : (
                 <div className="mt-6">{timeline()}</div>
               )}
+
+              {/* gated exports — self-hides when the calendar is empty */}
+              <SeasonExport input={seasonInput} count={calendar.length} />
             </>
           )}
         </div>
