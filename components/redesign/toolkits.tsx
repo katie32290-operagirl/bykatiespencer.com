@@ -39,6 +39,13 @@ const QUESTIONS: [string, string][] = [
   ["Do I need anything?", "A free Google account for the workbooks. They only work in Google Sheets, so open them there, not in Excel."],
 ];
 
+const BUNDLE_INSIDE: [string, string][] = [
+  ["The Small-Shop Development Toolkit", "Run a real donor program without a development team."],
+  ["The Arts Marketing Kit", "Announce and sell a season as an invitation, not a listing."],
+  ["The Fundraising Event Toolkit", "Plan an event that nets money, not just goodwill."],
+  ["The Season Year at a Glance planner", "The interactive tool that puts all three calendars on one page and finds the weeks they collide. Only in the bundle."],
+];
+
 export function ToolkitsRedesign() {
   return (
     <Shell ground="terra">
@@ -195,16 +202,47 @@ export function ToolkitsRedesign() {
         </div>
       </div>
 
-      {/* 4 · the series, complete — periwinkle */}
-      <div className={`${PAD} py-[clamp(56px,8vw,80px)] text-center`} style={{ background: C.peri }}>
-        <div className="mx-auto max-w-[820px]">
-          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.ox }}>The series</div>
-          <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(28px,3.6vw,40px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1.05, marginTop: 12 }}>
-            Three toolkits, one buyer, one season. All three are here now.
-          </div>
-          <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 18, lineHeight: 1.55, color: C.ox, marginTop: 16, maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}>
-            Built to be used together, bought one at a time. Start with the one the season needs first.
+      {/* 4 · the bundle — periwinkle */}
+      <div className={`${PAD} py-[clamp(64px,9vw,96px)]`} style={{ background: C.peri }}>
+        <div className="mx-auto max-w-[900px]">
+          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.ox }}>The bundle · Best value</div>
+          <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(30px,4.4vw,48px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1.02, marginTop: 12 }}>
+            The Small Arts Org Operating Kit
+          </h2>
+          <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "clamp(19px,2.2vw,25px)", color: C.ox, marginTop: 12, maxWidth: 640 }}>
+            Three jobs, one person, one system. All three toolkits, plus the part that only exists here.
           </p>
+
+          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <div className="flex items-baseline gap-3">
+              <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 44, letterSpacing: "-.02em", color: C.ox }}>$99</span>
+              <span style={{ fontFamily: SANS, fontSize: 20, color: C.ox, opacity: 0.6, textDecoration: "line-through" }}>$147</span>
+              <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".08em", textTransform: "uppercase", color: C.ox }}>Save $48</span>
+            </div>
+            <BuyButton productId="6FiAt" productName="operating_kit_bundle" />
+            <SeeInsideLink productId="6FiAt" productName="operating_kit_bundle" />
+          </div>
+
+          <div className="mt-9 grid gap-x-10 gap-y-5 sm:grid-cols-2" style={{ borderTop: `1.5px solid ${C.ox}`, paddingTop: 24 }}>
+            {BUNDLE_INSIDE.map(([t, b]) => (
+              <div key={t}>
+                <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 16, color: C.ox }}>{t}.</span>{" "}
+                <span style={{ fontSize: 15, lineHeight: 1.55, color: C.ox }}>{b}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-9" style={{ background: C.cream, border: `1.5px solid ${C.ox}`, padding: "clamp(18px,2.6vw,26px)" }}>
+            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.terra }}>The page that only exists in the bundle</div>
+            <p style={{ fontSize: 16, lineHeight: 1.6, color: C.ox, marginTop: 8, maxWidth: 620 }}>
+              Put in your season and the <b>Season Year at a Glance</b> planner merges the donor rhythm, the marketing timeline, and the event countdowns into one calendar, then shows you the weeks they collide. Free to try; the download comes with the bundle.
+            </p>
+            <div className="mt-4">
+              <Link href="/season-planner" style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".06em", textTransform: "uppercase", color: C.terra }} className="transition-opacity hover:opacity-60">
+                Try the planner →
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
