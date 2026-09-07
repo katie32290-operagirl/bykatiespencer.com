@@ -7,15 +7,14 @@ import { ga, DoorLink } from "./toolkit-buttons";
 import {
   buildCalendar,
   heavyWeeks,
-  busiestStretch,
   parseLocal,
   fmtDate,
-  fmtLong,
   fmtMonth,
   fmtWeek,
   monthKey,
   LANE_LABEL,
   type Lane,
+  type Milestone,
   type Production,
   type FundEvent,
   type SeasonInput,
@@ -46,6 +45,24 @@ const labelStyle: React.CSSProperties = { fontFamily: SANS, fontSize: 11, letter
 const H2: React.CSSProperties = { fontFamily: SANS, fontWeight: 700, fontSize: "clamp(24px,3.2vw,34px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1.05 };
 const P: React.CSSProperties = { fontSize: 17, lineHeight: 1.7, color: C.ox };
 
+/** A worked season — loaded on first visit and by "Load a worked season",
+ *  so the page arrives alive rather than blank. */
+const EXAMPLE = {
+  importText: "La Boheme, October 15 2027\nThe Magic Flute, February 11 2028\nFall Gala, November 14 2027\nSpring Benefit, April 22 2028",
+  seasonStartMonth: "6", // July
+  fiscalYearEndMonth: "5", // June
+  announcement: "2027-07-12",
+  onSale: "2027-08-16",
+  productions: [
+    { name: "La Boheme", opening: "2027-10-15", closing: "2027-10-17" },
+    { name: "The Magic Flute", opening: "2028-02-11", closing: "2028-02-13" },
+  ] as Production[],
+  events: [
+    { name: "Fall Gala", date: "2027-11-14" },
+    { name: "Spring Benefit", date: "2028-04-22" },
+  ] as FundEvent[],
+};
+
 function addMonths(d: Date, n: number): Date {
   const c = new Date(d);
   c.setMonth(c.getMonth() + n);
@@ -73,81 +90,89 @@ function LanePill({ lane, onClick }: { lane: Lane; onClick?: () => void }) {
   return <span style={style}>{LANE_LABEL[lane]}</span>;
 }
 
-/* ---- the live 12-month preview -------------------------------------- */
+/* ---- the live "Your year" glance ------------------------------------ */
 
-type PreviewType = "production" | "fundraiser" | "announce" | "onsale";
-const PREVIEW_STYLE: Record<PreviewType, { bg: string; fg: string; label: string }> = {
-  production: { bg: C.terra, fg: C.cream, label: "Show" },
-  fundraiser: { bg: C.peri, fg: C.ox, label: "Fundraiser" },
-  announce: { bg: C.ox, fg: C.cream, label: "Announce" },
-  onsale: { bg: C.peachSoft, fg: C.ox, label: "On sale" },
-};
 const MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const shortRange = (start: Date, end: Date | null) => {
-  const md = (d: Date) => `${MONTH_ABBR[d.getMonth()]} ${d.getDate()}`;
-  if (end && end.getTime() > start.getTime()) {
-    return end.getMonth() === start.getMonth() ? `${md(start)}–${end.getDate()}` : `${md(start)} – ${md(end)}`;
-  }
-  return md(start);
+
+/** Each kit lane, as it reads at a glance: colour + marker + plain-language name. */
+const GLANCE: Record<Lane, { color: string; dot: boolean; label: string }> = {
+  marketing: { color: C.terra, dot: false, label: "Production" },
+  events: { color: C.peri, dot: false, label: "Event" },
+  development: { color: C.ox, dot: true, label: "Donor rhythm" },
 };
+const GLANCE_ORDER: Lane[] = ["marketing", "events", "development"];
 
-function SeasonPreview({ productions, events, announcement, onSale, startMonth }: {
-  productions: Production[];
-  events: FundEvent[];
-  announcement: string;
-  onSale: string;
-  startMonth: number | null;
-}) {
-  type PItem = { date: Date; end: Date | null; label: string; type: PreviewType };
-  const items: PItem[] = [];
-  productions.forEach((p, i) => { const o = parseLocal(p.opening); if (o) items.push({ date: o, end: parseLocal(p.closing), label: p.name.trim() || `Show ${i + 1}`, type: "production" }); });
-  events.forEach((e, i) => { const d = parseLocal(e.date); if (d) items.push({ date: d, end: null, label: e.name.trim() || `Event ${i + 1}`, type: "fundraiser" }); });
-  const a = parseLocal(announcement); if (a) items.push({ date: a, end: null, label: "Season announcement", type: "announce" });
-  const s = parseLocal(onSale); if (s) items.push({ date: s, end: null, label: "Single tickets on sale", type: "onsale" });
-
-  const hasData = items.length > 0;
+/**
+ * The computed calendar, grouped into the twelve months of the season and
+ * flagged where kits collide. This is the whole point of the tool made visible:
+ * every ramp, countdown, and handoff the engine derives, sorted onto one year.
+ */
+function YearGlance({ calendar, productions, events, startMonth }: { calendar: Milestone[]; productions: Production[]; events: FundEvent[]; startMonth: number | null }) {
+  const hasData = calendar.length > 0;
+  // Anchor the window to the earliest real production/event, not the earliest
+  // milestone — pre-season ramps can precede the season-start month.
   const anchorDates = [
     ...productions.map((p) => parseLocal(p.opening)),
     ...events.map((e) => parseLocal(e.date)),
   ].filter((d): d is Date => !!d);
-  const anchor = anchorDates.length ? anchorDates.reduce((x, y) => (x < y ? x : y)) : (a ?? s ?? new Date());
+  const anchor = anchorDates.length ? anchorDates.reduce((x, y) => (x < y ? x : y)) : hasData ? calendar[0].date : new Date();
   const sm = startMonth ?? anchor.getMonth();
   let seasonStart = new Date(anchor.getFullYear(), sm, 1);
   if (seasonStart > anchor) seasonStart = new Date(anchor.getFullYear() - 1, sm, 1);
   const months = Array.from({ length: 12 }, (_, k) => addMonths(seasonStart, k));
+  const inWindow = (d: Date) => months.some((mo) => mo.getFullYear() === d.getFullYear() && mo.getMonth() === d.getMonth());
+  const outside = hasData ? calendar.filter((m) => !inWindow(m.date)).length : 0;
+
+  const marker = (l: Lane) => (
+    <span style={{ width: 9, height: 9, flex: "0 0 auto", background: GLANCE[l].color, borderRadius: GLANCE[l].dot ? "50%" : 0 }} />
+  );
 
   return (
-    <div style={{ background: "#FFFDF8", border: `1.5px solid ${C.ox}`, padding: "clamp(16px,2.4vw,24px)" }}>
-      {!hasData && (
-        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 16, lineHeight: 1.5, color: C.ox, opacity: 0.7, marginBottom: 14 }}>
-          Start with a few dates and your year will take shape here.
+    <div style={{ background: C.peri, padding: "clamp(14px,2vw,22px)" }}>
+      <div style={{ background: "#FFFDF8" }}>
+        <div className="flex flex-wrap gap-x-5 gap-y-2" style={{ padding: "clamp(14px,2vw,20px) clamp(14px,2vw,20px) 0", fontFamily: SANS, fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: C.ox }}>
+          {GLANCE_ORDER.map((l) => (
+            <span key={l} className="flex items-center gap-2">{marker(l)}{GLANCE[l].label}</span>
+          ))}
+        </div>
+        <div style={{ maxHeight: "min(74vh, 860px)", overflow: "auto", padding: "clamp(14px,2vw,20px)" }}>
+          {!hasData && (
+            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 16, lineHeight: 1.5, color: SLATE, margin: 0 }}>
+              Start with a few dates and your year will take shape here. It grows as you fill it in.
+            </p>
+          )}
+          {hasData && months.map((mo, k) => {
+            const its = calendar.filter((m) => m.date.getFullYear() === mo.getFullYear() && m.date.getMonth() === mo.getMonth());
+            let collision = false;
+            for (let a = 0; a < its.length && !collision; a++) {
+              for (let b = a + 1; b < its.length; b++) {
+                const gap = Math.abs(its[b].date.getTime() - its[a].date.getTime()) / 86400000;
+                if (gap <= 10 && its[a].lane !== its[b].lane) { collision = true; break; }
+              }
+            }
+            return (
+              <div key={k} style={{ borderTop: k ? "1.5px solid #d9cfc9" : undefined, padding: "14px 0 4px" }}>
+                <div className="mb-2.5 flex items-baseline gap-3">
+                  <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: C.ox, minWidth: 62 }}>{SHORT[mo.getMonth()]} {String(mo.getFullYear()).slice(2)}</span>
+                  {collision && <span style={{ fontFamily: SANS, fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: C.terra }}>Collision</span>}
+                </div>
+                {its.map((m, j) => (
+                  <div key={j} className="flex items-baseline gap-3" style={{ padding: "5px 0 5px 62px" }}>
+                    <span style={{ fontFamily: SANS, fontSize: 13, color: SLATE, minWidth: 48, flex: "0 0 auto" }}>{MONTH_ABBR[m.date.getMonth()]} {m.date.getDate()}</span>
+                    <span style={{ marginTop: 6 }}>{marker(m.lane)}</span>
+                    <span style={{ fontSize: 14, lineHeight: 1.5, color: C.ox }}>{m.what}</span>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      {outside > 0 && (
+        <p style={{ margin: "12px 0 0", fontFamily: SANS, fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: C.ox }}>
+          {outside} dated {outside === 1 ? "move" : "moves"} fall outside this 12-month window
         </p>
       )}
-      <div className="flex flex-col">
-        {months.map((mo, k) => {
-          const its = items
-            .filter((it) => it.date.getFullYear() === mo.getFullYear() && it.date.getMonth() === mo.getMonth())
-            .sort((x, y) => x.date.getTime() - y.date.getTime());
-          const active = its.length > 0;
-          return (
-            <div key={k} className="grid grid-cols-[46px_1fr] gap-3" style={{ borderTop: k ? "1px solid rgba(140,27,18,0.1)" : undefined, padding: "9px 0", minHeight: 42 }}>
-              <div style={{ fontFamily: SANS, fontSize: 12, fontWeight: 700, letterSpacing: ".08em", color: active ? C.terra : "rgba(140,27,18,0.32)", paddingTop: 2 }}>{SHORT[mo.getMonth()]}</div>
-              <div className="flex flex-col gap-1.5">
-                {its.map((it, j) => {
-                  const st = PREVIEW_STYLE[it.type];
-                  return (
-                    <div key={j} className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                      <span style={{ fontFamily: SANS, fontSize: 10, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", color: st.fg, background: st.bg, padding: "2px 7px", borderRadius: 40 }}>{st.label}</span>
-                      <span style={{ fontSize: 14, lineHeight: 1.35, color: C.ox }}>{it.label}</span>
-                      <span style={{ fontFamily: SANS, fontSize: 12, color: C.terra }}>{shortRange(it.date, it.end)}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </div>
     </div>
   );
 }
@@ -173,7 +198,24 @@ export function SeasonPlanner() {
   const [importStatus, setImportStatus] = useState("");
   const [dragging, setDragging] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  const loadExample = () => {
+    setImportText(EXAMPLE.importText);
+    setReview(null);
+    setImportNote("");
+    setImportStatus("");
+    setSeasonStartMonth(EXAMPLE.seasonStartMonth);
+    setFiscalYearEndMonth(EXAMPLE.fiscalYearEndMonth);
+    setAnnouncement(EXAMPLE.announcement);
+    setOnSale(EXAMPLE.onSale);
+    setProductions(EXAMPLE.productions.map((p) => ({ ...p })));
+    setEvents(EXAMPLE.events.map((e) => ({ ...e })));
+  };
+
+  useEffect(() => {
+    setMounted(true);
+    loadExample();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const ingest = (items: { name: string; start: Date; end: Date | null }[]) => {
     setImportStatus("");
@@ -227,7 +269,6 @@ export function SeasonPlanner() {
   );
   const calendar = useMemo(() => buildCalendar(seasonInput), [seasonInput]);
   const crunch = useMemo(() => heavyWeeks(calendar), [calendar]);
-  const busiest = useMemo(() => busiestStretch(calendar), [calendar]);
 
   const visible = view === "workstream" ? calendar.filter((m) => lanesOn[m.lane]) : calendar;
   const counts = { development: 0, marketing: 0, events: 0 } as Record<Lane, number>;
@@ -385,18 +426,19 @@ export function SeasonPlanner() {
                         style={{ marginTop: 14, fontFamily: SANS, fontSize: 14, lineHeight: 1.5, resize: "vertical" }}
                       />
                       <div className="mt-3 flex flex-wrap items-center gap-3">
-                        <button type="button" onClick={() => ingest(parseText(importText))} disabled={!importText.trim()} style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: C.peach, border: `1.5px solid ${C.ox}`, padding: "11px 24px", borderRadius: 40, opacity: importText.trim() ? 1 : 0.4, cursor: importText.trim() ? "pointer" : "not-allowed" }} className="transition-opacity hover:opacity-90">Use these dates</button>
-                        <label
-                          onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
-                          onDragLeave={() => setDragging(false)}
-                          onDrop={(e) => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files?.[0]; if (f) readFile(f); }}
-                          style={{ fontFamily: SANS, fontSize: 13, color: C.ox, border: `1.5px solid ${C.ox}`, borderRadius: 40, padding: "10px 18px", cursor: "pointer", background: dragging ? C.peachSoft : "transparent" }}
-                          className="transition-colors"
-                        >
-                          Upload .ics or .csv
-                          <input type="file" accept=".ics,.csv,text/calendar,text/csv" onChange={(e) => { const f = e.target.files?.[0]; if (f) readFile(f); e.target.value = ""; }} style={{ display: "none" }} />
-                        </label>
+                        <button type="button" onClick={() => ingest(parseText(importText))} disabled={!importText.trim()} style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: C.peri, border: `1.5px solid ${C.ox}`, padding: "11px 24px", borderRadius: 40, opacity: importText.trim() ? 1 : 0.4, cursor: importText.trim() ? "pointer" : "not-allowed" }} className="transition-opacity hover:opacity-90">Use these dates</button>
+                        <button type="button" onClick={loadExample} style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: "transparent", border: `1.5px solid ${C.ox}`, padding: "11px 24px", borderRadius: 40 }} className="transition-opacity hover:opacity-70">Load a worked season</button>
                       </div>
+                      <label
+                        onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+                        onDragLeave={() => setDragging(false)}
+                        onDrop={(e) => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files?.[0]; if (f) readFile(f); }}
+                        style={{ display: "inline-block", marginTop: 14, fontFamily: SANS, fontSize: 13, color: dragging ? C.terra : C.ox, textDecoration: "underline", textUnderlineOffset: 3, cursor: "pointer" }}
+                        className="transition-colors hover:opacity-70"
+                      >
+                        or upload a .ics or .csv file
+                        <input type="file" accept=".ics,.csv,text/calendar,text/csv" onChange={(e) => { const f = e.target.files?.[0]; if (f) readFile(f); e.target.value = ""; }} style={{ display: "none" }} />
+                      </label>
                       {importStatus && <p aria-live="polite" style={{ fontFamily: SANS, fontSize: 13, color: C.ox, opacity: 0.7, marginTop: 10 }}>{importStatus}</p>}
                       {importNote && <p role="alert" style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.5, color: C.terra, marginTop: 10 }}>{importNote}</p>}
                       <p style={{ fontFamily: SANS, fontSize: 12, lineHeight: 1.5, color: C.ox, opacity: 0.6, marginTop: 12 }}>Nothing is sent or saved. It all runs in your browser.</p>
@@ -406,7 +448,7 @@ export function SeasonPlanner() {
 
                 {/* 02 — anchors */}
                 <div className="mt-9"><SectionHead n="02" title="Check the anchors" /></div>
-                <div className="mt-4 flex flex-col gap-5">
+                <div className="mt-4 grid gap-5" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%,200px),1fr))" }}>
                   <div>
                     <label htmlFor="sp-start" style={labelStyle}>Season start month</label>
                     <select id="sp-start" className="sp-field" aria-invalid={needsMonth} value={seasonStartMonth} onChange={(e) => setSeasonStartMonth(e.target.value)}>
@@ -415,22 +457,20 @@ export function SeasonPlanner() {
                     </select>
                     {needsMonth && <p style={{ fontFamily: SANS, fontSize: 12.5, color: C.terra, marginTop: 6 }}>Choose a season start month to build the full year.</p>}
                   </div>
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="sp-ann" style={labelStyle}>Season announcement</label>
-                      <input id="sp-ann" className="sp-field" type="date" value={announcement} onChange={(e) => setAnnouncement(e.target.value)} />
-                    </div>
-                    <div>
-                      <label htmlFor="sp-onsale" style={labelStyle}>Single tickets on sale</label>
-                      <input id="sp-onsale" className="sp-field" type="date" value={onSale} onChange={(e) => setOnSale(e.target.value)} />
-                    </div>
-                  </div>
-                  <div style={{ opacity: 0.85 }}>
-                    <label htmlFor="sp-fiscal" style={{ ...labelStyle, opacity: 0.8 }}>Fiscal year ends <span style={{ textTransform: "none", letterSpacing: 0, fontStyle: "italic", opacity: 0.7 }}>optional</span></label>
-                    <select id="sp-fiscal" className="sp-field" value={fiscalYearEndMonth} onChange={(e) => setFiscalYearEndMonth(e.target.value)} style={{ maxWidth: 260 }}>
+                  <div>
+                    <label htmlFor="sp-fiscal" style={labelStyle}>Fiscal year ends</label>
+                    <select id="sp-fiscal" className="sp-field" value={fiscalYearEndMonth} onChange={(e) => setFiscalYearEndMonth(e.target.value)}>
                       <option value="">June (default)</option>
                       {MONTHS.map((m, i) => <option key={m} value={i}>{m}</option>)}
                     </select>
+                  </div>
+                  <div>
+                    <label htmlFor="sp-ann" style={labelStyle}>Season announcement</label>
+                    <input id="sp-ann" className="sp-field" type="date" value={announcement} onChange={(e) => setAnnouncement(e.target.value)} />
+                  </div>
+                  <div>
+                    <label htmlFor="sp-onsale" style={labelStyle}>Single tickets on sale</label>
+                    <input id="sp-onsale" className="sp-field" type="date" value={onSale} onChange={(e) => setOnSale(e.target.value)} />
                   </div>
                 </div>
 
@@ -439,28 +479,28 @@ export function SeasonPlanner() {
                 <div className="mt-5" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: SLATE }}>Your productions</div>
                 <div className="mt-3 flex flex-col gap-6">
                   {productions.map((p, i) => (
-                    <div key={i} style={{ borderLeft: `2px solid ${C.terra}`, paddingLeft: 14 }}>
-                      <div className="mb-2 flex items-center justify-between">
-                        <span style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".1em", color: C.terra }}>PRODUCTION {String(i + 1).padStart(2, "0")}</span>
+                    <div key={i} className="flex items-start gap-4">
+                      <span aria-hidden="true" style={{ width: 14, height: 14, background: C.terra, flex: "0 0 auto", marginTop: 30 }} />
+                      <div className="flex-1">
+                        <div className="grid gap-3.5 sm:grid-cols-[1fr_150px_150px]">
+                          <div>
+                            <label style={labelStyle}>Show name</label>
+                            <input className="sp-field" value={p.name} onChange={(e) => setProd(i, "name", e.target.value)} placeholder={`Show ${i + 1}`} />
+                          </div>
+                          <div>
+                            <label style={labelStyle}>Opening</label>
+                            <input className="sp-field" type="date" value={p.opening} onChange={(e) => setProd(i, "opening", e.target.value)} />
+                          </div>
+                          <div>
+                            <label style={labelStyle}>Closing</label>
+                            <input className="sp-field" type="date" aria-invalid={badCloses[i]} value={p.closing} onChange={(e) => setProd(i, "closing", e.target.value)} />
+                          </div>
+                        </div>
+                        {badCloses[i] && <p style={{ fontFamily: SANS, fontSize: 12.5, color: C.terra, marginTop: 6 }}>Closing date must be after opening date.</p>}
                         {productions.length > 1 && (
-                          <button type="button" onClick={() => setProductions((r) => r.filter((_, j) => j !== i))} aria-label={`Remove production ${i + 1}`} style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: C.ox, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 2 }} className="transition-opacity hover:opacity-60">Remove</button>
+                          <button type="button" onClick={() => setProductions((r) => r.filter((_, j) => j !== i))} aria-label={`Remove production ${i + 1}`} style={{ marginTop: 10, fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: SLATE, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 2 }} className="transition-opacity hover:opacity-60">Remove</button>
                         )}
                       </div>
-                      <div className="grid gap-3 sm:grid-cols-[1fr_150px_150px]">
-                        <div>
-                          <label style={labelStyle}>Show name</label>
-                          <input className="sp-field" value={p.name} onChange={(e) => setProd(i, "name", e.target.value)} placeholder={`Show ${i + 1}`} />
-                        </div>
-                        <div>
-                          <label style={labelStyle}>Opening</label>
-                          <input className="sp-field" type="date" value={p.opening} onChange={(e) => setProd(i, "opening", e.target.value)} />
-                        </div>
-                        <div>
-                          <label style={labelStyle}>Closing</label>
-                          <input className="sp-field" type="date" aria-invalid={badCloses[i]} value={p.closing} onChange={(e) => setProd(i, "closing", e.target.value)} />
-                        </div>
-                      </div>
-                      {badCloses[i] && <p style={{ fontFamily: SANS, fontSize: 12.5, color: C.terra, marginTop: 6 }}>Closing date must be after opening date.</p>}
                     </div>
                   ))}
                 </div>
@@ -471,22 +511,22 @@ export function SeasonPlanner() {
                 <div className="mt-8" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: SLATE }}>Your fundraising events</div>
                 <div className="mt-3 flex flex-col gap-6">
                   {events.map((ev, i) => (
-                    <div key={i} style={{ borderLeft: `2px solid ${C.peri}`, paddingLeft: 14 }}>
-                      <div className="mb-2 flex items-center justify-between">
-                        <span style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".1em", color: C.ox }}>EVENT {String(i + 1).padStart(2, "0")}</span>
+                    <div key={i} className="flex items-start gap-4">
+                      <span aria-hidden="true" style={{ width: 14, height: 14, background: C.peri, flex: "0 0 auto", marginTop: 30 }} />
+                      <div className="flex-1">
+                        <div className="grid gap-3.5 sm:grid-cols-[1fr_150px]">
+                          <div>
+                            <label style={labelStyle}>Event name</label>
+                            <input className="sp-field" value={ev.name} onChange={(e) => setEvt(i, "name", e.target.value)} placeholder={`Event ${i + 1}`} />
+                          </div>
+                          <div>
+                            <label style={labelStyle}>Event date</label>
+                            <input className="sp-field" type="date" value={ev.date} onChange={(e) => setEvt(i, "date", e.target.value)} />
+                          </div>
+                        </div>
                         {events.length > 1 && (
-                          <button type="button" onClick={() => setEvents((r) => r.filter((_, j) => j !== i))} aria-label={`Remove event ${i + 1}`} style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: C.ox, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 2 }} className="transition-opacity hover:opacity-60">Remove</button>
+                          <button type="button" onClick={() => setEvents((r) => r.filter((_, j) => j !== i))} aria-label={`Remove event ${i + 1}`} style={{ marginTop: 10, fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: SLATE, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 2 }} className="transition-opacity hover:opacity-60">Remove</button>
                         )}
-                      </div>
-                      <div className="grid gap-3 sm:grid-cols-[1fr_150px]">
-                        <div>
-                          <label style={labelStyle}>Event name</label>
-                          <input className="sp-field" value={ev.name} onChange={(e) => setEvt(i, "name", e.target.value)} placeholder={`Event ${i + 1}`} />
-                        </div>
-                        <div>
-                          <label style={labelStyle}>Event date</label>
-                          <input className="sp-field" type="date" value={ev.date} onChange={(e) => setEvt(i, "date", e.target.value)} />
-                        </div>
                       </div>
                     </div>
                   ))}
@@ -496,17 +536,18 @@ export function SeasonPlanner() {
                 </button>
               </div>
 
-              {/* RIGHT: the live preview (sticky on desktop) */}
+              {/* RIGHT: the live "Your year" glance (sticky on desktop) */}
               <div className="mt-10 lg:mt-0 lg:sticky lg:top-6">
-                <SectionHead n="04" title="Your year" />
-                <div className="mt-3">
-                  <SeasonPreview productions={productions} events={events} announcement={announcement} onSale={onSale} startMonth={seasonStartMonth === "" ? null : Number(seasonStartMonth)} />
+                <div className="flex items-baseline justify-between gap-4">
+                  <SectionHead n="04" title="Your year" />
+                  <span style={{ fontFamily: SANS, fontSize: 11, fontWeight: 600, letterSpacing: ".14em", textTransform: "uppercase", color: SLATE }}>{calendar.length ? `${calendar.length} dated moves` : "Nothing yet"}</span>
                 </div>
-                {calendar.length > 0 && (
-                  <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 15, lineHeight: 1.5, color: C.ox, marginTop: 12 }}>
-                    {calendar.length} actions across your season.{busiest ? ` Busiest stretch: ${fmtLong(busiest.start)} through ${fmtLong(busiest.end)}.` : ""}
-                  </p>
-                )}
+                <div className="mt-3">
+                  <YearGlance calendar={calendar} productions={productions} events={events} startMonth={seasonStartMonth === "" ? null : Number(seasonStartMonth)} />
+                </div>
+                <p style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.6, color: SLATE, marginTop: 14, maxWidth: "52ch" }}>
+                  Every dated line here is calculated from an anchor above. Move the anchor and the whole ramp moves with it.
+                </p>
               </div>
             </div>
           </div>
@@ -515,7 +556,7 @@ export function SeasonPlanner() {
           {calendar.length > 0 && (
             <div className={`${PAD} py-[clamp(40px,6vw,72px)]`} style={{ background: C.cream }}>
               <div className="mx-auto max-w-[1080px]">
-                <SectionHead n="04" title="Your year, sorted by date" />
+                <SectionHead n="05" title="Your year, sorted by date" />
 
                 <div className="mt-5" style={{ border: `1.5px solid ${C.ox}`, background: "#FFFDF8", padding: "clamp(20px,3vw,30px)" }}>
                   <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.terra }}>Your season at a glance</div>
