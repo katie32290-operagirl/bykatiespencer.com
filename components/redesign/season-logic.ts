@@ -115,11 +115,18 @@ export function buildCalendar(input: SeasonInput): Milestone[] {
   const announcement = parseLocal(input.announcement);
   const onSale = parseLocal(input.onSale);
 
-  const known = [announcement, onSale, ...productions.map((p) => p.opening), ...events.map((e) => e.date)].filter(
+  // Anchor the twelve-month season to the earliest thing that actually happens
+  // IN it: a production opening or an event. The announcement and on-sale dates
+  // are for selling the season and often belong to the season BEFORE it (you
+  // announce next year in February), so they generate their own milestones but
+  // must never choose the year. Fall back to announcement, then on-sale, only
+  // when there is nothing else to anchor to.
+  const anchors = [...productions.map((p) => p.opening), ...events.map((e) => e.date)].filter(
     (d): d is Date => !!d,
   );
-  if (known.length === 0) return [];
-  const earliest = known.reduce((a, b) => (a < b ? a : b));
+  const earliest =
+    anchors.length > 0 ? anchors.reduce((a, b) => (a < b ? a : b)) : (announcement ?? onSale);
+  if (!earliest) return [];
 
   const startMonth = input.seasonStartMonth ?? earliest.getMonth();
   let seasonStart = new Date(earliest.getFullYear(), startMonth, 1);
