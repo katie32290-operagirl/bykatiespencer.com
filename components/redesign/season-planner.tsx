@@ -2,6 +2,7 @@
 
 import { Fragment, useMemo, useState, useEffect } from "react";
 import { Nav, Footer, Shell, PAD, C, SANS, SERIF } from "./chrome";
+import { parseText, parseIcs, guessKind, collapseConsecutive } from "@/lib/season-import";
 import {
   buildCalendar,
   heavyWeeks,
@@ -71,7 +72,54 @@ export function SeasonPlanner() {
   const [view, setView] = useState<"everything" | "workstream" | "crunch">("everything");
   const [lanesOn, setLanesOn] = useState<Record<Lane, boolean>>({ development: true, marketing: true, events: true });
 
+  // Import door state.
+  type ReviewRow = { name: string; start: Date; end: Date | null; kind: "production" | "fundraiser" | "ignore" };
+  const [importText, setImportText] = useState("");
+  const [review, setReview] = useState<ReviewRow[] | null>(null);
+  const [importNote, setImportNote] = useState("");
+  const [dragging, setDragging] = useState(false);
+
   useEffect(() => setMounted(true), []);
+
+  const iso = (d: Date) => {
+    const p = (n: number) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+  };
+  const ingest = (items: { name: string; start: Date; end: Date | null }[]) => {
+    const collapsed = collapseConsecutive(items);
+    if (collapsed.length === 0) {
+      setImportNote("I couldn't find any dated rows in that. Check the format, or just fill in the form below.");
+      setReview(null);
+      return;
+    }
+    setImportNote("");
+    setReview(collapsed.map((it) => ({ ...it, kind: guessKind(it.name) })));
+  };
+  const readFile = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const text = String(reader.result ?? "");
+      const isIcs = /\.ics$/i.test(file.name) || /BEGIN:VCALENDAR/i.test(text);
+      ingest(isIcs ? parseIcs(text) : parseText(text));
+    };
+    reader.readAsText(file);
+  };
+  const applyReview = () => {
+    if (!review) return;
+    const newProds: Production[] = review.filter((r) => r.kind === "production").map((r) => ({ name: r.name, opening: iso(r.start), closing: r.end ? iso(r.end) : "" }));
+    const newEvents: FundEvent[] = review.filter((r) => r.kind === "fundraiser").map((r) => ({ name: r.name, date: iso(r.start) }));
+    const keptProds = productions.filter((p) => p.name.trim() || p.opening || p.closing);
+    const keptEvents = events.filter((e) => e.name.trim() || e.date);
+    const mergedProds = [...keptProds, ...newProds];
+    const mergedEvents = [...keptEvents, ...newEvents];
+    setProductions(mergedProds.length ? mergedProds : [{ name: "", opening: "", closing: "" }]);
+    setEvents(mergedEvents.length ? mergedEvents : [{ name: "", date: "" }]);
+    setReview(null);
+    setImportText("");
+    setImportNote("");
+  };
+  const setReviewRow = (i: number, patch: Partial<ReviewRow>) =>
+    setReview((rows) => (rows ? rows.map((r, j) => (j === i ? { ...r, ...patch } : r)) : rows));
 
   const seasonInput = useMemo<SeasonInput>(
     () => ({
@@ -170,6 +218,67 @@ export function SeasonPlanner() {
       {mounted && (
         <div className={`${PAD} py-[clamp(28px,4vw,44px)]`} style={{ background: C.peri }}>
           <div className="mx-auto max-w-[900px]">
+            {/* import door: paste, drop a file, or enter by hand */}
+            <div style={{ background: "#FFFDF8", border: `1.5px solid ${C.ox}`, padding: "clamp(18px,2.6vw,26px)", marginBottom: 28 }}>
+              {review ? (
+                <>
+                  <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, color: C.ox }}>Here&rsquo;s what I found. Tag each one.</div>
+                  <p style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.55, color: C.ox, opacity: 0.8, marginTop: 6 }}>
+                    Consecutive days are grouped into one show. Fix the names and set the type, then add them to the form to fill in the rest. A wrong guess is one click.
+                  </p>
+                  <div className="mt-5 flex flex-col">
+                    {review.map((r, i) => (
+                      <div key={i} className="grid items-center gap-3 py-3 sm:grid-cols-[1fr_auto]" style={{ borderTop: i ? "1px solid rgba(140,27,18,0.14)" : undefined, opacity: r.kind === "ignore" ? 0.5 : 1 }}>
+                        <div className="flex flex-col gap-1">
+                          <input value={r.name} onChange={(e) => setReviewRow(i, { name: e.target.value })} style={{ ...inputStyle, padding: "8px 11px", fontSize: 15 }} />
+                          <span style={{ fontFamily: SANS, fontSize: 12, color: C.terra }}>{fmtDate(r.start)}{r.end ? ` – ${fmtDate(r.end)}` : ""}</span>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {(["production", "fundraiser", "ignore"] as const).map((k) => (
+                            <button key={k} type="button" onClick={() => setReviewRow(i, { kind: k })} style={{ fontFamily: SANS, fontSize: 12, padding: "7px 12px", borderRadius: 40, border: `1.5px solid ${C.ox}`, background: r.kind === k ? C.ox : "transparent", color: r.kind === k ? C.cream : C.ox, textTransform: "capitalize" }} className="transition-opacity hover:opacity-80">{k}</button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    <button type="button" onClick={applyReview} style={{ fontFamily: SANS, fontSize: 14, color: C.cream, background: C.ox, border: `1.5px solid ${C.ox}`, padding: "11px 22px", borderRadius: 40 }} className="transition-opacity hover:opacity-90">
+                      Add {review.filter((r) => r.kind !== "ignore").length} to the form
+                    </button>
+                    <button type="button" onClick={() => { setReview(null); setImportNote(""); }} style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: "transparent", border: `1.5px solid ${C.ox}`, padding: "11px 22px", borderRadius: 40 }} className="transition-opacity hover:opacity-70">Start over</button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, color: C.ox }}>Start from what you have.</div>
+                  <p style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.55, color: C.ox, opacity: 0.8, marginTop: 6 }}>
+                    Paste your season, drop a file, or just fill it in by hand below. It all runs in your browser, nothing is uploaded.
+                  </p>
+                  <textarea
+                    value={importText}
+                    onChange={(e) => setImportText(e.target.value)}
+                    rows={4}
+                    placeholder={"La Boheme, October 15-17 2027\nFall Gala, November 14 2027\n\n…or paste rows straight from a spreadsheet."}
+                    style={{ ...inputStyle, marginTop: 14, fontFamily: SANS, fontSize: 14, lineHeight: 1.5, resize: "vertical" }}
+                  />
+                  <div className="mt-3 flex flex-wrap items-center gap-3">
+                    <button type="button" onClick={() => ingest(parseText(importText))} disabled={!importText.trim()} style={{ fontFamily: SANS, fontSize: 14, color: C.cream, background: C.ox, border: `1.5px solid ${C.ox}`, padding: "10px 20px", borderRadius: 40, opacity: importText.trim() ? 1 : 0.45 }} className="transition-opacity hover:opacity-90">Read it</button>
+                    <span style={{ fontFamily: SANS, fontSize: 12, color: C.ox, opacity: 0.6 }}>or</span>
+                    <label
+                      onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+                      onDragLeave={() => setDragging(false)}
+                      onDrop={(e) => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files?.[0]; if (f) readFile(f); }}
+                      style={{ fontFamily: SANS, fontSize: 13, color: C.ox, border: `1.5px dashed ${C.ox}`, borderRadius: 8, padding: "9px 16px", cursor: "pointer", background: dragging ? C.peachSoft : "transparent" }}
+                    >
+                      Drop a .ics or .csv, or choose a file
+                      <input type="file" accept=".ics,.csv,text/calendar,text/csv" onChange={(e) => { const f = e.target.files?.[0]; if (f) readFile(f); e.target.value = ""; }} style={{ display: "none" }} />
+                    </label>
+                  </div>
+                  {importNote && <p role="alert" style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.5, color: C.terra, marginTop: 12 }}>{importNote}</p>}
+                </>
+              )}
+            </div>
+
             <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>Your season</div>
             <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               <div>
