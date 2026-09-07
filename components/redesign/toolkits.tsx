@@ -27,8 +27,11 @@ const KIT_INSIDE: [string, React.ReactNode][] = [
   ],
 ];
 
-const SERIES: [string, string, string, string][] = [
-  ["Toolkit 03", "The Fundraising Event Toolkit", "Plan a fundraising event that nets money, not just goodwill, with a two-person team. The honest math on galas, a sponsorship deck, the paddle-raise script, and the follow-up that moves guests into your donor pipeline.", "Fall 2026"],
+const EVENT_INSIDE: [string, string][] = [
+  ["The Guide.", "Why not every event is a fundraiser, and the four jobs an event can actually do. Name the job first, then judge it against the metrics that belong to it, so a cultivation night stops getting graded like a gala."],
+  ["The Templates and Scripts.", "Twenty-five letters, emails, and scripts, blank and then filled: the sponsorship ask in five beats, the follow-up, and every send the plan asks for, written to be copied and made your own."],
+  ["The Event Night Playbook.", "A minute-by-minute run of show that builds the whole night toward the ask, with the one rule that protects it: nothing goes between the story and the paddle raise."],
+  ["The Event Decision Matrix.", "A one-page worksheet that scores an event on eight factors and the two numbers that matter, cost to raise a dollar and net per staff hour, so you can protect it, rework it, or cut it on purpose."],
 ];
 
 const QUESTIONS: [string, string][] = [
@@ -150,25 +153,58 @@ export function ToolkitsRedesign() {
         </div>
       </div>
 
-      {/* 4 · coming this fall — periwinkle */}
-      <div className={`${PAD} py-[clamp(64px,9vw,90px)]`} style={{ background: C.peri }}>
-        <div className="mx-auto max-w-[1180px]">
-          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.ox }}>The series</div>
-          <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(28px,3.6vw,40px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1.05, marginTop: 12, maxWidth: 820 }}>
-            Three toolkits, one buyer, one season. The third arrives this fall, with a bundle for all three.
-          </div>
-          <div className="mt-10 grid gap-[22px] md:grid-cols-2">
-            {SERIES.map(([kicker, name, body, when]) => (
-              <div key={name} className="flex flex-col justify-between gap-6" style={{ background: C.cream, padding: 32, minHeight: 240 }}>
-                <div>
-                  <div style={{ fontFamily: SANS, fontSize: 11, letterSpacing: ".16em", textTransform: "uppercase", color: C.terra }}>{kicker}</div>
-                  <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 26, color: C.ox, marginTop: 8 }}>{name}</div>
-                  <div style={{ fontSize: 16, lineHeight: 1.55, color: C.ox, marginTop: 10 }}>{body}</div>
+      {/* 3c · the Fundraising Event Toolkit — paper, now available, cover at left */}
+      <div className={`${PAD} py-[clamp(56px,8vw,88px)]`} style={{ background: C.cream, borderTop: `1.5px solid ${C.ox}` }}>
+        <div className="mx-auto grid max-w-[1180px] items-start gap-[clamp(36px,5vw,64px)] md:grid-cols-[minmax(0,480px)_1fr]">
+          {/* event mockups — the guide, the scripts, the playbook, the matrix */}
+          <ToolkitCarousel
+            slides={[
+              { src: "/redesign/event-1.webp", alt: "The Fundraising Event Toolkit field guide: not every event is a fundraiser" },
+              { src: "/redesign/event-2.webp", alt: "The Templates and Scripts: the sponsorship ask in five beats" },
+              { src: "/redesign/event-3.webp", alt: "The Event Night Playbook: the sample run of show" },
+              { src: "/redesign/event-4.webp", alt: "The Event Decision Matrix worksheet" },
+            ]}
+          />
+
+          <div>
+            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".2em", textTransform: "uppercase", color: C.terra }}>Toolkit 03 · Available now</div>
+            <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(32px,4.4vw,46px)", lineHeight: 1.02, letterSpacing: "-.02em", color: C.ox, marginTop: 14 }}>
+              The Fundraising Event Toolkit
+            </h2>
+            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "clamp(19px,2.2vw,24px)", color: C.terra, marginTop: 12 }}>Plan a fundraising event that nets money, not just goodwill, with a two-person team.</p>
+
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 40, letterSpacing: "-.02em", color: C.ox }}>$39</span>
+              <BuyButton productId="IYarA" productName="fundraising_event" />
+              <SeeInsideLink productId="IYarA" productName="fundraising_event" />
+            </div>
+
+            <div className="mt-9 flex flex-col gap-5" style={{ borderTop: `1.5px solid ${C.ox}`, paddingTop: 24 }}>
+              {EVENT_INSIDE.map(([t, b]) => (
+                <div key={t}>
+                  <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, color: C.ox }}>{t}</span>{" "}
+                  <span style={{ fontSize: 16, lineHeight: 1.6, color: C.ox }}>{b}</span>
                 </div>
-                <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.ox }}>{when}</div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 18, lineHeight: 1.55, color: C.ox, marginTop: 24, maxWidth: 620 }}>
+              If the board wants a bigger gala and nobody has asked what the gala is actually for, start here.
+            </p>
           </div>
+        </div>
+      </div>
+
+      {/* 4 · the series, complete — periwinkle */}
+      <div className={`${PAD} py-[clamp(56px,8vw,80px)] text-center`} style={{ background: C.peri }}>
+        <div className="mx-auto max-w-[820px]">
+          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.ox }}>The series</div>
+          <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(28px,3.6vw,40px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1.05, marginTop: 12 }}>
+            Three toolkits, one buyer, one season. All three are here now.
+          </div>
+          <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 18, lineHeight: 1.55, color: C.ox, marginTop: 16, maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}>
+            Built to be used together, bought one at a time. Start with the one the season needs first.
+          </p>
         </div>
       </div>
 
