@@ -8,6 +8,7 @@ import {
   buildCalendar,
   heavyWeeks,
   busiestStretch,
+  parseLocal,
   fmtDate,
   fmtLong,
   fmtMonth,
@@ -22,17 +23,15 @@ import {
 import { SeasonExport } from "./season-export";
 
 /**
- * /season-planner — "Your Season, Built for You." The bundle tool.
- * The buyer enters real dates; the three kits' calendars merge into one
- * chronological operating calendar so they can see where the year collides
- * before it does. Progressive enhancement: the orientation copy renders always;
- * the calculator itself is gated behind `mounted` (it needs JavaScript).
- *
- * The planner is open to everyone. Taking the calendar away (the .ics / .csv /
- * print exports) is gated behind a Payhip unlock, mounted separately.
+ * /season-planner — "Your season, built for you." The bundle tool.
+ * Give it whatever dates you have (paste, a file, or by hand); it merges the
+ * three kits' calendars into one operating calendar and shows where the year
+ * collides. Progressive enhancement: the orientation copy renders always; the
+ * calculator is gated behind `mounted`. Exports are gated behind a Payhip unlock.
  */
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const SHORT = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
 const LANE_COLOR: Record<Lane, { bg: string; fg: string }> = {
   development: { bg: C.ox, fg: C.cream },
@@ -40,20 +39,29 @@ const LANE_COLOR: Record<Lane, { bg: string; fg: string }> = {
   events: { bg: C.peri, fg: C.ox },
 };
 
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  boxSizing: "border-box",
-  background: C.cream,
-  border: `1.5px solid ${C.ox}`,
-  padding: "11px 13px",
-  fontFamily: SERIF,
-  fontSize: 16,
-  color: C.ox,
-  outline: "none",
-};
 const labelStyle: React.CSSProperties = { fontFamily: SANS, fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: C.ox, marginBottom: 5, display: "block" };
 const H2: React.CSSProperties = { fontFamily: SANS, fontWeight: 700, fontSize: "clamp(24px,3.2vw,34px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1.05 };
 const P: React.CSSProperties = { fontSize: 17, lineHeight: 1.7, color: C.ox };
+
+function addMonths(d: Date, n: number): Date {
+  const c = new Date(d);
+  c.setMonth(c.getMonth() + n);
+  return c;
+}
+function isoDay(d: Date): string {
+  const p = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+
+/** A numbered section header: hierarchy, not navigation. */
+function SectionHead({ n, title }: { n: string; title: string }) {
+  return (
+    <div className="flex items-baseline gap-3">
+      <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 15, letterSpacing: ".06em", color: C.terra }}>{n}</span>
+      <span style={{ fontFamily: SANS, fontSize: 12, fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>{title}</span>
+    </div>
+  );
+}
 
 function LanePill({ lane, onClick }: { lane: Lane; onClick?: () => void }) {
   const c = LANE_COLOR[lane];
@@ -61,6 +69,87 @@ function LanePill({ lane, onClick }: { lane: Lane; onClick?: () => void }) {
   if (onClick) return <button type="button" onClick={onClick} aria-label={`Show only ${LANE_LABEL[lane]}`} style={{ ...style, cursor: "pointer" }} className="transition-opacity hover:opacity-75">{LANE_LABEL[lane]}</button>;
   return <span style={style}>{LANE_LABEL[lane]}</span>;
 }
+
+/* ---- the live 12-month preview -------------------------------------- */
+
+type PreviewType = "production" | "fundraiser" | "announce" | "onsale";
+const PREVIEW_STYLE: Record<PreviewType, { bg: string; fg: string; label: string }> = {
+  production: { bg: C.terra, fg: C.cream, label: "Show" },
+  fundraiser: { bg: C.peri, fg: C.ox, label: "Fundraiser" },
+  announce: { bg: C.ox, fg: C.cream, label: "Announce" },
+  onsale: { bg: C.peachSoft, fg: C.ox, label: "On sale" },
+};
+const MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const shortRange = (start: Date, end: Date | null) => {
+  const md = (d: Date) => `${MONTH_ABBR[d.getMonth()]} ${d.getDate()}`;
+  if (end && end.getTime() > start.getTime()) {
+    return end.getMonth() === start.getMonth() ? `${md(start)}–${end.getDate()}` : `${md(start)} – ${md(end)}`;
+  }
+  return md(start);
+};
+
+function SeasonPreview({ productions, events, announcement, onSale, startMonth }: {
+  productions: Production[];
+  events: FundEvent[];
+  announcement: string;
+  onSale: string;
+  startMonth: number | null;
+}) {
+  type PItem = { date: Date; end: Date | null; label: string; type: PreviewType };
+  const items: PItem[] = [];
+  productions.forEach((p, i) => { const o = parseLocal(p.opening); if (o) items.push({ date: o, end: parseLocal(p.closing), label: p.name.trim() || `Show ${i + 1}`, type: "production" }); });
+  events.forEach((e, i) => { const d = parseLocal(e.date); if (d) items.push({ date: d, end: null, label: e.name.trim() || `Event ${i + 1}`, type: "fundraiser" }); });
+  const a = parseLocal(announcement); if (a) items.push({ date: a, end: null, label: "Season announcement", type: "announce" });
+  const s = parseLocal(onSale); if (s) items.push({ date: s, end: null, label: "Single tickets on sale", type: "onsale" });
+
+  const hasData = items.length > 0;
+  const anchorDates = [
+    ...productions.map((p) => parseLocal(p.opening)),
+    ...events.map((e) => parseLocal(e.date)),
+  ].filter((d): d is Date => !!d);
+  const anchor = anchorDates.length ? anchorDates.reduce((x, y) => (x < y ? x : y)) : (a ?? s ?? new Date());
+  const sm = startMonth ?? anchor.getMonth();
+  let seasonStart = new Date(anchor.getFullYear(), sm, 1);
+  if (seasonStart > anchor) seasonStart = new Date(anchor.getFullYear() - 1, sm, 1);
+  const months = Array.from({ length: 12 }, (_, k) => addMonths(seasonStart, k));
+
+  return (
+    <div style={{ background: "#FFFDF8", border: `1.5px solid ${C.ox}`, padding: "clamp(16px,2.4vw,24px)" }}>
+      {!hasData && (
+        <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 16, lineHeight: 1.5, color: C.ox, opacity: 0.7, marginBottom: 14 }}>
+          Start with a few dates and your year will take shape here.
+        </p>
+      )}
+      <div className="flex flex-col">
+        {months.map((mo, k) => {
+          const its = items
+            .filter((it) => it.date.getFullYear() === mo.getFullYear() && it.date.getMonth() === mo.getMonth())
+            .sort((x, y) => x.date.getTime() - y.date.getTime());
+          const active = its.length > 0;
+          return (
+            <div key={k} className="grid grid-cols-[46px_1fr] gap-3" style={{ borderTop: k ? "1px solid rgba(140,27,18,0.1)" : undefined, padding: "9px 0", minHeight: 42 }}>
+              <div style={{ fontFamily: SANS, fontSize: 12, fontWeight: 700, letterSpacing: ".08em", color: active ? C.terra : "rgba(140,27,18,0.32)", paddingTop: 2 }}>{SHORT[mo.getMonth()]}</div>
+              <div className="flex flex-col gap-1.5">
+                {its.map((it, j) => {
+                  const st = PREVIEW_STYLE[it.type];
+                  return (
+                    <div key={j} className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                      <span style={{ fontFamily: SANS, fontSize: 10, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", color: st.fg, background: st.bg, padding: "2px 7px", borderRadius: 40 }}>{st.label}</span>
+                      <span style={{ fontSize: 14, lineHeight: 1.35, color: C.ox }}>{it.label}</span>
+                      <span style={{ fontFamily: SANS, fontSize: 12, color: C.terra }}>{shortRange(it.date, it.end)}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ---- the page ------------------------------------------------------- */
 
 export function SeasonPlanner() {
   const [mounted, setMounted] = useState(false);
@@ -78,18 +167,16 @@ export function SeasonPlanner() {
   const [importText, setImportText] = useState("");
   const [review, setReview] = useState<ReviewRow[] | null>(null);
   const [importNote, setImportNote] = useState("");
+  const [importStatus, setImportStatus] = useState("");
   const [dragging, setDragging] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
-  const iso = (d: Date) => {
-    const p = (n: number) => String(n).padStart(2, "0");
-    return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
-  };
   const ingest = (items: { name: string; start: Date; end: Date | null }[]) => {
+    setImportStatus("");
     const collapsed = collapseConsecutive(items);
     if (collapsed.length === 0) {
-      setImportNote("I couldn't find any dated rows in that. Check the format, or just fill in the form below.");
+      setImportNote("I couldn't read any dated rows there. Check the format, or fill it in by hand below.");
       setReview(null);
       return;
     }
@@ -97,18 +184,20 @@ export function SeasonPlanner() {
     setReview(collapsed.map((it) => ({ ...it, kind: guessKind(it.name) })));
   };
   const readFile = (file: File) => {
+    setImportStatus("Reading your dates…");
     const reader = new FileReader();
     reader.onload = () => {
       const text = String(reader.result ?? "");
       const isIcs = /\.ics$/i.test(file.name) || /BEGIN:VCALENDAR/i.test(text);
       ingest(isIcs ? parseIcs(text) : parseText(text));
     };
+    reader.onerror = () => { setImportStatus(""); setImportNote("That file couldn't be read. Try another, or fill it in by hand below."); };
     reader.readAsText(file);
   };
   const applyReview = () => {
     if (!review) return;
-    const newProds: Production[] = review.filter((r) => r.kind === "production").map((r) => ({ name: r.name, opening: iso(r.start), closing: r.end ? iso(r.end) : "" }));
-    const newEvents: FundEvent[] = review.filter((r) => r.kind === "fundraiser").map((r) => ({ name: r.name, date: iso(r.start) }));
+    const newProds: Production[] = review.filter((r) => r.kind === "production").map((r) => ({ name: r.name, opening: isoDay(r.start), closing: r.end ? isoDay(r.end) : "" }));
+    const newEvents: FundEvent[] = review.filter((r) => r.kind === "fundraiser").map((r) => ({ name: r.name, date: isoDay(r.start) }));
     const keptProds = productions.filter((p) => p.name.trim() || p.opening || p.closing);
     const keptEvents = events.filter((e) => e.name.trim() || e.date);
     const mergedProds = [...keptProds, ...newProds];
@@ -142,6 +231,13 @@ export function SeasonPlanner() {
   for (const m of calendar) counts[m.lane]++;
   const prodCount = productions.filter((p) => p.opening).length;
   const eventCount = events.filter((e) => e.date).length;
+  const hasAny = prodCount > 0 || eventCount > 0;
+  const badCloses = productions.map((p) => {
+    const o = parseLocal(p.opening);
+    const c = parseLocal(p.closing);
+    return !!(o && c && c < o);
+  });
+  const needsMonth = hasAny && seasonStartMonth === "";
 
   const setProd = (i: number, key: keyof Production, v: string) =>
     setProductions((rows) => rows.map((r, j) => (j === i ? { ...r, [key]: v } : r)));
@@ -153,7 +249,7 @@ export function SeasonPlanner() {
     setLanesOn({ development: lane === "development", marketing: lane === "marketing", events: lane === "events" });
   };
 
-  // The timeline table (used by Everything + By workstream): month bands + sticky header.
+  // The full plan table (Everything + By workstream): month bands + sticky header.
   const timeline = () => {
     let last = "";
     return (
@@ -205,299 +301,308 @@ export function SeasonPlanner() {
       <Nav ground="cream" active="" />
 
       {/* hero */}
-      <div className={`${PAD} pb-[clamp(28px,4vw,48px)] pt-[clamp(24px,3vw,40px)]`}>
+      <div className={`${PAD} pb-[clamp(24px,3vw,40px)] pt-[clamp(24px,3vw,40px)]`}>
         <div className="mx-auto max-w-[820px]">
           <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.terra }}>The Small Arts Org Operating Kit · Only in the bundle</div>
           <h1 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(38px,6vw,64px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 1, marginTop: 14 }}>
             Your season, built for you<span style={{ color: C.terra }}>.</span>
           </h1>
           <p style={{ ...P, fontSize: 19, marginTop: 18 }}>
-            Put in your dates. Get your whole year back. This puts the donor rhythm, the season marketing timeline, and the event countdowns on one calendar, so you can see where the year collides before it does.
+            Give it whatever dates you already have, and it puts the donor rhythm, the season marketing timeline, and the event countdowns on one calendar, so you can see where the year collides before it does.
           </p>
           <p style={{ ...P, marginTop: 12 }}>
-            You give it a handful of real dates. Katie&rsquo;s system supplies the rest: every workbook in the three kits recalculates from those anchors, and it all sorts itself by date.
+            You give it a handful of real dates. The system supplies the rest: every workbook in the three kits recalculates from those anchors, and it all sorts itself by date.
           </p>
         </div>
       </div>
 
-      {/* inputs (enhancement only) */}
-      {mounted && (
-        <div className={`${PAD} py-[clamp(28px,4vw,44px)]`} style={{ background: C.peri }}>
-          <div className="mx-auto max-w-[900px]">
-            {/* import door: paste, drop a file, or enter by hand */}
-            <div style={{ background: "#FFFDF8", border: `1.5px solid ${C.ox}`, padding: "clamp(18px,2.6vw,26px)", marginBottom: 28 }}>
-              {review ? (
-                <>
-                  <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, color: C.ox }}>Here&rsquo;s what I found. Tag each one.</div>
-                  <p style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.55, color: C.ox, opacity: 0.8, marginTop: 6 }}>
-                    Consecutive days are grouped into one show. Fix the names and set the type, then add them to the form to fill in the rest. A wrong guess is one click.
-                  </p>
-                  <div className="mt-5 flex flex-col">
-                    {review.map((r, i) => (
-                      <div key={i} className="grid items-center gap-3 py-3 sm:grid-cols-[1fr_auto]" style={{ borderTop: i ? "1px solid rgba(140,27,18,0.14)" : undefined, opacity: r.kind === "ignore" ? 0.5 : 1 }}>
-                        <div className="flex flex-col gap-1">
-                          <input value={r.name} onChange={(e) => setReviewRow(i, { name: e.target.value })} style={{ ...inputStyle, padding: "8px 11px", fontSize: 15 }} />
-                          <span style={{ fontFamily: SANS, fontSize: 12, color: C.terra }}>{fmtDate(r.start)}{r.end ? ` – ${fmtDate(r.end)}` : ""}</span>
+      {!mounted ? (
+        <div className={`${PAD} pb-[clamp(40px,6vw,72px)]`}>
+          <p style={{ ...P, maxWidth: 680 }} className="mx-auto md:mx-0">
+            Turn on JavaScript and this builds your season calendar from your dates. The three workbooks are still where you manage the work; this one tells you when everything is going to hit.
+          </p>
+        </div>
+      ) : (
+        <>
+          {/* the tool — inputs left, live preview right on desktop; stacked on mobile */}
+          <div className={`${PAD} py-[clamp(28px,4vw,44px)]`} style={{ background: C.peri }}>
+            <div className="mx-auto max-w-[1180px] lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-[clamp(32px,4vw,56px)] lg:items-start">
+              {/* LEFT: the inputs */}
+              <div>
+                {/* 01 — import */}
+                <SectionHead n="01" title="Start with what you have" />
+                <div className="mt-3" style={{ background: "#FFFDF8", border: `1.5px solid ${C.ox}`, padding: "clamp(16px,2.4vw,24px)" }}>
+                  {review ? (
+                    <>
+                      <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, color: C.ox }}>Here&rsquo;s what I found: {review.length} {review.length === 1 ? "item" : "items"}.</div>
+                      <p style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.55, color: C.ox, opacity: 0.8, marginTop: 6 }}>
+                        Consecutive days are grouped into one show. Fix the names, set the type, then add them. A wrong guess is one click.
+                      </p>
+                      <div className="mt-4 flex flex-col">
+                        {review.map((r, i) => (
+                          <div key={i} className="flex flex-col gap-2 py-3" style={{ borderTop: i ? "1px solid rgba(140,27,18,0.12)" : undefined, opacity: r.kind === "ignore" ? 0.5 : 1 }}>
+                            <input aria-label={`Item ${i + 1} name`} className="sp-field" value={r.name} onChange={(e) => setReviewRow(i, { name: e.target.value })} style={{ padding: "8px 11px", fontSize: 15 }} />
+                            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                              <span style={{ fontFamily: SANS, fontSize: 12, color: C.terra, minWidth: 90 }}>{fmtDate(r.start)}{r.end ? ` – ${fmtDate(r.end)}` : ""}</span>
+                              <div className="flex flex-wrap gap-1.5">
+                                {(["production", "fundraiser", "ignore"] as const).map((k) => (
+                                  <button key={k} type="button" aria-pressed={r.kind === k} onClick={() => setReviewRow(i, { kind: k })} style={{ fontFamily: SANS, fontSize: 12, padding: "6px 12px", borderRadius: 40, border: `1.5px solid ${C.ox}`, background: r.kind === k ? C.ox : "transparent", color: r.kind === k ? C.cream : C.ox, textTransform: "capitalize" }} className="transition-opacity hover:opacity-80">{k}</button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-4 flex flex-wrap gap-3">
+                        <button type="button" onClick={applyReview} style={{ fontFamily: SANS, fontSize: 14, color: C.cream, background: C.terra, border: `1.5px solid ${C.terra}`, padding: "11px 22px", borderRadius: 40 }} className="transition-opacity hover:opacity-90">
+                          Add {review.filter((r) => r.kind !== "ignore").length} to the form
+                        </button>
+                        <button type="button" onClick={() => { setReview(null); setImportNote(""); }} style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: "transparent", border: `1.5px solid ${C.ox}`, padding: "11px 22px", borderRadius: 40 }} className="transition-opacity hover:opacity-70">Start over</button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, color: C.ox }}>Start from what you have.</div>
+                      <p style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.55, color: C.ox, opacity: 0.8, marginTop: 6 }}>
+                        Paste your season, or a spreadsheet range. Or fill it in by hand below.
+                      </p>
+                      <textarea
+                        aria-label="Paste your season dates"
+                        className="sp-field"
+                        value={importText}
+                        onChange={(e) => setImportText(e.target.value)}
+                        rows={4}
+                        placeholder={"La Boheme, October 15-17 2027\nFall Gala, November 14 2027"}
+                        style={{ marginTop: 14, fontFamily: SANS, fontSize: 14, lineHeight: 1.5, resize: "vertical" }}
+                      />
+                      <div className="mt-3 flex flex-wrap items-center gap-3">
+                        <button type="button" onClick={() => ingest(parseText(importText))} disabled={!importText.trim()} style={{ fontFamily: SANS, fontSize: 14, color: C.cream, background: C.terra, border: `1.5px solid ${C.terra}`, padding: "11px 22px", borderRadius: 40, opacity: importText.trim() ? 1 : 0.4, cursor: importText.trim() ? "pointer" : "not-allowed" }} className="transition-opacity hover:opacity-90">Use these dates</button>
+                        <label
+                          onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+                          onDragLeave={() => setDragging(false)}
+                          onDrop={(e) => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files?.[0]; if (f) readFile(f); }}
+                          style={{ fontFamily: SANS, fontSize: 13, color: C.ox, border: `1.5px solid ${C.ox}`, borderRadius: 40, padding: "10px 18px", cursor: "pointer", background: dragging ? C.peachSoft : "transparent" }}
+                          className="transition-colors"
+                        >
+                          Upload .ics or .csv
+                          <input type="file" accept=".ics,.csv,text/calendar,text/csv" onChange={(e) => { const f = e.target.files?.[0]; if (f) readFile(f); e.target.value = ""; }} style={{ display: "none" }} />
+                        </label>
+                      </div>
+                      {importStatus && <p aria-live="polite" style={{ fontFamily: SANS, fontSize: 13, color: C.ox, opacity: 0.7, marginTop: 10 }}>{importStatus}</p>}
+                      {importNote && <p role="alert" style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.5, color: C.terra, marginTop: 10 }}>{importNote}</p>}
+                      <p style={{ fontFamily: SANS, fontSize: 12, lineHeight: 1.5, color: C.ox, opacity: 0.6, marginTop: 12 }}>Nothing is sent or saved. It all runs in your browser.</p>
+                    </>
+                  )}
+                </div>
+
+                {/* 02 — anchors */}
+                <div className="mt-9"><SectionHead n="02" title="Check the anchors" /></div>
+                <div className="mt-4 flex flex-col gap-5">
+                  <div>
+                    <label htmlFor="sp-start" style={labelStyle}>Season start month</label>
+                    <select id="sp-start" className="sp-field" aria-invalid={needsMonth} value={seasonStartMonth} onChange={(e) => setSeasonStartMonth(e.target.value)}>
+                      <option value="">Choose a month</option>
+                      {MONTHS.map((m, i) => <option key={m} value={i}>{m}</option>)}
+                    </select>
+                    {needsMonth && <p style={{ fontFamily: SANS, fontSize: 12.5, color: C.terra, marginTop: 6 }}>Choose a season start month to build the full year.</p>}
+                  </div>
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="sp-ann" style={labelStyle}>Season announcement</label>
+                      <input id="sp-ann" className="sp-field" type="date" value={announcement} onChange={(e) => setAnnouncement(e.target.value)} />
+                    </div>
+                    <div>
+                      <label htmlFor="sp-onsale" style={labelStyle}>Single tickets on sale</label>
+                      <input id="sp-onsale" className="sp-field" type="date" value={onSale} onChange={(e) => setOnSale(e.target.value)} />
+                    </div>
+                  </div>
+                  <div style={{ opacity: 0.85 }}>
+                    <label htmlFor="sp-fiscal" style={{ ...labelStyle, opacity: 0.8 }}>Fiscal year ends <span style={{ textTransform: "none", letterSpacing: 0, fontStyle: "italic", opacity: 0.7 }}>optional</span></label>
+                    <select id="sp-fiscal" className="sp-field" value={fiscalYearEndMonth} onChange={(e) => setFiscalYearEndMonth(e.target.value)} style={{ maxWidth: 260 }}>
+                      <option value="">June (default)</option>
+                      {MONTHS.map((m, i) => <option key={m} value={i}>{m}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                {/* 03 — fill any gaps */}
+                <div className="mt-9"><SectionHead n="03" title="Fill any gaps" /></div>
+                <div className="mt-5" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: C.ox, opacity: 0.75 }}>Your productions</div>
+                <div className="mt-3 flex flex-col gap-6">
+                  {productions.map((p, i) => (
+                    <div key={i} style={{ borderLeft: `2px solid ${C.terra}`, paddingLeft: 14 }}>
+                      <div className="mb-2 flex items-center justify-between">
+                        <span style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".1em", color: C.terra }}>PRODUCTION {String(i + 1).padStart(2, "0")}</span>
+                        {productions.length > 1 && (
+                          <button type="button" onClick={() => setProductions((r) => r.filter((_, j) => j !== i))} aria-label={`Remove production ${i + 1}`} style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: C.ox, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 2 }} className="transition-opacity hover:opacity-60">Remove</button>
+                        )}
+                      </div>
+                      <div className="grid gap-3 sm:grid-cols-[1fr_150px_150px]">
+                        <div>
+                          <label style={labelStyle}>Show name</label>
+                          <input className="sp-field" value={p.name} onChange={(e) => setProd(i, "name", e.target.value)} placeholder={`Show ${i + 1}`} />
                         </div>
-                        <div className="flex flex-wrap gap-1.5">
-                          {(["production", "fundraiser", "ignore"] as const).map((k) => (
-                            <button key={k} type="button" onClick={() => setReviewRow(i, { kind: k })} style={{ fontFamily: SANS, fontSize: 12, padding: "7px 12px", borderRadius: 40, border: `1.5px solid ${C.ox}`, background: r.kind === k ? C.ox : "transparent", color: r.kind === k ? C.cream : C.ox, textTransform: "capitalize" }} className="transition-opacity hover:opacity-80">{k}</button>
-                          ))}
+                        <div>
+                          <label style={labelStyle}>Opening</label>
+                          <input className="sp-field" type="date" value={p.opening} onChange={(e) => setProd(i, "opening", e.target.value)} />
+                        </div>
+                        <div>
+                          <label style={labelStyle}>Closing</label>
+                          <input className="sp-field" type="date" aria-invalid={badCloses[i]} value={p.closing} onChange={(e) => setProd(i, "closing", e.target.value)} />
                         </div>
                       </div>
-                    ))}
-                  </div>
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    <button type="button" onClick={applyReview} style={{ fontFamily: SANS, fontSize: 14, color: C.cream, background: C.ox, border: `1.5px solid ${C.ox}`, padding: "11px 22px", borderRadius: 40 }} className="transition-opacity hover:opacity-90">
-                      Add {review.filter((r) => r.kind !== "ignore").length} to the form
-                    </button>
-                    <button type="button" onClick={() => { setReview(null); setImportNote(""); }} style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: "transparent", border: `1.5px solid ${C.ox}`, padding: "11px 22px", borderRadius: 40 }} className="transition-opacity hover:opacity-70">Start over</button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, color: C.ox }}>Start from what you have.</div>
-                  <p style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.55, color: C.ox, opacity: 0.8, marginTop: 6 }}>
-                    Paste your season, drop a file, or just fill it in by hand below. It all runs in your browser, nothing is uploaded.
-                  </p>
-                  <textarea
-                    value={importText}
-                    onChange={(e) => setImportText(e.target.value)}
-                    rows={4}
-                    placeholder={"La Boheme, October 15-17 2027\nFall Gala, November 14 2027\n\n…or paste rows straight from a spreadsheet."}
-                    style={{ ...inputStyle, marginTop: 14, fontFamily: SANS, fontSize: 14, lineHeight: 1.5, resize: "vertical" }}
-                  />
-                  <div className="mt-3 flex flex-wrap items-center gap-3">
-                    <button type="button" onClick={() => ingest(parseText(importText))} disabled={!importText.trim()} style={{ fontFamily: SANS, fontSize: 14, color: C.cream, background: C.ox, border: `1.5px solid ${C.ox}`, padding: "10px 20px", borderRadius: 40, opacity: importText.trim() ? 1 : 0.45 }} className="transition-opacity hover:opacity-90">Read it</button>
-                    <span style={{ fontFamily: SANS, fontSize: 12, color: C.ox, opacity: 0.6 }}>or</span>
-                    <label
-                      onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
-                      onDragLeave={() => setDragging(false)}
-                      onDrop={(e) => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files?.[0]; if (f) readFile(f); }}
-                      style={{ fontFamily: SANS, fontSize: 13, color: C.ox, border: `1.5px dashed ${C.ox}`, borderRadius: 8, padding: "9px 16px", cursor: "pointer", background: dragging ? C.peachSoft : "transparent" }}
-                    >
-                      Drop a .ics or .csv, or choose a file
-                      <input type="file" accept=".ics,.csv,text/calendar,text/csv" onChange={(e) => { const f = e.target.files?.[0]; if (f) readFile(f); e.target.value = ""; }} style={{ display: "none" }} />
-                    </label>
-                  </div>
-                  {importNote && <p role="alert" style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.5, color: C.terra, marginTop: 12 }}>{importNote}</p>}
-                </>
-              )}
-            </div>
-
-            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>Your season</div>
-            <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              <div>
-                <label htmlFor="sp-start" style={labelStyle}>Season start month</label>
-                <select id="sp-start" value={seasonStartMonth} onChange={(e) => setSeasonStartMonth(e.target.value)} style={inputStyle}>
-                  <option value="">Choose a month</option>
-                  {MONTHS.map((m, i) => <option key={m} value={i}>{m}</option>)}
-                </select>
-              </div>
-              <div>
-                <label htmlFor="sp-ann" style={labelStyle}>Season announcement</label>
-                <input id="sp-ann" type="date" value={announcement} onChange={(e) => setAnnouncement(e.target.value)} style={inputStyle} />
-              </div>
-              <div>
-                <label htmlFor="sp-onsale" style={labelStyle}>Single tickets on sale</label>
-                <input id="sp-onsale" type="date" value={onSale} onChange={(e) => setOnSale(e.target.value)} style={inputStyle} />
-              </div>
-              <div>
-                <label htmlFor="sp-fiscal" style={labelStyle}>Fiscal year ends <span style={{ textTransform: "none", letterSpacing: 0, color: C.ox, opacity: 0.7 }}>optional</span></label>
-                <select id="sp-fiscal" value={fiscalYearEndMonth} onChange={(e) => setFiscalYearEndMonth(e.target.value)} style={inputStyle}>
-                  <option value="">June (default)</option>
-                  {MONTHS.map((m, i) => <option key={m} value={i}>{m}</option>)}
-                </select>
-              </div>
-            </div>
-
-            <div className="mt-9" style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>Your productions</div>
-            <div className="mt-4 flex flex-col gap-4">
-              {productions.map((p, i) => (
-                <div key={i} className="grid items-end gap-3 sm:grid-cols-[1fr_170px_170px_auto]">
-                  <div>
-                    <label style={labelStyle}>Show name</label>
-                    <input value={p.name} onChange={(e) => setProd(i, "name", e.target.value)} placeholder={`Show ${i + 1}`} style={inputStyle} />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Opening</label>
-                    <input type="date" value={p.opening} onChange={(e) => setProd(i, "opening", e.target.value)} style={inputStyle} />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Closing</label>
-                    <input type="date" value={p.closing} onChange={(e) => setProd(i, "closing", e.target.value)} style={inputStyle} />
-                  </div>
-                  {productions.length > 1 ? (
-                    <button type="button" onClick={() => setProductions((r) => r.filter((_, j) => j !== i))} aria-label={`Remove production ${i + 1}`} style={{ fontFamily: SANS, fontSize: 13, color: C.ox, background: "transparent", border: `1.5px solid ${C.ox}`, borderRadius: 40, padding: "10px 14px", height: 44 }} className="transition-opacity hover:opacity-60">Remove</button>
-                  ) : <span className="hidden sm:block" />}
-                </div>
-              ))}
-            </div>
-            <button type="button" onClick={() => setProductions((r) => [...r, { name: "", opening: "", closing: "" }])} style={{ marginTop: 12, fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", color: C.ox, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-60">
-              + Add another production
-            </button>
-
-            <div className="mt-9" style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>Your fundraising events</div>
-            <div className="mt-4 flex flex-col gap-4">
-              {events.map((ev, i) => (
-                <div key={i} className="grid items-end gap-3 sm:grid-cols-[1fr_170px_auto]">
-                  <div>
-                    <label style={labelStyle}>Event name</label>
-                    <input value={ev.name} onChange={(e) => setEvt(i, "name", e.target.value)} placeholder={`Event ${i + 1}`} style={inputStyle} />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Event date</label>
-                    <input type="date" value={ev.date} onChange={(e) => setEvt(i, "date", e.target.value)} style={inputStyle} />
-                  </div>
-                  {events.length > 1 ? (
-                    <button type="button" onClick={() => setEvents((r) => r.filter((_, j) => j !== i))} aria-label={`Remove event ${i + 1}`} style={{ fontFamily: SANS, fontSize: 13, color: C.ox, background: "transparent", border: `1.5px solid ${C.ox}`, borderRadius: 40, padding: "10px 14px", height: 44 }} className="transition-opacity hover:opacity-60">Remove</button>
-                  ) : <span className="hidden sm:block" />}
-                </div>
-              ))}
-            </div>
-            <button type="button" onClick={() => setEvents((r) => [...r, { name: "", date: "" }])} style={{ marginTop: 12, fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", color: C.ox, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-60">
-              + Add another event
-            </button>
-
-            <p style={{ fontFamily: SANS, fontSize: 13, lineHeight: 1.6, color: C.ox, opacity: 0.85, marginTop: 24 }}>
-              Nothing is sent or saved. It all runs in your browser.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* output */}
-      <div className={`${PAD} py-[clamp(40px,6vw,72px)]`} style={{ background: C.cream }}>
-        <div className="mx-auto max-w-[1080px]">
-          {!mounted ? (
-            <p style={{ ...P, maxWidth: 680 }}>
-              Turn on JavaScript and this builds your season calendar from your dates. The three workbooks are still where you manage the work; this one tells you when everything is going to hit.
-            </p>
-          ) : calendar.length === 0 ? (
-            <div style={{ border: `1.5px solid ${C.ox}`, padding: "clamp(24px,4vw,40px)", background: "#FFFDF8" }}>
-              <div style={{ ...H2, fontSize: "clamp(20px,2.6vw,28px)" }}>Add your dates above.</div>
-              <p style={{ ...P, marginTop: 10, maxWidth: 620 }}>Give it a season start month and at least one production or one fundraiser, and your whole year fills in here, sorted by date.</p>
-            </div>
-          ) : (
-            <>
-              {/* season summary */}
-              <div style={{ border: `1.5px solid ${C.ox}`, background: "#FFFDF8", padding: "clamp(20px,3vw,30px)" }}>
-                <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.terra }}>Your season at a glance</div>
-                <div className="mt-4 flex flex-wrap gap-x-10 gap-y-4">
-                  {[
-                    [prodCount, prodCount === 1 ? "production" : "productions"],
-                    [eventCount, eventCount === 1 ? "fundraising event" : "fundraising events"],
-                    [calendar.length, "actions"],
-                    [crunch.length, crunch.length === 1 ? "heavy week" : "heavy weeks"],
-                  ].map(([n, label]) => (
-                    <div key={label as string}>
-                      <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(28px,3.4vw,38px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1 }}>{n}</div>
-                      <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", color: C.ox, opacity: 0.8, marginTop: 4 }}>{label}</div>
+                      {badCloses[i] && <p style={{ fontFamily: SANS, fontSize: 12.5, color: C.terra, marginTop: 6 }}>Closing date must be after opening date.</p>}
                     </div>
                   ))}
                 </div>
-                {busiest && (
-                  <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "clamp(17px,2vw,21px)", lineHeight: 1.5, color: C.ox, marginTop: 20 }}>
-                    Your busiest stretch is {fmtLong(busiest.start)} through {fmtLong(busiest.end)}.
+                <button type="button" onClick={() => setProductions((r) => [...r, { name: "", opening: "", closing: "" }])} style={{ marginTop: 14, fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", color: C.ox, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-60">
+                  + Add another production
+                </button>
+
+                <div className="mt-8" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: C.ox, opacity: 0.75 }}>Your fundraising events</div>
+                <div className="mt-3 flex flex-col gap-6">
+                  {events.map((ev, i) => (
+                    <div key={i} style={{ borderLeft: `2px solid ${C.peri}`, paddingLeft: 14 }}>
+                      <div className="mb-2 flex items-center justify-between">
+                        <span style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".1em", color: C.ox }}>EVENT {String(i + 1).padStart(2, "0")}</span>
+                        {events.length > 1 && (
+                          <button type="button" onClick={() => setEvents((r) => r.filter((_, j) => j !== i))} aria-label={`Remove event ${i + 1}`} style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: C.ox, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 2 }} className="transition-opacity hover:opacity-60">Remove</button>
+                        )}
+                      </div>
+                      <div className="grid gap-3 sm:grid-cols-[1fr_150px]">
+                        <div>
+                          <label style={labelStyle}>Event name</label>
+                          <input className="sp-field" value={ev.name} onChange={(e) => setEvt(i, "name", e.target.value)} placeholder={`Event ${i + 1}`} />
+                        </div>
+                        <div>
+                          <label style={labelStyle}>Event date</label>
+                          <input className="sp-field" type="date" value={ev.date} onChange={(e) => setEvt(i, "date", e.target.value)} />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <button type="button" onClick={() => setEvents((r) => [...r, { name: "", date: "" }])} style={{ marginTop: 14, fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", color: C.ox, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-60">
+                  + Add another event
+                </button>
+              </div>
+
+              {/* RIGHT: the live preview (sticky on desktop) */}
+              <div className="mt-10 lg:mt-0 lg:sticky lg:top-6">
+                <SectionHead n="04" title="Your year" />
+                <div className="mt-3">
+                  <SeasonPreview productions={productions} events={events} announcement={announcement} onSale={onSale} startMonth={seasonStartMonth === "" ? null : Number(seasonStartMonth)} />
+                </div>
+                {calendar.length > 0 && (
+                  <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 15, lineHeight: 1.5, color: C.ox, marginTop: 12 }}>
+                    {calendar.length} actions across your season.{busiest ? ` Busiest stretch: ${fmtLong(busiest.start)} through ${fmtLong(busiest.end)}.` : ""}
                   </p>
                 )}
               </div>
+            </div>
+          </div>
 
-              {/* view toggle + count */}
-              <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-                <div className="flex flex-wrap gap-2">
-                  {([["everything", "Everything"], ["workstream", "By workstream"], ["crunch", "The crunch"]] as const).map(([key, label]) => (
-                    <button
-                      key={key}
-                      type="button"
-                      onClick={() => setView(key)}
-                      style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", padding: "9px 18px", borderRadius: 40, border: `1.5px solid ${C.ox}`, background: view === key ? C.ox : "transparent", color: view === key ? C.cream : C.ox }}
-                      className="transition-opacity hover:opacity-80"
-                    >
-                      {label}
-                    </button>
-                  ))}
-                </div>
-                <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: C.ox, opacity: 0.7 }}>
-                  {calendar.length} actions across your season
-                </div>
-              </div>
-              <p style={{ fontFamily: SANS, fontSize: 12, lineHeight: 1.5, color: C.ox, opacity: 0.6, marginTop: 8 }}>
-                A ⚠ marks a date that lands on a holiday that would hurt it — mail on a postal day, a donor ask over the winter break. US federal calendar only.
-              </p>
+          {/* the full plan — appears once there is a calendar to show */}
+          {calendar.length > 0 && (
+            <div className={`${PAD} py-[clamp(40px,6vw,72px)]`} style={{ background: C.cream }}>
+              <div className="mx-auto max-w-[1080px]">
+                <SectionHead n="04" title="Your year, sorted by date" />
 
-              {/* by-workstream lane filter */}
-              {view === "workstream" && (
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {(["development", "marketing", "events"] as Lane[]).map((lane) => {
-                    const on = lanesOn[lane];
-                    const c = LANE_COLOR[lane];
-                    return (
-                      <button
-                        key={lane}
-                        type="button"
-                        aria-pressed={on}
-                        onClick={() => setLanesOn((s) => ({ ...s, [lane]: !s[lane] }))}
-                        style={{ fontFamily: SANS, fontSize: 12, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", padding: "7px 14px", borderRadius: 40, border: `1.5px solid ${c.bg}`, background: on ? c.bg : "transparent", color: on ? c.fg : c.bg, opacity: on ? 1 : 0.55 }}
-                        className="transition-opacity"
-                      >
-                        {LANE_LABEL[lane]} · {counts[lane]}
+                <div className="mt-5" style={{ border: `1.5px solid ${C.ox}`, background: "#FFFDF8", padding: "clamp(20px,3vw,30px)" }}>
+                  <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.terra }}>Your season at a glance</div>
+                  <div className="mt-4 flex flex-wrap gap-x-10 gap-y-4">
+                    {[
+                      [prodCount, prodCount === 1 ? "production" : "productions"],
+                      [eventCount, eventCount === 1 ? "fundraising event" : "fundraising events"],
+                      [calendar.length, "actions"],
+                      [crunch.length, crunch.length === 1 ? "heavy week" : "heavy weeks"],
+                    ].map(([n, label]) => (
+                      <div key={label as string}>
+                        <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(28px,3.4vw,38px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1 }}>{n}</div>
+                        <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", color: C.ox, opacity: 0.8, marginTop: 4 }}>{label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+                  <div className="flex flex-wrap gap-2">
+                    {([["everything", "Everything"], ["workstream", "By workstream"], ["crunch", "The crunch"]] as const).map(([key, label]) => (
+                      <button key={key} type="button" onClick={() => setView(key)} style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", padding: "9px 18px", borderRadius: 40, border: `1.5px solid ${C.ox}`, background: view === key ? C.ox : "transparent", color: view === key ? C.cream : C.ox }} className="transition-opacity hover:opacity-80">
+                        {label}
                       </button>
-                    );
-                  })}
+                    ))}
+                  </div>
+                  <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: C.ox, opacity: 0.7 }}>{calendar.length} actions across your season</div>
                 </div>
-              )}
+                <p style={{ fontFamily: SANS, fontSize: 12, lineHeight: 1.5, color: C.ox, opacity: 0.6, marginTop: 8 }}>
+                  A ⚠ marks a date that lands on a holiday that would hurt it — mail on a postal day, a donor ask over the winter break. US federal calendar only.
+                </p>
 
-              {/* the crunch */}
-              {view === "crunch" ? (
-                <div className="mt-7">
-                  <p style={{ ...P, marginBottom: 20, maxWidth: 700 }}>
-                    Weeks where the load piles up across at least two kits, weighted so an opening night counts for more than a reminder. Each one comes with what to do about it.
-                  </p>
-                  {crunch.length === 0 ? (
-                    <div style={{ border: `1.5px solid ${C.ox}`, padding: "clamp(20px,3vw,32px)", background: "#FFFDF8" }}>
-                      <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 20, color: C.ox }}>No pileups yet.</div>
-                      <p style={{ ...P, marginTop: 8 }}>Nothing stacks up heavy enough across kits. Add the rest of your dates, or enjoy the room.</p>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col gap-4">
-                      {crunch.map((w) => (
-                        <div key={w.start.getTime()} style={{ border: `1.5px solid ${C.ox}`, background: "#FFFDF8" }}>
-                          <div style={{ background: C.ox, color: C.cream, fontFamily: SANS, fontSize: 13, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", padding: "10px 18px" }}>
-                            Heavy week · {fmtWeek(w.start)}
-                          </div>
-                          <ul className="flex flex-col gap-3" style={{ padding: "18px" }}>
-                            {w.items.map((m, k) => (
-                              <li key={k} className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                                <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: C.terra, minWidth: 92 }}>{fmtDate(m.date)}</span>
-                                <LanePill lane={m.lane} />
-                                <span style={{ fontSize: 16, lineHeight: 1.5, color: C.ox }}>{m.what}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <div style={{ borderTop: `1.5px solid ${C.ox}`, background: C.peachSoft, padding: "12px 18px", fontFamily: SERIF, fontStyle: "italic", fontSize: 16, lineHeight: 1.5, color: C.ox }}>
-                            {w.advice}
-                            {w.closure && (
-                              <span style={{ display: "block", fontFamily: SANS, fontStyle: "normal", fontSize: 13, color: C.terra, marginTop: 6 }}>⚠ And it runs against {w.closure} — the genuinely bad case. Move what you can out of this week.</span>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="mt-6">{timeline()}</div>
-              )}
+                {view === "workstream" && (
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {(["development", "marketing", "events"] as Lane[]).map((lane) => {
+                      const on = lanesOn[lane];
+                      const c = LANE_COLOR[lane];
+                      return (
+                        <button key={lane} type="button" aria-pressed={on} onClick={() => setLanesOn((s) => ({ ...s, [lane]: !s[lane] }))} style={{ fontFamily: SANS, fontSize: 12, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", padding: "7px 14px", borderRadius: 40, border: `1.5px solid ${c.bg}`, background: on ? c.bg : "transparent", color: on ? c.fg : c.bg, opacity: on ? 1 : 0.55 }} className="transition-opacity">
+                          {LANE_LABEL[lane]} · {counts[lane]}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
 
-              {/* gated exports — self-hides when the calendar is empty */}
-              <SeasonExport input={seasonInput} count={calendar.length} />
-            </>
+                {view === "crunch" ? (
+                  <div className="mt-7">
+                    <p style={{ ...P, marginBottom: 20, maxWidth: 700 }}>
+                      Weeks where the load piles up across at least two kits, weighted so an opening night counts for more than a reminder. Each one comes with what to do about it.
+                    </p>
+                    {crunch.length === 0 ? (
+                      <div style={{ border: `1.5px solid ${C.ox}`, padding: "clamp(20px,3vw,32px)", background: "#FFFDF8" }}>
+                        <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 20, color: C.ox }}>No pileups yet.</div>
+                        <p style={{ ...P, marginTop: 8 }}>Nothing stacks up heavy enough across kits. Add the rest of your dates, or enjoy the room.</p>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-4">
+                        {crunch.map((w) => (
+                          <div key={w.start.getTime()} style={{ border: `1.5px solid ${C.ox}`, background: "#FFFDF8" }}>
+                            <div style={{ background: C.ox, color: C.cream, fontFamily: SANS, fontSize: 13, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", padding: "10px 18px" }}>
+                              Heavy week · {fmtWeek(w.start)}
+                            </div>
+                            <ul className="flex flex-col gap-3" style={{ padding: "18px" }}>
+                              {w.items.map((m, k) => (
+                                <li key={k} className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                                  <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: C.terra, minWidth: 92 }}>{fmtDate(m.date)}</span>
+                                  <LanePill lane={m.lane} />
+                                  <span style={{ fontSize: 16, lineHeight: 1.5, color: C.ox }}>{m.what}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <div style={{ borderTop: `1.5px solid ${C.ox}`, background: C.peachSoft, padding: "12px 18px", fontFamily: SERIF, fontStyle: "italic", fontSize: 16, lineHeight: 1.5, color: C.ox }}>
+                              {w.advice}
+                              {w.closure && (
+                                <span style={{ display: "block", fontFamily: SANS, fontStyle: "normal", fontSize: 13, color: C.terra, marginTop: 6 }}>⚠ And it runs against {w.closure} — the genuinely bad case. Move what you can out of this week.</span>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="mt-6">{timeline()}</div>
+                )}
+
+                {/* gated exports */}
+                <SeasonExport input={seasonInput} count={calendar.length} />
+              </div>
+            </div>
           )}
-        </div>
-      </div>
+        </>
+      )}
 
-      {/* the three insights (always) */}
+      {/* interpretation — after the year */}
       <div className={`${PAD} py-[clamp(48px,7vw,80px)]`} style={{ background: C.peri }}>
         <div className="mx-auto grid max-w-[1080px] gap-x-[clamp(28px,4vw,56px)] gap-y-8 md:grid-cols-3">
           {[
