@@ -33,6 +33,9 @@ import { SeasonExport } from "./season-export";
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const SHORT = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
+/** Muted terracotta for secondary copy on cream/periwinkle (design-system slate). */
+const SLATE = "#A4574a";
+
 const LANE_COLOR: Record<Lane, { bg: string; fg: string }> = {
   development: { bg: C.ox, fg: C.cream },
   marketing: { bg: C.terra, fg: C.cream },
@@ -56,9 +59,9 @@ function isoDay(d: Date): string {
 /** A numbered section header: hierarchy, not navigation. */
 function SectionHead({ n, title }: { n: string; title: string }) {
   return (
-    <div className="flex items-baseline gap-3">
-      <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 15, letterSpacing: ".06em", color: C.terra }}>{n}</span>
-      <span style={{ fontFamily: SANS, fontSize: 12, fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>{title}</span>
+    <div className="flex items-baseline gap-3.5">
+      <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, letterSpacing: ".02em", color: C.terra }}>{n}</span>
+      <span style={{ fontFamily: SANS, fontSize: 12, fontWeight: 600, letterSpacing: ".16em", textTransform: "uppercase", color: C.ox }}>{title}</span>
     </div>
   );
 }
@@ -301,18 +304,24 @@ export function SeasonPlanner() {
       <Nav ground="cream" active="" />
 
       {/* hero */}
-      <div className={`${PAD} pb-[clamp(24px,3vw,40px)] pt-[clamp(24px,3vw,40px)]`}>
-        <div className="mx-auto max-w-[820px]">
-          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.terra }}>The Small Arts Org Operating Kit · Only in the bundle</div>
-          <h1 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(38px,6vw,64px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 1, marginTop: 14 }}>
+      <div className={`${PAD} pb-[clamp(28px,4vw,52px)] pt-[clamp(40px,6vw,84px)]`}>
+        <div className="mx-auto max-w-[1000px]">
+          <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".24em", textTransform: "uppercase", color: C.terra, marginBottom: "clamp(20px,3vw,32px)" }}>The Small Arts Org Operating Kit · Only in the bundle</div>
+          <h1 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(44px,8vw,104px)", letterSpacing: "-.045em", color: C.ox, lineHeight: 0.9, margin: 0, textWrap: "balance" }}>
             Your season, built for you<span style={{ color: C.terra }}>.</span>
           </h1>
-          <p style={{ ...P, fontSize: 19, marginTop: 18 }}>
-            Give it whatever dates you already have, and it puts the donor rhythm, the season marketing timeline, and the event countdowns on one calendar, so you can see where the year collides before it does.
-          </p>
-          <p style={{ ...P, marginTop: 12 }}>
-            You give it a handful of real dates. The system supplies the rest: every workbook in the three kits recalculates from those anchors, and it all sorts itself by date.
-          </p>
+          <div className="mt-[clamp(28px,4vw,48px)] grid items-start gap-x-[clamp(24px,4vw,56px)] gap-y-4 md:grid-cols-2">
+            <p style={{ fontFamily: SERIF, fontSize: 19, lineHeight: 1.7, color: C.ox, margin: 0, maxWidth: "44ch" }}>
+              Give it whatever dates you already have, and it puts the donor rhythm, the season marketing timeline, and the event countdowns on one calendar, so you can see where the year collides before it does.
+            </p>
+            <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.7, color: SLATE, margin: 0, maxWidth: "44ch" }}>
+              You give it a handful of real dates. The system supplies the rest: every workbook in the three kits recalculates from those anchors, and it all sorts itself by date.
+            </p>
+          </div>
+          <div className="mt-[clamp(32px,5vw,56px)] flex items-center gap-3">
+            <span style={{ width: 11, height: 11, borderRadius: "50%", background: C.terra, flex: "0 0 auto" }} />
+            <span style={{ height: 1.5, background: C.ox, flex: 1 }} />
+          </div>
         </div>
       </div>
 
@@ -376,7 +385,7 @@ export function SeasonPlanner() {
                         style={{ marginTop: 14, fontFamily: SANS, fontSize: 14, lineHeight: 1.5, resize: "vertical" }}
                       />
                       <div className="mt-3 flex flex-wrap items-center gap-3">
-                        <button type="button" onClick={() => ingest(parseText(importText))} disabled={!importText.trim()} style={{ fontFamily: SANS, fontSize: 14, color: C.cream, background: C.terra, border: `1.5px solid ${C.terra}`, padding: "11px 22px", borderRadius: 40, opacity: importText.trim() ? 1 : 0.4, cursor: importText.trim() ? "pointer" : "not-allowed" }} className="transition-opacity hover:opacity-90">Use these dates</button>
+                        <button type="button" onClick={() => ingest(parseText(importText))} disabled={!importText.trim()} style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: C.peach, border: `1.5px solid ${C.ox}`, padding: "11px 24px", borderRadius: 40, opacity: importText.trim() ? 1 : 0.4, cursor: importText.trim() ? "pointer" : "not-allowed" }} className="transition-opacity hover:opacity-90">Use these dates</button>
                         <label
                           onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
                           onDragLeave={() => setDragging(false)}
@@ -427,7 +436,7 @@ export function SeasonPlanner() {
 
                 {/* 03 — fill any gaps */}
                 <div className="mt-9"><SectionHead n="03" title="Fill any gaps" /></div>
-                <div className="mt-5" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: C.ox, opacity: 0.75 }}>Your productions</div>
+                <div className="mt-5" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: SLATE }}>Your productions</div>
                 <div className="mt-3 flex flex-col gap-6">
                   {productions.map((p, i) => (
                     <div key={i} style={{ borderLeft: `2px solid ${C.terra}`, paddingLeft: 14 }}>
@@ -459,7 +468,7 @@ export function SeasonPlanner() {
                   + Add another production
                 </button>
 
-                <div className="mt-8" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: C.ox, opacity: 0.75 }}>Your fundraising events</div>
+                <div className="mt-8" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: SLATE }}>Your fundraising events</div>
                 <div className="mt-3 flex flex-col gap-6">
                   {events.map((ev, i) => (
                     <div key={i} style={{ borderLeft: `2px solid ${C.peri}`, paddingLeft: 14 }}>
@@ -603,51 +612,69 @@ export function SeasonPlanner() {
       )}
 
       {/* interpretation — after the year */}
-      <div className={`${PAD} py-[clamp(48px,7vw,80px)]`} style={{ background: C.peri }}>
-        <div className="mx-auto grid max-w-[1080px] gap-x-[clamp(28px,4vw,56px)] gap-y-8 md:grid-cols-3">
+      <div className={`${PAD} py-[clamp(56px,7vw,90px)]`} style={{ background: C.peri }}>
+        <div className="mx-auto grid max-w-[1240px] gap-x-[clamp(32px,4vw,60px)] gap-y-10 md:grid-cols-3">
           {[
             ["Where the collisions are", "Your year-end appeal lands in the same weeks as the fall fundraiser follow-up, and your spring ask meetings land inside the gala countdown. Neither is wrong. Both need to be on one page before September."],
             ["How to move it", "Anchor each event to its real date and let the sixteen-week countdown slide with it. Anchor each production to its opening and let the eight-week ramp slide with it. Every workbook in the three kits recalculates from those anchors."],
             ["The one number", "Every attendee, every ticket buyer, every sponsor guest goes into the donor pipeline within forty-eight hours, with a stage, an owner, and a next touch. That is the seam where the three kits become one system."],
           ].map(([h, b]) => (
             <div key={h}>
-              <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, color: C.ox }}>{h}</div>
-              <p style={{ fontSize: 15, lineHeight: 1.65, color: C.ox, marginTop: 8 }}>{b}</p>
+              <h3 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(22px,2.5vw,28px)", letterSpacing: "-.02em", color: C.ox, lineHeight: 1.1, margin: 0 }}>{h}</h3>
+              <p style={{ fontFamily: SERIF, fontSize: 16, lineHeight: 1.7, color: C.ox, marginTop: 12, maxWidth: "40ch" }}>{b}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* GreenRoom — the one commercial moment on the page, at peak intent */}
-      <div className={`${PAD} py-[clamp(56px,8vw,88px)]`} style={{ background: C.ox }}>
-        <div className="mx-auto max-w-[820px]">
-          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.peri }}>Built by the same person</div>
-          <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(26px,3.6vw,38px)", letterSpacing: "-.02em", color: C.cream, lineHeight: 1.05, marginTop: 12 }}>
-            The calendar is the easy half.
-          </h2>
-          <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: C.cream, marginTop: 18, maxWidth: 660 }}>
-            You just watched a year land on one desk. This page can tell you when it hits. It cannot tell you who gave last year, who came to the gala and never came back, or who is owed a thank-you by Friday.
-          </p>
-          <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: C.cream, marginTop: 14, maxWidth: 660 }}>
-            That is the forty-eight hour handoff above, and it is the part a spreadsheet quietly stops doing somewhere around the second event. GreenRoom is the CRM I built for it. It runs the same five stages the kit teaches, Identify through Steward, so the ladder you just learned is the one you work in.
-          </p>
-          <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: C.cream, marginTop: 14 }}>
-            Free up to 500 active accounts.
-          </p>
-          <div className="mt-7 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-7">
-            <a
-              href="https://app.greenroomcrm.com/signup?utm_source=bykatiespencer&utm_medium=referral&utm_campaign=season-planner"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => ga("season_greenroom_start")}
-              style={{ fontFamily: SANS, fontSize: 15, color: C.ox, background: C.cream, padding: "12px 26px", borderRadius: 40, textDecoration: "none", display: "inline-block" }}
-              className="transition-opacity hover:opacity-90"
-            >
-              Start free
-            </a>
-            <DoorLink href="https://greenroomcrm.com?utm_source=bykatiespencer&utm_medium=referral&utm_campaign=season-planner" event="season_greenroom_learn" external tone="peri">
-              See how it works →
-            </DoorLink>
+      <div className={`${PAD} py-[clamp(56px,8vw,96px)]`} style={{ background: C.ox }}>
+        <div className="mx-auto max-w-[1240px]">
+          <div className="mb-[clamp(30px,4vw,48px)] flex items-center gap-3">
+            <span style={{ width: 11, height: 11, borderRadius: "50%", background: C.cream, flex: "0 0 auto" }} />
+            <span style={{ height: 1.5, background: C.peach, opacity: 0.6, flex: 1 }} />
+          </div>
+          <div className="grid items-start gap-[clamp(32px,5vw,72px)]" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))" }}>
+            {/* the pitch */}
+            <div>
+              <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".24em", textTransform: "uppercase", color: C.peri, marginBottom: 20 }}>Built by the same person</div>
+              <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(34px,4.6vw,60px)", letterSpacing: "-.02em", color: C.cream, lineHeight: 1.02, margin: "0 0 24px", textWrap: "balance" }}>
+                The calendar is the easy half<span style={{ color: C.terra }}>.</span>
+              </h2>
+              <p style={{ fontFamily: SERIF, fontSize: 19, lineHeight: 1.65, color: C.peachSoft, margin: "0 0 18px", maxWidth: "46ch" }}>
+                You just watched a year land on one desk. This page can tell you when it hits. It cannot tell you who gave last year, who came to the gala and never came back, or who is owed a thank-you by Friday.
+              </p>
+              <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: C.peachSoft, margin: "0 0 30px", maxWidth: "46ch" }}>
+                That is the forty-eight hour handoff above, and it is the part a spreadsheet quietly stops doing somewhere around the second event.
+              </p>
+              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-7">
+                <a
+                  href="https://app.greenroomcrm.com/signup?utm_source=bykatiespencer&utm_medium=referral&utm_campaign=season-planner"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => ga("season_greenroom_start")}
+                  style={{ fontFamily: SANS, fontSize: 15, color: C.ox, background: C.peri, padding: "13px 28px", borderRadius: 40, textDecoration: "none", display: "inline-block" }}
+                  className="transition-opacity hover:opacity-90"
+                >
+                  Start free
+                </a>
+                <DoorLink href="https://greenroomcrm.com?utm_source=bykatiespencer&utm_medium=referral&utm_campaign=season-planner" event="season_greenroom_learn" external tone="peri">
+                  See how it works →
+                </DoorLink>
+              </div>
+            </div>
+            {/* the product card */}
+            <div style={{ background: C.cream, color: C.ox, padding: "clamp(24px,3vw,36px)" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/redesign/greenroom-logo.svg" alt="GreenRoom" style={{ display: "block", width: "100%", maxWidth: 232, height: "auto", marginBottom: 26 }} />
+              <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.65, color: C.ox, margin: "0 0 22px" }}>
+                The CRM I built for it. It runs the same five stages the kit teaches, Identify through Steward, so the ladder you just learned is the one you work in.
+              </p>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 600, letterSpacing: ".1em", textTransform: "uppercase", color: SLATE, paddingTop: 20, borderTop: `1.5px solid ${C.ox}` }}>
+                <span>Identify</span><span aria-hidden="true">·</span><span>Qualify</span><span aria-hidden="true">·</span><span>Cultivate</span><span aria-hidden="true">·</span><span>Solicit</span><span aria-hidden="true">·</span><span>Steward</span>
+              </div>
+              <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 15, color: SLATE, margin: "22px 0 0" }}>Free up to 500 active accounts.</p>
+            </div>
           </div>
         </div>
       </div>

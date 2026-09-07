@@ -494,17 +494,18 @@
   width: 100%;
   box-sizing: border-box;
   background: #F0EFEC;
-  border: 1.5px solid rgba(140, 27, 18, 0.4);
-  border-radius: 3px;
-  padding: 11px 13px;
+  border: 1.5px solid #8C1B12;
+  border-radius: 0;
+  padding: 12px 14px;
   font-family: var(--font-ks-voice), Newsreader, Georgia, serif;
   font-size: 16px;
   color: #8C1B12;
+  color-scheme: light;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
-.sp-field::placeholder { color: rgba(140, 27, 18, 0.45); }
-.sp-field:hover { border-color: rgba(140, 27, 18, 0.7); }
+.sp-field::placeholder { color: #b98a7c; }
+.sp-field:hover { border-color: #D65A2E; }
 .sp-field:focus { border-color: #D65A2E; box-shadow: 0 0 0 3px rgba(214, 90, 46, 0.2); }
 .sp-field[aria-invalid="true"] { border-color: #C0281C; background: #FBEEEA; }
 .sp-field[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px rgba(192, 40, 28, 0.22); }
