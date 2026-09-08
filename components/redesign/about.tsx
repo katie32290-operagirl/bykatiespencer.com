@@ -7,13 +7,13 @@ const CHAPTERS: [string, string, string, React.ReactNode, string | null][] = [
   ["Chapter III", "Knoxville Opera", "Growing an institution.", "Leading fundraising and marketing taught me that strategy only works when a story carries it. People don't invest in budgets or buy tickets to logistics, they give themselves to a narrative they want to belong to.", null],
   [
     "Chapter IV",
-    "Now building",
+    "Now live",
     "Building the future.",
     <>
       Building software taught me the work has to scale. GreenRoom turns hard-won lessons about arts organizations into tools they use every day, the infrastructure a story needs to keep being told. Alongside it I&rsquo;m building{" "}
       <Link href="/narratives" style={{ fontStyle: "italic", color: C.ox, textDecoration: "underline" }}>Narratives</Link>, which brings story strategy to the marketing teams inside performing arts organizations. Two companies, one field, opposite ends of the same problem.
     </>,
-    "The venture · GreenRoom  •  Status · Launching 2026  •  greenroomcrm.com →",
+    "The venture · GreenRoom  •  Status · Live  •  greenroomcrm.com →",
   ],
   ["Chapter V", "Still being written", "What's next.", "Now I'm exploring how technology and story shape each other, across writing, speaking, and projects still taking form. Every chapter taught me the same thing: the medium keeps changing, but the work doesn't.", null],
 ];

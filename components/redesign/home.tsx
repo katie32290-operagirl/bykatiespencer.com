@@ -146,7 +146,7 @@ export function HomeRedesign() {
         style={{ background: C.ox, fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.peach }}
       >
         <span style={{ color: C.peri }}>Currently &mdash;</span>
-        <span>Building GreenRoom <span style={{ color: C.peri }}>•</span> 2026</span>
+        <span>Running GreenRoom</span>
         <span>Writing</span>
         <span>Speaking</span>
         <span>Collaborating</span>
@@ -247,14 +247,14 @@ export function HomeRedesign() {
             {/* GreenRoom — the big card, on cream so the lockup reads on its own */}
             <div className="flex flex-col justify-between gap-10" style={{ background: C.cream, border: `1.5px solid ${C.ox}`, padding: "clamp(32px,4vw,48px)", minHeight: 360 }}>
               <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.terra }}>
-                Now building
+                Now live
               </span>
               <div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/redesign/greenroom-logo.svg" alt="GreenRoom" style={{ width: 320, maxWidth: "88%", height: "auto", display: "block" }} />
                 <p style={{ fontSize: 18, lineHeight: 1.55, color: C.ox, maxWidth: 420, marginTop: 22 }}>
-                  Bringing fundraising, marketing, ticketing, and operations into one platform for arts organizations.{" "}
-                  <span style={{ fontStyle: "italic", color: C.terra }}>Launching 2026.</span>
+                  Fundraising, marketing, ticketing, and operations in one platform for arts organizations.{" "}
+                  <a href="https://greenroomcrm.com" target="_blank" rel="noopener noreferrer" style={{ fontStyle: "italic", color: C.terra }} className="transition-opacity hover:opacity-70">greenroomcrm.com &rarr;</a>
                 </p>
               </div>
             </div>
