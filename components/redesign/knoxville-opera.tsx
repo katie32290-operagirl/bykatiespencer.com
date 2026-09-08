@@ -8,7 +8,7 @@ const MOVES: [string, string, string][] = [
 ];
 
 const STATS: [string, string, string][] = [
-  ["+101%", "First-time attendance", "≈473 vs. 235 before"],
+  ["+101%", "First-time paid attendance", "≈473 vs. 235 before"],
   ["+27%", "Revenue per show", "$107k vs. $85k"],
   ["+35%", "Avg. annual giving", "+65% giving, FY26 year-to-date vs. FY23"],
   ["+178%", "Rossini Festival net", "the city's free street festival"],
@@ -17,9 +17,9 @@ const STATS: [string, string, string][] = [
 /** Deeper record, all traceable to the impact one-pager. Excludes Gianni
  *  Schicchi (May 2026), still in its sales window when the data was pulled. */
 const FACTS: [string, string][] = [
-  ["9 productions · 18,374 seats", "$967,211 in ticket revenue and 4,256 first-time attendees across the four seasons. Excludes Gianni Schicchi (May 2026), still in its sales window."],
+  ["9 productions · 18,374 seats", "$967,211 in ticket revenue and 4,256 first-time paid attendees across the four seasons. Excludes Gianni Schicchi (May 2026), still in its sales window."],
   ["5 of the all-time top 15", "Five of Knoxville Opera's all-time top-15 productions by tickets, and five by revenue, came from these four seasons, including #1 La Bohème, #2 The Barber of Seville, and #3 Carmen by all-time revenue."],
-  ["584 → 1,191 donor records", "Donor records grew from 584 in FY23 to 1,191 in FY26, up 104%."],
+  ["584 → 1,191 donor records", "Donor records grew from 584 in FY23 to 1,191 in FY26 (year-to-date), up 104%."],
   ["23.4% Rossini net margin", "Against 8.6% before this tenure. FY25 net of $48,310 was the best in the 11-year audited window (FY15–FY25)."],
 ];
 

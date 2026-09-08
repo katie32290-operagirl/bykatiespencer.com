@@ -113,7 +113,7 @@ export function WorkRedesign() {
             <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.cream, opacity: 0.85, marginTop: 8, marginBottom: "clamp(24px,3.5vw,42px)" }}>Knoxville Opera · four seasons, FY23–FY26</div>
             <div className="grid gap-[clamp(24px,4vw,48px)]" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))" }}>
               {([
-                ["+101%", C.cream, "First-time attendees per show.", null],
+                ["+101%", C.cream, "First-time paid attendees per show.", null],
                 ["+27%", C.cream, "Revenue per show.", null],
                 ["#1", C.terra, "the best-selling production in company history.", "La Bohème, "],
               ] as [string, string, string, string | null][]).map(([n, color, label, lead]) => (

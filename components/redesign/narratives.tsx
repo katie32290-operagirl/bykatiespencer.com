@@ -151,7 +151,7 @@ export function NarrativesRedesign() {
           </div>
           <div className="grid gap-[clamp(28px,4vw,48px)]" style={GRID(240)}>
             {([
-              ["+101%", "First-time attendance per show.", null],
+              ["+101%", "First-time paid attendance per show.", null],
               ["+27%", "Revenue per show.", null],
               ["#1", "the best-seller in company history.", "La Bohème, "],
             ] as [string, string, string | null][]).map(([n, label, lead]) => (
