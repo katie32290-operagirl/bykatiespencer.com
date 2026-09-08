@@ -140,6 +140,42 @@ export function WorkRedesign() {
             <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(34px,4.6vw,60px)", lineHeight: 1, letterSpacing: "-.03em", margin: 0, color: C.ox }}>Inside the work.</h2>
             <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.terra }}>Knoxville Opera · Selected pieces</div>
           </div>
+          {/* two embedded pieces, in place */}
+          <div className="mb-[clamp(44px,6vw,72px)] grid items-start gap-[clamp(28px,4vw,52px)] md:grid-cols-2">
+            <div>
+              <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9", background: C.ox }}>
+                <iframe
+                  src="https://www.youtube.com/embed/xsYWaTxkcW4"
+                  title="Couture for a Cause"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }}
+                />
+              </div>
+              <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.terra, marginTop: 14 }}>Couture for a Cause · Event film</div>
+              <p style={{ fontSize: 16, lineHeight: 1.6, color: C.ox, marginTop: 8, maxWidth: 520 }}>
+                The brief: make a fundraising gala feel like a night worth showing up for. Opera meets the runway, cut to carry the energy of the room to everyone who wasn&rsquo;t in it.
+              </p>
+            </div>
+            <div className="md:justify-self-start">
+              <div style={{ position: "relative", width: "100%", maxWidth: 300, aspectRatio: "9 / 16", background: C.ox }}>
+                <iframe
+                  src="https://www.youtube.com/embed/0Ap9-34BuAI"
+                  title="Gianni Schicchi: the synopsis, reimagined"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }}
+                />
+              </div>
+              <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.terra, marginTop: 14 }}>Gianni Schicchi · The synopsis, reimagined</div>
+              <p style={{ fontSize: 16, lineHeight: 1.6, color: C.ox, marginTop: 8, maxWidth: 420 }}>
+                The brief: sell a one-act comedy about a family scheming over a will to people who have never bought an opera ticket. So the synopsis became a lunch between friends, not a plot summary.
+              </p>
+            </div>
+          </div>
+
           <Rows title="Film & story" rows={FILM} />
           <div className="pt-[38px]">
             <Rows title="On stage & in print" rows={STAGE} />
