@@ -146,7 +146,7 @@ export function ToolkitsRedesign() {
   return (
     <Shell ground="cream">
       <Script src="https://payhip.com/payhip.js" strategy="afterInteractive" />
-      <Nav ground="cream" active="Toolkits" />
+      <Nav ground="oxblood" active="Toolkits" />
 
       {/* 1 · hero — oxblood, the premise moved up into the header */}
       <div className={`${PAD} pt-[clamp(48px,7vw,96px)] pb-[clamp(48px,7vw,84px)]`} style={{ background: C.ox }}>

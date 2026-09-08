@@ -509,3 +509,17 @@
 .sp-field:focus { border-color: #D65A2E; box-shadow: 0 0 0 3px rgba(214, 90, 46, 0.2); }
 .sp-field[aria-invalid="true"] { border-color: #C0281C; background: #FBEEEA; }
 .sp-field[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px rgba(192, 40, 28, 0.22); }
+/* --radius-card: 0 — square the native selects and date fields too. Safari
+   keeps a corner radius on native controls unless their appearance is off. */
+select.sp-field,
+input[type="date"].sp-field {
+  -webkit-appearance: none;
+  appearance: none;
+}
+select.sp-field {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238C1B12' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 38px;
+}
+input[type="date"].sp-field::-webkit-calendar-picker-indicator { width: 16px; height: 16px; margin-left: 8px; cursor: pointer; }

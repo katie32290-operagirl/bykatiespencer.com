@@ -214,7 +214,6 @@ export function SeasonPlanner() {
   useEffect(() => {
     setMounted(true);
     loadExample();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ingest = (items: { name: string; start: Date; end: Date | null }[]) => {
@@ -375,7 +374,7 @@ export function SeasonPlanner() {
       ) : (
         <>
           {/* the tool — inputs left, live preview right on desktop; stacked on mobile */}
-          <div className={`${PAD} py-[clamp(28px,4vw,44px)]`} style={{ background: C.peri }}>
+          <div className={`${PAD} py-[clamp(28px,4vw,44px)]`} style={{ background: C.cream }}>
             <div className="mx-auto max-w-[1180px] lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-[clamp(32px,4vw,56px)] lg:items-start">
               {/* LEFT: the inputs */}
               <div>

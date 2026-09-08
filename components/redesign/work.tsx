@@ -58,7 +58,7 @@ function Rows({ title, rows }: { title: string; rows: [string, string, string][]
 export function WorkRedesign() {
   return (
     <Shell ground="cream">
-      <Nav ground="cream" active="Work" />
+      <Nav ground="oxblood" active="Work" />
 
       {/* header — oxblood */}
       <header className={`${PAD} pb-[clamp(44px,6vw,76px)] pt-[clamp(40px,6vw,80px)]`} style={{ background: C.ox }}>

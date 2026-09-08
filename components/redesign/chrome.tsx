@@ -9,30 +9,44 @@ import { C, SANS, SERIF, NAV } from "./tokens";
 
 export const PAD = "px-[clamp(20px,4.5vw,56px)]";
 
-type Ground = "cream" | "terra";
-const lead = (g: Ground) => (g === "cream" ? C.terra : C.cream);
+type Ground = "cream" | "terra" | "oxblood";
 
+/**
+ * The shared top nav. On cream/terra it is transparent and reads dark; on
+ * oxblood it paints its own dark ground so it sits seamlessly on top of an
+ * oxblood hero (Work, Toolkits), the way the cream nav flows into a cream hero.
+ */
 export function Nav({ ground, active }: { ground: Ground; active: string }) {
-  const accent = lead(ground);
+  const dark = ground === "oxblood";
+  const brand = dark ? C.cream : ground === "cream" ? C.terra : C.cream;
+  const dot = dark ? C.terra : C.ox;
+  const activeColor = dark ? C.cream : brand;
+  const idleColor = dark ? C.peachSoft : C.ox;
   return (
-    <div className={`flex flex-wrap items-center justify-between gap-y-3 py-[clamp(18px,2.6vw,28px)] ${PAD}`}>
-      <Link href="/" style={{ fontFamily: SANS, fontWeight: 700, fontSize: 22, letterSpacing: "-.02em", color: accent }}>
-        Katie Spencer<span style={{ color: C.ox }}>.</span>
+    <div
+      className={`flex flex-wrap items-center justify-between gap-y-3 py-[clamp(18px,2.6vw,28px)] ${PAD}`}
+      style={dark ? { background: C.ox } : undefined}
+    >
+      <Link href="/" style={{ fontFamily: SANS, fontWeight: 700, fontSize: 22, letterSpacing: "-.02em", color: brand }}>
+        Katie Spencer<span style={{ color: dot }}>.</span>
       </Link>
       <div
         className="flex flex-wrap items-center gap-x-[clamp(14px,2.4vw,28px)] gap-y-1"
         style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".06em" }}
       >
-        {NAV.map((n) => (
-          <Link
-            key={n.href}
-            href={n.href}
-            style={{ color: n.label === active ? accent : C.ox }}
-            className="transition-opacity hover:opacity-60"
-          >
-            {n.label}
-          </Link>
-        ))}
+        {NAV.map((n) => {
+          const on = n.label === active;
+          return (
+            <Link
+              key={n.href}
+              href={n.href}
+              style={{ color: on ? activeColor : idleColor, ...(dark && on ? { borderBottom: `1.5px solid ${C.terra}`, paddingBottom: 3 } : null) }}
+              className="transition-opacity hover:opacity-60"
+            >
+              {n.label}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
