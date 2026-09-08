@@ -145,7 +145,7 @@ export function NarrativesRedesign() {
       <section className={`${PAD} py-[clamp(48px,7vw,96px)]`} style={{ background: C.terra, color: C.ox }}>
         <div className="mx-auto max-w-[1240px]">
           <div className="mb-[clamp(30px,4vw,52px)] flex items-center gap-3.5">
-            <span style={eyebrow(C.ox)}>Already tested · Knoxville Opera</span>
+            <span style={eyebrow(C.ox)}>Already tested · Knoxville Opera, four seasons (FY23&ndash;FY26)</span>
             <span style={{ flex: 1, height: 1.5, background: C.ox }} />
             <span style={{ width: 9, height: 9, borderRadius: "50%", background: C.cream }} />
           </div>
@@ -161,7 +161,10 @@ export function NarrativesRedesign() {
               </div>
             ))}
           </div>
-          <div className="mt-[clamp(34px,4vw,54px)]">
+          <p style={{ margin: "clamp(22px,3vw,30px) 0 0", fontFamily: SERIF, fontSize: 16, lineHeight: 1.5, maxWidth: 640 }}>
+            Achieved with a small in-house team, which is exactly the situation this service is built for.
+          </p>
+          <div className="mt-[clamp(30px,4vw,44px)]">
             <Link href="/knoxville-opera" style={{ display: "inline-block", background: C.ox, color: C.cream, fontFamily: SANS, fontSize: 17, lineHeight: 1, padding: "18px 40px", borderRadius: 40 }} className="transition-opacity hover:opacity-90">
               See the case study →
             </Link>
@@ -248,6 +251,7 @@ export function NarrativesRedesign() {
               Not a preview of what yours will look like, but a sense of how far the thinking goes.
             </p>
             <div className="flex flex-col gap-[18px]" style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.62, maxWidth: 620 }}>
+              <p style={{ margin: 0, color: C.cream }}>Schicchi was the last campaign of my tenure, so it&rsquo;s the clearest look at the full method. The results above come from the four seasons before it.</p>
               <p style={{ margin: 0 }}><em>Gianni Schicchi</em> is a one-act comedy about a family scheming over a will. A hard sell to anyone who&rsquo;s never bought an opera ticket. So the campaign didn&rsquo;t sell the opera. The synopsis became a lunch between friends. The characters gave reality-TV confessionals, in costume. The people who made it sat down for a Behind the Music conversation, for anyone who wanted to go deeper.</p>
               <p style={{ margin: 0 }}>Underneath sat the whole package: the audit, the narrative strategy, the visual world, the momentum map, the budget, and copy written for the production itself. Then the unglamorous half that makes it real: the shot list, the cast and crew list, the hour-by-hour media day schedule, and a dated posting plan across social, email, and YouTube.</p>
               <p style={{ margin: 0, fontFamily: SANS, fontWeight: 700, fontSize: 26, lineHeight: 1.15, letterSpacing: "-.02em", color: C.cream }}>The strategy doesn&rsquo;t stop at language. It gets made.</p>

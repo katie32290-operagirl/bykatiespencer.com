@@ -92,7 +92,7 @@ export function WorkRedesign() {
             </div>
             <div style={{ minWidth: 0 }}>
               <p style={{ fontFamily: SERIF, fontSize: 17, lineHeight: 1.62, margin: "0 0 26px", color: C.ox, maxWidth: 620 }}>
-                Four years leading brand, marketing and audience strategy for a beloved institution. A confident rebrand and sharper storytelling doubled first-time attendance and grew revenue per show 27%, and <em>La Bohème</em> became the best-selling production in company history.
+                Four years leading brand, marketing and audience strategy for a beloved institution. Together with the KO team, a confident rebrand and sharper storytelling doubled first-time attendance and grew revenue per show 27%, and <em>La Bohème</em> became the best-selling production in company history.
               </p>
               <Link href="/knoxville-opera" style={{ display: "inline-block", background: C.peri, color: C.ox, fontFamily: SANS, fontSize: 17, lineHeight: 1, padding: "18px 40px", borderRadius: 40 }} className="transition-opacity hover:opacity-90">
                 See the case study →
@@ -109,7 +109,8 @@ export function WorkRedesign() {
         <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, ${OXDEEP} 0%, rgba(110,20,13,.88) 34%, rgba(110,20,13,.34) 62%, rgba(110,20,13,0) 88%)`, pointerEvents: "none" }} />
         <div className={`${PAD} py-[clamp(36px,5vw,72px)]`} style={{ position: "relative" }}>
           <div className="mx-auto max-w-[1240px]">
-            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.peach, marginBottom: "clamp(24px,3.5vw,42px)" }}>Admit one · What it moved</div>
+            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.peach }}>Admit one · What it moved</div>
+            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.cream, opacity: 0.85, marginTop: 8, marginBottom: "clamp(24px,3.5vw,42px)" }}>Knoxville Opera · four seasons, FY23–FY26</div>
             <div className="grid gap-[clamp(24px,4vw,48px)]" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))" }}>
               {([
                 ["+101%", C.cream, "First-time attendees per show.", null],
@@ -124,6 +125,9 @@ export function WorkRedesign() {
                 </div>
               ))}
             </div>
+            <p style={{ marginTop: "clamp(28px,4vw,40px)", fontFamily: SERIF, fontSize: 16, lineHeight: 1.5, color: C.cream, opacity: 0.9, maxWidth: 620 }}>
+              Achieved with the Knoxville Opera team, across four seasons. Not the work of any single production.
+            </p>
           </div>
         </div>
       </div>

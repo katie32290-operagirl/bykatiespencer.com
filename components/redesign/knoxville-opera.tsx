@@ -10,8 +10,17 @@ const MOVES: [string, string, string][] = [
 const STATS: [string, string, string][] = [
   ["+101%", "First-time attendance", "≈473 vs. 235 before"],
   ["+27%", "Revenue per show", "$107k vs. $85k"],
-  ["+35%", "Annual giving", "+65% FY26 vs. FY23"],
-  ["+178%", "Rossini Festival", "the city's free street festival"],
+  ["+35%", "Avg. annual giving", "+65% giving, FY26 year-to-date vs. FY23"],
+  ["+178%", "Rossini Festival net", "the city's free street festival"],
+];
+
+/** Deeper record, all traceable to the impact one-pager. Excludes Gianni
+ *  Schicchi (May 2026), still in its sales window when the data was pulled. */
+const FACTS: [string, string][] = [
+  ["9 productions · 18,374 seats", "$967,211 in ticket revenue and 4,256 first-time attendees across the four seasons. Excludes Gianni Schicchi (May 2026), still in its sales window."],
+  ["5 of the all-time top 15", "Five of Knoxville Opera's all-time top-15 productions by tickets, and five by revenue, came from these four seasons, including #1 La Bohème, #2 The Barber of Seville, and #3 Carmen by all-time revenue."],
+  ["584 → 1,191 donor records", "Donor records grew from 584 in FY23 to 1,191 in FY26, up 104%."],
+  ["23.4% Rossini net margin", "Against 8.6% before this tenure. FY25 net of $48,310 was the best in the 11-year audited window (FY15–FY25)."],
 ];
 
 export function KnoxvilleOperaRedesign() {
@@ -32,7 +41,10 @@ export function KnoxvilleOperaRedesign() {
                 Knoxville Opera<span style={{ color: C.terra }}>.</span>
               </h1>
               <p style={{ fontSize: "clamp(17px,2vw,20px)", lineHeight: 1.65, color: C.ox, marginTop: 20, maxWidth: 540 }}>
-                Reimagining a 47-year-old opera company for a new generation, and proving that the right story moves real numbers.
+                Reimagining a 47-year-old opera company for a new generation, and proof that the right story, and the right team, moves real numbers.
+              </p>
+              <p style={{ fontSize: 15, lineHeight: 1.6, color: C.ox, marginTop: 16, maxWidth: 560, opacity: 0.85 }}>
+                These results belong to a team. I led brand, marketing, and, from FY24, development, alongside Knoxville Opera&rsquo;s staff, board, artists, Rossini Festival volunteers, and the audiences who showed up.
               </p>
             </div>
             <div>
@@ -88,7 +100,7 @@ export function KnoxvilleOperaRedesign() {
           <div>
             <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.peach }}>Act III · The impact</div>
             <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(26px,3.4vw,42px)", lineHeight: 1.16, letterSpacing: "-.02em", color: C.cream, marginTop: 18, maxWidth: 720 }}>
-              A bold rebrand and sharper storytelling doubled first-time attendance and grew revenue per show 27%, and <span style={{ fontStyle: "italic", color: C.peri }}>La Bohème</span> became the best-selling production in company history.
+              Together with the KO team, a bold rebrand and sharper storytelling doubled first-time attendance and grew revenue per show 27%, and <span style={{ fontStyle: "italic", color: C.peri }}>La Bohème</span> became the best-selling production in company history.
             </p>
           </div>
           <div>
@@ -104,14 +116,25 @@ export function KnoxvilleOperaRedesign() {
         <div className="mx-auto max-w-[1180px]">
           <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
             <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(34px,5vw,50px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 0.95 }}>By the numbers</div>
-            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.ox }}>FY26 vs. FY23</div>
+            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.ox }}>Knoxville Opera · four seasons, FY23–FY26</div>
           </div>
-          <div className="mt-10 grid gap-x-9 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          <p style={{ fontSize: 15, lineHeight: 1.6, color: C.ox, marginTop: 12, maxWidth: 640, opacity: 0.85 }}>
+            Tenure-wide results across four seasons, achieved with the Knoxville Opera team. Not the work of any single production.
+          </p>
+          <div className="mt-9 grid gap-x-9 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {STATS.map(([v, l, d]) => (
               <div key={l} style={{ borderTop: `2px solid ${C.ox}`, paddingTop: 18 }}>
                 <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(44px,5.4vw,64px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 1 }}>{v}</div>
                 <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: C.ox, marginTop: 14 }}>{l}</div>
                 <div style={{ fontStyle: "italic", fontSize: 15, color: C.ox, opacity: 0.8, marginTop: 4 }}>{d}</div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-12 grid gap-x-9 gap-y-8 sm:grid-cols-2">
+            {FACTS.map(([t, b]) => (
+              <div key={t} style={{ borderTop: `1.5px solid ${C.ox}`, paddingTop: 16 }}>
+                <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 20, letterSpacing: "-.02em", color: C.ox }}>{t}</div>
+                <div style={{ fontSize: 15, lineHeight: 1.55, color: C.ox, marginTop: 6 }}>{b}</div>
               </div>
             ))}
           </div>
@@ -123,6 +146,15 @@ export function KnoxvilleOperaRedesign() {
         <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".26em", textTransform: "uppercase", color: C.terra }}>The takeaway</div>
         <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(30px,4.4vw,52px)", lineHeight: 1.06, letterSpacing: "-.025em", color: C.ox, maxWidth: 820, margin: "20px auto 0" }}>
           Great organizations are built on <span style={{ color: C.terra }}>stories people believe in.</span>
+        </div>
+      </div>
+
+      {/* sources — small print */}
+      <div className={`${PAD} pb-[clamp(36px,6vw,64px)]`} style={{ background: C.cream }}>
+        <div className="mx-auto max-w-[1180px]">
+          <p style={{ fontFamily: SANS, fontSize: 11, lineHeight: 1.65, letterSpacing: ".02em", color: C.ox, opacity: 0.6, maxWidth: 860 }}>
+            Sources: Knoxville Opera Salesforce donations report; KO ticket reports; KO audited financial statements FY15&ndash;FY25. Pre-tenure Rossini average excludes FY20&ndash;FY21 (festival cancelled, COVID). Figures as of May 2026.
+          </p>
         </div>
       </div>
 
