@@ -107,8 +107,8 @@ export function KnoxvilleOperaRedesign() {
           </div>
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/on/on-stage.jpg" alt="A Knoxville Opera season being filmed on the Tennessee Theatre stage" className="block w-full object-cover" style={{ height: "clamp(240px,32vw,300px)" }} />
-            <div style={{ fontFamily: SANS, fontSize: 11, letterSpacing: ".14em", textTransform: "uppercase", color: C.peach, marginTop: 12 }}>media day · on the Tennessee Theatre stage</div>
+            <img src="/work/barber-mediaday.jpg" alt="Behind the scenes on The Barber of Seville media day shoot" className="block w-full object-cover" style={{ height: "clamp(240px,32vw,300px)" }} />
+            <div style={{ fontFamily: SANS, fontSize: 11, letterSpacing: ".14em", textTransform: "uppercase", color: C.peach, marginTop: 12 }}>behind the scenes · The Barber of Seville shoot</div>
           </div>
         </div>
       </div>

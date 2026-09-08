@@ -276,7 +276,7 @@ export function NarrativesRedesign() {
 
       {/* full-bleed — media day inside the Tennessee Theatre */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/work/katie-onstage.jpg" alt="A season media day inside the Tennessee Theatre" style={{ width: "100%", height: "clamp(260px,42vw,560px)", objectFit: "cover", display: "block" }} />
+      <img src="/work/gianni-schicchi.jpg" alt="The Gianni Schicchi ensemble on stage at Knoxville Opera" style={{ width: "100%", height: "clamp(260px,42vw,560px)", objectFit: "cover", objectPosition: "center 40%", display: "block" }} />
 
       {/* why me — cream */}
       <section className={`${PAD} py-[clamp(48px,7vw,90px)]`} style={{ background: C.cream }}>
