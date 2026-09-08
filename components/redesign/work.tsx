@@ -78,7 +78,7 @@ export function WorkRedesign() {
       {/* full-bleed — on set */}
       <div style={{ position: "relative" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/work/onset-knoxville.jpg" alt="Katie Spencer on set, Knoxville" style={{ width: "100%", height: "clamp(300px,48vw,660px)", objectFit: "cover", objectPosition: "center 42%", display: "block" }} />
+        <img src="/work/onset-knoxville.webp" alt="Katie Spencer on set, Knoxville" style={{ width: "100%", height: "clamp(300px,48vw,660px)", objectFit: "cover", objectPosition: "center 42%", display: "block" }} />
         <div className={`absolute bottom-5 left-[clamp(20px,4vw,56px)]`} style={{ background: C.ox, color: C.cream, fontFamily: SANS, fontSize: 11, letterSpacing: ".16em", textTransform: "uppercase", padding: "9px 16px" }}>On set, Knoxville</div>
       </div>
 
@@ -106,7 +106,7 @@ export function WorkRedesign() {
       {/* full-bleed — what it moved, stats over the media-day image */}
       <div className="flex flex-col justify-end" style={{ position: "relative", minHeight: "clamp(420px,56vw,720px)", overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/work/stuck-elevator-mediaday.jpg" alt="A media day gathering outside the Old City Performing Arts Center" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 18%", display: "block" }} />
+        <img src="/work/stuck-elevator-mediaday.webp" alt="A media day gathering outside the Old City Performing Arts Center" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 18%", display: "block" }} />
         <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, ${OXDEEP} 0%, rgba(110,20,13,.88) 34%, rgba(110,20,13,.34) 62%, rgba(110,20,13,0) 88%)`, pointerEvents: "none" }} />
         <div className={`${PAD} py-[clamp(36px,5vw,72px)]`} style={{ position: "relative" }}>
           <div className="mx-auto max-w-[1240px]">

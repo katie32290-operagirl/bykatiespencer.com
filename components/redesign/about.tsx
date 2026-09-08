@@ -51,7 +51,7 @@ export function AboutRedesign() {
           </div>
           <div className="flex flex-col gap-[22px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/about-leap.jpg" alt="City Lyric Opera" className="block w-full object-cover" style={{ height: "clamp(300px,40vw,340px)" }} />
+            <img src="/about-leap.webp" alt="City Lyric Opera" className="block w-full object-cover" style={{ height: "clamp(300px,40vw,340px)" }} />
             <div style={{ background: C.cream, padding: 28 }}>
               <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 22, lineHeight: 1.15, color: C.ox }}>
                 The best organizations aren&rsquo;t defined by the size of their budget. They&rsquo;re defined by clarity.
