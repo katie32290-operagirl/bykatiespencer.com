@@ -7,13 +7,23 @@ import { ImageResponse } from "next/og";
 export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
 
-/** The brand display serif for the card. Falls back to the default face if the
- *  font can't be fetched, so the build never fails on it. */
-async function loadSerif(): Promise<ArrayBuffer | null> {
+/** Fetch a static TTF for a Google font at a given weight. Uses an old
+ *  User-Agent so the CSS API serves TrueType (which satori can parse) rather
+ *  than woff2. Returns null on any failure so the build never breaks on it. */
+async function loadGoogleFont(family: string, weight: number): Promise<ArrayBuffer | null> {
   try {
-    const res = await fetch(
-      "https://raw.githubusercontent.com/google/fonts/main/ofl/dmserifdisplay/DMSerifDisplay-Regular.ttf",
-    );
+    const css = await fetch(
+      `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}:wght@${weight}`,
+      {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27",
+        },
+      },
+    ).then((r) => r.text());
+    const url = css.match(/src:\s*url\((https:[^)]+\.ttf)\)/)?.[1];
+    if (!url) return null;
+    const res = await fetch(url);
     if (!res.ok) return null;
     return await res.arrayBuffer();
   } catch {
@@ -30,8 +40,15 @@ export async function renderOgCard({
   title: React.ReactNode;
   subtitle: string;
 }) {
-  const serif = await loadSerif();
-  const display = serif ? "DM Serif Display" : "serif";
+  const [bold, regular] = await Promise.all([
+    loadGoogleFont("Instrument Sans", 700),
+    loadGoogleFont("Instrument Sans", 500),
+  ]);
+  const family = bold || regular ? "Instrument Sans" : "sans-serif";
+  const fonts = [
+    bold && { name: "Instrument Sans", data: bold, weight: 700 as const, style: "normal" as const },
+    regular && { name: "Instrument Sans", data: regular, weight: 500 as const, style: "normal" as const },
+  ].filter(Boolean) as { name: string; data: ArrayBuffer; weight: 700 | 500; style: "normal" }[];
 
   return new ImageResponse(
     (
@@ -42,7 +59,7 @@ export async function renderOgCard({
           display: "flex",
           padding: 34,
           backgroundColor: "#8C1B12",
-          fontFamily: display,
+          fontFamily: family,
         }}
       >
         <div
@@ -81,7 +98,7 @@ export async function renderOgCard({
 
           {/* the line */}
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", fontSize: 88, lineHeight: 1.04, color: "#F0EFEC", maxWidth: 1010 }}>
+            <div style={{ display: "flex", fontSize: 88, fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.02, color: "#F0EFEC", maxWidth: 1050 }}>
               {title}
             </div>
             <div style={{ display: "flex", fontSize: 29, lineHeight: 1.4, color: "#F0DCD2", marginTop: 28, maxWidth: 920 }}>
@@ -118,7 +135,7 @@ export async function renderOgCard({
     ),
     {
       ...ogSize,
-      fonts: serif ? [{ name: "DM Serif Display", data: serif, weight: 400, style: "normal" as const }] : undefined,
+      fonts: fonts.length ? fonts : undefined,
     },
   );
 }
