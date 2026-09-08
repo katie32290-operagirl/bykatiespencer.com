@@ -19,12 +19,13 @@ export const SANS =
 /** Newsreader — the reading voice: body and italic asides. */
 export const SERIF = "var(--font-ks-voice), 'Newsreader', Georgia, serif";
 
-/** The site's one nav, shared across every page. */
-export const NAV = [
+/** The site's one nav, shared across every page. GreenRoom links out. */
+export const NAV: { label: string; href: string; external?: boolean }[] = [
   { label: "About", href: "/about" },
   { label: "Work", href: "/portfolio" },
   { label: "Narratives", href: "/narratives" },
   { label: "Toolkits", href: "/toolkits" },
   { label: "Notes", href: "/writing" },
   { label: "Connect", href: "/contact" },
-] as const;
+  { label: "GreenRoom", href: "https://greenroomcrm.com", external: true },
+];

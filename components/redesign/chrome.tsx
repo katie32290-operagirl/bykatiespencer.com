@@ -36,6 +36,13 @@ export function Nav({ ground, active }: { ground: Ground; active: string }) {
       >
         {NAV.map((n) => {
           const on = n.label === active;
+          if (n.external) {
+            return (
+              <a key={n.href} href={n.href} target="_blank" rel="noopener noreferrer" style={{ color: idleColor }} className="transition-opacity hover:opacity-60">
+                {n.label}
+              </a>
+            );
+          }
           return (
             <Link
               key={n.href}

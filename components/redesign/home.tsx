@@ -37,11 +37,17 @@ function NavLinks() {
       className="flex flex-wrap items-center gap-x-[clamp(14px,2.4vw,28px)] gap-y-1"
       style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".06em" }}
     >
-      {NAV.map((n) => (
-        <Link key={n.href} href={n.href} style={{ color: C.ox }} className="transition-opacity hover:opacity-60">
-          {n.label}
-        </Link>
-      ))}
+      {NAV.map((n) =>
+        n.external ? (
+          <a key={n.href} href={n.href} target="_blank" rel="noopener noreferrer" style={{ color: C.ox }} className="transition-opacity hover:opacity-60">
+            {n.label}
+          </a>
+        ) : (
+          <Link key={n.href} href={n.href} style={{ color: C.ox }} className="transition-opacity hover:opacity-60">
+            {n.label}
+          </Link>
+        ),
+      )}
     </div>
   );
 }
