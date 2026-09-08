@@ -18,10 +18,12 @@ type Ground = "cream" | "terra" | "oxblood";
  */
 export function Nav({ ground, active }: { ground: Ground; active: string }) {
   const dark = ground === "oxblood";
-  const brand = dark ? C.cream : ground === "cream" ? C.terra : C.cream;
+  const solid = dark || ground === "terra"; // colored grounds: cream brand + active underline
+  const brand = solid ? C.cream : C.terra;
   const dot = dark ? C.terra : C.ox;
-  const activeColor = dark ? C.cream : brand;
   const idleColor = dark ? C.peachSoft : C.ox;
+  const activeColor = dark ? C.cream : ground === "terra" ? C.ox : C.terra;
+  const underlineColor = dark ? C.terra : C.ox;
   return (
     <div
       className={`flex flex-wrap items-center justify-between gap-y-3 py-[clamp(18px,2.6vw,28px)] ${PAD}`}
@@ -47,7 +49,7 @@ export function Nav({ ground, active }: { ground: Ground; active: string }) {
             <Link
               key={n.href}
               href={n.href}
-              style={{ color: on ? activeColor : idleColor, ...(dark && on ? { borderBottom: `1.5px solid ${C.terra}`, paddingBottom: 3 } : null) }}
+              style={{ color: on ? activeColor : idleColor, ...(solid && on ? { borderBottom: `1.5px solid ${underlineColor}`, paddingBottom: 3 } : null) }}
               className="transition-opacity hover:opacity-60"
             >
               {n.label}
