@@ -139,7 +139,12 @@ export function WorkRedesign() {
           <div className="pt-[38px]">
             <Rows title="On stage & in print" rows={STAGE} />
           </div>
-          <div style={{ marginTop: 22, fontFamily: SANS, fontSize: 11, letterSpacing: ".16em", textTransform: "uppercase", color: STONE }}>Films with Vessul Creative · Program design with Robin Easter Design</div>
+          <div style={{ marginTop: 22, fontFamily: SANS, fontSize: 11, letterSpacing: ".16em", textTransform: "uppercase", color: STONE }}>
+            Films with{" "}
+            <a href="https://www.vessul.co/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-70">Vessul Creative</a>
+            {" · "}Program design with{" "}
+            <a href="https://www.robineaster.com/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-70">Robin Easter Design</a>
+          </div>
         </div>
       </section>
 
