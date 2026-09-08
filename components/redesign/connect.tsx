@@ -30,7 +30,7 @@ export function ConnectRedesign() {
         <div className="mx-auto grid max-w-[1180px] items-start gap-[clamp(36px,5vw,64px)] md:grid-cols-[400px_1fr]">
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/on/cafe-shoot.jpg" alt="Katie Spencer on set in Knoxville" className="block w-full object-cover" style={{ height: "clamp(280px,38vw,320px)" }} />
+            <img src="/on/katie-connect.jpg" alt="Katie Spencer" className="block w-full object-cover" style={{ height: "clamp(280px,38vw,320px)", objectPosition: "center 30%" }} />
             <div className="mt-7" style={{ borderTop: `1.5px solid ${C.ox}` }}>
               {INFO.map(([k, v]) => (
                 <div key={k} className="flex flex-wrap items-baseline justify-between gap-3 py-3.5" style={{ borderBottom: `1.5px solid ${C.ox}`, fontSize: 16, color: C.ox }}>
