@@ -191,6 +191,29 @@ export function HomeRedesign() {
       </div>
 
       {/* -------------------------------------------------------------- */}
+      {/*  Proof — the numbers, each linked to the case study             */}
+      {/* -------------------------------------------------------------- */}
+      <div className={`${PAD} pb-[clamp(56px,8vw,84px)]`} style={{ background: C.cream }}>
+        <div className="mx-auto max-w-[1180px]">
+          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.terra }}>
+            The proof · Knoxville Opera, four seasons (FY23&ndash;FY26)
+          </div>
+          <div className="mt-6 grid gap-x-9 gap-y-8 sm:grid-cols-3">
+            {([
+              ["+101%", "First-time paid attendance, per show"],
+              ["+27%", "Revenue per show"],
+              ["#1", "La Bohème, the best-selling production in company history"],
+            ] as [string, string][]).map(([n, l]) => (
+              <Link key={n} href="/knoxville-opera" className="block transition-opacity hover:opacity-70" style={{ borderTop: `2px solid ${C.ox}`, paddingTop: 16 }}>
+                <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(40px,5vw,60px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 1 }}>{n}</div>
+                <div style={{ fontSize: 15, lineHeight: 1.4, color: C.ox, marginTop: 10, maxWidth: 240 }}>{l}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* -------------------------------------------------------------- */}
       {/*  Chapters — periwinkle                                          */}
       {/* -------------------------------------------------------------- */}
       <div className={`${PAD} py-[clamp(64px,9vw,90px)]`} style={{ background: C.peri }}>
@@ -260,19 +283,23 @@ export function HomeRedesign() {
                 </p>
               </div>
             </div>
-            {/* the three smaller cards */}
+            {/* the smaller cards */}
             <div className="flex flex-col gap-[22px]">
               {([
-                [C.ox, "Consulting", "Helping founders and organizations turn strategy into a story people believe in.", true],
-                [C.peri, "Speaking", "Keynotes and conversations. Open to stages in 2026.", false],
-                [C.terra, "Stories in Development", "Podcasting, books, production, and live experiences.", false],
-              ] as [string, string, string, boolean][]).map(([bg, title, body, dark]) => {
+                [C.ox, "Narratives", "The consulting practice: story strategy for the performing arts, with the scope, the process, and the Knoxville proof on its page.", true, "/narratives"],
+                [C.peri, "Speaking", "Keynotes and conversations. Open to stages in 2026.", false, null],
+              ] as [string, string, string, boolean, string | null][]).map(([bg, title, body, dark, href]) => {
                 const text = dark ? C.cream : C.ox;
-                return (
-                  <div key={title} className="flex-1" style={{ background: bg, padding: 30 }}>
-                    <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 24, color: text }}>{title}</div>
+                const inner = (
+                  <>
+                    <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 24, color: text }}>{title}{href ? " →" : ""}</div>
                     <div style={{ fontSize: 16, lineHeight: 1.5, color: text, marginTop: 6 }}>{body}</div>
-                  </div>
+                  </>
+                );
+                return href ? (
+                  <Link key={title} href={href} className="flex-1 transition-opacity hover:opacity-90" style={{ background: bg, padding: 30, display: "block" }}>{inner}</Link>
+                ) : (
+                  <div key={title} className="flex-1" style={{ background: bg, padding: 30 }}>{inner}</div>
                 );
               })}
             </div>
