@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { C, SANS, SERIF, NAV } from "./tokens";
+import { MailLink } from "./mail-link";
+
+/** Google appointment schedule — "Book 20 minutes". */
+export const BOOK_URL = "https://calendar.app.google/xfwJqypoEkB8jxRG9";
 
 /**
  * Shared chrome for the redesigned interior pages — the nav, the giant page
@@ -100,28 +104,36 @@ export function TickerBand({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** The recurring close — "Come find me after the show." on terracotta. */
+/** The recurring close — "Come find me after the show." on terracotta.
+ *  A booking link is the primary path; the email sits underneath. */
 export function Cta() {
   return (
-    <div
-      className={`${PAD} grid items-center gap-[30px] py-[clamp(56px,8vw,80px)] md:grid-cols-[1fr_auto]`}
-      style={{ background: C.terra }}
-    >
-      <div className="mx-auto w-full max-w-[1180px] md:mx-0">
+    <div className={`${PAD} py-[clamp(56px,8vw,80px)]`} style={{ background: C.terra }}>
+      <div className="mx-auto max-w-[1180px]">
         <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(32px,5vw,52px)", letterSpacing: "-.025em", color: C.ox, lineHeight: 1 }}>
           Come find me after the show.
         </div>
-        <div style={{ fontSize: 18, fontStyle: "italic", color: C.ox, marginTop: 14 }}>
+        <div style={{ fontSize: 18, fontStyle: "italic", color: C.ox, marginTop: 14, maxWidth: 660 }}>
           Have a story worth telling, a room worth gathering, or something interesting you&rsquo;re building?
         </div>
+        <p style={{ fontFamily: SERIF, fontSize: 16, lineHeight: 1.6, color: C.ox, marginTop: 12, maxWidth: 620 }}>
+          Twenty minutes, on a call: a season, a story, or whatever you&rsquo;re making. Not a sales pitch, and not for everyone, but if that sounds like you, let&rsquo;s talk.
+        </p>
+        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a
+            href={BOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ fontFamily: SANS, fontSize: 16, color: C.cream, background: C.ox, padding: "16px 34px", borderRadius: 40, whiteSpace: "nowrap" }}
+            className="transition-opacity hover:opacity-90"
+          >
+            Book 20 minutes &rarr;
+          </a>
+          <span style={{ fontSize: 15, color: C.ox }}>
+            or write first, <MailLink style={{ color: C.ox, textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-70" />
+          </span>
+        </div>
       </div>
-      <a
-        href="mailto:hello@bykatiespencer.com"
-        style={{ fontFamily: SANS, fontSize: 15, color: C.cream, background: C.ox, padding: "16px 32px", borderRadius: 40, whiteSpace: "nowrap" }}
-        className="justify-self-start transition-opacity hover:opacity-90 md:justify-self-end"
-      >
-        hello@bykatiespencer.com
-      </a>
     </div>
   );
 }

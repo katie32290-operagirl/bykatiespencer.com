@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Nav, Footer, Shell, PAD, C, SANS, SERIF } from "./chrome";
+import { Nav, Footer, Shell, PAD, C, SANS, SERIF, BOOK_URL } from "./chrome";
+import { MailLink } from "./mail-link";
 
 /** Muted terracotta for secondary copy (design-system slate). */
 const SLATE = "#A4574a";
@@ -353,12 +354,18 @@ export function NarrativesRedesign() {
           <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(50px,10.5vw,140px)", lineHeight: 0.86, letterSpacing: "-.045em", margin: 0, maxWidth: "16ch" }}>
             Come find me after the show<span style={{ color: C.cream }}>.</span>
           </h2>
-          <p style={{ margin: "clamp(28px,4vw,44px) 0 30px", fontFamily: SERIF, fontSize: "clamp(20px,2.2vw,28px)", lineHeight: 1.35, maxWidth: 640 }}>
+          <p style={{ margin: "clamp(28px,4vw,44px) 0 12px", fontFamily: SERIF, fontSize: "clamp(20px,2.2vw,28px)", lineHeight: 1.35, maxWidth: 640 }}>
             Have a story worth telling, a room worth gathering, or something interesting you&rsquo;re building?
           </p>
-          <a href="mailto:hello@bykatiespencer.com" style={{ display: "inline-block", background: C.ox, color: C.cream, fontFamily: SANS, fontSize: 19, lineHeight: 1, padding: "20px 44px", borderRadius: 40 }} className="transition-opacity hover:opacity-90">
-            hello@bykatiespencer.com
-          </a>
+          <p style={{ margin: "0 0 28px", fontFamily: SERIF, fontSize: 16, lineHeight: 1.6, color: C.ox, maxWidth: 600 }}>
+            Twenty minutes, on a call: a season, a story, or whatever you&rsquo;re making. Not a sales pitch, and not for everyone, but if that sounds like you, let&rsquo;s talk.
+          </p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: C.ox, color: C.cream, fontFamily: SANS, fontSize: 19, lineHeight: 1, padding: "20px 44px", borderRadius: 40 }} className="transition-opacity hover:opacity-90">
+              Book 20 minutes &rarr;
+            </a>
+            <span style={{ fontSize: 16, color: C.ox }}>or write first, <MailLink style={{ color: C.ox, textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-70" /></span>
+          </div>
         </div>
       </section>
 
