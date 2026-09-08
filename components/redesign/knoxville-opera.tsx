@@ -43,8 +43,10 @@ export function KnoxvilleOperaRedesign() {
               <p style={{ fontSize: "clamp(17px,2vw,20px)", lineHeight: 1.65, color: C.ox, marginTop: 20, maxWidth: 540 }}>
                 Reimagining a 47-year-old opera company for a new generation, and proof that the right story, and the right team, moves real numbers.
               </p>
-              <p style={{ fontSize: 15, lineHeight: 1.6, color: C.ox, marginTop: 16, maxWidth: 560, opacity: 0.85 }}>
-                These results belong to a team I was lucky to work with. Marketing made the promise. The artistic team kept it. The growth came from both. I led brand, marketing, and, from FY24, development, alongside Knoxville Opera&rsquo;s staff, board, Rossini Festival volunteers, and the audiences who showed up.
+              <p style={{ fontSize: 15, lineHeight: 1.6, color: "rgba(140,27,18,0.82)", marginTop: 16, maxWidth: 560 }}>
+                These results belong to a team I was lucky to work with.{" "}
+                <strong style={{ fontWeight: 700, color: C.ox }}>Marketing made the promise. The artistic team kept it. The growth came from both.</strong>{" "}
+                I led brand, marketing, and, from FY24, development, alongside Knoxville Opera&rsquo;s staff, board, Rossini Festival volunteers, and the audiences who showed up.
               </p>
             </div>
             <div>
