@@ -192,8 +192,8 @@ export function SeasonExport({ input, count }: { input: SeasonInput; count: numb
           <div style={H}>Take your year with you.</div>
           <p style={{ ...BODY, marginTop: 10, maxWidth: 640 }}>
             The planner is free to use, and it stays that way. Downloading your {count} dates, as a
-            calendar you can import, a spreadsheet, or a printed sheet, comes with The Small Arts Org
-            Operating Kit.
+            calendar you can import, a spreadsheet, or a printed sheet, comes with{" "}
+            <a href={"https://payhip.com/order?link[]=6FiAt&parent_url=https%3A%2F%2Fwww.bykatiespencer.com%2Ftoolkits&type=fallback_direct"} target="_blank" rel="noopener noreferrer" style={{ color: C.terra, textDecoration: "underline", textUnderlineOffset: 2 }} className="transition-opacity hover:opacity-70">The Small Arts Org Operating Kit</a>.
           </p>
           <div className="mt-6 flex flex-wrap items-end gap-3">
             <div style={{ flex: "1 1 300px" }}>
