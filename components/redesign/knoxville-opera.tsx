@@ -44,7 +44,7 @@ export function KnoxvilleOperaRedesign() {
                 Reimagining a 47-year-old opera company for a new generation, and proof that the right story, and the right team, moves real numbers.
               </p>
               <p style={{ fontSize: 15, lineHeight: 1.6, color: C.ox, marginTop: 16, maxWidth: 560, opacity: 0.85 }}>
-                These results belong to a team I was lucky to work with. I led brand, marketing, and, from FY24, development, but the growth also happened because the artistic team put on great shows, alongside Knoxville Opera&rsquo;s staff, board, Rossini Festival volunteers, and the audiences who showed up.
+                These results belong to a team I was lucky to work with. Marketing made the promise. The artistic team kept it. The growth came from both. I led brand, marketing, and, from FY24, development, alongside Knoxville Opera&rsquo;s staff, board, Rossini Festival volunteers, and the audiences who showed up.
               </p>
             </div>
             <div>
