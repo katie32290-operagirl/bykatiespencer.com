@@ -1,9 +1,22 @@
 import Link from "next/link";
-import { Nav, GiantTitle, TickerBand, Cta, Footer, Shell, PAD, C, SANS } from "./chrome";
+import { Nav, GiantTitle, Cta, Footer, Shell, PAD, C, SANS } from "./chrome";
+import { NotesSignup } from "./notes-signup";
 import { notes } from "@/content/writing";
 
 const countWord = (n: number) =>
   n === 1 ? "One essay" : n === 2 ? "Two essays" : `${n} essays`;
+
+/** Rough reading time from the essay body, ~200 words a minute. */
+const readMins = (body: string) => Math.max(1, Math.round(body.trim().split(/\s+/).length / 200));
+
+/** The month, without the year — for the "in order of appearance" kickers. */
+const monthOnly = (date: string) => date.replace(/\s+\d{4}$/, "");
+
+/** What's coming — teasers for the column, not yet published. */
+const WINGS: [string, string][] = [
+  ["III", "The subscription model was a promise about people’s time, and we kept selling it after the promise stopped being true."],
+  ["IV", "What a box office report tells you that a focus group never will."],
+];
 
 export function NotesRedesign() {
   const [featured, second] = notes;
@@ -11,66 +24,108 @@ export function NotesRedesign() {
   return (
     <Shell ground="cream">
       <Nav ground="cream" active="Notes" />
-      <GiantTitle ground="cream" size="min(23vw,275px)">Notes</GiantTitle>
+      <GiantTitle ground="cream" size="min(23vw,275px)">Notes.</GiantTitle>
 
       {/* hero */}
-      <div className={`${PAD} pb-[clamp(48px,7vw,70px)] pt-[clamp(48px,6vw,64px)] text-center`}>
-        <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".26em", textTransform: "uppercase", color: C.terra }}>Notes from the house</div>
-        <h1 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(36px,5.6vw,56px)", lineHeight: 1, letterSpacing: "-.03em", color: C.ox, maxWidth: 760, margin: "26px auto 0" }}>
-          Notes from the house.
-        </h1>
-        <p style={{ fontSize: 19, lineHeight: 1.6, color: C.ox, maxWidth: 620, margin: "24px auto 0" }}>
+      <div className={`${PAD} pb-[clamp(40px,6vw,72px)] pt-[clamp(32px,4vw,48px)] text-center`}>
+        <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".26em", textTransform: "uppercase", color: C.terra }}>Notes from the house</div>
+        <p style={{ fontSize: "clamp(18px,2vw,23px)", lineHeight: 1.5, color: C.ox, maxWidth: 660, margin: "26px auto 0", textWrap: "pretty" }}>
           Essays, observations and unfinished thoughts on art, story, audience, and the work of building things. A director&rsquo;s notes column, kept in public.
         </p>
+        {/* dot rule */}
+        <div className="mx-auto mt-10 flex items-center gap-[14px]" style={{ maxWidth: 620 }}>
+          <span style={{ height: 1.5, background: C.ox, flex: 1 }} />
+          <span style={{ width: 10, height: 10, borderRadius: "50%", background: C.terra, flex: "none" }} />
+          <span style={{ height: 1.5, background: C.ox, flex: 1 }} />
+        </div>
+        {/* meta row */}
+        <div className="mt-[22px] flex flex-wrap justify-center gap-x-[clamp(16px,3vw,40px)] gap-y-2" style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>
+          <span>Issue no. 02</span>
+          <span style={{ color: C.terra }}>&bull;</span>
+          <span>{countWord(notes.length)}</span>
+          <span style={{ color: C.terra }}>&bull;</span>
+          <span>{featured?.date ?? "2026"}</span>
+        </div>
       </div>
 
-      <TickerBand>
-        <span>Filed by <span style={{ color: C.cream }}>Katie Spencer</span></span>
-        <span aria-hidden style={{ color: C.peri }}>•</span>
-        <span>In this issue <span style={{ color: C.cream }}>{countWord(notes.length)}</span></span>
-        <span aria-hidden style={{ color: C.peri }}>•</span>
-        <span>Updated <span style={{ color: C.cream }}>{featured?.date ?? "2026"}</span></span>
-      </TickerBand>
-
-      {/* this issue */}
-      <div className={`${PAD} py-[clamp(64px,9vw,90px)]`} style={{ background: C.cream }}>
-        <div className="mx-auto max-w-[1180px]">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-            <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(40px,6vw,56px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 0.95 }}>This issue.</div>
-            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.terra }}>The bill · in order of appearance</div>
-          </div>
-          <div className="mt-10 grid gap-[22px] md:grid-cols-[1.3fr_1fr]">
-            {/* featured — terracotta */}
-            {featured && (
-              <Link href={`/writing/${featured.slug}`} className="flex flex-col justify-between transition-opacity hover:opacity-95" style={{ background: C.terra, padding: "clamp(32px,4vw,48px)", minHeight: 360 }}>
-                <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.cream }}>
-                  Latest · {featured.category} · {featured.date}
-                </div>
-                <div className="mt-10">
-                  <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(32px,4.4vw,44px)", lineHeight: 0.98, letterSpacing: "-.025em", color: C.ox }}>{featured.title}</div>
-                  <div style={{ fontSize: 17, lineHeight: 1.55, color: C.ox, marginTop: 14, maxWidth: 460 }}>{featured.lead}</div>
-                  <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.cream, marginTop: 20 }}>Read the note →</div>
-                </div>
-              </Link>
-            )}
-            {/* column: second essay + more soon */}
-            <div className="flex flex-col gap-[22px]">
-              {second && (
-                <Link href={`/writing/${second.slug}`} className="flex-1 transition-opacity hover:opacity-90" style={{ background: C.peri, padding: 32 }}>
-                  <div style={{ fontFamily: SANS, fontSize: 11, letterSpacing: ".14em", textTransform: "uppercase", color: C.ox }}>✦ Also in the file · {second.category} · {second.date.replace(/\s+\d{4}$/, "")}</div>
-                  <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 26, lineHeight: 1.05, color: C.ox, marginTop: 12 }}>{second.title}.</div>
-                  <div style={{ fontSize: 16, lineHeight: 1.55, color: C.ox, marginTop: 10 }}>{second.lead}</div>
-                  <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: C.ox, marginTop: 16 }}>Read the note →</div>
+      {/* latest — oxblood feature */}
+      {featured && (
+        <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 clamp(20px,5vw,64px)" }}>
+          <div
+            className="grid items-end gap-[clamp(28px,4vw,56px)]"
+            style={{ background: C.ox, color: C.cream, padding: "clamp(32px,5vw,64px)", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))" }}
+          >
+            <div>
+              <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: C.peach }}>
+                Latest &middot; {featured.category} &middot; {featured.date}
+              </div>
+              <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(34px,5.4vw,62px)", lineHeight: 1, letterSpacing: "-.04em", margin: "22px 0 0", color: C.cream, textWrap: "pretty" }}>
+                {featured.title}
+              </h2>
+            </div>
+            <div>
+              <p style={{ fontSize: "clamp(17px,1.7vw,20px)", lineHeight: 1.65, margin: 0, color: C.peachSoft }}>{featured.lead}</p>
+              <div className="mt-[26px] flex flex-wrap items-center gap-[18px]">
+                <Link href={`/writing/${featured.slug}`} style={{ fontFamily: SANS, fontWeight: 700, fontSize: 19, letterSpacing: "-.02em", color: C.cream, borderBottom: `2px solid ${C.terra}`, paddingBottom: 3 }} className="transition-opacity hover:opacity-80">
+                  Read the note &rarr;
                 </Link>
-              )}
-              <div style={{ background: C.cream, border: `1.5px solid ${C.ox}`, padding: 32 }}>
-                <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 20, color: C.ox }}>More notes soon.</div>
-                <div style={{ fontSize: 16, fontStyle: "italic", lineHeight: 1.5, color: C.ox, marginTop: 6 }}>The column continues. New essays as the work asks for them.</div>
+                <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.peach }}>{readMins(featured.body)} min</span>
               </div>
             </div>
           </div>
         </div>
+      )}
+
+      {/* the bill */}
+      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "clamp(40px,6vw,72px) clamp(20px,5vw,64px) 0" }}>
+        <div className="mb-[26px] flex flex-wrap items-baseline gap-[16px]">
+          <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-.03em", color: C.ox }}>The bill</span>
+          <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.terra }}>In order of appearance</span>
+          <span style={{ height: 1.5, background: C.ox, flex: 1, minWidth: 60 }} />
+        </div>
+        <div className="grid gap-[20px]" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))" }}>
+          {/* second essay */}
+          {second && (
+            <div className="flex flex-col" style={{ border: `1.5px solid ${C.ox}`, padding: "clamp(26px,3vw,38px)" }}>
+              <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: C.terra }}>
+                Also in the file &middot; {second.category} &middot; {monthOnly(second.date)}
+              </div>
+              <h3 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(24px,2.8vw,34px)", lineHeight: 1.05, letterSpacing: "-.03em", margin: "18px 0 0", color: C.ox, textWrap: "pretty" }}>
+                {second.title}
+              </h3>
+              <p style={{ fontSize: 17, lineHeight: 1.65, color: C.ox, margin: "16px 0 0" }}>{second.lead}</p>
+              <div style={{ flex: 1, minHeight: 20 }} />
+              <div className="mt-[22px] flex flex-wrap items-center gap-[18px]">
+                <Link href={`/writing/${second.slug}`} style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, letterSpacing: "-.02em", color: C.terra }} className="transition-opacity hover:opacity-70">
+                  Read the note &rarr;
+                </Link>
+                <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>{readMins(second.body)} min</span>
+              </div>
+            </div>
+          )}
+          {/* in the wings */}
+          <div className="flex flex-col" style={{ background: C.peri, padding: "clamp(26px,3vw,38px)" }}>
+            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: C.ox }}>In the wings</div>
+            <h3 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(24px,2.8vw,34px)", lineHeight: 1.05, letterSpacing: "-.03em", margin: "18px 0 0", color: C.ox }}>
+              What I&rsquo;m chewing on next.
+            </h3>
+            <div className="mt-5 grid gap-[14px]">
+              {WINGS.map(([num, text]) => (
+                <div key={num} className="grid gap-[12px]" style={{ gridTemplateColumns: "26px minmax(0, 1fr)", borderTop: `1.5px solid ${C.ox}`, paddingTop: 14 }}>
+                  <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 15, letterSpacing: ".06em", color: C.ox }}>{num}</span>
+                  <span style={{ fontSize: 16, lineHeight: 1.45, color: C.ox }}>{text}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ flex: 1, minHeight: 20 }} />
+            <p style={{ fontSize: 15, lineHeight: 1.5, margin: "22px 0 0", fontStyle: "italic", color: C.ox }}>
+              The column continues. New essays as the work asks for them.
+            </p>
+          </div>
+        </div>
       </div>
+
+      <NotesSignup />
 
       <Cta />
       <Footer />
