@@ -51,7 +51,7 @@ export function NotesSignup() {
   }
 
   return (
-    <div className={`${PAD}`} style={{ maxWidth: 1240, margin: "clamp(40px,6vw,72px) auto 0" }}>
+    <div className={`${PAD}`} style={{ maxWidth: 1240, margin: "clamp(40px,6vw,72px) auto clamp(48px,7vw,88px)" }}>
       <div
         className="grid items-center gap-[26px]"
         style={{ background: C.peachSoft, padding: "clamp(28px,4vw,48px)", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))" }}
