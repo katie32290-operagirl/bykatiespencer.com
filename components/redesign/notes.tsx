@@ -13,9 +13,9 @@ const readMins = (body: string) => Math.max(1, Math.round(body.trim().split(/\s+
 const monthOnly = (date: string) => date.replace(/\s+\d{4}$/, "");
 
 /** What's coming — teasers for the column, not yet published. */
-const WINGS: [string, string][] = [
-  ["III", "The subscription model was a promise about people’s time, and we kept selling it after the promise stopped being true."],
-  ["IV", "What a box office report tells you that a focus group never will."],
+const WINGS: [string, string, string][] = [
+  ["III", "The Wrong Kind of Founder", "Being non-technical wasn’t the obstacle. It was the qualification. I built the CRM because I was living the problem, by hand, for years."],
+  ["IV", "How Do You Balance the Budget?", "Earned against contributed. Safe programming against brave. And the myth that a bigger budget means a healthier organization."],
 ];
 
 export function NotesRedesign() {
@@ -107,19 +107,20 @@ export function NotesRedesign() {
           <div className="flex flex-col" style={{ background: C.peri, padding: "clamp(26px,3vw,38px)" }}>
             <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: C.ox }}>In the wings</div>
             <h3 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(24px,2.8vw,34px)", lineHeight: 1.05, letterSpacing: "-.03em", margin: "18px 0 0", color: C.ox }}>
-              What I&rsquo;m chewing on next.
+              What I&rsquo;m thinking through next.
             </h3>
             <div className="mt-5 grid gap-[14px]">
-              {WINGS.map(([num, text]) => (
-                <div key={num} className="grid gap-[12px]" style={{ gridTemplateColumns: "26px minmax(0, 1fr)", borderTop: `1.5px solid ${C.ox}`, paddingTop: 14 }}>
+              {WINGS.map(([num, title, text]) => (
+                <div key={num} className="grid gap-x-[12px] gap-y-1" style={{ gridTemplateColumns: "26px minmax(0, 1fr)", borderTop: `1.5px solid ${C.ox}`, paddingTop: 14 }}>
                   <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 15, letterSpacing: ".06em", color: C.ox }}>{num}</span>
-                  <span style={{ fontSize: 16, lineHeight: 1.45, color: C.ox }}>{text}</span>
+                  <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, letterSpacing: "-.01em", color: C.ox }}>{title}</span>
+                  <span style={{ gridColumn: 2, fontSize: 16, lineHeight: 1.45, color: C.ox }}>{text}</span>
                 </div>
               ))}
             </div>
             <div style={{ flex: 1, minHeight: 20 }} />
             <p style={{ fontSize: 15, lineHeight: 1.5, margin: "22px 0 0", fontStyle: "italic", color: C.ox }}>
-              The column continues. New essays as the work asks for them.
+              The column continues. New essays when the work asks for them.
             </p>
           </div>
         </div>
