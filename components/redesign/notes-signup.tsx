@@ -7,7 +7,10 @@ import { C, SANS, SERIF, PAD } from "./chrome";
  *  catch hook when one is configured; if it isn't, it degrades to opening the
  *  visitor's mail client so the button is never a dead end. Same text/plain
  *  approach as the survey opt-in (avoids the CORS preflight Zapier won't
- *  answer). */
+ *  answer).
+ *
+ *  NEXT_PUBLIC_NOTES_ZAPIER_HOOK is inlined at BUILD time — after changing it
+ *  in Vercel, redeploy WITHOUT the build cache or the new value won't ship. */
 const HOOK = process.env.NEXT_PUBLIC_NOTES_ZAPIER_HOOK;
 const NOTES_EMAIL = "hello@bykatiespencer.com";
 
