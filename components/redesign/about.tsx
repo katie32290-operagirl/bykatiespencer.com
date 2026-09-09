@@ -22,7 +22,7 @@ export function AboutRedesign() {
   return (
     <Shell ground="cream">
       <Nav ground="cream" active="About" />
-      <GiantTitle ground="cream" size="min(21vw,250px)">About</GiantTitle>
+      <GiantTitle ground="cream" size="min(21vw,250px)">About.</GiantTitle>
 
       {/* hero */}
       <div className={`${PAD} pb-[clamp(56px,9vw,90px)] pt-[clamp(48px,6vw,64px)] text-center`}>

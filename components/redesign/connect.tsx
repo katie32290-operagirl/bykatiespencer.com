@@ -12,7 +12,7 @@ export function ConnectRedesign() {
   return (
     <Shell ground="terra">
       <Nav ground="terra" active="Connect" />
-      <GiantTitle ground="terra" size="min(19vw,230px)">Connect</GiantTitle>
+      <GiantTitle ground="terra" size="min(19vw,230px)">Connect.</GiantTitle>
 
       {/* hero — terracotta */}
       <div className={`${PAD} pb-[clamp(56px,9vw,90px)] pt-[clamp(48px,6vw,64px)] text-center`}>
