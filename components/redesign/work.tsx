@@ -64,7 +64,7 @@ export function WorkRedesign() {
       {/* header — oxblood */}
       <header className={`${PAD} pb-[clamp(44px,6vw,76px)] pt-[clamp(40px,6vw,80px)]`} style={{ background: C.ox }}>
         <div className="mx-auto max-w-[1240px]">
-          <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".24em", textTransform: "uppercase", color: C.peach, marginBottom: 20 }}>The programme</div>
+          <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".24em", textTransform: "uppercase", color: C.peach, marginBottom: 20 }}>The Program</div>
           <h1 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(52px,10.5vw,142px)", lineHeight: 0.86, letterSpacing: "-.045em", margin: 0, color: C.cream, maxWidth: "20ch" }}>
             Work is where ideas become real<span style={{ color: C.terra }}>.</span>
           </h1>
