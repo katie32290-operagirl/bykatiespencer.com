@@ -157,11 +157,17 @@ export function parseIcs(input: string): ParsedItem[] {
 
 /* ---- shaping ---------------------------------------------------------- */
 
-const FUNDRAISER_WORDS = /\b(gala|benefit|auction|fundrais|luncheon|dinner|brunch|paddle|donor reception|sponsor)\b/i;
+// A fundraiser is the big one: sponsors, an auction, a paddle raise.
+const FUNDRAISER_WORDS = /\b(gala|benefit|auction|fundrais|paddle|sponsor|ball)\b/i;
+// A plain event is lighter: a donor dinner, a reception, a community night.
+const EVENT_WORDS = /\b(dinner|brunch|luncheon|reception|party|community|open house|mixer|salon|member|volunteer|kick[- ]?off|preview)\b/i;
 
-/** Keyword lean for the review step. The user always confirms. */
-export function guessKind(name: string): "production" | "fundraiser" {
-  return FUNDRAISER_WORDS.test(name) ? "fundraiser" : "production";
+/** Keyword lean for the review step. The user always confirms, and can also
+ *  send an item to "Other" to leave it out. */
+export function guessKind(name: string): "production" | "fundraiser" | "event" {
+  if (FUNDRAISER_WORDS.test(name)) return "fundraiser";
+  if (EVENT_WORDS.test(name)) return "event";
+  return "production";
 }
 
 const DAY = 86400000;

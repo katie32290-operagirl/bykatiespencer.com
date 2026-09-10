@@ -38,7 +38,7 @@ export type Milestone = {
 };
 
 export type Production = { name: string; opening: string; closing: string };
-export type FundEvent = { name: string; date: string };
+export type FundEvent = { name: string; date: string; kind?: "fundraiser" | "event" };
 
 export type SeasonInput = {
   seasonStartMonth: number | null; // 0-11
@@ -152,7 +152,7 @@ export function buildCalendar(input: SeasonInput): Milestone[] {
     .map((p) => ({ name: p.name.trim(), opening: parseLocal(p.opening), closing: parseLocal(p.closing) }))
     .filter((p) => p.opening);
   const events = input.events
-    .map((e) => ({ name: e.name.trim(), date: parseLocal(e.date) }))
+    .map((e) => ({ name: e.name.trim(), date: parseLocal(e.date), kind: e.kind ?? "fundraiser" }))
     .filter((e) => e.date);
   const announcement = parseLocal(input.announcement);
   const onSale = parseLocal(input.onSale);
@@ -207,10 +207,28 @@ export function buildCalendar(input: SeasonInput): Milestone[] {
     push(addWeeks(lastClose, 2), "Season scorecard: new against returning, source, retention", "marketing", "Close the loop on the year", 1, "move7", "internal");
   }
 
-  /* --- EVENTS: a 16-week countdown per fundraiser --------------------- */
+  /* --- EVENTS: a 16-week countdown for a fundraiser (sponsors + auction),
+     or a lighter runway for a plain event (donor dinner, community night) with
+     no sponsorship or auction beats. --------------------------------------- */
   events.forEach((e, i) => {
     const label = nm(e.name, `Event ${i + 1}`);
     const E = e.date!;
+
+    if (e.kind === "event") {
+      // No sponsors, no auction: a shorter, lighter countdown.
+      push(addWeeks(E, -12), `${label} save the date and host email one`, "events", "Twelve weeks out", 1, "move3", "email");
+      push(addWeeks(E, -8), `${label} invitations mail; host email two`, "events", "Eight weeks out", 2, "move3", "mail");
+      push(addWeeks(E, -3), `${label} RSVP deadline; host email three`, "events", "Three weeks out", 2, "move3", "email");
+      push(addWeeks(E, -2), `${label} remarks final, then to speakers`, "events", "Two weeks out", 2, "draft", "internal");
+      push(addWeeks(E, -1), `${label} final headcount and run of show`, "events", "One week out", 1, "fixed", "internal");
+      push(addDays(E, -1), `${label} Know Before You Go`, "events", "The day before", 1, "fixed", "email");
+      push(E, `${label}`, "events", "Event night", 3, "fixed", "event");
+      push(addDays(E, 2), `${label} 48-hour thank-yous`, "events", "Forty-eight hours after", 2, "fixed", "email");
+      push(addWeeks(E, 2), `${label} debrief`, "events", "Two weeks after", 1, "move7", "internal");
+      return;
+    }
+
+    // Fundraiser: the full sponsor-and-auction rhythm.
     push(addWeeks(E, -16), `${label} sponsorship selling opens`, "events", "Sixteen weeks out. Lock the date and venue.", 2, "move7", "meeting");
     push(addWeeks(E, -12), `${label} save the date and host email one`, "events", "Twelve weeks out", 1, "move3", "email");
     // 10 weeks: sponsor recognition deadline and the invitation to the printer are the same beat.

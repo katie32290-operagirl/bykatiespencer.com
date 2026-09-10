@@ -191,7 +191,7 @@ export function SeasonPlanner() {
   const [lanesOn, setLanesOn] = useState<Record<Lane, boolean>>({ development: true, marketing: true, events: true });
 
   // Import door state.
-  type ReviewRow = { name: string; start: Date; end: Date | null; kind: "production" | "fundraiser" | "ignore" };
+  type ReviewRow = { name: string; start: Date; end: Date | null; kind: "production" | "fundraiser" | "event" | "other" };
   const [importText, setImportText] = useState("");
   const [review, setReview] = useState<ReviewRow[] | null>(null);
   const [importNote, setImportNote] = useState("");
@@ -241,7 +241,9 @@ export function SeasonPlanner() {
   const applyReview = () => {
     if (!review) return;
     const newProds: Production[] = review.filter((r) => r.kind === "production").map((r) => ({ name: r.name, opening: isoDay(r.start), closing: r.end ? isoDay(r.end) : "" }));
-    const newEvents: FundEvent[] = review.filter((r) => r.kind === "fundraiser").map((r) => ({ name: r.name, date: isoDay(r.start) }));
+    const newEvents: FundEvent[] = review
+      .filter((r) => r.kind === "fundraiser" || r.kind === "event")
+      .map((r) => ({ name: r.name, date: isoDay(r.start), kind: r.kind as "fundraiser" | "event" }));
     const keptProds = productions.filter((p) => p.name.trim() || p.opening || p.closing);
     const keptEvents = events.filter((e) => e.name.trim() || e.date);
     const mergedProds = [...keptProds, ...newProds];
@@ -389,12 +391,12 @@ export function SeasonPlanner() {
                       </p>
                       <div className="mt-4 flex flex-col">
                         {review.map((r, i) => (
-                          <div key={i} className="flex flex-col gap-2 py-3" style={{ borderTop: i ? "1px solid rgba(140,27,18,0.12)" : undefined, opacity: r.kind === "ignore" ? 0.5 : 1 }}>
+                          <div key={i} className="flex flex-col gap-2 py-3" style={{ borderTop: i ? "1px solid rgba(140,27,18,0.12)" : undefined, opacity: r.kind === "other" ? 0.5 : 1 }}>
                             <input aria-label={`Item ${i + 1} name`} className="sp-field" value={r.name} onChange={(e) => setReviewRow(i, { name: e.target.value })} style={{ padding: "8px 11px", fontSize: 15 }} />
                             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                               <span style={{ fontFamily: SANS, fontSize: 12, color: C.terra, minWidth: 90 }}>{fmtDate(r.start)}{r.end ? ` – ${fmtDate(r.end)}` : ""}</span>
                               <div className="flex flex-wrap gap-1.5">
-                                {(["production", "fundraiser", "ignore"] as const).map((k) => (
+                                {(["production", "fundraiser", "event", "other"] as const).map((k) => (
                                   <button key={k} type="button" aria-pressed={r.kind === k} onClick={() => setReviewRow(i, { kind: k })} style={{ fontFamily: SANS, fontSize: 12, padding: "6px 12px", borderRadius: 40, border: `1.5px solid ${C.ox}`, background: r.kind === k ? C.ox : "transparent", color: r.kind === k ? C.cream : C.ox, textTransform: "capitalize" }} className="transition-opacity hover:opacity-80">{k}</button>
                                 ))}
                               </div>
@@ -404,7 +406,7 @@ export function SeasonPlanner() {
                       </div>
                       <div className="mt-4 flex flex-wrap gap-3">
                         <button type="button" onClick={applyReview} style={{ fontFamily: SANS, fontSize: 14, color: C.cream, background: C.terra, border: `1.5px solid ${C.terra}`, padding: "11px 22px", borderRadius: 40 }} className="transition-opacity hover:opacity-90">
-                          Add {review.filter((r) => r.kind !== "ignore").length} to the form
+                          Add {review.filter((r) => r.kind !== "other").length} to the form
                         </button>
                         <button type="button" onClick={() => { setReview(null); setImportNote(""); }} style={{ fontFamily: SANS, fontSize: 14, color: C.ox, background: "transparent", border: `1.5px solid ${C.ox}`, padding: "11px 22px", borderRadius: 40 }} className="transition-opacity hover:opacity-70">Start over</button>
                       </div>
@@ -507,7 +509,7 @@ export function SeasonPlanner() {
                   + Add another production
                 </button>
 
-                <div className="mt-8" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: SLATE }}>Your fundraising events</div>
+                <div className="mt-8" style={{ fontFamily: SANS, fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: SLATE }}>Your events and fundraisers</div>
                 <div className="mt-3 flex flex-col gap-6">
                   {events.map((ev, i) => (
                     <div key={i} className="flex items-start gap-4">
@@ -523,6 +525,18 @@ export function SeasonPlanner() {
                             <input className="sp-field" type="date" value={ev.date} onChange={(e) => setEvt(i, "date", e.target.value)} />
                           </div>
                         </div>
+                        <div className="mt-3 flex flex-wrap items-center gap-2">
+                          <span style={labelStyle}>Type</span>
+                          {(["fundraiser", "event"] as const).map((k) => {
+                            const on = (ev.kind ?? "fundraiser") === k;
+                            return (
+                              <button key={k} type="button" aria-pressed={on} onClick={() => setEvents((r) => r.map((row, j) => (j === i ? { ...row, kind: k } : row)))} style={{ fontFamily: SANS, fontSize: 12, padding: "6px 12px", borderRadius: 40, border: `1.5px solid ${C.ox}`, background: on ? C.ox : "transparent", color: on ? C.cream : C.ox, textTransform: "capitalize" }} className="transition-opacity hover:opacity-80">{k}</button>
+                            );
+                          })}
+                          <span style={{ fontFamily: SERIF, fontSize: 13, color: SLATE }}>
+                            {(ev.kind ?? "fundraiser") === "fundraiser" ? "Sponsors and auction: the full 16-week countdown." : "A donor dinner or community night: a lighter runway, no sponsor beats."}
+                          </span>
+                        </div>
                         {events.length > 1 && (
                           <button type="button" onClick={() => setEvents((r) => r.filter((_, j) => j !== i))} aria-label={`Remove event ${i + 1}`} style={{ marginTop: 10, fontFamily: SANS, fontSize: 12, letterSpacing: ".04em", color: SLATE, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 2 }} className="transition-opacity hover:opacity-60">Remove</button>
                         )}
@@ -530,7 +544,7 @@ export function SeasonPlanner() {
                     </div>
                   ))}
                 </div>
-                <button type="button" onClick={() => setEvents((r) => [...r, { name: "", date: "" }])} style={{ marginTop: 14, fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", color: C.ox, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-60">
+                <button type="button" onClick={() => setEvents((r) => [...r, { name: "", date: "", kind: "fundraiser" }])} style={{ marginTop: 14, fontFamily: SANS, fontSize: 13, letterSpacing: ".04em", color: C.ox, background: "transparent", border: "none", padding: 0, textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-60">
                   + Add another event
                 </button>
               </div>
