@@ -213,7 +213,6 @@ export function SeasonPlanner() {
 
   useEffect(() => {
     setMounted(true);
-    loadExample();
   }, []);
 
   const ingest = (items: { name: string; start: Date; end: Date | null }[]) => {
