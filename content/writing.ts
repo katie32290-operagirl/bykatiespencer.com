@@ -28,6 +28,254 @@ export type Note = {
 
 export const notes: Note[] = [
   {
+    slug: "masters-in-opera-built-a-crm-anyway",
+    category: "On building",
+    date: "October 2026",
+    eyebrow: "Notes",
+    title: "I Have a Master’s in Opera. I Built a CRM Anyway",
+    subtitle: "Maybe being non-technical is the point.",
+    lead: "The first time I watched a real relationship with a donor slip through the cracks, nobody stopped caring.",
+    body: `The first time I watched a real relationship with a donor slip through the cracks, nobody stopped caring.
+
+I cared. I knew this person. I knew what performances they had come to. I remembered conversations we’d had in the lobby. I probably knew who they sat with and whether they preferred the gala or would rather be invited to something smaller.
+
+But some of that information was in the database. Some was in my inbox. Some was in a spreadsheet. And a lot of it was just in my head.
+
+Meanwhile, I was also doing the rest of my job.
+
+And in the arts, “the rest of my job” could mean building a gala seating chart, figuring out sponsor tables, getting the weekly email out, checking subscription sales, writing copy for the next production, answering a board member, working through a sponsor deadline, meeting with the city about an upcoming festival, solving something for the box office, and suddenly remembering that the artists need to know what to wear for media day when they arrive and I still haven’t sent them that email.
+
+I have run a festival with four stages and sixty vendors while also carrying donor relationships.
+
+And the crazy thing is, that is not an unfathomable workload in arts administration.
+
+So the donor I genuinely cared about would sometimes fall out of the front of my brain.
+
+Then three months later I’d need to call because we were launching a campaign.
+
+And suddenly I was in the exact position I never wanted to be in: reaching out when I needed money.
+
+It looked transactional.
+
+Worse, I knew it looked transactional.
+
+The frustrating part was that it wasn’t true.
+
+I did care about that person. I wanted to know how they were doing. How the renovation was going. How their mother’s move went. I wanted to call when I didn’t need anything.
+
+I just also had hard deadlines attached to very real things that actually had to get done.
+
+And there were only so many hours in the day.
+
+That tension is probably the earliest version of GreenRoom.
+
+Not, “How do we raise more money?”
+
+How do we build systems that help people actually take care of people when the people doing the caring are also doing five jobs?
+
+---
+
+**The software wasn’t built for the way we worked**
+
+If you’ve worked inside a small or midsize arts organization, you already know the system.
+
+And by “system,” I mostly mean a collection of systems held together by human beings.
+
+The donor database.
+
+The ticketing platform.
+
+Mailchimp.
+
+The spreadsheet.
+
+The other spreadsheet.
+
+The spreadsheet called something like FINAL_GalaSeating_v3_REALFINAL.xlsx that everyone is terrified to touch.
+
+The Google Drive folder.
+
+Someone’s inbox.
+
+The report only one person knows how to run.
+
+A sticky note stuck to the monitor.
+
+And then there is the most important database of all:
+
+Susan knows.
+
+Whatever the question is, Susan probably knows.
+
+Who always buys four tickets but never subscribes? Susan knows.
+
+Which donor hates phone calls but will talk to you for twenty minutes at intermission? Susan knows.
+
+Which patron has been attending since before half the staff was born? Susan knows.
+
+Then Susan retires.
+
+And suddenly the organization discovers that fifteen years of institutional knowledge was never actually institutional.
+
+It belonged to Susan.
+
+That problem fascinated me because it happened everywhere.
+
+There are sophisticated systems in the arts. Some of them are incredibly powerful. But a lot of them assume you have the staff, money, time, and technical infrastructure to operate them the way they were intended.
+
+Many arts organizations do not.
+
+The reality I knew was a development director doing marketing. A marketing director helping with front of house. An executive director reviewing a grant at 9:30 p.m. A box office person who knows every patron by name and keeps half the organization running through sheer memory.
+
+You’re selling subscriptions while planning a fundraiser while the artistic team needs something while somebody asks if the newsletter went out.
+
+The answer is usually: “I know. I’m doing it.”
+
+That is the environment the software has to survive.
+
+---
+
+**Fundraising is a relationship business**
+
+Here is the thing I think software gets wrong when it starts with the database instead of the person:
+
+The database is not the point.
+
+The relationship is the point.
+
+A $5,000 gift is not just a $5,000 gift.
+
+It might be someone who has been sitting in the same section for fifteen years. It might be the woman who brings a friend to every opening night. It might be the person who first gave $100, then sponsored a table, then joined the board. It might be someone whose spouse died last year, which is probably something you should remember before sending an invitation addressed to both of them.
+
+Those things matter.
+
+They are not “soft data.” They are the relationship.
+
+And if you work in development, you know the strange guilt of having all of that information somewhere and still not being able to use it well.
+
+I had the information. What I didn’t have was the mental bandwidth to constantly assemble it.
+
+Before a donor meeting, I didn’t want to spend twenty minutes checking the CRM, then the ticketing system, then my email, then a spreadsheet, trying to reconstruct a human being.
+
+I wanted the system to say:
+
+Here’s Kim. She’s been coming for eight years. She gave last December. She attended the last two productions. You had coffee in March. Her husband had surgery. You told her you’d send information about the education program. Call her.
+
+That isn’t replacing relationship-building. That is what makes relationship-building possible when the person doing it is buried under administration.
+
+**A CRM should remember enough that the human being using it gets to be more human. Not less.**
+
+---
+
+**Then I realized fundraising wasn’t really the problem**
+
+Once I started looking at development this way, I couldn’t unsee the rest of the organization.
+
+The donor record was fragmented because the whole organization was fragmented.
+
+Marketing knew what emails someone opened. Ticketing knew what they bought. Development knew what they gave. The box office knew where they liked to sit. Someone else knew they sponsored a gala table.
+
+And maybe that same person had been a subscriber, donor, volunteer, sponsor, and board prospect over ten years.
+
+To the organization, that is one person. To the software, they might as well be five different people.
+
+The same thing was happening everywhere else. Artist contracts over here. Travel over there. Rehearsal schedules in another document. Patron communications somewhere else. Seating charts somewhere else. Programs somewhere else.
+
+And because small arts organizations rarely have enough staff, the burden of connecting all of it falls on the people.
+
+That is why people burn out.
+
+Not because they don’t love the art. Usually they love it so much they are willing to tolerate an insane amount of administrative nonsense to keep making it happen.
+
+I know I did.
+
+But eventually I started asking a different question.
+
+What would software look like if it actually understood an arts organization?
+
+Not a sales company with “arts” terminology layered on top. An arts organization.
+
+One where a ticket buyer can become a subscriber, donor, sponsor, volunteer, board member, or all five. One where development and marketing are talking about the same person. One where the person running the organization does not need fourteen tabs open to understand what is happening. One where changing something in the spreadsheet doesn’t require someone to say: “Did we change it in the database too?”
+
+That question became GreenRoom.
+
+---
+
+**There was just one catch.**
+
+I am not a developer.
+
+I have a master’s degree in vocal performance. I went to school to sing opera.
+
+There was no class at Manhattan School of Music called “How to Build a SaaS Company Because You Have Finally Had Enough of Your CRM.”
+
+I did not know how to code.
+
+But eventually I got tired of waiting for someone else to solve it.
+
+And something shifted for me.
+
+To this day, I still have moments where I think: What on earth do I think I’m doing? The imposter syndrome is very real.
+
+But lately I’ve started wondering if I’ve been looking at the whole thing backward.
+
+Maybe knowing how to build the software was never the only valuable expertise. Maybe knowing exactly why the existing software failed was expertise too.
+
+Because I wasn’t guessing. I had actually done the work: built campaigns, managed donor portfolios, marketed seasons, run subscriptions, produced fundraising events, built seating charts and sponsor tables, handled guest hospitality. I had worked inside that strange overlap between audience development, fundraising, marketing, ticketing, and producing where small arts organizations actually live.
+
+I knew what it felt like to stare at a spreadsheet late at night and think: I know the answer. I just need to remember where it lives.
+
+I knew what information I wanted five minutes before a donor walked into the room.
+
+I knew the particular insanity of knowing your organization technically possessed the information you needed while also knowing it might take you half an hour to find it.
+
+I knew what the software needed to understand. I just didn’t know how to build it yet.
+
+Those are different problems.
+
+So I found a developer I trust. And I started learning.
+
+Not how to become a software engineer. That still isn’t my job.
+
+And somewhere along the way, the thing I thought was my weakness started to look a lot more like the reason this works.
+
+---
+
+**Maybe being non-technical is the point**
+
+I am deeply uninterested in technology for technology’s sake.
+
+I don’t care if something is impressive under the hood if the executive director cannot figure out how to use it. I don’t care how sophisticated a workflow is if the result is six more clicks for someone who already has too much to do.
+
+And I am not interested in teaching arts administrators how to think like software. The software should understand how they already work.
+
+That is the filter I bring to GreenRoom precisely because I did not come from software.
+
+My test is much less complicated.
+
+*Does this help?*
+
+Can the development director walk into a donor meeting more prepared? Can the marketing person stop exporting lists and reconciling duplicates? Can the box office person find what they need without keeping half of it in their head? Can the executive director come out of a rehearsal, a board meeting, or whatever fire she was putting out and understand what happened while she was gone?
+
+Can we help a three-person team spend less time buried in administration and more time doing the work only they can do?
+
+That is what I care about.
+
+Because arts administration is not the point. The *art* is the point.
+
+Administration serves the art.
+
+Every hour we can give back matters. Every repetitive task we can remove matters. Every piece of information someone doesn’t have to manually chase matters.
+
+Not because efficiency is inherently noble. Because that hour can go back into the relationship, the audience, the artist, the stage.
+
+It matters.
+
+---
+
+GreenRoom is the CRM I wish I’d had, built for the way arts organizations actually work. If this sounded like your life, come see it: [greenroomcrm.com](https://greenroomcrm.com).`,
+  },
+  {
     slug: "sometimes-the-show-is-the-problem",
     category: "Audiences",
     date: "August 2026",

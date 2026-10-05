@@ -14,12 +14,11 @@ const monthOnly = (date: string) => date.replace(/\s+\d{4}$/, "");
 
 /** What's coming — teasers for the column, not yet published. */
 const WINGS: [string, string, string][] = [
-  ["III", "The Wrong Kind of Founder", "Being non-technical wasn’t the obstacle. It was the qualification. I built the CRM because I was living the problem, by hand, for years."],
   ["IV", "How Do You Balance the Budget?", "Earned against contributed. Safe programming against brave. And the myth that a bigger budget means a healthier organization."],
 ];
 
 export function NotesRedesign() {
-  const [featured, second] = notes;
+  const [featured, ...rest] = notes;
 
   return (
     <Shell ground="cream">
@@ -84,25 +83,25 @@ export function NotesRedesign() {
           <span style={{ height: 1.5, background: C.ox, flex: 1, minWidth: 60 }} />
         </div>
         <div className="grid gap-[20px]" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))" }}>
-          {/* second essay */}
-          {second && (
-            <div className="flex flex-col" style={{ border: `1.5px solid ${C.ox}`, padding: "clamp(26px,3vw,38px)" }}>
+          {/* the rest of the published essays */}
+          {rest.map((note) => (
+            <div key={note.slug} className="flex flex-col" style={{ border: `1.5px solid ${C.ox}`, padding: "clamp(26px,3vw,38px)" }}>
               <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: C.terra }}>
-                Also in the file &middot; {second.category} &middot; {monthOnly(second.date)}
+                Also in the file &middot; {note.category} &middot; {monthOnly(note.date)}
               </div>
               <h3 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(24px,2.8vw,34px)", lineHeight: 1.05, letterSpacing: "-.03em", margin: "18px 0 0", color: C.ox, textWrap: "pretty" }}>
-                {second.title}
+                {note.title}
               </h3>
-              <p style={{ fontSize: 17, lineHeight: 1.65, color: C.ox, margin: "16px 0 0" }}>{second.lead}</p>
+              <p style={{ fontSize: 17, lineHeight: 1.65, color: C.ox, margin: "16px 0 0" }}>{note.lead}</p>
               <div style={{ flex: 1, minHeight: 20 }} />
               <div className="mt-[22px] flex flex-wrap items-center gap-[18px]">
-                <Link href={`/writing/${second.slug}`} style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, letterSpacing: "-.02em", color: C.terra }} className="transition-opacity hover:opacity-70">
+                <Link href={`/writing/${note.slug}`} style={{ fontFamily: SANS, fontWeight: 700, fontSize: 18, letterSpacing: "-.02em", color: C.terra }} className="transition-opacity hover:opacity-70">
                   Read the note &rarr;
                 </Link>
-                <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>{readMins(second.body)} min</span>
+                <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.ox }}>{readMins(note.body)} min</span>
               </div>
             </div>
-          )}
+          ))}
           {/* in the wings */}
           <div className="flex flex-col" style={{ background: C.peri, padding: "clamp(26px,3vw,38px)" }}>
             <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: C.ox }}>In the wings</div>
