@@ -2,15 +2,34 @@ import Link from "next/link";
 import { C, SANS, SERIF, NAV } from "./tokens";
 import { BOOK_URL } from "./chrome";
 import { MailLink } from "./mail-link";
+import { InstagramFeed } from "./instagram";
+import { GreenRoomFrame } from "./greenroom-frame";
+import { notes } from "@/content/writing";
 
 /**
  * Homepage — the warm redesign. Self-contained: it carries its own photo hero
  * with an overlaid nav and its own giant-name footer, so the global nav/footer
  * are suppressed on "/". Flat colour fields, restrained motion, Instrument Sans
  * headlines over a Newsreader reading voice.
+ *
+ * Shape: hero → statement → Selected Work → Currently → Notes → Collaborate
+ * invitation → proof → CTA. Discovery before biography; the fuller story lives
+ * on /about.
  */
 
 const PAD = "px-[clamp(20px,4.5vw,56px)]";
+
+/** Selected work — editorial feature rows, not a card grid: a large image
+ *  and the real outcome, alternating down the page. Images are atmosphere and
+ *  the person-in-the-work, not design samples.
+ *  [image, kicker, title, outcome, link label, href, external]. */
+const WORK: [string, string, string, string, string, string, boolean][] = [
+  ["/work/build-knoxville-carmen.jpg", "Brand & audience strategy", "Knoxville Opera", "Four years leading brand, marketing, and audience strategy. First-time attendance doubled across four seasons, and revenue per show grew.", "The case study", "/knoxville-opera", false],
+  ["/work/greenroom-product.webp", "Founder · Software", "GreenRoom", "The CRM I wish I'd had, built for how arts organizations actually work.", "Visit the site", "https://greenroomcrm.com", true],
+  ["/work/build-citylyric-poster.jpg", "Co-founder · New York", "City Lyric Opera", "Built a company from nothing, before I ever joined a board, and a model other companies now study.", "Inside the work", "/portfolio", false],
+  ["/work/schicchi-film-cover.webp", "Director & producer", "Films & campaigns", "Opera reimagined as a night people actually want to show up for.", "Watch & read", "/portfolio", false],
+  ["/work/katie-team.jpg", "The practice", "Narratives", "Story strategy for the performing arts, turning a season into something audiences want to step inside.", "How it works", "/collaborate", false],
+];
 
 function DotRule({ dot = C.cream, rule = C.ox }: { dot?: string; rule?: string }) {
   return (
@@ -55,6 +74,8 @@ function NavLinks() {
 }
 
 export function HomeRedesign() {
+  const latest = notes.slice(0, 2);
+
   return (
     <div style={{ background: C.cream, color: C.ox, fontFamily: SERIF, overflow: "hidden" }}>
       {/* -------------------------------------------------------------- */}
@@ -141,7 +162,63 @@ export function HomeRedesign() {
       </div>
 
       {/* -------------------------------------------------------------- */}
-      {/*  Currently ticker                                               */}
+      {/*  Selected Work — curated, image-led, visually varied            */}
+      {/* -------------------------------------------------------------- */}
+      <div className={`${PAD} py-[clamp(56px,8vw,96px)]`} style={{ background: C.cream }}>
+        <div className="mx-auto max-w-[1180px]">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+            <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(40px,6vw,60px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 0.95 }}>
+              Selected work.
+            </div>
+            <Link href="/portfolio" style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 18, color: C.terra }} className="transition-opacity hover:opacity-70">
+              See all work &rarr;
+            </Link>
+          </div>
+          <div className="mt-[clamp(32px,5vw,60px)] flex flex-col gap-[clamp(48px,7vw,96px)]">
+            {WORK.map(([img, kicker, title, outcome, label, href, ext], i) => {
+              const flip = i % 2 === 1;
+              const textCol = (
+                <>
+                  <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".18em", textTransform: "uppercase", color: C.terra }}>{kicker}</div>
+                  <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(32px,4.4vw,56px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 0.98, marginTop: 12 }}>{title}</div>
+                  <p style={{ fontFamily: SERIF, fontSize: "clamp(17px,1.9vw,20px)", lineHeight: 1.55, color: C.ox, margin: "18px 0 0", maxWidth: 460 }}>{outcome}</p>
+                  <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 15, letterSpacing: ".02em", color: C.terra, display: "inline-block", marginTop: 20, borderBottom: `2px solid ${C.terra}`, paddingBottom: 2 }}>{label} &rarr;</span>
+                </>
+              );
+
+              // GreenRoom: the frame opens a lightbox (not the site); the text links out.
+              if (title === "GreenRoom") {
+                return (
+                  <div key={title} className="grid items-center gap-[clamp(24px,4vw,64px)] md:grid-cols-2">
+                    <GreenRoomFrame src={img} className={flip ? "md:order-2" : ""} />
+                    <a href={href} target="_blank" rel="noopener noreferrer" className={`block transition-opacity hover:opacity-70 ${flip ? "md:order-1" : ""}`}>
+                      {textCol}
+                    </a>
+                  </div>
+                );
+              }
+
+              const inner = (
+                <div className="group grid items-center gap-[clamp(24px,4vw,64px)] md:grid-cols-2">
+                  <div className={flip ? "md:order-2" : ""} style={{ position: "relative", width: "100%", aspectRatio: "4 / 3", overflow: "hidden", background: C.peri }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={img} alt={title} className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                  </div>
+                  <div className={flip ? "md:order-1" : ""}>{textCol}</div>
+                </div>
+              );
+              return ext ? (
+                <a key={title} href={href} target="_blank" rel="noopener noreferrer" className="block transition-opacity hover:opacity-95">{inner}</a>
+              ) : (
+                <Link key={title} href={href} className="block transition-opacity hover:opacity-95">{inner}</Link>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* -------------------------------------------------------------- */}
+      {/*  Currently — the small in-progress module                       */}
       {/* -------------------------------------------------------------- */}
       <div
         className={`${PAD} flex flex-wrap items-center justify-center gap-x-[clamp(20px,3.4vw,34px)] gap-y-2 py-5`}
@@ -155,45 +232,63 @@ export function HomeRedesign() {
       </div>
 
       {/* -------------------------------------------------------------- */}
-      {/*  A little about me + portrait                                   */}
+      {/*  From the Notes — the editorial preview                         */}
       {/* -------------------------------------------------------------- */}
-      <div className={`${PAD} py-[clamp(64px,9vw,90px)]`} style={{ background: C.cream }}>
-        <div className="mx-auto grid max-w-[1180px] items-center gap-[clamp(36px,5vw,64px)] md:grid-cols-[1fr_380px]">
-          <div>
-            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.terra }}>
-              A little about me
+      <div className={`${PAD} py-[clamp(56px,8vw,90px)]`} style={{ background: C.cream }}>
+        <div className="mx-auto max-w-[1180px]">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+            <div>
+              <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.terra }}>Notes from the house</div>
+              <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(34px,5vw,52px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 0.95, marginTop: 10 }}>
+                From the Notes.
+              </div>
             </div>
-            <h2
-              style={{
-                fontFamily: SANS,
-                fontWeight: 700,
-                fontSize: "clamp(32px,4.6vw,46px)",
-                lineHeight: 1.04,
-                letterSpacing: "-.02em",
-                color: C.ox,
-                marginTop: 16,
-              }}
-            >
-              The medium keeps changing. The work doesn&rsquo;t &mdash; building something people believe in.
-            </h2>
-            <p style={{ fontSize: 18, lineHeight: 1.65, color: C.ox, marginTop: 20, maxWidth: 520 }}>
-              I&rsquo;ve performed on opera stages, co-founded a company, led an institution, and now I&rsquo;m building software. Different rooms, one throughline: the story that makes people care.
-            </p>
+            <Link href="/writing" style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 18, color: C.terra }} className="transition-opacity hover:opacity-70">
+              All notes &rarr;
+            </Link>
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/redesign/portrait-about.webp"
-            alt="Katie Spencer"
-            className="block w-full object-cover"
-            style={{ height: "clamp(360px,44vw,440px)", objectPosition: "center 20%" }}
-          />
+          <div className="mt-[clamp(28px,4vw,44px)] grid gap-[clamp(24px,4vw,56px)] md:grid-cols-2">
+            {latest.map((note) => (
+              <Link key={note.slug} href={`/writing/${note.slug}`} className="block transition-opacity hover:opacity-70" style={{ borderTop: `1.5px solid ${C.ox}`, paddingTop: 20 }}>
+                <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.terra }}>{note.category} &middot; {note.date}</div>
+                <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(24px,2.8vw,32px)", lineHeight: 1.05, letterSpacing: "-.02em", color: C.ox, marginTop: 14 }}>{note.title}</div>
+                <p style={{ fontSize: 17, lineHeight: 1.6, color: C.ox, marginTop: 12, maxWidth: 480 }}>{note.lead}</p>
+                <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 15, color: C.terra, marginTop: 16 }}>Read the note &rarr;</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* -------------------------------------------------------------- */}
+      {/*  Collaborate — the consulting invitation (one clear path)       */}
+      {/* -------------------------------------------------------------- */}
+      <div className={`${PAD} py-[clamp(64px,9vw,100px)]`} style={{ background: C.terra }}>
+        <div className="mx-auto max-w-[1180px]">
+          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.ox }}>Work together</div>
+          <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(36px,6vw,68px)", lineHeight: 1, letterSpacing: "-.03em", color: C.ox, marginTop: 16, maxWidth: 820 }}>
+            Good stories need good strategy.
+          </h2>
+          <p style={{ fontFamily: SERIF, fontSize: "clamp(18px,2.2vw,22px)", lineHeight: 1.6, color: C.cream, marginTop: 20, maxWidth: 600 }}>
+            Story strategy built with your team, or the systems to run it yourself. Two ways in, for performing arts and creative organizations.
+          </p>
+          <Link href="/collaborate" style={{ display: "inline-block", background: C.ox, color: C.cream, fontFamily: SANS, fontSize: 16, lineHeight: 1, padding: "17px 38px", borderRadius: 40, marginTop: 30 }} className="transition-opacity hover:opacity-90">
+            Explore how we can work together &rarr;
+          </Link>
+          <div className="mt-[clamp(28px,4vw,40px)] flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span style={{ flex: 1, minWidth: 40, height: 1.5, background: C.ox, opacity: 0.4 }} />
+            <span style={{ fontFamily: SERIF, fontSize: "clamp(16px,2vw,19px)", color: C.ox }}>
+              Also keynotes and conversations.{" "}
+              <Link href="/contact" style={{ color: C.cream, textDecoration: "underline", textUnderlineOffset: 3 }} className="transition-opacity hover:opacity-80">Speaking &rarr;</Link>
+            </span>
+          </div>
         </div>
       </div>
 
       {/* -------------------------------------------------------------- */}
       {/*  Proof — the numbers, each linked to the case study             */}
       {/* -------------------------------------------------------------- */}
-      <div className={`${PAD} pb-[clamp(56px,8vw,84px)]`} style={{ background: C.cream }}>
+      <div className={`${PAD} py-[clamp(56px,8vw,90px)]`} style={{ background: C.cream }}>
         <div className="mx-auto max-w-[1180px]">
           <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.terra }}>
             The proof · Knoxville Opera, four seasons (FY23&ndash;FY26)
@@ -214,155 +309,9 @@ export function HomeRedesign() {
       </div>
 
       {/* -------------------------------------------------------------- */}
-      {/*  Chapters — periwinkle                                          */}
+      {/*  Life outside the build — integrated Instagram feed             */}
       {/* -------------------------------------------------------------- */}
-      <div className={`${PAD} py-[clamp(64px,9vw,90px)]`} style={{ background: C.peri }}>
-        <div className="mx-auto grid max-w-[1180px] gap-[clamp(32px,5vw,56px)] md:grid-cols-[320px_1fr]">
-          <div>
-            <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(44px,7vw,60px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 0.95 }}>
-              Chapters.
-            </div>
-            <p style={{ fontSize: 17, lineHeight: 1.6, color: C.ox, marginTop: 18 }}>
-              The moments, organizations, and ideas that shaped how I think about creativity, leadership, and building things that matter.
-            </p>
-            <Link href="/about" style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 17, color: C.ox, marginTop: 18, display: "inline-block" }}>
-              See the full story &rarr;
-            </Link>
-          </div>
-          <div>
-            {[
-              ["I", "The Stage", "Where I learned belief begins with a story well told.", "Opera"],
-              ["II", "The Leap", "Co-founding a company from nothing.", "City Lyric Opera"],
-              ["III", "Growing an Institution", "Strategy only works when a story carries it.", "Knoxville Opera"],
-              ["IV", "Building the Future", "Belief has to scale.", "GreenRoom"],
-              ["V", "What's Next", "How technology and story shape each other.", "Still being written"],
-            ].map(([num, title, body, tag], i, arr) => (
-              <div
-                key={num}
-                className="grid grid-cols-[44px_1fr] items-baseline gap-x-5 py-[22px]"
-                style={{ borderTop: `1.5px solid ${C.ox}`, borderBottom: i === arr.length - 1 ? `1.5px solid ${C.ox}` : undefined }}
-              >
-                <div style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 24, color: C.ox }}>{num}</div>
-                <div>
-                  <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(22px,2.6vw,28px)", letterSpacing: "-.01em", color: C.ox }}>
-                    {title}
-                  </div>
-                  <div style={{ fontSize: 16, color: C.ox, marginTop: 4 }}>
-                    {body}{" "}
-                    <span style={{ fontFamily: SANS, fontSize: 11, letterSpacing: ".12em", textTransform: "uppercase", color: C.terra }}>
-                      {tag}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* -------------------------------------------------------------- */}
-      {/*  What I'm building — three ways in                              */}
-      {/* -------------------------------------------------------------- */}
-      <div className={`${PAD} py-[clamp(64px,9vw,90px)]`} style={{ background: C.cream }}>
-        <div className="mx-auto max-w-[1180px]">
-          {/* header row */}
-          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-            <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: C.terra }}>
-              What I&rsquo;m building
-            </div>
-            <div style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "clamp(17px,2vw,20px)", color: C.terra }}>
-              Three ways in, depending on what you need.
-            </div>
-          </div>
-          <div className="mt-4 flex items-center gap-3">
-            <span style={{ width: 10, height: 10, borderRadius: "50%", background: C.terra, flexShrink: 0 }} />
-            <span style={{ flex: 1, height: 1.5, background: C.ox }} />
-          </div>
-
-          {/* three cards */}
-          <div className="mt-[clamp(28px,4vw,44px)] grid gap-[22px] md:grid-cols-3">
-            {/* GreenRoom — the software */}
-            <a
-              href="https://greenroomcrm.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col transition-opacity hover:opacity-90"
-              style={{ background: C.cream, border: `1.5px solid ${C.ox}`, padding: "clamp(28px,3vw,38px)", minHeight: 460 }}
-            >
-              <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.terra }}>
-                The software &middot; Now live
-              </span>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/redesign/greenroom-logo.svg" alt="GreenRoom" style={{ width: 260, maxWidth: "90%", height: "auto", display: "block", marginTop: "clamp(28px,4vw,44px)" }} />
-              <p style={{ fontSize: 17, lineHeight: 1.55, color: C.ox, maxWidth: 340, marginTop: 22 }}>
-                Fundraising, marketing, ticketing, and operations in one platform, built by people who have run the box office.
-              </p>
-              <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, color: C.terra, marginTop: "auto", paddingTop: 28 }}>Visit GreenRoom &rarr;</span>
-            </a>
-
-            {/* Narratives — the practice */}
-            <Link
-              href="/narratives"
-              className="flex flex-col transition-opacity hover:opacity-90"
-              style={{ background: C.ox, padding: "clamp(28px,3vw,38px)", minHeight: 460 }}
-            >
-              <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.peach }}>
-                The practice &middot; Work with me
-              </span>
-              <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(34px,4vw,46px)", letterSpacing: "-.03em", color: C.cream, lineHeight: 1, marginTop: "clamp(20px,3vw,32px)" }}>Narratives</div>
-              <p style={{ fontSize: 17, lineHeight: 1.5, color: C.peachSoft, marginTop: 18 }}>
-                Story strategy for a season: the audit, the emotional center, the visual world, the momentum map. Built with your team, not handed over.
-              </p>
-              <div className="flex items-baseline gap-3" style={{ marginTop: "auto", paddingTop: 28 }}>
-                <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(38px,4.4vw,52px)", letterSpacing: "-.03em", color: C.cream, lineHeight: 1 }}>+101%</span>
-                <span style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.3, color: C.peachSoft, maxWidth: 130 }}>first-time paid attendance at Knoxville Opera</span>
-              </div>
-              <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, color: C.cream, marginTop: 24 }}>See how it works &rarr;</span>
-            </Link>
-
-            {/* Toolkits — the systems */}
-            <Link
-              href="/toolkits"
-              className="flex flex-col transition-opacity hover:opacity-90"
-              style={{ background: C.peri, padding: "clamp(28px,3vw,38px)", minHeight: 460 }}
-            >
-              <span style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: C.ox }}>
-                The systems &middot; Do it yourself
-              </span>
-              <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(34px,4vw,46px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 1, marginTop: "clamp(20px,3vw,32px)" }}>Toolkits</div>
-              <p style={{ fontSize: 17, lineHeight: 1.5, color: C.ox, marginTop: 18 }}>
-                Development, marketing, and fundraising events, each one a guide, the working files, and the scripts. What I built for myself, written down.
-              </p>
-              <div className="flex items-baseline gap-3" style={{ marginTop: "auto", paddingTop: 28 }}>
-                <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(38px,4.4vw,52px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 1 }}>$39</span>
-                <span style={{ fontFamily: SERIF, fontSize: 15, lineHeight: 1.3, color: C.ox, maxWidth: 130 }}>and up, or all three in the bundle</span>
-              </div>
-              <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 17, color: C.ox, marginTop: 24 }}>Browse the toolkits &rarr;</span>
-            </Link>
-          </div>
-
-          {/* footnote — speaking */}
-          <div className="mt-[clamp(28px,4vw,40px)] flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span style={{ flex: 1, minWidth: 40, height: 1.5, background: C.ox }} />
-            <span style={{ fontFamily: SERIF, fontSize: "clamp(16px,2vw,19px)", color: C.ox }}>
-              Also keynotes and conversations.{" "}
-              <Link href="/contact" style={{ color: C.terra }} className="transition-opacity hover:opacity-70">Speaking &rarr;</Link>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* -------------------------------------------------------------- */}
-      {/*  Quote — terracotta                                             */}
-      {/* -------------------------------------------------------------- */}
-      <div className={`${PAD} text-center`} style={{ background: C.terra, padding: "clamp(72px,11vw,100px) clamp(20px,4.5vw,56px)" }}>
-        <div
-          className="mx-auto"
-          style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(36px,7vw,64px)", lineHeight: 1.02, letterSpacing: "-.03em", color: C.ox, maxWidth: 860 }}
-        >
-          The medium changes. <span style={{ color: C.cream }}>The mission doesn&rsquo;t.</span>
-        </div>
-      </div>
+      <InstagramFeed />
 
       {/* -------------------------------------------------------------- */}
       {/*  CTA                                                            */}
