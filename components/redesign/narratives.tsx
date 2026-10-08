@@ -74,7 +74,7 @@ const GRID = (min: number) => ({ gridTemplateColumns: `repeat(auto-fit, minmax(m
 export function NarrativesRedesign() {
   return (
     <Shell ground="terra">
-      <Nav ground="terra" active="Narratives" />
+      <Nav ground="terra" active="Collaborate" />
 
       {/* header — orange, seamless with the nav */}
       <header className={`${PAD} pb-[clamp(44px,6vw,72px)] pt-[clamp(24px,3vw,40px)]`} style={{ background: C.terra }}>

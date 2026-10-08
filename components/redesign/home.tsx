@@ -103,7 +103,7 @@ export function HomeRedesign() {
         style={{ background: C.terra, padding: "clamp(96px,13vw,150px) clamp(20px,4.5vw,56px) clamp(76px,10vw,110px)" }}
       >
         <div style={{ fontFamily: SANS, fontSize: 13, letterSpacing: ".26em", textTransform: "uppercase", color: C.ox }}>
-          Storyteller <span style={{ color: C.cream }}>•</span> Builder <span style={{ color: C.cream }}>•</span> Founder
+          Artist <span style={{ color: C.cream }}>•</span> Storyteller <span style={{ color: C.cream }}>•</span> Founder
         </div>
         <h1
           className="mx-auto"
