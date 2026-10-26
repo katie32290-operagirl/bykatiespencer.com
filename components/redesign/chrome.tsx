@@ -149,6 +149,7 @@ export function Footer() {
         Katie Spencer<span style={{ color: C.terra }}>.</span>
       </div>
       <div className="flex flex-wrap justify-center gap-[22px] md:justify-end">
+        <Link href="/lessons">Lessons</Link>
         <a href="https://www.instagram.com/bykatiespencer" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href="https://www.linkedin.com/in/katie-spencer-83565066/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="https://greenroomcrm.com" target="_blank" rel="noopener noreferrer">GreenRoom</a>
