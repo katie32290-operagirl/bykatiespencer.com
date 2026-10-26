@@ -101,24 +101,27 @@ export function LessonsRedesign() {
         <div className="mx-auto max-w-[1080px]">
           <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(32px,5vw,52px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 1 }}>Meet a few of my students.</h2>
           <p style={{ fontSize: 18, lineHeight: 1.6, color: C.ox, margin: "16px 0 0", maxWidth: 560 }}>A little of what we get up to together. Press play.</p>
-          {/* featured Instagram reel */}
-          <div className="mx-auto mt-[clamp(28px,4vw,44px)]" style={{ maxWidth: 460 }}>
-            <iframe
-              src="https://www.instagram.com/reel/DZ3UUU1v01e/embed"
-              title="A performance from Katie Spencer on Instagram"
-              loading="lazy"
-              scrolling="no"
-              allow="encrypted-media; picture-in-picture; web-share; clipboard-write"
-              style={{ width: "100%", height: 600, border: `1.5px solid ${C.ox}`, background: C.cream, display: "block" }}
-            />
-          </div>
-          <div className="mt-[clamp(28px,4vw,44px)] grid items-start gap-[clamp(18px,2.5vw,28px)] lg:grid-cols-[250px_1fr]">
-            <LiteYouTube id="DK9cU4nb2Aw" name="Nora" vertical />
-            <div className="grid gap-[clamp(18px,2.5vw,28px)] sm:grid-cols-2">
-              <LiteYouTube id="hwIHdC1mH_s" name="Stella" />
-              <LiteYouTube id="bLMZ5Kttzyc" name="AC" />
-              <LiteYouTube id="4fABX4Hc0K4" name="Ava" />
+          {/* two verticals side by side: the Instagram reel and Nora */}
+          <div className="mt-[clamp(28px,4vw,44px)] flex flex-wrap items-start justify-center gap-[clamp(20px,3vw,40px)]">
+            <div style={{ width: 320, maxWidth: "100%" }}>
+              <iframe
+                src="https://www.instagram.com/reel/DZ3UUU1v01e/embed"
+                title="A performance from Katie Spencer on Instagram"
+                loading="lazy"
+                scrolling="no"
+                allow="encrypted-media; picture-in-picture; web-share; clipboard-write"
+                style={{ width: "100%", height: 480, border: `1.5px solid ${C.ox}`, background: C.cream, display: "block" }}
+              />
             </div>
+            <div style={{ width: 250, maxWidth: "100%" }}>
+              <LiteYouTube id="DK9cU4nb2Aw" name="Nora" vertical />
+            </div>
+          </div>
+          {/* the three horizontal videos */}
+          <div className="mt-[clamp(28px,4vw,44px)] grid gap-[clamp(18px,2.5vw,28px)] sm:grid-cols-2 lg:grid-cols-3">
+            <LiteYouTube id="hwIHdC1mH_s" name="Stella" />
+            <LiteYouTube id="bLMZ5Kttzyc" name="AC" />
+            <LiteYouTube id="4fABX4Hc0K4" name="Ava" />
           </div>
         </div>
       </section>
