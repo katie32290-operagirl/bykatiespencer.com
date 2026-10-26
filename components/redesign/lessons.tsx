@@ -112,7 +112,7 @@ export function LessonsRedesign() {
               style={{ width: "100%", height: 600, border: `1.5px solid ${C.ox}`, background: C.cream, display: "block" }}
             />
           </div>
-          <div className="mt-[clamp(28px,4vw,44px)] grid items-start gap-[clamp(18px,2.5vw,28px)] lg:grid-cols-[300px_1fr]">
+          <div className="mt-[clamp(28px,4vw,44px)] grid items-start gap-[clamp(18px,2.5vw,28px)] lg:grid-cols-[250px_1fr]">
             <LiteYouTube id="DK9cU4nb2Aw" name="Nora" vertical />
             <div className="grid gap-[clamp(18px,2.5vw,28px)] sm:grid-cols-2">
               <LiteYouTube id="hwIHdC1mH_s" name="Stella" />

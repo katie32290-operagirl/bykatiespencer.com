@@ -11,7 +11,7 @@ export function LiteYouTube({ id, name, vertical = false }: { id: string; name: 
   const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
   return (
-    <figure style={{ margin: 0 }}>
+    <figure style={{ margin: vertical ? "0 auto" : 0, maxWidth: vertical ? 250 : undefined, width: "100%" }}>
       <div style={{ position: "relative", aspectRatio: vertical ? "9 / 16" : "16 / 9", overflow: "hidden", background: C.ox, border: `1.5px solid ${C.ox}` }}>
         {play ? (
           <iframe
