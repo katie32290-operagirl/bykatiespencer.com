@@ -61,7 +61,7 @@ export function LessonsRedesign() {
             </h2>
             <div className="mt-6 flex flex-col gap-4" style={{ fontSize: 18, lineHeight: 1.65, color: C.ox, maxWidth: 560 }}>
               <p>I&rsquo;m a singer and pianist with a Master&rsquo;s in vocal performance, and I&rsquo;ve been teaching students of all ages for over a decade.</p>
-              <p>Before Knoxville, I co-founded and ran a small opera company in New York, and I&rsquo;ve worked with a major concert hall, a regional opera company, and a summer festival. I taught privately in Bluffton, South Carolina before moving here.</p>
+              <p>Along the way I co-founded and ran a small opera company in New York, and worked with a major concert hall, a regional opera company, and a summer festival. I&rsquo;ve taught privately in New York City and in Bluffton, South Carolina, and now I&rsquo;m opening my studio to a few students here in Knoxville.</p>
               <p>I teach classical, musical theater, worship, and pop, so you get to learn the music you actually care about.</p>
             </div>
           </div>
@@ -101,6 +101,17 @@ export function LessonsRedesign() {
         <div className="mx-auto max-w-[1080px]">
           <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(32px,5vw,52px)", letterSpacing: "-.03em", color: C.ox, lineHeight: 1 }}>Meet a few of my students.</h2>
           <p style={{ fontSize: 18, lineHeight: 1.6, color: C.ox, margin: "16px 0 0", maxWidth: 560 }}>A little of what we get up to together. Press play.</p>
+          {/* featured Instagram reel */}
+          <div className="mx-auto mt-[clamp(28px,4vw,44px)]" style={{ maxWidth: 460 }}>
+            <iframe
+              src="https://www.instagram.com/reel/DZ3UUU1v01e/embed"
+              title="A performance from Katie Spencer on Instagram"
+              loading="lazy"
+              scrolling="no"
+              allow="encrypted-media; picture-in-picture; web-share; clipboard-write"
+              style={{ width: "100%", height: 600, border: `1.5px solid ${C.ox}`, background: C.cream, display: "block" }}
+            />
+          </div>
           <div className="mt-[clamp(28px,4vw,44px)] grid items-start gap-[clamp(18px,2.5vw,28px)] lg:grid-cols-[300px_1fr]">
             <LiteYouTube id="DK9cU4nb2Aw" name="Nora" vertical />
             <div className="grid gap-[clamp(18px,2.5vw,28px)] sm:grid-cols-2">
