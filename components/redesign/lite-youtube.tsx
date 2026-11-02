@@ -6,9 +6,10 @@ import { C, SANS } from "./tokens";
 /** A lightweight YouTube embed: shows the poster thumbnail with a play button
  *  and only loads the (privacy-friendly, no-cookie) iframe once pressed, so the
  *  page stays fast on phones and loads no YouTube tracking until someone plays. */
-export function LiteYouTube({ id, name, vertical = false }: { id: string; name: string; vertical?: boolean }) {
+export function LiteYouTube({ id, name, vertical = false, alt }: { id: string; name: string; vertical?: boolean; alt?: string }) {
   const [play, setPlay] = useState(false);
   const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+  const label = alt ?? `${name}, a student of Katie Spencer`;
 
   return (
     <figure style={{ margin: vertical ? "0 auto" : 0, maxWidth: vertical ? 250 : undefined, width: "100%" }}>
@@ -16,7 +17,7 @@ export function LiteYouTube({ id, name, vertical = false }: { id: string; name: 
         {play ? (
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
-            title={`${name}, a student of Katie Spencer`}
+            title={label}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }}
@@ -25,12 +26,12 @@ export function LiteYouTube({ id, name, vertical = false }: { id: string; name: 
           <button
             type="button"
             onClick={() => setPlay(true)}
-            aria-label={`Play ${name}'s performance`}
+            aria-label={`Play ${label}`}
             className="group"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", padding: 0, border: "none", background: "transparent", cursor: "pointer", display: "block" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={thumb} alt={`${name}, a student of Katie Spencer`} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src={thumb} alt={label} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
             <span aria-hidden style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)", width: 62, height: 62, borderRadius: "50%", background: C.terra, display: "flex", alignItems: "center", justifyContent: "center" }} className="transition-transform group-hover:scale-110">
               <span style={{ width: 0, height: 0, borderTop: "11px solid transparent", borderBottom: "11px solid transparent", borderLeft: `18px solid ${C.cream}`, marginLeft: 4 }} />
             </span>

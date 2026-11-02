@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Nav, GiantTitle, Cta, Footer, Shell, PAD, C, SANS, SERIF } from "./chrome";
+import { LiteYouTube } from "./lite-youtube";
 
 /** Collaborate — the front door to the two ways of working together. It does
  *  not sell either one in full; it frames the choice and sends people to the
@@ -98,6 +99,25 @@ export function CollaborateRedesign() {
               Browse the Toolkits &rarr;
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* in conversation — the OperaWire podcast */}
+      <section className={`${PAD} py-[clamp(48px,7vw,84px)]`} style={{ background: C.cream }}>
+        <div className="mx-auto max-w-[900px]">
+          <div style={{ fontFamily: SANS, fontSize: 12, letterSpacing: ".22em", textTransform: "uppercase", color: C.terra }}>In conversation</div>
+          <h2 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "clamp(26px,3.6vw,40px)", lineHeight: 1.1, letterSpacing: "-.03em", color: C.ox, marginTop: 14, maxWidth: 640 }}>
+            How story moves audiences, and dollars, in the performing arts.
+          </h2>
+          <p style={{ fontFamily: SERIF, fontSize: 18, lineHeight: 1.6, color: C.ox, margin: "16px 0 0", maxWidth: 600 }}>
+            I joined the OperaWire Podcast to talk through the work behind these pages: fundraising, marketing, and building new audiences for opera.
+          </p>
+          <div className="mt-[clamp(24px,4vw,36px)]" style={{ maxWidth: 760 }}>
+            <LiteYouTube id="EyezNkJMll0" name="The OperaWire Podcast · Episode 23" alt="Fundraising, Marketing & Creating New Audiences with Katie Spencer on the OperaWire Podcast" />
+          </div>
+          <a href="https://youtu.be/EyezNkJMll0" target="_blank" rel="noopener noreferrer" style={{ fontFamily: SANS, fontWeight: 700, fontSize: 15, letterSpacing: ".02em", color: C.terra, display: "inline-block", marginTop: 18, borderBottom: `2px solid ${C.terra}`, paddingBottom: 2 }} className="transition-opacity hover:opacity-70">
+            Listen to the full episode &rarr;
+          </a>
         </div>
       </section>
 
