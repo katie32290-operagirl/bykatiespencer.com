@@ -10,7 +10,7 @@ const MOVES: [string, string, string][] = [
 const STATS: [string, string, string][] = [
   ["+101%", "First-time paid attendance", "≈473 vs. 235 before"],
   ["+27%", "Revenue per show", "$107k vs. $85k"],
-  ["+35%", "Avg. annual giving", "+65% giving, FY26 year-to-date vs. FY23"],
+  ["+35%", "Average annual giving vs. FY23", "FY26 alone: +65% over FY23 (year-to-date)"],
   ["+178%", "Rossini Festival net", "the city's free street festival"],
 ];
 
