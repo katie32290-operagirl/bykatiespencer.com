@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sip &amp; Sing — Opera Saratoga</title>
+<meta name="description" content="Meet up for a drink and a bite, then settle in for 30 minutes of live singing from Opera Saratoga artists at local Saratoga gathering spots. Upcoming Sip &amp; Sing dates and what to expect.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400..700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .sip-banner{width:100%;height:auto;aspect-ratio:2168/725;object-fit:cover;display:block}
+  .sip-intro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:28px;align-items:start;margin-top:48px}
+  .sip-intro .a{grid-column:1 / span 6}
+  .sip-intro .b{grid-column:8 / span 5}
+  .nextcard{background:var(--ink);color:var(--paper);padding:26px 28px}
+  .nextcard a{color:var(--paper)}
+  .statusdot{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+  .statusdot .d{width:9px;height:9px;border-radius:50%;background:var(--coral);flex-shrink:0}
+  .sipdates{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--ink)}
+  .sipdates li{display:grid;grid-template-columns:160px minmax(0,1fr) 220px 200px;column-gap:24px;align-items:center;padding:22px 0;border-top:1px solid var(--ink)}
+  .sipdates .dt{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:52px;line-height:.9;white-space:nowrap}
+  .sipdates .act{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .expect{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:28px;align-items:start}
+  .expect .a{grid-column:1 / span 5}
+  .expect .b{grid-column:7 / span 6}
+  .steps{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--ink)}
+  .steps li{display:flex;gap:16px;padding:14px 0;border-top:1px solid var(--ink)}
+  .steps .n{font-family:var(--display);font-weight:900;font-size:32px;line-height:.9}
+  @media (max-width:1040px){
+    .sip-intro .a,.sip-intro .b,.expect .a,.expect .b{grid-column:1 / span 12}
+    .sipdates li{grid-template-columns:96px 1fr;row-gap:10px}
+    .sipdates .dt{font-size:38px}
+    .sipdates .st{grid-column:2}
+    .sipdates .act{grid-column:2;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="container pagehero" style="padding-bottom:clamp(64px,9vw,96px)">
+    <p class="breadcrumb"><a href="whats-on.html">What&rsquo;s On</a> / Sip &amp; Sing</p>
+    <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Sip &amp; Sing</h1>
+    <img class="sip-banner" src="images/f098b33290b3fed566a25bae0fcf7419.jpg" alt="Sip &amp; Sing, Opera Saratoga: a coupe with a lemon twist, an olive on a pick and a sparkling water glass on a dark marble bar.">
+    <div class="sip-intro">
+      <div class="a">
+        <div class="coral-rule"></div>
+        <p class="body-lg" style="margin:0">Meet up for a drink and a bite, then settle in for 30 minutes of live singing from Opera Saratoga artists. Sip &amp; Sing brings the music to local Saratoga gathering spots.</p>
+      </div>
+      <div class="b">
+        <div class="nextcard" aria-label="Next Sip &amp; Sing">
+          <p class="eyebrow" style="color:var(--dim);margin:0 0 6px">Next Sip &amp; Sing</p>
+          <p id="sip-next-date" style="margin:0 0 4px;font-size:24px;line-height:1.3;font-weight:700">Thursday, February 25, 2027</p>
+          <p id="sip-next-meta" class="small" style="color:var(--dim);margin:0 0 12px">5:30&ndash;6:30 p.m. &middot; Venue to be announced</p>
+          <p style="margin:0 0 18px"><span class="statusdot" id="sip-next-status"><span class="d"></span>Tickets coming soon</span></p>
+          <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+            <a class="btn btn--paper" id="sip-next-cta" style="height:52px" href="#dates">See Upcoming Dates</a>
+            <a id="sip-next-details" href="https://www.operasaratoga.org/calendarview/event-sipandsing-february" target="_blank" rel="noopener" style="font-size:15px;font-weight:600">Event details <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="dates" aria-labelledby="dates-h" style="padding-bottom:clamp(64px,9vw,104px)">
+    <h2 id="dates-h" class="dhead dhead--md" style="margin-bottom:24px">Upcoming Dates</h2>
+    <ul class="sipdates" id="sip-list">
+      <li data-iso="2027-02-25">
+        <span class="dt">Feb 25</span>
+        <span class="st"><b style="font-weight:600">Thursday, February 25, 2027</b><br><span class="small">5:30&ndash;6:30 p.m. &middot; Venue to be announced</span></span>
+        <span class="statusdot"><span class="d"></span>Tickets coming soon</span>
+        <span class="act">
+          <a class="btn btn--ghost" style="height:44px;color:var(--ink)" href="#newsletter">Get Updates</a>
+          <a href="https://www.operasaratoga.org/calendarview/event-sipandsing-february" target="_blank" rel="noopener" style="font-size:14px;font-weight:600">Event details <span aria-hidden="true">&#8599;</span></a>
+        </span>
+      </li>
+      <li data-iso="2027-04-15">
+        <span class="dt">Apr 15</span>
+        <span class="st"><b style="font-weight:600">Thursday, April 15, 2027</b><br><span class="small">5:30&ndash;6:30 p.m. &middot; Venue to be announced</span></span>
+        <span class="statusdot"><span class="d"></span>Tickets coming soon</span>
+        <span class="act">
+          <a class="btn btn--ghost" style="height:44px;color:var(--ink)" href="#newsletter">Get Updates</a>
+          <a href="https://www.operasaratoga.org/calendarview/event-sipandsing-april" target="_blank" rel="noopener" style="font-size:14px;font-weight:600">Event details <span aria-hidden="true">&#8599;</span></a>
+        </span>
+      </li>
+    </ul>
+    <p class="body" style="font-size:15px;margin:24px 0 0">Venues and tickets are announced closer to each date. <a class="textlink" style="font-size:15px" href="#newsletter">Get Opera Saratoga Updates</a></p>
+  </section>
+
+  <section class="sec--lav sec" aria-labelledby="exp-h">
+    <div class="container expect">
+      <div class="a">
+        <h2 id="exp-h" class="dhead" style="font-size:clamp(40px,5vw,64px);margin-bottom:24px">What to Expect</h2>
+        <ul class="steps">
+          <li><span class="n">1</span><span><b style="display:block;font-size:16px;margin-bottom:2px">Arrive and mingle</b><span class="body" style="font-size:15px">Come on time to settle in with a drink and catch up before the music starts.</span></span></li>
+          <li><span class="n">2</span><span><b style="display:block;font-size:16px;margin-bottom:2px">Live singing</b><span class="body" style="font-size:15px">About 30 minutes of opera, up close, from Opera Saratoga artists.</span></span></li>
+        </ul>
+      </div>
+      <div class="b" style="padding-top:6px">
+        <div style="background:var(--paper);padding:24px 28px">
+          <h3 class="eyebrow" style="color:var(--ink);margin:0 0 6px">Currently listed for the series</h3>
+          <p class="body" style="font-size:15px;margin:0 0 12px"><b>Included:</b> bubbles on arrival, chef-crafted bites, and the performance. Specialty cocktails and wine are available for purchase.</p>
+          <p class="body" style="font-size:15px;margin:0 0 12px"><b>Tickets:</b> $55 in advance, $65 at the door. Space is limited, so advance tickets are recommended.</p>
+          <p class="small" style="margin:0">Price and inclusions are confirmed on each date&rsquo;s listing when tickets go on sale.</p>
+        </div>
+      </div>
+    </div>
+    <div class="container"><p class="body" style="font-size:15px;margin:32px 0 0;padding-top:16px;border-top:1px solid var(--ink)">All of the evening&rsquo;s proceeds support Opera Saratoga. <a class="textlink" style="font-size:15px" href="support.html">More ways to support</a></p></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="site.js"></script>
+<script>
+OS.mount('whatson');
+(function(){
+  // Same records as the What's On calendar; advances the Next card as dates pass.
+  var EVENTS = [
+    {iso:'2027-02-25', long:'Thursday, February 25, 2027', time:'5:30–6:30 p.m.', details:'https://www.operasaratoga.org/calendarview/event-sipandsing-february', tickets:null},
+    {iso:'2027-04-15', long:'Thursday, April 15, 2027', time:'5:30–6:30 p.m.', details:'https://www.operasaratoga.org/calendarview/event-sipandsing-april', tickets:null}
+  ];
+  var now = new Date();
+  var upcoming = EVENTS.filter(function(e){ return new Date(e.iso+'T18:30:00-05:00') > now; });
+  var n = upcoming[0];
+  var dateEl=document.getElementById('sip-next-date'),
+      metaEl=document.getElementById('sip-next-meta'),
+      statusEl=document.getElementById('sip-next-status'),
+      cta=document.getElementById('sip-next-cta'),
+      details=document.getElementById('sip-next-details');
+  if(n){
+    dateEl.textContent=n.long;
+    metaEl.textContent=n.time+' · Venue to be announced';
+    statusEl.innerHTML='<span class="d"></span>'+(n.tickets?'Tickets on sale':'Tickets coming soon');
+    if(n.tickets){ cta.textContent='Get Tickets'; cta.href=n.tickets; cta.target='_blank'; cta.rel='noopener'; }
+    else { cta.textContent='See Upcoming Dates'; cta.href='#dates'; }
+    details.href=n.details;
+    // mark any past rows in the list
+    document.querySelectorAll('#sip-list li').forEach(function(li){
+      if(new Date(li.getAttribute('data-iso')+'T18:30:00-05:00') <= now){ li.style.opacity='.5'; }
+    });
+  } else {
+    dateEl.textContent='New dates coming soon';
+    metaEl.textContent='';
+    statusEl.innerHTML='<span class="d"></span>Sign up for updates';
+    cta.textContent='Get Opera Saratoga Updates'; cta.href='#newsletter';
+    details.style.display='none';
+  }
+})();
+</script>
+</body>
+</html>
