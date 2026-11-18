@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Become a Housing Host — Opera Saratoga</title>
+<meta name="description" content="Open your home to a visiting artist or technician during Opera Saratoga's Summer Festival. What hosting involves, the host experience, and how to inquire.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400..700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .hh-hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px;align-items:start}
+  .hh-hero .copy{grid-column:1 / span 5}
+  .hh-hero figure{grid-column:7 / span 6;margin:0}
+  .hh-hero figure img{width:100%;height:clamp(300px,36vw,520px);object-fit:cover}
+  .datebox{border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);padding:16px 0;margin-bottom:28px}
+  .req-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:24px;align-items:start}
+  .req-grid .a{grid-column:1 / span 4}
+  .req-grid .b{grid-column:6 / span 7}
+  .checks{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--ink)}
+  .checks li{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-top:1px solid var(--ink);font-size:19px;line-height:1.4}
+  .checks .mk{flex-shrink:0;width:24px;height:24px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+  .exp{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px;align-items:start}
+  .exp .a{grid-column:1 / span 6}
+  .exp .b{grid-column:8 / span 5}
+  .inq{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px;align-items:start}
+  .inq .a{grid-column:1 / span 5}
+  .inq .b{grid-column:7 / span 6}
+  @media (max-width:1040px){
+    .hh-hero .copy,.hh-hero figure,.req-grid .a,.req-grid .b,.exp .a,.exp .b,.inq .a,.inq .b{grid-column:1 / span 12}
+  }
+  /* form */
+  .hhform{display:flex;flex-direction:column;gap:18px;background:#fff;border:1px solid var(--ink);padding:32px}
+  .hhform .two{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:18px}
+  .hhform label.fld{display:block;margin-bottom:6px;font-size:14px;font-weight:600}
+  .hhform label.fld .opt{color:var(--muted);font-weight:400}
+  .hhform input[type=text],.hhform input[type=email],.hhform textarea{width:100%;box-sizing:border-box;padding:0 14px;height:50px;border:1px solid #8A8079;border-radius:2px;background:#fff;font:inherit;font-size:16px;color:var(--ink)}
+  .hhform textarea{height:auto;padding:12px 14px;line-height:1.5;resize:vertical}
+  .hhform .checkrow{display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.45;min-height:44px}
+  .hhform .checkrow input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ink);flex-shrink:0}
+  .hh-send{display:flex;align-items:center;justify-content:center;height:56px;background:var(--ink);color:var(--paper);font-size:16px;font-weight:600;cursor:pointer;border:0}
+  .hh-done{display:none;background:var(--ink);color:var(--paper);padding:40px}
+  #hh-sent:checked ~ .hhform{display:none}
+  #hh-sent:checked ~ .hh-done{display:block}
+  @media (max-width:560px){.hhform .two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="container pagehero" style="padding-bottom:clamp(64px,9vw,104px)">
+    <p class="breadcrumb"><a href="support.html">Support</a> / Become a Housing Host</p>
+    <h1 class="dhead dhead--xl" style="margin-bottom:40px">Become a Housing Host</h1>
+    <div class="hh-hero">
+      <div class="copy">
+        <div class="datebox">
+          <p class="eyebrow" style="color:var(--ink);margin:0 0 2px">2027 Summer Festival</p>
+          <p class="dhead" style="font-size:clamp(40px,5vw,52px);line-height:.95;margin:0 0 6px">May 18&ndash;June 27, 2027</p>
+          <p class="body" style="font-size:15px;margin:0">Most guests need housing for about six weeks. Some assignments vary slightly.</p>
+        </div>
+        <p class="body-lg" style="margin:0 0 30px">Have a spare room near Saratoga Springs? Open your home to a visiting artist or technician and help make Opera Saratoga&rsquo;s Summer Festival possible.</p>
+        <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+          <a class="btn btn--ink" style="height:56px" href="#inquire">I&rsquo;m Interested in Hosting</a>
+          <span><a class="textlink" style="font-size:15px" href="#requirements">See Host Requirements</a> <span aria-hidden="true">&darr;</span></span>
+        </div>
+      </div>
+      <figure>
+        <img src="images/ffb152f52039006d5d9b2bc1d7756330.jpg" alt="Onstage in Ellen West: a woman sits beside a man in a fedora who reads a newspaper.">
+        <figcaption class="small" style="margin-top:10px">Artists onstage in <i>Ellen West</i>, 2019. Photo: Gary Gold.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec--lav sec" id="requirements" aria-labelledby="req-h">
+    <div class="container">
+      <h2 id="req-h" class="dhead dhead--md" style="margin-bottom:24px">What Hosting Involves</h2>
+      <div class="req-grid">
+        <div class="a">
+          <p class="body" style="font-size:18px;margin:0">Exact dates can vary by guest. If you&rsquo;re not sure your availability fits, <a href="#inquire" style="font-weight:600;text-decoration:underline;text-underline-offset:5px">ask us</a>. We&rsquo;re happy to talk it through.</p>
+        </div>
+        <div class="b">
+          <ul class="checks">
+            <li><span class="mk" aria-hidden="true">&#10003;</span><span>A private bedroom for each guest</span></li>
+            <li><span class="mk" aria-hidden="true">&#10003;</span><span>Kitchen access and Wi-Fi</span></li>
+            <li><span class="mk" aria-hidden="true">&#10003;</span><span>Access to laundry, if available</span></li>
+            <li><span class="mk" aria-hidden="true">&#10003;</span><span>A smoke-free household</span></li>
+            <li><span class="mk" aria-hidden="true">&#10003;</span><span>A home within a 30-minute drive of Saratoga Springs</span></li>
+          </ul>
+          <p class="body" style="font-size:19px;font-weight:700;margin:16px 0 0">Hosts aren&rsquo;t expected to provide meals or transportation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container sec exp" aria-labelledby="exp-h">
+    <div class="a">
+      <h2 id="exp-h" class="dhead dhead--md" style="margin-bottom:24px">The Host Experience</h2>
+      <p class="body" style="font-size:19px;margin:0 0 28px">Local households make it possible for Opera Saratoga to bring dozens of professional artists and technicians to Saratoga Springs each summer. Hosts get to know a young performer or production staff member early in their career, and a behind-the-scenes view of the festival.</p>
+      <p class="lead-serif">Many past hosts have formed lifelong friendships with their guests.</p>
+    </div>
+    <div class="b" style="padding-top:12px">
+      <h3 class="eyebrow" style="color:var(--ink);margin:0 0 6px">For host households</h3>
+      <ul class="hr-list" style="margin:0 0 20px">
+        <li class="body" style="font-size:16px">An invitation for your whole household to attend a dress rehearsal</li>
+        <li class="body" style="font-size:16px">Recognition in Opera Saratoga&rsquo;s seasonal program</li>
+        <li class="body" style="font-size:16px">Invitations to the Festival Artist Welcome, the end-of-season party and other company gatherings</li>
+      </ul>
+      <p class="body" style="font-size:15px;margin:0">Curious who you might host? <a class="textlink" style="font-size:15px" href="festival-artists.html">Meet the Festival Artist Program</a></p>
+    </div>
+  </section>
+
+  <section class="container sec inq" id="inquire" style="border-top:1px solid var(--ink)" aria-labelledby="inq-h">
+    <div class="a">
+      <h2 id="inq-h" class="dhead" style="font-size:clamp(40px,5.5vw,72px);margin-bottom:24px">Tell Us a Little About Your Home</h2>
+      <p class="body" style="font-size:19px;margin:0 0 16px">Opera Saratoga will follow up within three business days.</p>
+      <p class="small" style="margin:0">Have a question first? <a class="textlink" style="font-size:15px" href="https://www.operasaratoga.org/contact" target="_blank" rel="noopener">Contact Opera Saratoga <span aria-hidden="true">&#8599;</span></a></p>
+    </div>
+    <div class="b">
+      <input type="checkbox" id="hh-sent" hidden>
+      <form class="hhform" aria-labelledby="inq-h" onsubmit="return false">
+        <p class="small" style="margin:0">All fields are required except where noted.</p>
+        <div class="two">
+          <div><label class="fld" for="hh-first">First name <span class="opt">(required)</span></label><input id="hh-first" type="text" required autocomplete="given-name"></div>
+          <div><label class="fld" for="hh-last">Last name <span class="opt">(required)</span></label><input id="hh-last" type="text" required autocomplete="family-name"></div>
+        </div>
+        <div><label class="fld" for="hh-email">Email <span class="opt">(required)</span></label><input id="hh-email" type="email" required autocomplete="email"></div>
+        <div><label class="fld" for="hh-subject">Subject <span class="opt">(required)</span></label><input id="hh-subject" type="text" required value="Housing host inquiry"></div>
+        <div>
+          <label class="fld" for="hh-msg">Message <span class="opt">(required)</span></label>
+          <p id="hh-msg-hint" class="small" style="margin:0 0 8px">Helpful to include: your town or ZIP code, how many bedrooms you can offer, and the dates you&rsquo;re available.</p>
+          <textarea id="hh-msg" required aria-describedby="hh-msg-hint" rows="5"></textarea>
+        </div>
+        <label class="checkrow"><input type="checkbox">Sign up for news and updates <span class="opt" style="color:var(--muted)">(optional)</span></label>
+        <label class="hh-send" for="hh-sent" role="button" tabindex="0">Send Housing Inquiry</label>
+        <p class="small" style="margin:0;font-size:12px">Prototype: sends to the existing housing host form on operasaratoga.org. Nothing is sent from this mockup.</p>
+      </form>
+      <div class="hh-done" role="status">
+        <div class="coral-rule"></div>
+        <p class="dhead" style="font-size:48px;line-height:.9;margin:0 0 10px">Thank you!</p>
+        <p class="body" style="font-size:17px;margin:0 0 18px">Your housing inquiry is on its way. Opera Saratoga will follow up within three business days.</p>
+        <label for="hh-sent" class="textlink" style="cursor:pointer">Back to the form</label>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="site.js"></script>
+<script>OS.mount('support')</script>
+</body>
+</html>
