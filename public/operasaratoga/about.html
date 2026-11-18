@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Opera Saratoga</title>
+<meta name="description" content="Opera Saratoga brings live opera to Saratoga Springs, develops emerging artists, and shares music with schools and communities across the region. Our story, Festival Artist Program, staff and board.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400..700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .about-hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:40px;align-items:end}
+  .about-hero .intro{grid-column:1 / span 4}
+  .about-hero img{grid-column:6 / span 7;width:100%;height:clamp(300px,38vw,560px);object-fit:cover}
+  .story{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:40px;align-items:start}
+  .story .a{grid-column:1 / span 5}
+  .story .b{grid-column:7 / span 6}
+  .mile{list-style:none;margin:0 0 20px;padding:0;border-bottom:1px solid var(--ink)}
+  .mile li{display:grid;grid-template-columns:120px minmax(0,1fr);column-gap:24px;padding:22px 0;border-top:1px solid var(--ink)}
+  .mile .yr{font-family:var(--display);font-weight:900;font-size:48px;line-height:.9}
+  .lead-2{list-style:none;margin:0 0 56px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  .lead-2 li{display:flex;align-items:center;gap:24px;background:var(--paper);padding:20px}
+  .lead-2 img,.lead-2 .initials{width:160px;height:160px;object-fit:cover;flex-shrink:0}
+  .initials{background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:900;font-size:60px}
+  .people-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:32px;row-gap:32px;align-items:start}
+  .ppl{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--ink)}
+  .ppl li{padding:11px 0;border-top:1px solid var(--ink);font-size:15px;line-height:1.45}
+  .ppl .sub{display:block;color:var(--muted);font-size:14px}
+  .cards3{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:32px;row-gap:32px}
+  .cards3 li{border-top:2px solid var(--ink);padding-top:20px}
+  .cards3 a{text-decoration:none;color:var(--ink);display:block}
+  .cards3 .t{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(30px,3.4vw,40px);line-height:.95;margin-bottom:10px}
+  @media (max-width:1040px){.about-hero .intro{grid-column:1 / span 12}.about-hero img{grid-column:1 / span 12}.story .a,.story .b{grid-column:1 / span 12}.people-cols{grid-template-columns:repeat(2,1fr)}.cards3{grid-template-columns:1fr}}
+  @media (max-width:680px){.mile li{grid-template-columns:80px 1fr;column-gap:16px}.mile .yr{font-size:36px}.lead-2{grid-template-columns:1fr}.people-cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="container pagehero" style="padding-bottom:clamp(64px,9vw,104px)">
+    <p class="breadcrumb"><a href="index.html">Home</a> / About</p>
+    <h1 class="dhead dhead--xl" style="margin-bottom:48px">About Opera Saratoga</h1>
+    <div class="about-hero">
+      <div class="intro">
+        <p class="body-lg" style="margin:0 0 32px">Opera Saratoga brings live opera to Saratoga Springs, develops emerging artists, and shares music with schools and communities across the region.</p>
+        <nav class="anchornav" aria-label="On this page" style="margin-top:0;flex-direction:column;align-items:flex-start">
+          <a class="pill" href="#story">Our Story <span aria-hidden="true">&darr;</span></a>
+          <a class="pill" href="#fap">Festival Artist Program <span aria-hidden="true">&darr;</span></a>
+          <a class="pill" href="#people">Staff &amp; Board <span aria-hidden="true">&darr;</span></a>
+        </nav>
+      </div>
+      <img src="images/4628d531f0c26028f186ea048b2fb335.jpg" alt="The ensemble surges across the stage under a chandelier, one singer holding a red balloon.">
+    </div>
+  </section>
+
+  <section class="container sec sec--line story" id="story" aria-labelledby="story-h">
+    <div class="a">
+      <p class="eyebrow" style="margin:0 0 12px">Since 1962</p>
+      <h2 id="story-h" class="dhead dhead--lg" style="margin-bottom:28px">Our Story</h2>
+      <p class="body" style="font-size:19px;margin:0 0 16px">Opera Saratoga began as Lake George Opera, founded by Fred Patrick and his wife, soprano Jeanette Scovotti, to present opera in English and showcase young American singers.</p>
+      <p class="body" style="font-size:19px;margin:0 0 36px">In 1998 the summer season moved to Saratoga Springs, and the company has made its home there ever since. Today it presents a summer festival of opera and musical theater, champions new work, and carries its music into schools and memory care communities throughout the year.</p>
+      <figure class="pull">
+        <blockquote>&ldquo;Innovative world-class performances and programs inspire, educate, and heal audiences and artists through the power of the human voice.&rdquo;</blockquote>
+        <figcaption>From Opera Saratoga&rsquo;s mission</figcaption>
+      </figure>
+    </div>
+    <div class="b" style="padding-top:30px">
+      <h3 class="eyebrow" style="color:var(--ink);margin:0 0 12px">Milestones</h3>
+      <ol class="mile">
+        <li><span class="yr">1962</span><span class="body" style="font-size:17px">Lake George Opera opens with <i>Die Fledermaus</i> at the Diamond Point Theatre, playing to an audience of 230.</span></li>
+        <li><span class="yr">1998</span><span class="body" style="font-size:17px">Renovations send the summer season to the 500-seat Spa Little Theater in Spa State Park, Saratoga Springs. Meant to be temporary, it has been the company&rsquo;s main stage ever since.</span></li>
+        <li><span class="yr">2011</span><span class="body" style="font-size:17px">The company&rsquo;s 50th season, and its formal name change to Opera Saratoga.</span></li>
+        <li><span class="yr">2023</span><span class="body" style="font-size:17px">Mary Birnbaum is named General and Artistic Director, and the Young Artist program becomes the Festival Artist Program.</span></li>
+      </ol>
+      <a class="textlink" style="font-size:15px" href="https://www.operasaratoga.org/about" target="_blank" rel="noopener">Read the full company history <span aria-hidden="true">&#8599;</span></a>
+    </div>
+    <figure style="margin:32px 0 0;grid-column:1 / -1">
+      <img src="images/bc9dcc1ade233d6b9079f9e1cf4d251a.jpg" alt="Onstage in Ellen West: a woman in a pale dress kneels beside an attendant in white, while a man in a dark suit sits writing at a desk behind them." style="width:100%;height:clamp(300px,42vw,640px);object-fit:cover">
+      <figcaption class="small" style="margin-top:10px"><i>Ellen West</i> by Ricky Ian Gordon and Frank Bidart, a world premiere at Opera Saratoga in 2019. Photo: Gary Gold.</figcaption>
+    </figure>
+  </section>
+
+  <section class="sec--dark imgband" id="fap" aria-labelledby="fap-h">
+    <img src="images/206b050cb739fdde31bac7346f3300ed.jpg" alt="Two singers clasp hands mid-duet in warm stage light, the orchestra playing behind them.">
+    <div class="body-col">
+      <div class="coral-rule"></div>
+      <p class="eyebrow" style="margin:0 0 12px">For emerging artists</p>
+      <h2 id="fap-h" class="dhead dhead--md" style="margin-bottom:28px">Festival Artist Program</h2>
+      <p class="body" style="font-size:19px;margin:0 0 28px">One of the oldest singer training programs in the country, the Festival Artist Program brings emerging singers and directing, conducting and pianist/coach fellows to Saratoga Springs each summer. Their work is the festival: every artist has a role in the mainstage season, and each is paired with a patron sponsor.</p>
+      <h3 class="eyebrow" style="margin:0 0 6px">What Festival Artists do</h3>
+      <ul class="hr-list" style="margin:0 0 36px">
+        <li class="body" style="font-size:16px"><span style="color:var(--coral);font-weight:700;margin-right:12px">&mdash;</span>Sing principal, supporting and comprimario roles, cover leads and sing chorus in the mainstage productions</li>
+        <li class="body" style="font-size:16px"><span style="color:var(--coral);font-weight:700;margin-right:12px">&mdash;</span>Perform in concerts, recitals, the annual gala and community events</li>
+        <li class="body" style="font-size:16px"><span style="color:var(--coral);font-weight:700;margin-right:12px">&mdash;</span>Work with the music staff and guest artists in coachings and master classes, and audition for visiting company leaders and artist managers</li>
+        <li class="body" style="font-size:16px"><span style="color:var(--coral);font-weight:700;margin-right:12px">&mdash;</span>Directing, conducting and pianist/coach fellows join the artistic team behind each production</li>
+      </ul>
+      <a class="btn btn--paper" style="height:56px" href="festival-artists.html">Explore the Festival Artist Program</a>
+      <p class="small" style="margin-top:16px">Applications for the 2027 season have closed. Program details are on the program page, and the next call for applications will be posted there.</p>
+    </div>
+  </section>
+
+  <section class="sec--lav sec" id="people" aria-labelledby="people-h">
+    <div class="container">
+      <h2 id="people-h" class="dhead dhead--lg" style="margin-bottom:48px">Staff &amp; Board</h2>
+      <ul class="lead-2" aria-label="Leadership">
+        <li><img src="images/bf1cdd31f9db5a9487211e29ce01cdbe.jpg" alt="Mary Birnbaum"><div><p style="margin:0 0 4px;font-size:24px;font-weight:700;line-height:1.25">Mary Birnbaum</p><p class="body" style="margin:0;font-size:16px;color:var(--muted)">General and Artistic Director</p></div></li>
+        <li><div class="initials" aria-hidden="true">AR</div><div><p style="margin:0 0 4px;font-size:24px;font-weight:700;line-height:1.25">Amanda Robie</p><p class="body" style="margin:0;font-size:16px;color:var(--muted)">Executive Director</p></div></li>
+      </ul>
+      <div class="people-cols">
+        <div>
+          <h3 class="eyebrow" style="color:var(--ink);margin:0 0 6px">Staff</h3>
+          <ul class="ppl">
+            <li><b style="font-weight:600">Tiffany Dzembo</b><span class="sub">Administrative Associate</span></li>
+            <li><b style="font-weight:600">Laurie Rogers</b><span class="sub">Director of Artistic Operations</span></li>
+            <li><b style="font-weight:600">Adam Nielsen</b><span class="sub">Head of Music Staff and Director of the Festival Artist Program</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="eyebrow" style="color:var(--ink);margin:0 0 6px">Board officers</h3>
+          <ul class="ppl">
+            <li><b style="font-weight:600">Steve Rosenblum</b><span class="sub">President</span></li>
+            <li><b style="font-weight:600">John Zizzo</b><span class="sub">Vice President</span></li>
+            <li><b style="font-weight:600">Bryan Benak</b><span class="sub">Treasurer</span></li>
+            <li><b style="font-weight:600">Abby Tegnelia</b><span class="sub">Secretary</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="eyebrow" style="color:var(--ink);margin:0 0 6px">Executive committee</h3>
+          <ul class="ppl">
+            <li><b style="font-weight:600">Robert Miller</b><span class="sub">Chairman</span></li>
+            <li><b style="font-weight:600">William Lynch</b><span class="sub">Development Committee Chair</span></li>
+            <li><b style="font-weight:600">Ken Ritzenberg</b><span class="sub">Governance Committee Chair</span></li>
+            <li><b style="font-weight:600">Mary Birnbaum</b><span class="sub">Ex Officio, General and Artistic Director</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="eyebrow" style="color:var(--ink);margin:0 0 6px">Directors</h3>
+          <ul class="ppl">
+            <li>Jeff Altamari</li><li>Marco Anichini</li><li>Robin Benak</li><li>Clark Gale</li><li>George R. Hearst III</li><li>Adam Hostetter</li><li>Ellen Jabbur</li><li>Holly Katz</li><li>Carol Markley</li><li>Julia Morton</li><li>Jessica Schwartzman</li><li>Robert Stout</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-l" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+        <a class="btn btn--ghost" style="height:50px;color:var(--ink)" href="https://www.operasaratoga.org/contact" target="_blank" rel="noopener">Contact the Staff</a>
+        <p class="small" style="margin:0">Staff emails and general inquiries are on the Contact page.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container sec" aria-labelledby="more-h">
+    <h2 id="more-h" class="dhead" style="font-size:clamp(40px,5vw,64px);margin-bottom:40px">News, Jobs &amp; Contact</h2>
+    <ul class="cards3">
+      <li><a href="https://www.operasaratoga.org/newsandpress" target="_blank" rel="noopener"><span class="t">News &amp; Press <span aria-hidden="true" style="font-family:var(--sans);font-size:20px;font-weight:600">&#8599;</span></span><span class="body" style="font-size:15px;color:var(--muted)">Reviews, announcements and press contacts, plus the full press archive.</span></a></li>
+      <li><a href="jobs.html"><span class="t">Work With Us <span aria-hidden="true" style="font-family:var(--sans);font-size:20px;font-weight:600">&rarr;</span></span><span class="body" style="font-size:15px;color:var(--muted)">Employment inquiries, posted openings and Festival Artist Program application details.</span></a></li>
+      <li><a href="https://www.operasaratoga.org/contact" target="_blank" rel="noopener"><span class="t">Contact Opera Saratoga <span aria-hidden="true" style="font-family:var(--sans);font-size:20px;font-weight:600">&#8599;</span></span><span class="body" style="font-size:15px;color:var(--muted)">Send a message through the contact form, or call (518) 584-6018.</span></a></li>
+    </ul>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="site.js"></script>
+<script>OS.mount('about')</script>
+</body>
+</html>

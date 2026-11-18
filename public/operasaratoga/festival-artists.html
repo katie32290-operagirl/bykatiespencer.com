@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Festival Artist Program — Opera Saratoga</title>
+<meta name="description" content="A paid summer residency in Saratoga Springs for singers, pianist/coaches, and conducting and directing fellows. Festival Artists are part of every mainstage production. 2027 applications are closed.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400..700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .fap-hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:40px;align-items:start}
+  .fap-hero .copy{grid-column:1 / span 5}
+  .fap-hero img{grid-column:7 / span 6;width:100%;height:clamp(320px,42vw,600px);object-fit:cover}
+  .do-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:40px;align-items:end;margin-bottom:64px}
+  .do-head .h{grid-column:1 / span 5}
+  .do-head img{grid-column:7 / span 6;width:100%;height:clamp(260px,30vw,420px);object-fit:cover}
+  .tracks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px 48px}
+  .track-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px;row-gap:20px}
+  .mini-list{list-style:none;margin:0;padding:0;border-bottom:1px solid #D9D3E0}
+  .mini-list li{display:flex;gap:10px;padding:8px 0;border-top:1px solid #D9D3E0;font-size:15px;line-height:1.5}
+  .res-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  .res-card{background:var(--paper);padding:26px 28px}
+  .res-card ul{list-style:none;margin:0;padding:0}
+  .res-card li{padding:9px 0;border-top:1px solid #D9D3E0;font-size:15px;line-height:1.5}
+  .team{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:40px;align-items:start}
+  .team .a{grid-column:1 / span 6}
+  .team .b{grid-column:8 / span 5}
+  .team-list{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--ink)}
+  .team-list li{display:flex;align-items:center;gap:16px;padding:14px 0;border-top:1px solid var(--ink)}
+  .team-list img,.team-list .ini{width:96px;height:96px;object-fit:cover;flex-shrink:0}
+  .team-list .ini{background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:900;font-size:38px}
+  .pastwork{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--rule-dark)}
+  .pastwork li{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:14px;padding:14px 0;border-top:1px solid var(--rule-dark)}
+  .pastwork .yr{font-family:var(--display);font-weight:900;font-size:30px;line-height:.95;color:var(--coral)}
+  @media (max-width:1040px){.fap-hero .copy,.fap-hero img,.do-head .h,.do-head img,.team .a,.team .b{grid-column:1 / span 12}.tracks{grid-template-columns:1fr}}
+  @media (max-width:680px){.track-cols{grid-template-columns:1fr}.res-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="container pagehero" style="padding-bottom:clamp(64px,9vw,96px)">
+    <p class="breadcrumb"><a href="about.html">About</a> / Festival Artist Program</p>
+    <h1 class="dhead dhead--xl" style="margin-bottom:14px">Festival Artist Program</h1>
+    <p class="eyebrow" style="color:var(--ink);margin:0 0 32px">Saratoga Springs, NY</p>
+    <div class="fap-hero">
+      <div class="copy">
+        <p class="body-lg" style="margin:0 0 28px">Spend the summer making opera in Saratoga Springs. Festival Artists perform on the mainstage, work alongside experienced colleagues, and develop their craft through rehearsals, coachings, and performances.</p>
+        <div class="panel" style="margin-bottom:28px;padding:24px 28px">
+          <p class="status" style="background:none;color:var(--paper);padding:0;margin:0 0 6px;font-size:19px"><span class="dot"></span>2027 applications are closed.</p>
+          <p class="small" style="margin:0 0 14px">Sign up for the newsletter to hear when the next cycle opens.</p>
+          <form onsubmit="return false" style="display:flex;gap:8px">
+            <label for="fap-nl" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+            <input id="fap-nl" type="email" autocomplete="email" placeholder="Email address" style="flex:1;height:48px;padding:0 14px;border:1px solid var(--paper);border-radius:2px;background:transparent;color:var(--paper);font:inherit;font-size:16px">
+            <button type="submit" style="height:48px;padding:0 20px;border:0;background:var(--paper);color:var(--ink);font:inherit;font-size:15px;font-weight:600;cursor:pointer">Get Updates</button>
+          </form>
+        </div>
+        <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+          <a class="btn btn--ink" style="height:52px" href="#do">Explore the Program</a>
+          <a class="textlink" style="font-size:15px" href="jobs.html#prep">View 2027 Audition Requirements</a>
+        </div>
+      </div>
+      <img src="images/a49ed2ff50a94ba9d13093662dbf06fe.jpg" alt="A soprano sings onstage in an Opera Saratoga production.">
+    </div>
+  </section>
+
+  <section class="container sec sec--line" id="do" aria-labelledby="do-h">
+    <div class="do-head">
+      <div class="h">
+        <h2 id="do-h" class="dhead" style="font-size:clamp(44px,7vw,80px);margin-bottom:24px">What You&rsquo;ll Do</h2>
+        <p class="body-lg" style="margin:0 0 14px">The mainstage season is the heart of the program. Every Festival Artist has a part in it, and each assignment is built around the artist: their skills, their repertoire and where they are in their development.</p>
+        <p class="small">Beyond the mainstage, assignments may include cover work, concerts, master classes and community engagements. Each track below separates what you&rsquo;ll do from opportunities that vary by assignment.</p>
+      </div>
+      <img src="images/4628d531f0c26028f186ea048b2fb335.jpg" alt="The ensemble surges across the stage under a chandelier, one singer holding a red balloon.">
+    </div>
+    <div class="tracks">
+      <article class="topline" aria-labelledby="do-singers">
+        <h3 id="do-singers" class="dhead dhead--xs" style="margin-bottom:14px">Singers</h3>
+        <div class="track-cols">
+          <div><h4 class="eyebrow" style="margin:0 0 4px">You&rsquo;ll</h4><ul class="mini-list"><li><span aria-hidden="true">&#9679;</span><span>Principal, supporting or comprimario roles in the mainstage season</span></li><li><span aria-hidden="true">&#9679;</span><span>Covering principal, supporting and comprimario roles</span></li><li><span aria-hidden="true">&#9679;</span><span>Singing in the ensemble</span></li></ul></div>
+          <div><h4 class="eyebrow" style="margin:0 0 4px">Opportunities</h4><ul class="mini-list"><li><span aria-hidden="true">&#9675;</span><span>Concerts and recitals</span></li><li><span aria-hidden="true">&#9675;</span><span>Coachings and master classes with music staff and guest artists</span></li><li><span aria-hidden="true">&#9675;</span><span>Auditions for visiting company leaders and artist managers</span></li></ul></div>
+        </div>
+        <p style="margin:14px 0 0"><a class="textlink" style="font-size:14px" href="jobs.html#t-singers-s">Singers: 2027 audition requirements</a> <span aria-hidden="true">&rarr;</span></p>
+      </article>
+      <article class="topline" aria-labelledby="do-coaches">
+        <h3 id="do-coaches" class="dhead dhead--xs" style="margin-bottom:14px">Pianist/Coaches</h3>
+        <div class="track-cols">
+          <div><h4 class="eyebrow" style="margin:0 0 4px">You&rsquo;ll</h4><ul class="mini-list"><li><span aria-hidden="true">&#9679;</span><span>Learning all of the mainstage repertoire</span></li><li><span aria-hidden="true">&#9679;</span><span>Playing for mainstage rehearsals, cover rehearsals and coachings</span></li><li><span aria-hidden="true">&#9679;</span><span>Playing public concerts and community outreach events</span></li></ul></div>
+          <div><h4 class="eyebrow" style="margin:0 0 4px">Opportunities</h4><ul class="mini-list"><li><span aria-hidden="true">&#9675;</span><span>Practical coaching experience</span></li><li><span aria-hidden="true">&#9675;</span><span>Career guidance from Opera Saratoga&rsquo;s artistic staff</span></li></ul></div>
+        </div>
+        <p style="margin:14px 0 0"><a class="textlink" style="font-size:14px" href="jobs.html#t-coaches-s">Pianist/Coaches: 2027 audition requirements</a> <span aria-hidden="true">&rarr;</span></p>
+      </article>
+      <article class="topline" aria-labelledby="do-conductors">
+        <h3 id="do-conductors" class="dhead dhead--xs" style="margin-bottom:14px">Conducting Fellows</h3>
+        <div class="track-cols">
+          <div><h4 class="eyebrow" style="margin:0 0 4px">You&rsquo;ll</h4><ul class="mini-list"><li><span aria-hidden="true">&#9679;</span><span>Assisting the conductor on a mainstage production</span></li><li><span aria-hidden="true">&#9679;</span><span>Observing rehearsals of other productions</span></li></ul></div>
+          <div><h4 class="eyebrow" style="margin:0 0 4px">Opportunities</h4><ul class="mini-list"><li><span aria-hidden="true">&#9675;</span><span>Practical coaching experience</span></li><li><span aria-hidden="true">&#9675;</span><span>Career guidance from the conductors in residence for the summer</span></li></ul></div>
+        </div>
+        <p style="margin:14px 0 0"><a class="textlink" style="font-size:14px" href="jobs.html#t-conductors-s">Conducting Fellows: 2027 audition requirements</a> <span aria-hidden="true">&rarr;</span></p>
+      </article>
+      <article class="topline" aria-labelledby="do-directors">
+        <h3 id="do-directors" class="dhead dhead--xs" style="margin-bottom:14px">Directing Fellows</h3>
+        <div class="track-cols">
+          <div><h4 class="eyebrow" style="margin:0 0 4px">You&rsquo;ll</h4><ul class="mini-list"><li><span aria-hidden="true">&#9679;</span><span>Assisting the director on a mainstage production</span></li><li><span aria-hidden="true">&#9679;</span><span>Observing rehearsals of other productions</span></li></ul></div>
+          <div><h4 class="eyebrow" style="margin:0 0 4px">Opportunities</h4><ul class="mini-list"><li><span aria-hidden="true">&#9675;</span><span>Practical coaching experience</span></li><li><span aria-hidden="true">&#9675;</span><span>Career guidance from the directors in residence for the summer</span></li></ul></div>
+        </div>
+        <p style="margin:14px 0 0"><a class="textlink" style="font-size:14px" href="jobs.html#t-directors-s">Directing Fellows: 2027 interview requirements</a> <span aria-hidden="true">&rarr;</span></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec--dark imgband" id="dev" aria-labelledby="dev-h">
+    <img src="images/206b050cb739fdde31bac7346f3300ed.jpg" alt="Two singers clasp hands mid-duet in warm stage light, the orchestra playing behind them.">
+    <div class="body-col">
+      <div class="coral-rule"></div>
+      <p class="eyebrow" style="margin:0 0 12px">What you&rsquo;ll learn</p>
+      <h2 id="dev-h" class="dhead dhead--md" style="margin-bottom:24px">Career Development</h2>
+      <p class="lead-serif" style="margin:0 0 36px;color:var(--paper)">The second-oldest singer training program in the country.</p>
+      <h3 class="eyebrow" style="margin:0 0 4px">Built into the residency</h3>
+      <ul class="hr-list" style="margin:0 0 40px">
+        <li><b style="display:block;margin-bottom:4px">Industry auditions</b><span class="small">Each summer, Festival Artists can audition for visiting company leaders, artist managers, conductors and directors.</span></li>
+        <li><b style="display:block;margin-bottom:4px">Guest master classes</b><span class="small">Recent guests have included Broadway conductor Laura Bergquist, artist manager Ana de Archuleta, Metropolitan Opera baritone Michael Chioldi, Metropolitan Opera French diction coach B&eacute;n&eacute;dicte Jourdois, former Laffont Competition Associate Director Brady Walsh, and Chicago Opera Theater music director Lidiya Yankovskaya.</span></li>
+        <li><b style="display:block;margin-bottom:4px">Practical career skills</b><span class="small">Financial planning seminars, and a partnership with OPERA America&rsquo;s career development program.</span></li>
+        <li><b style="display:block;margin-bottom:4px">After the summer</b><span class="small">Alumni are regularly invited back as principal guest artists and recommended to other organizations.</span></li>
+      </ul>
+      <h3 class="eyebrow" style="margin:0 0 4px">Past Festival Artist work</h3>
+      <ul class="pastwork">
+        <li><span class="yr">2023</span><span><b style="display:block;margin-bottom:3px"><i>The Selfish Giant</i></b><span class="small">World premiere by composer Clarice Assad and librettist Lila Palmer, performed as an all&ndash;Festival Artist production.</span></span></li>
+        <li><span class="yr">2021</span><span><b style="display:block;margin-bottom:3px"><i>Don Quixote at Camacho&rsquo;s Wedding</i></b><span class="small">Telemann&rsquo;s comic opera, an all&ndash;Festival Artist production.</span></span></li>
+        <li><span class="yr">2023</span><span><b style="display:block;margin-bottom:3px">Alumni back in principal roles</b><span class="small">Andy Papas in the title role of <i>Don Pasquale</i>, and Eric McConnell as the D&rsquo;Ysquith Family in <i>A Gentleman&rsquo;s Guide to Love and Murder</i>.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec--lav sec" id="residency" aria-labelledby="res-h">
+    <div class="container">
+      <h2 id="res-h" class="dhead" style="font-size:clamp(48px,7vw,96px);margin-bottom:24px">Residency at a Glance</h2>
+      <p class="body" style="font-size:18px;margin:0 0 40px;max-width:640px">What to expect for time, pay, housing and getting around.</p>
+      <div class="res-grid">
+        <div class="res-card"><h3 class="dhead dhead--xs" style="margin-bottom:10px">Timing and availability</h3><ul><li>The 2027 program runs within a May&ndash;June 2027 window. Exact residency dates for 2027 have not been published yet.</li><li>Plan to be available for the whole residency. Releases are generally not granted because of the schedule.</li></ul></div>
+        <div class="res-card"><h3 class="dhead dhead--xs" style="margin-bottom:10px">Stipend</h3><ul><li>The residency is paid, with a weekly stipend. 2027 rates will be confirmed with the next published program details.</li></ul></div>
+        <div class="res-card"><h3 class="dhead dhead--xs" style="margin-bottom:10px">Housing and transportation</h3><ul><li>Shared housing in the Saratoga Springs area is provided for participants only, not for spouses or partners, children, other relatives or pets.</li><li>Housing is several miles from rehearsal and performance spaces, and public transportation doesn&rsquo;t reach the venues. Plan to bring a car or make other arrangements.</li><li>Opera Saratoga provides a transportation stipend, a weekly gas stipend for drivers, and transportation options for artists without a car.</li></ul></div>
+        <div class="res-card"><h3 class="dhead dhead--xs" style="margin-bottom:10px">Eligibility</h3><ul><li>For undergraduate students, graduate students and emerging professionals.</li><li>There is no age limit. Participating artists are generally in their 20s to early 30s.</li><li>International applicants must show they are eligible to work in the U.S. and confirm this before applying. Opera Saratoga does not obtain the paperwork.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container sec team" aria-labelledby="team-h">
+    <div class="a">
+      <h2 id="team-h" class="dhead dhead--md" style="margin-bottom:24px">Program Team</h2>
+      <ul class="team-list">
+        <li><img src="images/2dd5cbfb3a574984fd9e6b7ed7f218f2.jpg" alt="Adam Nielsen"><div><p style="margin:0 0 3px;font-size:19px;font-weight:700">Adam Nielsen</p><p class="small" style="margin:0">Head of Music Staff and Director of the Festival Artist Program</p></div></li>
+        <li><div class="ini" aria-hidden="true">LR</div><div><p style="margin:0 0 3px;font-size:19px;font-weight:700">Laurie Rogers</p><p class="small" style="margin:0">Director of Artistic Operations</p></div></li>
+        <li><img src="images/bf1cdd31f9db5a9487211e29ce01cdbe.jpg" alt="Mary Birnbaum"><div><p style="margin:0 0 3px;font-size:19px;font-weight:700">Mary Birnbaum</p><p class="small" style="margin:0">General and Artistic Director</p></div></li>
+      </ul>
+    </div>
+    <div class="b" style="padding-top:12px">
+      <div style="border:2px solid var(--ink);padding:28px 32px">
+        <h3 class="eyebrow" style="color:var(--ink);margin:0 0 6px">Application questions</h3>
+        <p class="body" style="font-size:16px;margin:0 0 4px">Laurie Rogers, Director of Artistic Operations</p>
+        <p style="margin:0 0 22px"><a href="mailto:lrogers@operasaratoga.org?subject=Festival%20Artist%20Program" style="font-size:20px;font-weight:700">lrogers@operasaratoga.org</a></p>
+        <h3 class="eyebrow" style="color:var(--ink);margin:0 0 6px">Applying</h3>
+        <p class="body" style="font-size:15px;margin:0 0 16px">Applications are submitted on YAP Tracker. 2027 applications are closed. The track-by-track materials checklist is on the Jobs page.</p>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:14px">
+          <a class="btn btn--ink" style="height:50px" href="jobs.html#prep">See the Materials Checklist</a>
+          <a class="textlink" style="font-size:15px" href="https://www.yaptracker.com/applications/opera-saratoga-2027" target="_blank" rel="noopener">View 2027 Listing on YAP Tracker <span aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="site.js"></script>
+<script>OS.mount('about')</script>
+</body>
+</html>

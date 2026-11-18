@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Songs by Heart — Opera Saratoga</title>
+<meta name="description" content="Songs by Heart brings live, interactive music to people living with dementia in memory care communities. An Opera Saratoga singer leads each visit, inviting residents to join in through familiar songs.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400..700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .sbh-hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:28px;align-items:start}
+  .sbh-hero .a{grid-column:1 / span 6}
+  .sbh-hero .b{grid-column:8 / span 5;border-top:3px solid var(--ink);padding-top:22px}
+  .visit-grid2{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px;align-items:start}
+  .visit-grid2 .a{grid-column:1 / span 6}
+  .visit-grid2 .b{grid-column:9 / span 4}
+  .join{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--ink)}
+  .join li{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(44px,6vw,64px);line-height:1;padding:12px 0;border-top:1px solid var(--ink)}
+  .videos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px;row-gap:32px}
+  .videos a{display:block;color:var(--ink);text-decoration:none}
+  .thumb{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:var(--ink)}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .thumb .play{position:absolute;left:20px;bottom:20px;width:72px;height:72px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center}
+  .inq{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px;align-items:start}
+  .inq .a{grid-column:1 / span 6}
+  .inq .b{grid-column:8 / span 5}
+  .num{list-style:none;margin:0 0 24px;padding:0;border-bottom:1px solid var(--ink)}
+  .num li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--ink);font-size:16px;line-height:1.5}
+  @media (max-width:1040px){.sbh-hero .a,.sbh-hero .b,.visit-grid2 .a,.visit-grid2 .b,.inq .a,.inq .b{grid-column:1 / span 12}}
+  @media (max-width:680px){.videos{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="container pagehero" style="padding-bottom:clamp(64px,9vw,104px)">
+    <p class="breadcrumb"><a href="education.html">Education &amp; Community</a> / Songs by Heart</p>
+    <p class="eyebrow" style="margin:0 0 12px">For memory care communities</p>
+    <h1 class="dhead dhead--xl" style="margin-bottom:40px">Songs by Heart</h1>
+    <div class="sbh-hero">
+      <div class="a">
+        <p class="body-lg" style="margin:0 0 32px">Songs by Heart brings live, interactive music to people living with dementia in memory care communities. An Opera Saratoga singer leads each visit, inviting residents to join in through familiar songs.</p>
+        <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+          <a class="btn btn--ink" style="height:56px" href="#inquire">Bring Songs by Heart to Your Community</a>
+          <span><a class="textlink" style="font-size:15px" href="#visit">What a Visit Looks Like</a> <span aria-hidden="true">&darr;</span></span>
+        </div>
+      </div>
+      <div class="b">
+        <p class="lead-serif" style="font-size:clamp(24px,2.6vw,30px)">Making music for, and with, people living with dementia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container sec sec--line visit-grid2" id="visit" aria-labelledby="visit-h">
+    <div class="a">
+      <h2 id="visit-h" class="dhead dhead--md" style="margin-bottom:28px">What a Visit<br>Looks Like</h2>
+      <p class="body" style="font-size:19px;margin:0 0 20px">A professional Opera Saratoga singer leads a live sing-along with the residents, choosing and pacing the songs by following cues from the people in the room.</p>
+      <p class="body" style="font-size:19px;margin:0 0 20px">Everyone takes part in their own way. Some residents sing along. Some clap or move to the music. Some talk about what a song brings to mind, and some simply listen.</p>
+      <p class="body" style="font-size:19px;margin:0 0 20px">The singer invites people in one at a time: mirroring a resident&rsquo;s movements, offering a spoken or gestured prompt, making eye contact, and holding hands when it&rsquo;s welcome.</p>
+      <p class="body" style="font-size:19px;margin:0">Between songs, conversation grows out of the music itself, and the songs become something the room shares.</p>
+    </div>
+    <div class="b" style="padding-top:8px">
+      <h3 class="eyebrow" style="color:var(--ink);margin:0 0 8px">Ways to join in</h3>
+      <ul class="join"><li>Sing</li><li>Clap</li><li>Move</li><li>Talk</li><li>Listen</li></ul>
+    </div>
+  </section>
+
+  <section class="container" id="watch" aria-labelledby="watch-h" style="padding-bottom:clamp(64px,9vw,104px)">
+    <h2 id="watch-h" class="dhead" style="font-size:clamp(40px,5vw,56px);margin-bottom:28px">See a Visit</h2>
+    <ul class="videos">
+      <li><a href="https://youtu.be/QprKw1TTvU0" target="_blank" rel="noopener" aria-label="Watch Collaborative Partner: Songs by Heart on YouTube (opens in a new tab)">
+        <span class="thumb"><img src="images/c82259c95b33313a7ef105757ebde88f.jpg" alt="Video still: a singer in purple dances with a resident in a red jacket, hands raised together, as another resident smiles nearby."><span class="play" aria-hidden="true"><svg width="26" height="28" viewBox="0 0 20 22"><path d="M2 1.5L18.5 11L2 20.5Z" fill="#24172E"></path></svg></span></span>
+        <span style="display:block;margin-top:12px;font-size:19px;line-height:1.35;font-weight:700">Collaborative Partner: Songs by Heart <span aria-hidden="true" style="font-weight:600">&#8599;</span></span>
+        <span class="small" style="display:block;margin-top:2px">Opera Saratoga &middot; YouTube</span></a></li>
+      <li><a href="https://youtu.be/8ujYoX4YR_M" target="_blank" rel="noopener" aria-label="Watch The Upside: Opera Saratoga on YouTube (opens in a new tab)">
+        <span class="thumb"><img src="images/02170c5760bd1fdf9f8a01f932110585.jpg" alt="Video still: a singer leans in and holds hands with a smiling resident while others reach out and laugh."><span class="play" aria-hidden="true"><svg width="26" height="28" viewBox="0 0 20 22"><path d="M2 1.5L18.5 11L2 20.5Z" fill="#24172E"></path></svg></span></span>
+        <span style="display:block;margin-top:12px;font-size:19px;line-height:1.35;font-weight:700">The Upside: Opera Saratoga <span aria-hidden="true" style="font-weight:600">&#8599;</span></span>
+        <span class="small" style="display:block;margin-top:2px">WTEN News10 &middot; YouTube</span></a></li>
+    </ul>
+  </section>
+
+  <section class="sec--lav sec" id="inquire" aria-labelledby="inquire-h">
+    <div class="container inq">
+      <div class="a">
+        <h2 id="inquire-h" class="dhead dhead--md" style="margin-bottom:28px">Bring the Program<br>to Your Community</h2>
+        <p class="body" style="font-size:19px;margin:0">Activities directors and memory care teams are welcome to ask about scheduling and what a visit could look like for your residents. Send us a note and we&rsquo;ll be in touch.</p>
+      </div>
+      <div class="b">
+        <div style="background:var(--paper);padding:32px">
+          <h3 class="eyebrow" style="color:var(--ink);margin:0 0 6px">Helpful to include</h3>
+          <ul class="num">
+            <li><span aria-hidden="true" style="font-weight:700">1</span><span>Your community&rsquo;s name</span></li>
+            <li><span aria-hidden="true" style="font-weight:700">2</span><span>Where you&rsquo;re located</span></li>
+            <li><span aria-hidden="true" style="font-weight:700">3</span><span>The best way to reach you</span></li>
+          </ul>
+          <a class="btn btn--ink" style="height:56px" href="mailto:info@operasaratoga.org?subject=Songs%20by%20Heart%20inquiry&body=Community%20name%3A%0ALocation%3A%0ABest%20way%20to%20reach%20me%3A%0A">Inquire About a Visit</a>
+          <p class="body" style="font-size:15px;margin:14px 0 0">Or email <a href="mailto:info@operasaratoga.org?subject=Songs%20by%20Heart%20inquiry" style="font-weight:700">info@operasaratoga.org</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container sec" aria-labelledby="support-h">
+    <div class="split" style="align-items:end">
+      <div class="main-7">
+        <h2 id="support-h" class="dhead" style="font-size:clamp(40px,5vw,64px);margin-bottom:28px">Support Songs by Heart</h2>
+        <p class="body" style="font-size:18px;margin:0">Gifts to Opera Saratoga help bring live music to memory care communities, along with our performances and education programs.</p>
+      </div>
+      <div class="aside-4" style="justify-self:end"><a class="btn btn--ink" style="height:52px" href="support.html#give-form">Give to Opera Saratoga</a></div>
+    </div>
+    <p class="small" style="margin:32px 0 0;padding-top:16px;border-top:1px solid #D9D3E0">Songs by Heart is presented with generous support from Deborah and Dexter Senft, Virtuoso Advising for Artists, and Virtuoso Asset Management.</p>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="site.js"></script>
+<script>OS.mount('education')</script>
+</body>
+</html>

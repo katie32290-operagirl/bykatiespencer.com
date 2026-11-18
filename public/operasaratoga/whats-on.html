@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What's On — Opera Saratoga</title>
+<meta name="description" content="Performances, talks and community gatherings at Opera Saratoga, year-round. Every listing links to its own event page.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400..700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="container pagehero">
+    <p class="breadcrumb"><a href="index.html">Home</a> / What&rsquo;s On</p>
+    <div class="flex-end">
+      <h1 class="dhead dhead--xl">What&rsquo;s On</h1>
+      <p class="body" style="max-width:420px">Performances, talks and community gatherings, year-round. Every listing links to its own event page.</p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter events">
+      <button class="chip" type="button" data-filter="all" aria-pressed="true">All upcoming</button>
+      <button class="chip" type="button" data-filter="tickets" aria-pressed="false">Tickets on sale</button>
+      <button class="chip" type="button" data-filter="register" aria-pressed="false">Free with registration</button>
+      <button class="chip" type="button" data-filter="series" aria-pressed="false">Recurring series</button>
+      <span class="count" id="count">11 events</span>
+    </div>
+  </section>
+
+  <section class="container" aria-label="Upcoming events">
+    <div class="events" id="events">
+      <article class="event" data-kind="register">
+        <div><div class="date">Nov 23</div><div class="when">Monday, 12&ndash;1 PM</div></div>
+        <div><div class="type">Talk</div><h2><a href="https://www.operasaratoga.org/calendarview/lecture-on-la-traviata-with-tom-denny" target="_blank" rel="noopener">Lecture on La Traviata with Tom Denny</a></h2><div class="note">Free with registration &middot; Companion to La Traviata</div></div>
+        <span class="venue">Saratoga Springs Public Library</span>
+        <a class="act" href="https://www.operasaratoga.org/calendarview/lecture-on-la-traviata-with-tom-denny" target="_blank" rel="noopener">Register</a>
+      </article>
+      <article class="event" data-kind="tickets">
+        <div><div class="date">Dec 4</div><div class="when">Friday, 7 PM</div></div>
+        <div><div class="type">Performance &middot; Tickets on sale</div><h2><a href="la-traviata.html">La Traviata</a></h2><div class="note">85 minutes, no intermission &middot; Italian with English supertitles</div></div>
+        <span class="venue">Universal Preservation Hall</span>
+        <a class="act act--tickets" href="la-traviata.html">Get Tickets</a>
+      </article>
+      <article class="event" data-kind="register">
+        <div><div class="date">Dec 5</div><div class="when">Saturday, 7 PM</div></div>
+        <div><div class="type">Community</div><h2><a href="https://lp.constantcontactpages.com/ev/reg/4545f958-0944-44ae-a7ab-4d749974f80c" target="_blank" rel="noopener">Annual Meeting</a></h2><div class="note">Free and open to all &middot; In person or virtual</div></div>
+        <span class="venue">Saratoga Arts, 320 Broadway</span>
+        <a class="act" href="https://lp.constantcontactpages.com/ev/reg/4545f958-0944-44ae-a7ab-4d749974f80c" target="_blank" rel="noopener">Register</a>
+      </article>
+      <article class="event" data-kind="series">
+        <div><div class="date">Dec 16</div><div class="when">Wednesday</div></div>
+        <div><div class="type">Series</div><h2><a href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">Mornings With Mary</a></h2><div class="note">Part of the Mornings With Mary series</div></div>
+        <span class="venue">See event details</span>
+        <a class="act" href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">Details</a>
+      </article>
+      <article class="event" data-kind="series">
+        <div><div class="date">Jan 20</div><div class="when">Wednesday</div></div>
+        <div><div class="type">Series</div><h2><a href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">Mornings With Mary</a></h2><div class="note">Part of the Mornings With Mary series</div></div>
+        <span class="venue">See event details</span>
+        <a class="act" href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">Details</a>
+      </article>
+      <article class="event" data-kind="series">
+        <div><div class="date">Feb 17</div><div class="when">Wednesday</div></div>
+        <div><div class="type">Series</div><h2><a href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">Mornings With Mary</a></h2><div class="note">Part of the Mornings With Mary series</div></div>
+        <span class="venue">See event details</span>
+        <a class="act" href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">Details</a>
+      </article>
+      <article class="event" data-kind="series">
+        <div><div class="date">Feb 25</div><div class="when">Thursday</div></div>
+        <div><div class="type">Series</div><h2><a href="https://www.operasaratoga.org/sip-sing" target="_blank" rel="noopener">Sip &amp; Sing</a></h2><div class="note">Part of the Sip &amp; Sing series</div></div>
+        <span class="venue">See event details</span>
+        <a class="act" href="https://www.operasaratoga.org/sip-sing" target="_blank" rel="noopener">Details</a>
+      </article>
+      <article class="event" data-kind="series">
+        <div><div class="date">Mar 17</div><div class="when">Wednesday</div></div>
+        <div><div class="type">Series</div><h2><a href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">Mornings With Mary</a></h2><div class="note">Part of the Mornings With Mary series</div></div>
+        <span class="venue">See event details</span>
+        <a class="act" href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">Details</a>
+      </article>
+      <article class="event" data-kind="other">
+        <div><div class="date">Mar 21</div><div class="when">Sunday</div></div>
+        <div><div class="type">Event</div><h2><a href="https://www.operasaratoga.org/calendar" target="_blank" rel="noopener">A Night at the Opera with SSSO</a></h2><div class="note">Details on the event page</div></div>
+        <span class="venue">See event details</span>
+        <a class="act" href="https://www.operasaratoga.org/calendar" target="_blank" rel="noopener">Details</a>
+      </article>
+      <article class="event" data-kind="series">
+        <div><div class="date">Apr 15</div><div class="when">Thursday</div></div>
+        <div><div class="type">Series</div><h2><a href="https://www.operasaratoga.org/sip-sing" target="_blank" rel="noopener">Sip &amp; Sing</a></h2><div class="note">Part of the Sip &amp; Sing series</div></div>
+        <span class="venue">See event details</span>
+        <a class="act" href="https://www.operasaratoga.org/sip-sing" target="_blank" rel="noopener">Details</a>
+      </article>
+      <article class="event" data-kind="series">
+        <div><div class="date">Apr 21</div><div class="when">Wednesday</div></div>
+        <div><div class="type">Series</div><h2><a href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">Mornings With Mary</a></h2><div class="note">Part of the Mornings With Mary series</div></div>
+        <span class="venue">See event details</span>
+        <a class="act" href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">Details</a>
+      </article>
+      <p class="body" id="empty" style="display:none;padding:32px 0;color:var(--muted)">No events in this filter right now.</p>
+    </div>
+  </section>
+
+  <section class="container series" aria-labelledby="series-h">
+    <h2 id="series-h" class="series-title">Recurring Series</h2>
+    <a class="series-card" href="https://www.operasaratoga.org/sip-sing" target="_blank" rel="noopener">
+      <span class="n">Sip &amp; Sing</span>
+      <span>Next: Thursday, Feb 25 &middot; Apr 15</span>
+      <span class="more">About the series &rarr;</span>
+    </a>
+    <a class="series-card" href="https://www.operasaratoga.org/morning-with-mary" target="_blank" rel="noopener">
+      <span class="n">Mornings With Mary</span>
+      <span>Monthly on Wednesdays &middot; Next: Dec 16</span>
+      <span class="more">About the series &rarr;</span>
+    </a>
+  </section>
+
+  <section class="container archive">
+    <a href="https://www.operasaratoga.org/calendar" target="_blank" rel="noopener">
+      <span class="l"><span class="tag">Archive</span><span class="ttl">Past Events</span><span class="sub">Past performances and events, kept for reference</span></span>
+      <span aria-hidden="true" style="font-size:20px">&rarr;</span>
+    </a>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="site.js"></script>
+<script>
+OS.mount('whatson');
+(function(){
+  var chips=document.querySelectorAll('.chip');
+  var events=Array.prototype.slice.call(document.querySelectorAll('.event'));
+  var count=document.getElementById('count');
+  var empty=document.getElementById('empty');
+  function apply(f){
+    var n=0;
+    events.forEach(function(e){
+      var show = f==='all' || e.getAttribute('data-kind')===f;
+      e.style.display = show ? '' : 'none';
+      if(show) n++;
+    });
+    count.textContent = n + (n===1?' event':' events');
+    empty.style.display = n===0 ? 'block' : 'none';
+    chips.forEach(function(c){ c.setAttribute('aria-pressed', c.getAttribute('data-filter')===f ? 'true':'false'); });
+  }
+  chips.forEach(function(c){ c.addEventListener('click',function(){ apply(c.getAttribute('data-filter')); }); });
+})();
+</script>
+</body>
+</html>
