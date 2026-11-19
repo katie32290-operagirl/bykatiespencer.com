@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mornings With Mary — Opera Saratoga</title>
+<meta name="description" content="Join Opera Saratoga General and Artistic Director Mary Birnbaum for a monthly online conversation with singers, directors, designers and other guests from the world of opera. Dates, registration and how to join.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400..700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .mwm-hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px;align-items:start}
+  .mwm-hero .copy{grid-column:1 / span 7}
+  .mwm-hero figure{grid-column:9 / span 4;margin:0}
+  .mwm-hero figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;display:block}
+  .nextbox{border:2px solid var(--ink);padding:22px 26px}
+  .mwm-sched{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--ink)}
+  .mwm-sched li{display:grid;grid-template-columns:170px minmax(0,1fr) 250px 130px;column-gap:24px;align-items:center;padding:18px 0;border-top:1px solid var(--ink)}
+  .mwm-sched .dt{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:48px;line-height:.9;white-space:nowrap}
+  .mwm-sched .reg{display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 18px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;font-size:15px;font-weight:600;white-space:nowrap}
+  .mwm-sched .det{justify-self:end;font-size:15px;font-weight:600}
+  .past{list-style:none;margin:0;padding:0}
+  .past li{padding:8px 0;border-top:1px solid #D9D3E0;font-size:15px}
+  .host{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:28px;align-items:start}
+  .host .a{grid-column:1 / span 7}
+  .host .b{grid-column:9 / span 4;padding-top:8px;border-top:3px solid var(--ink)}
+  @media (max-width:1040px){
+    .mwm-hero .copy,.mwm-hero figure,.host .a,.host .b{grid-column:1 / span 12}
+    .mwm-hero figure{max-width:360px}
+    .mwm-sched li{grid-template-columns:110px 1fr;row-gap:10px}
+    .mwm-sched .dt{font-size:38px}
+    .mwm-sched .reg{grid-column:2;justify-self:start}
+    .mwm-sched .det{grid-column:2;justify-self:start}
+  }
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="container pagehero mwm-hero" style="padding-bottom:clamp(64px,9vw,96px)">
+    <div class="copy" style="grid-column:1 / -1"><p class="breadcrumb"><a href="whats-on.html">What&rsquo;s On</a> / Mornings With Mary</p>
+      <h1 class="dhead dhead--xl" style="margin-bottom:32px">Mornings With Mary</h1>
+    </div>
+    <div class="copy">
+      <p class="lead-serif" style="margin:0 0 22px">Brew a cup of coffee and pull up a chair.</p>
+      <p class="body-lg" style="margin:0 0 28px">Join Opera Saratoga General and Artistic Director Mary Birnbaum for a monthly online conversation with singers, directors, designers, and other guests from the world of opera. Hear how productions come together and get a look at what&rsquo;s ahead for the Summer Festival.</p>
+      <div class="nextbox" id="next-box" aria-label="Next conversation">
+        <p class="eyebrow" style="color:var(--ink);margin:0 0 6px">Next Conversation</p>
+        <p id="next-date" style="margin:0 0 2px;font-size:24px;line-height:1.3;font-weight:700">Wednesday, December 16, 2026</p>
+        <p class="body" style="margin:0 0 20px;font-size:16px">9&ndash;10 a.m. Eastern &middot; Online</p>
+        <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+          <a class="btn btn--ink" id="next-cta" style="height:54px" href="#" target="_blank" rel="noopener">Register for December 16</a>
+          <span><a class="textlink" style="font-size:15px" href="#schedule">See All Dates</a> <span aria-hidden="true">&darr;</span></span>
+        </div>
+      </div>
+      <div class="nextbox" id="none-box" style="display:none">
+        <p class="eyebrow" style="color:var(--ink);margin:0 0 6px">Next season</p>
+        <p class="body" style="margin:0 0 14px;font-size:18px">The next series dates haven&rsquo;t been announced yet. Sign up for the newsletter to hear first.</p>
+        <a class="textlink" style="font-size:15px" href="#newsletter">Get Opera Saratoga updates</a>
+      </div>
+    </div>
+    <figure>
+      <img src="images/81f05c93159e10f0788bf2fa96697493.jpg" alt="Mary Birnbaum, smiling, speaks into a microphone at the 2025 Opera Saratoga Gala.">
+      <figcaption class="small" style="margin-top:8px">Mary Birnbaum at the 2025 Opera Saratoga Gala.</figcaption>
+    </figure>
+  </section>
+
+  <section class="sec--lav sec" id="schedule" aria-labelledby="sched-h">
+    <div class="container">
+      <h2 id="sched-h" class="dhead dhead--md" style="margin-bottom:24px">Upcoming Conversations</h2>
+      <p class="body" style="font-size:18px;margin:0 0 36px">Conversations run 9&ndash;10 a.m. Eastern, online, unless a session notes otherwise. Guests are announced as they&rsquo;re confirmed.</p>
+      <ul class="mwm-sched" id="sched-list"></ul>
+      <div style="margin-top:44px;max-width:520px" id="past-wrap">
+        <h3 class="eyebrow" style="color:var(--ink);margin:0 0 6px">Past conversations</h3>
+        <ul class="past" id="past-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container sec host" aria-labelledby="host-h">
+    <div class="a">
+      <h2 id="host-h" class="dhead dhead--md" style="margin-bottom:24px">Meet Your Host</h2>
+      <p class="body" style="font-size:19px;margin:0 0 16px">Mary Birnbaum was named Opera Saratoga&rsquo;s General and Artistic Director in February 2023, after a national search.</p>
+      <p class="body" style="font-size:19px;margin:0 0 28px">She has focused on revitalizing the company&rsquo;s education program, bringing opera to more than 30 schools and venues in the region, and expanding Songs by Heart. Her work also emphasizes access, with free programming for kids, collaborations with local artists, and works by living composers.</p>
+    </div>
+    <div class="b">
+      <div style="padding-top:18px;display:flex;flex-direction:column;gap:14px">
+        <a class="textlink" style="font-size:15px" href="about.html">About Opera Saratoga and its leadership</a>
+        <a class="textlink" style="font-size:15px" href="index.html#festival">The 2027 Summer Festival</a>
+        <a class="textlink" style="font-size:15px" href="https://www.marybirnbaum.com" target="_blank" rel="noopener">Mary&rsquo;s professional website <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="site.js"></script>
+<script>OS.mount('whatson')</script>
+<script>
+const SESSIONS = [{"iso": "2026-10-14", "mon": "Oct", "day": "14", "long": "Wednesday, October 14, 2026", "href": "https://www.operasaratoga.org/calendarview/event-morningswithmary-october", "reg": null, "guest": ""}, {"iso": "2026-11-18", "mon": "Nov", "day": "18", "long": "Wednesday, November 18, 2026", "href": "https://www.operasaratoga.org/calendarview/event-morningswithmarynovember", "reg": null, "guest": ""}, {"iso": "2026-12-16", "mon": "Dec", "day": "16", "long": "Wednesday, December 16, 2026", "href": "https://www.operasaratoga.org/calendarview/event-morningswithmary-december", "reg": "https://lp.constantcontactpages.com/ev/reg/72cc0f46-06cd-4f86-9598-7f34d7e34850", "guest": ""}, {"iso": "2027-01-20", "mon": "Jan", "day": "20", "long": "Wednesday, January 20, 2027", "href": "https://www.operasaratoga.org/calendarview/event-morningswithmary-january", "reg": null, "guest": ""}, {"iso": "2027-02-17", "mon": "Feb", "day": "17", "long": "Wednesday, February 17, 2027", "href": "https://www.operasaratoga.org/calendarview/event-morningswithmary-february", "reg": null, "guest": ""}, {"iso": "2027-03-17", "mon": "Mar", "day": "17", "long": "Wednesday, March 17, 2027", "href": "https://www.operasaratoga.org/calendarview/event-morningswithmary-march", "reg": null, "guest": ""}, {"iso": "2027-04-21", "mon": "Apr", "day": "21", "long": "Wednesday, April 21, 2027", "href": "https://www.operasaratoga.org/calendarview/event-mornignswithmary-april", "reg": null, "guest": ""}];
+(function(){
+  function enc(s){return encodeURIComponent(s);}
+  var now=new Date();
+  var rows=SESSIONS.map(function(s){
+    var md=s.long.split(', ')[1];
+    var a=s.reg
+      ? {alabel:'Register for '+md, ahref:s.reg}
+      : {alabel:'Email to Sign Up', ahref:'mailto:admin@operasaratoga.org?subject='+enc('Mornings With Mary: '+s.long.split(', ').slice(1).join(', '))};
+    return {iso:s.iso,mon:s.mon,day:s.day,long:s.long,href:s.href,reg:s.reg,md:md,
+            guest:s.guest||'Guest to be announced',alabel:a.alabel,ahref:a.ahref,
+            end:new Date(s.iso+'T10:00:00-05:00')};
+  });
+  var upcoming=rows.filter(function(r){return r.end>now;});
+  var past=rows.filter(function(r){return r.end<=now;}).reverse();
+  var n=upcoming[0];
+
+  // Next conversation box
+  var nextBox=document.getElementById('next-box'), noneBox=document.getElementById('none-box');
+  if(n){
+    document.getElementById('next-date').textContent=n.long;
+    var cta=document.getElementById('next-cta');
+    cta.textContent=n.reg?n.alabel:('Email to Sign Up for '+n.md);
+    cta.href=n.ahref;
+  } else { nextBox.style.display='none'; noneBox.style.display='block'; }
+
+  // Upcoming schedule
+  document.getElementById('sched-list').innerHTML=upcoming.map(function(s){
+    return '<li>'+
+      '<span class="dt">'+s.mon+' '+s.day+'</span>'+
+      '<span style="font-size:17px;line-height:1.47"><b style="font-weight:600">'+s.long+'</b><br><span class="small">'+s.guest+'</span></span>'+
+      '<a class="reg" href="'+s.ahref+'"'+(s.reg?' target="_blank" rel="noopener"':'')+'>'+s.alabel+'</a>'+
+      '<a class="det" href="'+s.href+'" target="_blank" rel="noopener">Event details <span aria-hidden="true">↗</span></a>'+
+    '</li>';
+  }).join('');
+
+  // Past
+  var pastWrap=document.getElementById('past-wrap');
+  if(past.length){
+    document.getElementById('past-list').innerHTML=past.map(function(s){
+      return '<li><a href="'+s.href+'" target="_blank" rel="noopener" style="color:var(--ink)">'+s.long+'</a> <span aria-hidden="true">↗</span></li>';
+    }).join('');
+  } else { pastWrap.style.display='none'; }
+})();
+</script>
+</body>
+</html>

@@ -48,8 +48,8 @@
       '<li><a href="https://www.operasaratoga.org/parkinganddirections" target="_blank" rel="noopener">Parking &amp; Directions</a></li>' +
       '<li><a href="https://www.operasaratoga.org/eat-and-stay" target="_blank" rel="noopener">Eat &amp; Stay</a></li></ul></div>' +
       '<div><div class="col-h">Company</div><ul>' +
-      '<li><a href="https://www.operasaratoga.org/contact" target="_blank" rel="noopener">Contact</a></li>' +
-      '<li><a href="https://www.operasaratoga.org/newsandpress" target="_blank" rel="noopener">News &amp; Press</a></li>' +
+      '<li><a href="contact.html">Contact</a></li>' +
+      '<li><a href="newsandpress.html">News &amp; Press</a></li>' +
       '<li><a href="jobs.html">Jobs</a></li>' +
       '<li><a href="festival-artists.html">Festival Artist Program</a></li></ul></div>' +
       '<div><div class="col-h">Follow</div><ul>' +
