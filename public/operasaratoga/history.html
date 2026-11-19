@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Company History — Opera Saratoga</title>
+<meta name="description" content="From Lake George Opera's first season in 1962 to Opera Saratoga's home in Saratoga Springs: the company's story, decade by decade.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400..700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .hist-lede{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+  .hist-lede .a{grid-column:1 / span 7}
+  .onpage{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));column-gap:16px;row-gap:16px}
+  .onpage a{display:block;padding:14px 16px 16px 0;border-top:3px solid var(--ink);color:var(--ink);text-decoration:none}
+  .onpage .yr{display:block;font-size:13px;font-weight:700;margin-bottom:4px}
+  .onpage .nm{font-size:15px;line-height:1.4}
+  .chapter{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:start}
+  .chapter .num{grid-column:1 / span 3;padding-top:6px}
+  .chapter .body-col{grid-column:4 / span 6}
+  .chapter .threads{grid-column:10 / span 3;padding-top:10px}
+  .chapter .num .ch{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+  .chapter .num .yrs{margin:6px 0 0;font-family:var(--display);font-weight:900;font-size:44px;line-height:.9}
+  .chapter h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(44px,5.5vw,72px);line-height:.86;margin-bottom:28px}
+  .chapter .body-col p{font-size:19px;line-height:1.68;margin:0 0 20px}
+  .threads .lbl{margin:0 0 4px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .threads ul{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--ink)}
+  .threads li{padding:10px 0;border-top:1px solid var(--ink)}
+  .threads b{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+  .threads span{font-size:14px;line-height:1.5}
+  .continue a.big{display:flex;justify-content:space-between;align-items:baseline;gap:16px;color:var(--ink);text-decoration:none;border-top:3px solid var(--ink);padding-top:14px}
+  .continue .big span.t{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(36px,5vw,64px);line-height:.9}
+  @media (max-width:1040px){
+    .hist-lede .a{grid-column:1 / span 12}
+    .onpage{grid-template-columns:repeat(2,1fr)}
+    .chapter .num,.chapter .body-col,.chapter .threads{grid-column:1 / span 12}
+    .chapter .num{display:flex;align-items:baseline;gap:16px}.chapter .num .yrs{margin:0}
+  }
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="container pagehero" style="padding-bottom:clamp(56px,8vw,88px)">
+    <p class="breadcrumb"><a href="about.html">About</a> / Company History</p>
+    <p class="eyebrow" style="margin:0 0 12px">Company History</p>
+    <h1 class="dhead" style="font-size:clamp(46px,9vw,132px);margin-bottom:36px">From Lake George<br>to Saratoga Springs</h1>
+    <div class="hist-lede">
+      <div class="a">
+        <p class="lead-serif" style="font-size:clamp(24px,3vw,30px);margin:0 0 22px">July 5, 1962. The Diamond Point Theatre on Lake George. An audience of 230.</p>
+        <p class="body" style="font-size:19px;line-height:1.68;margin:0 0 20px">That evening, Lake George Opera raised the curtain on its first production, Johann Strauss&rsquo;s <i>Die Fledermaus</i>.</p>
+        <p class="body" style="font-size:19px;line-height:1.68;margin:0 0 20px">The company was the idea of Fred Patrick and his wife, soprano Jeanette Scovotti. They wanted a permanent summer repertory company that sang opera in English and gave talented young American singers a stage. Their first season set the pace: 46 fully staged performances in eight weeks, accompanied by two pianists.</p>
+        <div style="display:flex;align-items:center;gap:24px;margin-top:12px;flex-wrap:wrap">
+          <a class="btn btn--ink" style="height:54px" href="#ch1">Explore the History</a>
+          <a class="btn btn--ghost" style="height:54px;color:var(--ink)" href="performance-archive.html">Browse the Performance Archive</a>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="On this page" style="margin-top:72px">
+      <p class="eyebrow" style="color:var(--ink);margin:0 0 10px">On this page</p>
+      <ul class="onpage">
+        <li><a href="#ch1"><span class="yr">1962&ndash;1980</span><span class="nm">The Lake George Years</span></a></li>
+        <li><a href="#ch2"><span class="yr">1981&ndash;1997</span><span class="nm">Opera Beyond the Mainstage</span></a></li>
+        <li><a href="#ch3"><span class="yr">1998&ndash;2013</span><span class="nm">A Home in Saratoga Springs</span></a></li>
+        <li><a href="history-continued.html#ch4"><span class="yr">2014&ndash;2019</span><span class="nm">New Work and New Stages</span></a></li>
+        <li><a href="history-continued.html#ch5"><span class="yr">2020&ndash;2022</span><span class="nm">A Festival Reimagined</span></a></li>
+        <li><a href="history-continued.html#ch6"><span class="yr">2023&ndash;Today</span><span class="nm">Downtown and Year-Round</span></a></li>
+        <li><a href="performance-archive.html"><span class="yr">1962&ndash;2026</span><span class="nm">Performance Archive</span></a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="container sec sec--line chapter" id="ch1" aria-labelledby="ch1-h">
+    <div class="num"><p class="ch">Chapter 1</p><p class="yrs">1962&ndash;1980</p></div>
+    <div class="body-col">
+      <h2 id="ch1-h">The Lake<br>George Years</h2>
+      <p>Audiences grew quickly, and an orchestra soon replaced the two pianos. In 1965 the company moved into the newly completed auditorium at Queensbury High School in Glens Falls and formed its first Board of Directors. The same year it lost its founder: Fred Patrick died of cancer at 37.</p>
+      <p>David Lloyd, then artistic director, became general director and led the company until 1980. Under Lloyd, Lake George Opera staged its first contemporary and American operas, Menotti&rsquo;s <i>The Telephone</i> in 1965 and Robert Ward&rsquo;s <i>The Crucible</i> in 1966.</p>
+      <p>New work became part of the company&rsquo;s identity. Lloyd&rsquo;s tenure brought four world-premiere productions: David Amram&rsquo;s <i>Twelfth Night</i> and Robert Baksa&rsquo;s <i>Aria da Capo</i>, both in 1968, Jose Bernardo&rsquo;s <i>The Child</i> in 1974, and Alva Henderson&rsquo;s <i>The Last of the Mohicans</i> in 1977.</p>
+      <p>He also looked past the stage, introducing Opera-on-the-Lake in 1972 and forming the Contemporary American Opera Studio in 1980.</p>
+    </div>
+    <aside class="threads" aria-label="Threads in this chapter">
+      <p class="lbl">Threads</p>
+      <ul>
+        <li><b>Where</b><span>Diamond Point Theatre, then Queensbury High School, Glens Falls, from 1965</span></li>
+        <li><b>New work</b><span>Four world premieres; the Contemporary American Opera Studio (1980)</span></li>
+        <li><b>Beyond the theater</b><span>Opera-on-the-Lake (1972)</span></li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="container sec sec--line chapter" id="ch2" aria-labelledby="ch2-h">
+    <div class="num"><p class="ch">Chapter 2</p><p class="yrs">1981&ndash;1997</p></div>
+    <div class="body-col">
+      <h2 id="ch2-h">Opera Beyond<br>the Mainstage</h2>
+      <p>Paulette Haupt-Nolen, artistic director from 1981 through 1985, brought in new partners: the Eugene O&rsquo;Neill Theater Center, to workshop new operas, and Proctor&rsquo;s Theatre, for a production of <i>Man of La Mancha</i>.</p>
+      <p>She also produced the company&rsquo;s first opera at the Spa Little Theater in Saratoga Springs, the world premiere of Glenn Paxton&rsquo;s <i>The Adventures of Friar Tuck</i>, and in 1985 sent opera on the road with the traveling Opera-On-Wheels program.</p>
+      <p>Artistic directors Brian Lingham (1986&ndash;87) and John Balme (1988&ndash;91) followed. The Opera-to-Go education program began in 1986, and the company gave the world premiere of Mark Houston&rsquo;s <i>Hazel Kirke</i>, an opera set in the Hudson River Valley in the 1840s. While the Queensbury auditorium was renovated, the 1989 and 1990 seasons played at Adirondack Community College.</p>
+      <p>In 1991 Susan T. Danis became the company&rsquo;s first managing director, a newly created post, and the company returned to Queensbury. 1993 was a transitional year: David Lloyd came back as interim artistic director, and the company presented three gala concerts featuring many alumni, with no fully staged productions.</p>
+      <p>Joseph Illick then led five summers of wide-ranging programming, including Rossini&rsquo;s <i>La Donna del Lago</i>, Massenet&rsquo;s <i>Cendrillon</i>, Jorge Martin&rsquo;s <i>Tobermory</i>, Richard Wargo&rsquo;s <i>The Music Shop</i>, and Britten&rsquo;s <i>A Midsummer Night&rsquo;s Dream</i>, with the Boys Choir of Harlem as the Spirits in the Forest.</p>
+    </div>
+    <aside class="threads" aria-label="Threads in this chapter">
+      <p class="lbl">Threads</p>
+      <ul>
+        <li><b>Where</b><span>Queensbury; a first opera at the Spa Little Theater; Adirondack Community College in 1989&ndash;90</span></li>
+        <li><b>New work</b><span>O&rsquo;Neill Center workshops; world premieres of Friar Tuck and Hazel Kirke</span></li>
+        <li><b>Beyond the theater</b><span>Opera-On-Wheels (1985) and Opera-to-Go (1986)</span></li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="container sec sec--line chapter" id="ch3" aria-labelledby="ch3-h">
+    <div class="num"><p class="ch">Chapter 3</p><p class="yrs">1998&ndash;2013</p></div>
+    <div class="body-col">
+      <h2 id="ch3-h">A Home in<br>Saratoga Springs</h2>
+      <p>In 1998, renovations at Queensbury High School sent the summer season to the 500-seat Spa Little Theater in Spa State Park. The move was meant to be temporary, but the theater proved ideal for intimate opera and became the company&rsquo;s main stage. That same year the company began performing operas in their original languages, with projected supertitles.</p>
+      <p>In 1999 conductor Daniel Beckwith and stage director Marc Verzatt became co-artistic directors, and William Florescu soon joined as artistic director. Together they defined the company&rsquo;s brand of intimate opera theater, with <i>Ariadne auf Naxos</i> at the Spa Little Theater, <i>Madama Butterfly</i> with the Saratoga Performing Arts Center in its outdoor amphitheater, and, from 2000, a five-year Opera-to-Go touring cycle of operas by John Davies.</p>
+      <p>After taking on executive leadership in 2002, Florescu reintroduced American operas, featured Apprentice Artists in concerts with orchestra, started the Lake George Opera Summer Camp, and, with event chairs Ted and Carol Newlin, launched the annual Opera Ball.</p>
+      <p>When Florescu left for the Florentine Opera in Milwaukee in 2005, Curtis Tucker became the company&rsquo;s eighth artistic director. His expanded 2006 season included the professional premiere of Ned Rorem&rsquo;s <i>Our Town</i> and a semi-staged Apprentice Artist performance of Menotti&rsquo;s <i>The Medium</i>. Over nine seasons, his tenure was known for acclaimed Gilbert and Sullivan.</p>
+      <p>In 2011 the company celebrated its 50th season and formally became Opera Saratoga, a name that reflects its home in the Saratoga Springs community.</p>
+    </div>
+    <aside class="threads" aria-label="Threads in this chapter">
+      <p class="lbl">Threads</p>
+      <ul>
+        <li><b>Where</b><span>Spa Little Theater, Spa State Park, from 1998; SPAC&rsquo;s amphitheater</span></li>
+        <li><b>Artists and new work</b><span>Apprentice Artists in concert; the professional premiere of Our Town</span></li>
+        <li><b>Beyond the theater</b><span>The Opera-to-Go touring cycle (from 2000); Summer Camp</span></li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="container sec sec--line continue" aria-label="Continue the story">
+    <p class="eyebrow" style="color:var(--ink);margin:0 0 8px">Continue the story</p>
+    <a class="big" href="history-continued.html#ch4"><span class="t">2014&ndash;Today: New Work, New Stages and a Festival Reimagined</span><span aria-hidden="true" style="font-size:24px;font-weight:600">&rarr;</span></a>
+    <p style="margin:18px 0 0"><a class="textlink" style="font-size:15px" href="performance-archive.html">Or browse the Performance Archive</a></p>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="site.js"></script>
+<script>OS.mount('about')</script>
+</body>
+</html>
