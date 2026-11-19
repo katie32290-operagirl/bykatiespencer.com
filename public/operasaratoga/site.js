@@ -43,10 +43,10 @@
       "</form>" +
       '<nav class="foot-nav" aria-label="Footer">' +
       '<div><div class="col-h">Visit</div><ul>' +
-      '<li><a href="plan-your-visit.html">Ticket Help</a></li>' +
-      '<li><a href="plan-your-visit.html">Accessibility</a></li>' +
-      '<li><a href="https://www.operasaratoga.org/parkinganddirections" target="_blank" rel="noopener">Parking &amp; Directions</a></li>' +
-      '<li><a href="https://www.operasaratoga.org/eat-and-stay" target="_blank" rel="noopener">Eat &amp; Stay</a></li></ul></div>' +
+      '<li><a href="plan-your-visit.html#access">Ticket Help</a></li>' +
+      '<li><a href="plan-your-visit.html#access">Accessibility</a></li>' +
+      '<li><a href="plan-your-visit.html#venues">Parking &amp; Directions</a></li>' +
+      '<li><a href="plan-your-visit.html#eat-stay">Eat &amp; Stay</a></li></ul></div>' +
       '<div><div class="col-h">Company</div><ul>' +
       '<li><a href="contact.html">Contact</a></li>' +
       '<li><a href="newsandpress.html">News &amp; Press</a></li>' +
