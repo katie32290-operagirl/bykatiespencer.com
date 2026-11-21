@@ -134,26 +134,7 @@ export function ArtRedesign() {
 
       {/* ---- mosaic ---- */}
       <div className={`${PAD} pb-[clamp(56px,8vw,104px)]`}>
-        <div
-          className="mx-auto"
-          style={{
-            maxWidth: 1240,
-            columnWidth: "clamp(150px, 20vw, 262px)",
-            columnGap: "clamp(12px,1.4vw,18px)",
-          }}
-        >
-          {items.map((art) => (
-            <div
-              key={art.id}
-              style={{
-                breakInside: "avoid",
-                marginBottom: "clamp(12px,1.4vw,18px)",
-              }}
-            >
-              <Tile art={art} onOpen={() => openById(art.id)} />
-            </div>
-          ))}
-        </div>
+        <MosaicGrid items={items} onOpen={openById} />
       </div>
 
       {open !== null && items[open] && (
@@ -168,6 +149,35 @@ export function ArtRedesign() {
       <Cta />
       <Footer />
     </Shell>
+  );
+}
+
+/** Row-major grid: items read left-to-right, top-to-bottom in source order, so
+ * the numbered series stays in sequence. Each tile keeps its true aspect ratio;
+ * rows align to the top so uniform series (like Fragments) sit in even rows. */
+function MosaicGrid({
+  items,
+  onOpen,
+}: {
+  items: Artwork[];
+  onOpen: (id: string) => void;
+}) {
+  return (
+    <div
+      className="mx-auto"
+      style={{
+        maxWidth: 1240,
+        display: "grid",
+        gridTemplateColumns:
+          "repeat(auto-fill, minmax(clamp(150px, 22vw, 240px), 1fr))",
+        gap: "clamp(12px,1.4vw,18px)",
+        alignItems: "start",
+      }}
+    >
+      {items.map((art) => (
+        <Tile key={art.id} art={art} onOpen={() => onOpen(art.id)} />
+      ))}
+    </div>
   );
 }
 
