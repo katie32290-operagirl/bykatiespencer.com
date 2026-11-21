@@ -99,6 +99,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "lemons",
+    title: "Italian Citrus",
     medium: "Acrylic paint pens",
     image: "/art/lemons.webp",
     width: 1122,
