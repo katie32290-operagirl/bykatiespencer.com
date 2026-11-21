@@ -23,6 +23,7 @@ export const SERIF = "var(--font-ks-voice), 'Newsreader', Georgia, serif";
 export const NAV: { label: string; href: string; external?: boolean }[] = [
   { label: "About", href: "/about" },
   { label: "Work", href: "/portfolio" },
+  { label: "Art", href: "/art" },
   { label: "Collaborate", href: "/collaborate" },
   { label: "Notes", href: "/writing" },
   { label: "Connect", href: "/contact" },
