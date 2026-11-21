@@ -22,7 +22,8 @@ function caption(a: Artwork): string {
 /** Short label for the hover overlay: "NN · Title". */
 function tileLabel(a: Artwork): string {
   const t = a.title ?? "Untitled";
-  return a.seq ? `${a.seq} · ${t}` : t;
+  const label = a.seq ? `${a.seq} · ${t}` : t;
+  return a.inquire === "Inquire" || a.buyUrl ? `${label} · Available` : label;
 }
 
 /** Deters casual saving: the image ignores pointer events (right-click and

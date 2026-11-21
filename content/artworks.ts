@@ -72,6 +72,7 @@ export const artworks: Artwork[] = [
     width: 1104,
     height: 1480,
     alt: "A framed colored-pencil drawing on a pale wall: a close cropped face with one bright blue eye under a dark brow, auburn hair falling across warm skin, and deep red lips at the lower edge.",
+    availability: "Collection of the artist",
     order: 1.8,
     featured: true,
   },
@@ -135,6 +136,8 @@ export const artworks: Artwork[] = [
     width: 1200,
     height: 1544,
     alt: "A vibrant acrylic painting on canvas hung on a pale wall: an electric guitar in jewel tones, a teal and lime body on the left, a golden-orange body on the right, pale strings running down a rainbow-lit neck against a magenta and violet ground.",
+    availability: "Original not for sale · Prints planned",
+    inquire: "Notify me about prints",
     order: 1.5,
     featured: true,
   },
@@ -164,6 +167,8 @@ export const artworks: Artwork[] = [
     height: 1786,
     alt: "Charcoal drawing of a face torn into pieces and reassembled on the page, the eyes, nose and mouth offset across the fragments so the portrait reads as broken and remade.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 10,
     featured: true,
   },
@@ -178,6 +183,8 @@ export const artworks: Artwork[] = [
     height: 1794,
     alt: "Charcoal drawing from the Fragments series, titled Darkness.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 11,
   },
   {
@@ -191,6 +198,8 @@ export const artworks: Artwork[] = [
     height: 1810,
     alt: "Charcoal drawing from the Fragments series, titled Lament.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 14,
   },
   {
@@ -204,6 +213,8 @@ export const artworks: Artwork[] = [
     height: 1741,
     alt: "Charcoal drawing from the Fragments series, titled Indifference.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 17,
   },
   {
@@ -217,6 +228,8 @@ export const artworks: Artwork[] = [
     height: 1797,
     alt: "Charcoal drawing from the Fragments series, titled verse for her.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 20,
   },
   {
@@ -230,6 +243,8 @@ export const artworks: Artwork[] = [
     height: 1878,
     alt: "Charcoal drawing from the Fragments series, titled Tumor.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 21,
   },
   {
@@ -243,6 +258,7 @@ export const artworks: Artwork[] = [
     height: 1796,
     alt: "Charcoal drawing from the Fragments series, titled Time.",
     collection: "Fragments",
+    availability: "Collection of the artist",
     order: 24,
   },
   {
@@ -256,6 +272,8 @@ export const artworks: Artwork[] = [
     height: 1796,
     alt: "Charcoal drawing from the Fragments series, titled Rage.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 25,
   },
   {
@@ -269,6 +287,7 @@ export const artworks: Artwork[] = [
     height: 1797,
     alt: "Charcoal drawing from the Fragments series, titled Broken.",
     collection: "Fragments",
+    availability: "Work in progress",
     order: 26,
   },
   {
@@ -282,6 +301,8 @@ export const artworks: Artwork[] = [
     height: 1800,
     alt: "Charcoal drawing from the Fragments series, titled Pride.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 30,
   },
   {
@@ -295,6 +316,7 @@ export const artworks: Artwork[] = [
     height: 1792,
     alt: "Charcoal drawing from the Fragments series, titled 21 Days.",
     collection: "Fragments",
+    availability: "Collection of the artist",
     order: 31,
   },
   {
@@ -308,6 +330,8 @@ export const artworks: Artwork[] = [
     height: 1797,
     alt: "Charcoal drawing from the Fragments series, titled Retching.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 32,
   },
   {
@@ -321,6 +345,8 @@ export const artworks: Artwork[] = [
     height: 1795,
     alt: "Charcoal drawing from the Fragments series, titled Value.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 33,
   },
   {
@@ -334,6 +360,8 @@ export const artworks: Artwork[] = [
     height: 1798,
     alt: "Charcoal drawing from the Fragments series, titled Vow Renewal.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 35,
   },
 ];
