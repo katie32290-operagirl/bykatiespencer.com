@@ -35,6 +35,8 @@ export type Artwork = {
   alt: string;
   /** Optional grouping; "Fragments" renders as its own titled section. */
   collection?: string;
+  /** Filter category for the gallery tabs, e.g. "Painting", "Charcoal". */
+  category?: string;
   /** Catalog number within a series, shown as a plate number, e.g. "01". */
   seq?: string;
   /** Optional, e.g. "Original available", "Not for sale". Hidden if absent. */
@@ -49,6 +51,7 @@ export const artworks: Artwork[] = [
   // ---- standalone works ------------------------------------------------
   {
     id: "blue-eye",
+    category: "Drawing",
     title: "Knowing",
     medium: "Colored pencil",
     image: "/art/blue-eye.webp",
@@ -60,6 +63,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fleming",
+    category: "Illustration",
     title: "Diva",
     seq: "01",
     medium: "Mixed media",
@@ -74,6 +78,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "didonato",
+    category: "Illustration",
     title: "Diva",
     seq: "02",
     medium: "Mixed media",
@@ -88,6 +93,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "guitar",
+    category: "Painting",
     title: "Reggie",
     medium: "Acrylic on canvas",
     image: "/art/guitar.webp",
@@ -99,6 +105,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "lemons",
+    category: "Painting",
     title: "Italian Citrus",
     medium: "Acrylic paint pens",
     image: "/art/lemons.webp",
@@ -112,6 +119,7 @@ export const artworks: Artwork[] = [
   // ---- Fragments (charcoal series) -------------------------------------
   {
     id: "fragments-cover",
+    category: "Charcoal",
     seq: "00",
     title: "Fragments",
     medium: "Charcoal on paper",
@@ -125,6 +133,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-darkness",
+    category: "Charcoal",
     seq: "01",
     title: "Darkness",
     medium: "Charcoal on paper",
@@ -137,6 +146,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-lament",
+    category: "Charcoal",
     seq: "04",
     title: "Lament",
     medium: "Charcoal on paper",
@@ -149,6 +159,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-indifference",
+    category: "Charcoal",
     seq: "07",
     title: "Indifference",
     medium: "Charcoal on paper",
@@ -161,6 +172,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-verse-for-her",
+    category: "Charcoal",
     seq: "10",
     title: "verse for her",
     medium: "Charcoal on paper",
@@ -173,6 +185,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-tumor",
+    category: "Charcoal",
     seq: "11",
     title: "Tumor",
     medium: "Charcoal on paper",
@@ -185,6 +198,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-time",
+    category: "Charcoal",
     seq: "14",
     title: "Time",
     medium: "Charcoal on paper",
@@ -197,6 +211,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-rage",
+    category: "Charcoal",
     seq: "15",
     title: "Rage",
     medium: "Charcoal on paper",
@@ -209,6 +224,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-broken",
+    category: "Charcoal",
     seq: "16",
     title: "Broken",
     medium: "Charcoal on paper",
@@ -221,6 +237,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-pride",
+    category: "Charcoal",
     seq: "20",
     title: "Pride",
     medium: "Charcoal on paper",
@@ -233,6 +250,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-21-days",
+    category: "Charcoal",
     seq: "21",
     title: "21 Days",
     medium: "Charcoal on paper",
@@ -245,6 +263,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-retching",
+    category: "Charcoal",
     seq: "22",
     title: "Retching",
     medium: "Charcoal on paper",
@@ -257,6 +276,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-value",
+    category: "Charcoal",
     seq: "23",
     title: "Value",
     medium: "Charcoal on paper",
@@ -269,6 +289,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fragments-vow-renewal",
+    category: "Charcoal",
     seq: "25",
     title: "Vow Renewal",
     medium: "Charcoal on paper",
@@ -295,3 +316,19 @@ export const standaloneArtworks: Artwork[] = galleryArtworks.filter(
 export const fragmentsArtworks: Artwork[] = galleryArtworks.filter(
   (a) => a.collection === "Fragments",
 );
+
+/** Preferred order for the gallery filter tabs. Unknown categories append. */
+const CATEGORY_ORDER = ["Painting", "Drawing", "Illustration", "Charcoal"];
+
+/** Filter tabs: "All" plus each category present, in preferred order. */
+export const galleryCategories: string[] = [
+  "All",
+  ...CATEGORY_ORDER.filter((c) => galleryArtworks.some((a) => a.category === c)),
+  ...Array.from(
+    new Set(
+      galleryArtworks
+        .map((a) => a.category)
+        .filter((c): c is string => !!c && !CATEGORY_ORDER.includes(c)),
+    ),
+  ),
+];
