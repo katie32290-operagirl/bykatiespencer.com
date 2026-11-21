@@ -49,6 +49,7 @@ export const artworks: Artwork[] = [
   // ---- standalone works ------------------------------------------------
   {
     id: "blue-eye",
+    title: "Knowing",
     medium: "Colored pencil",
     image: "/art/blue-eye.webp",
     width: 1104,
