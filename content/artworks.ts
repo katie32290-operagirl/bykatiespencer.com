@@ -99,7 +99,7 @@ export const artworks: Artwork[] = [
     medium: "Mixed media",
     note: "“I’d prefer dangerous.”",
     image: "/art/bryce-davis.webp",
-    width: 1206,
+    width: 1162,
     height: 1586,
     alt: "Mixed-media illustration of a mezzo-soprano with dark curls and a heart-drop earring, chin lifted, in an off-the-shoulder red dress with polka dots against black checkerboard and red brushwork; the hand-lettered words “I’d prefer dangerous.” and the name Raehann Bryce-Davis fill the upper right.",
     collection: "Illustrations",
