@@ -41,6 +41,20 @@ export type Artwork = {
   seq?: string;
   /** Optional, e.g. "Original available", "Not for sale". Hidden if absent. */
   availability?: string;
+  /** Display price, e.g. "$450". Hidden if absent. */
+  price?: string;
+  /**
+   * Checkout link (e.g. a Stripe Payment Link). When set, the detail view
+   * shows a "Buy" button. Remove it (and set availability to "Sold") once
+   * the piece sells.
+   */
+  buyUrl?: string;
+  /**
+   * Label for an email button when there's no buyUrl, e.g. "Inquire" or
+   * "Notify me about prints". Opens an email with the piece's title in the
+   * subject line.
+   */
+  inquire?: string;
   /** Lower numbers show first. */
   order: number;
   /** Featured pieces lead their zone at a larger scale. */
@@ -58,6 +72,7 @@ export const artworks: Artwork[] = [
     width: 1104,
     height: 1480,
     alt: "A framed colored-pencil drawing on a pale wall: a close cropped face with one bright blue eye under a dark brow, auburn hair falling across warm skin, and deep red lips at the lower edge.",
+    availability: "Collection of the artist",
     order: 1.8,
     featured: true,
   },
@@ -73,6 +88,8 @@ export const artworks: Artwork[] = [
     height: 1516,
     alt: "Mixed-media illustration of a soprano in a strapless magenta gown, seen in profile with an upswept bun, against black cross-hatching and bright pink brushstrokes; the hand-lettered words “Risk is exciting.” and the name Renée Fleming fill the upper left.",
     collection: "Illustrations",
+    availability: "Original not for sale · Prints coming soon",
+    inquire: "Notify me about prints",
     order: 1.2,
     featured: true,
   },
@@ -88,6 +105,8 @@ export const artworks: Artwork[] = [
     height: 1583,
     alt: "Mixed-media illustration of a mezzo-soprano in an off-the-shoulder dark gown, turned over her shoulder, against vivid green brushwork and black grids; the hand-lettered words “I can’t bear to lie to an audience.” and the name Joyce DiDonato fill the upper left.",
     collection: "Illustrations",
+    availability: "Original not for sale · Prints coming soon",
+    inquire: "Notify me about prints",
     order: 1.3,
     featured: true,
   },
@@ -103,6 +122,8 @@ export const artworks: Artwork[] = [
     height: 1586,
     alt: "Mixed-media illustration of a mezzo-soprano with dark curls and a heart-drop earring, chin lifted, in an off-the-shoulder red dress with polka dots against black checkerboard and red brushwork; the hand-lettered words “I’d prefer dangerous.” and the name Raehann Bryce-Davis fill the upper right.",
     collection: "Illustrations",
+    availability: "Original not for sale · Prints coming soon",
+    inquire: "Notify me about prints",
     order: 1.35,
     featured: true,
   },
@@ -115,6 +136,8 @@ export const artworks: Artwork[] = [
     width: 1200,
     height: 1544,
     alt: "A vibrant acrylic painting on canvas hung on a pale wall: an electric guitar in jewel tones, a teal and lime body on the left, a golden-orange body on the right, pale strings running down a rainbow-lit neck against a magenta and violet ground.",
+    availability: "Original not for sale · Prints planned",
+    inquire: "Notify me about prints",
     order: 1.5,
     featured: true,
   },
@@ -127,6 +150,7 @@ export const artworks: Artwork[] = [
     width: 1122,
     height: 1402,
     alt: "Bright painting in acrylic paint pens of a branch of lemons with green leaves and two cut wedges, set against a hand-painted blue and pale-blue checkerboard.",
+    availability: "Private collection",
     order: 1.75,
     featured: true,
   },
@@ -143,6 +167,8 @@ export const artworks: Artwork[] = [
     height: 1786,
     alt: "Charcoal drawing of a face torn into pieces and reassembled on the page, the eyes, nose and mouth offset across the fragments so the portrait reads as broken and remade.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 10,
     featured: true,
   },
@@ -157,6 +183,8 @@ export const artworks: Artwork[] = [
     height: 1794,
     alt: "Charcoal drawing from the Fragments series, titled Darkness.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 11,
   },
   {
@@ -170,6 +198,8 @@ export const artworks: Artwork[] = [
     height: 1810,
     alt: "Charcoal drawing from the Fragments series, titled Lament.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 14,
   },
   {
@@ -183,6 +213,8 @@ export const artworks: Artwork[] = [
     height: 1741,
     alt: "Charcoal drawing from the Fragments series, titled Indifference.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 17,
   },
   {
@@ -196,6 +228,8 @@ export const artworks: Artwork[] = [
     height: 1797,
     alt: "Charcoal drawing from the Fragments series, titled verse for her.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 20,
   },
   {
@@ -209,6 +243,8 @@ export const artworks: Artwork[] = [
     height: 1878,
     alt: "Charcoal drawing from the Fragments series, titled Tumor.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 21,
   },
   {
@@ -222,6 +258,7 @@ export const artworks: Artwork[] = [
     height: 1796,
     alt: "Charcoal drawing from the Fragments series, titled Time.",
     collection: "Fragments",
+    availability: "Collection of the artist",
     order: 24,
   },
   {
@@ -235,6 +272,8 @@ export const artworks: Artwork[] = [
     height: 1796,
     alt: "Charcoal drawing from the Fragments series, titled Rage.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 25,
   },
   {
@@ -248,6 +287,7 @@ export const artworks: Artwork[] = [
     height: 1797,
     alt: "Charcoal drawing from the Fragments series, titled Broken.",
     collection: "Fragments",
+    availability: "Work in progress",
     order: 26,
   },
   {
@@ -261,6 +301,8 @@ export const artworks: Artwork[] = [
     height: 1800,
     alt: "Charcoal drawing from the Fragments series, titled Pride.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 30,
   },
   {
@@ -274,6 +316,7 @@ export const artworks: Artwork[] = [
     height: 1792,
     alt: "Charcoal drawing from the Fragments series, titled 21 Days.",
     collection: "Fragments",
+    availability: "Collection of the artist",
     order: 31,
   },
   {
@@ -287,6 +330,8 @@ export const artworks: Artwork[] = [
     height: 1797,
     alt: "Charcoal drawing from the Fragments series, titled Retching.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 32,
   },
   {
@@ -300,6 +345,8 @@ export const artworks: Artwork[] = [
     height: 1795,
     alt: "Charcoal drawing from the Fragments series, titled Value.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 33,
   },
   {
@@ -313,6 +360,8 @@ export const artworks: Artwork[] = [
     height: 1798,
     alt: "Charcoal drawing from the Fragments series, titled Vow Renewal.",
     collection: "Fragments",
+    availability: "Original available · Inquire for price",
+    inquire: "Inquire",
     order: 35,
   },
 ];
