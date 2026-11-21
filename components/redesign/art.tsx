@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Nav, Cta, Footer, Shell, PAD, C, SANS, SERIF } from "./chrome";
+import { Nav, Footer, Shell, PAD, C, SANS, SERIF } from "./chrome";
+import { MailLink } from "./mail-link";
 import {
   galleryArtworks,
   galleryCategories,
@@ -33,6 +34,18 @@ const NO_SAVE: React.CSSProperties = {
   WebkitUserSelect: "none",
 };
 const blockSave = (e: React.SyntheticEvent) => e.preventDefault();
+
+/** Pill button in the lightbox (Buy / Inquire). */
+const LB_BTN: React.CSSProperties = {
+  fontFamily: SANS,
+  fontSize: 14,
+  letterSpacing: ".04em",
+  color: C.cream,
+  background: C.terra,
+  padding: "12px 26px",
+  borderRadius: 40,
+  whiteSpace: "nowrap",
+};
 
 export function ArtRedesign() {
   const [cat, setCat] = useState("All");
@@ -156,9 +169,76 @@ export function ArtRedesign() {
         />
       )}
 
-      <Cta />
+      <ArtCta />
       <Footer />
     </Shell>
+  );
+}
+
+/** Art-page call to action: commissions and the studio Instagram. */
+function ArtCta() {
+  return (
+    <div
+      className={`${PAD} py-[clamp(56px,8vw,80px)]`}
+      style={{ background: C.terra }}
+    >
+      <div className="mx-auto max-w-[1180px]">
+        <div
+          style={{
+            fontFamily: SANS,
+            fontWeight: 700,
+            fontSize: "clamp(32px,5vw,52px)",
+            letterSpacing: "-.025em",
+            color: C.ox,
+            lineHeight: 1,
+          }}
+        >
+          Commissions open.
+        </div>
+        <p
+          style={{
+            fontFamily: SERIF,
+            fontSize: 17,
+            lineHeight: 1.6,
+            color: C.ox,
+            marginTop: 14,
+            maxWidth: 620,
+          }}
+        >
+          Want something made for you, or for someone you love? Tell me about it.
+        </p>
+        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <MailLink
+            subject="Commission inquiry"
+            label="Start a commission →"
+            className="transition-opacity hover:opacity-90"
+            style={{
+              fontFamily: SANS,
+              fontSize: 16,
+              color: C.cream,
+              background: C.ox,
+              padding: "16px 34px",
+              borderRadius: 40,
+              whiteSpace: "nowrap",
+            }}
+          />
+          <a
+            href="https://www.instagram.com/bykatieart"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity hover:opacity-70"
+            style={{
+              fontSize: 15,
+              color: C.ox,
+              textDecoration: "underline",
+              textUnderlineOffset: 3,
+            }}
+          >
+            See new work first on Instagram, @bykatieart
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -431,6 +511,41 @@ function Lightbox({
             >
               {art.note}
             </p>
+          )}
+          {(art.availability || art.price) && (
+            <div
+              style={{
+                fontSize: 13,
+                letterSpacing: ".08em",
+                color: C.cream,
+                marginTop: 18,
+                lineHeight: 1.5,
+              }}
+            >
+              {[art.availability, art.price].filter(Boolean).join(" · ")}
+            </div>
+          )}
+          {art.buyUrl ? (
+            <a
+              href={art.buyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block transition-opacity hover:opacity-90"
+              style={LB_BTN}
+            >
+              Buy{art.price ? ` · ${art.price}` : ""} &rarr;
+            </a>
+          ) : (
+            art.inquire && (
+              <div className="mt-4">
+                <MailLink
+                  subject={`${art.inquire}: ${[art.seq, art.title].filter(Boolean).join(" · ") || "Untitled"}`}
+                  label={`${art.inquire} →`}
+                  className="inline-block transition-opacity hover:opacity-90"
+                  style={LB_BTN}
+                />
+              </div>
+            )
           )}
           {gallery.length > 1 && (
             <div className="mt-5 flex flex-wrap gap-2">

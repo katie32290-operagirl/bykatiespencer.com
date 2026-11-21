@@ -41,6 +41,20 @@ export type Artwork = {
   seq?: string;
   /** Optional, e.g. "Original available", "Not for sale". Hidden if absent. */
   availability?: string;
+  /** Display price, e.g. "$450". Hidden if absent. */
+  price?: string;
+  /**
+   * Checkout link (e.g. a Stripe Payment Link). When set, the detail view
+   * shows a "Buy" button. Remove it (and set availability to "Sold") once
+   * the piece sells.
+   */
+  buyUrl?: string;
+  /**
+   * Label for an email button when there's no buyUrl, e.g. "Inquire" or
+   * "Notify me about prints". Opens an email with the piece's title in the
+   * subject line.
+   */
+  inquire?: string;
   /** Lower numbers show first. */
   order: number;
   /** Featured pieces lead their zone at a larger scale. */
@@ -73,6 +87,8 @@ export const artworks: Artwork[] = [
     height: 1516,
     alt: "Mixed-media illustration of a soprano in a strapless magenta gown, seen in profile with an upswept bun, against black cross-hatching and bright pink brushstrokes; the hand-lettered words “Risk is exciting.” and the name Renée Fleming fill the upper left.",
     collection: "Illustrations",
+    availability: "Original not for sale · Prints coming soon",
+    inquire: "Notify me about prints",
     order: 1.2,
     featured: true,
   },
@@ -88,6 +104,8 @@ export const artworks: Artwork[] = [
     height: 1583,
     alt: "Mixed-media illustration of a mezzo-soprano in an off-the-shoulder dark gown, turned over her shoulder, against vivid green brushwork and black grids; the hand-lettered words “I can’t bear to lie to an audience.” and the name Joyce DiDonato fill the upper left.",
     collection: "Illustrations",
+    availability: "Original not for sale · Prints coming soon",
+    inquire: "Notify me about prints",
     order: 1.3,
     featured: true,
   },
@@ -103,6 +121,8 @@ export const artworks: Artwork[] = [
     height: 1586,
     alt: "Mixed-media illustration of a mezzo-soprano with dark curls and a heart-drop earring, chin lifted, in an off-the-shoulder red dress with polka dots against black checkerboard and red brushwork; the hand-lettered words “I’d prefer dangerous.” and the name Raehann Bryce-Davis fill the upper right.",
     collection: "Illustrations",
+    availability: "Original not for sale · Prints coming soon",
+    inquire: "Notify me about prints",
     order: 1.35,
     featured: true,
   },
@@ -127,6 +147,7 @@ export const artworks: Artwork[] = [
     width: 1122,
     height: 1402,
     alt: "Bright painting in acrylic paint pens of a branch of lemons with green leaves and two cut wedges, set against a hand-painted blue and pale-blue checkerboard.",
+    availability: "Private collection",
     order: 1.75,
     featured: true,
   },
