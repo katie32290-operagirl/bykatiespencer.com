@@ -74,7 +74,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "didonato",
-    title: "Joyce DiDonato",
+    title: "Diva",
     seq: "02",
     medium: "Mixed media",
     note: "“I can’t bear to lie to an audience.”",
