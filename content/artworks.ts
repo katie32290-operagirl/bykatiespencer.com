@@ -60,12 +60,13 @@ export const artworks: Artwork[] = [
   },
   {
     id: "fleming",
-    title: "Renée Fleming",
+    title: "Diva",
+    seq: "01",
     medium: "Mixed media",
     note: "“Risk is exciting.”",
     image: "/art/fleming.webp",
     width: 1111,
-    height: 1599,
+    height: 1516,
     alt: "Mixed-media illustration of a soprano in a strapless magenta gown, seen in profile with an upswept bun, against black cross-hatching and bright pink brushstrokes; the hand-lettered words “Risk is exciting.” and the name Renée Fleming fill the upper left.",
     collection: "Illustrations",
     order: 1.2,
@@ -74,6 +75,7 @@ export const artworks: Artwork[] = [
   {
     id: "didonato",
     title: "Joyce DiDonato",
+    seq: "02",
     medium: "Mixed media",
     note: "“I can’t bear to lie to an audience.”",
     image: "/art/didonato.webp",
