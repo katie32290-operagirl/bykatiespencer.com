@@ -88,6 +88,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "guitar",
+    title: "Reggie",
     medium: "Acrylic on canvas",
     image: "/art/guitar.webp",
     width: 1200,
