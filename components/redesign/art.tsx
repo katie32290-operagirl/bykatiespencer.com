@@ -24,6 +24,16 @@ function tileLabel(a: Artwork): string {
   return a.seq ? `${a.seq} · ${t}` : t;
 }
 
+/** Deters casual saving: the image ignores pointer events (right-click and
+ * long-press land on the wrapper, not the picture) and can't be selected.
+ * Not true protection — screenshots and the cache can't be blocked. */
+const NO_SAVE: React.CSSProperties = {
+  pointerEvents: "none",
+  userSelect: "none",
+  WebkitUserSelect: "none",
+};
+const blockSave = (e: React.SyntheticEvent) => e.preventDefault();
+
 export function ArtRedesign() {
   const [cat, setCat] = useState("All");
   const [open, setOpen] = useState<number | null>(null);
@@ -187,6 +197,7 @@ function Tile({ art, onOpen }: { art: Artwork; onOpen: () => void }) {
     <button
       type="button"
       onClick={onOpen}
+      onContextMenu={blockSave}
       aria-label={`View ${art.title ?? "untitled piece"} larger`}
       className="ks-tile group relative block w-full cursor-zoom-in overflow-hidden p-0"
       style={{ border: "none", background: C.peachSoft, lineHeight: 0 }}
@@ -198,8 +209,10 @@ function Tile({ art, onOpen }: { art: Artwork; onOpen: () => void }) {
         height={art.height}
         loading="lazy"
         decoding="async"
+        draggable={false}
+        onContextMenu={blockSave}
         className="block h-auto w-full transition-transform duration-300 ease-out group-hover:scale-[1.03]"
-        style={{ aspectRatio: `${art.width} / ${art.height}` }}
+        style={{ aspectRatio: `${art.width} / ${art.height}`, ...NO_SAVE }}
       />
       <span
         className="pointer-events-none absolute inset-0 flex items-end opacity-0 transition-opacity duration-200 group-hover:opacity-100"
@@ -281,6 +294,7 @@ function Lightbox({
       aria-modal="true"
       aria-label={art.title ? `${art.title}, enlarged` : "Artwork, enlarged"}
       onClick={onClose}
+      onContextMenu={blockSave}
       className="ks-lb fixed inset-0 z-[100] flex flex-col"
       style={{ background: "#17110E", fontFamily: SANS }}
     >
@@ -332,6 +346,8 @@ function Lightbox({
           <img
             src={gallery[shot] ?? art.image}
             alt={art.alt}
+            draggable={false}
+            onContextMenu={blockSave}
             className="block"
             style={{
               maxHeight: "72vh",
@@ -339,6 +355,7 @@ function Lightbox({
               width: "auto",
               height: "auto",
               objectFit: "contain",
+              ...NO_SAVE,
             }}
           />
         </div>
