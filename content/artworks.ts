@@ -56,7 +56,7 @@ export const artworks: Artwork[] = [
     medium: "Colored pencil",
     image: "/art/blue-eye.webp",
     width: 1104,
-    height: 1480,
+    height: 1418,
     alt: "A framed colored-pencil drawing on a pale wall: a close cropped face with one bright blue eye under a dark brow, auburn hair falling across warm skin, and deep red lips at the lower edge.",
     order: 1.8,
     featured: true,
